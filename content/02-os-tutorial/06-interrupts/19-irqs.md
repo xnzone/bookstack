@@ -2,7 +2,7 @@
 author: xnzone 
 title: IRQ寄存器
 date: 1906-01-01
-image: covers/xv6.png
+image: covers/os-tutorial.png
 cover: false 
 weight: 2
 tags: ["tutorial", "os"]

@@ -2,7 +2,7 @@
 author: xnzone 
 title: 显示端口号
 date: 1906-01-01
-image: covers/xv6.png
+image: covers/os-tutorial.png
 cover: false 
 weight: 1
 tags: ["tutorial", "os"]
