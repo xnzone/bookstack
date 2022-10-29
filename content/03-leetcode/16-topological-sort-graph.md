@@ -4,7 +4,7 @@ date: 2022-09-10T00:43:42+08:00
 tags: ["leetcode", "topological sort and graph", "c++"]
 image: /covers/leetcode.png
 cover: false 
-weight: 5 
+weight:  18
 ---
 
 ## Course Schedule
