@@ -1,9 +1,6 @@
 ---
-author: xnzone 
-title: 实验0环境搭建
-date: 1906-01-01
-image: covers/xv6.png
-cover: false 
+bookCollapseSection: true
 weight: 1
-tags: ["xv6", "os"]
+title: Lab0-环境
+date: 2021-09-10
 ---

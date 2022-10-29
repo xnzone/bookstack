@@ -11,34 +11,7 @@ tags: ["xv6", "os"]
 
 使用Docker
 ----------------
-由于用macos编译太过于麻烦，所以就安装Docker来进行操作，主要的Dockerfile如下
-
-```Dockerfile
-FROM ubuntu:16.04
-
-RUN apt-get -qq update
-
-RUN apt-get install -y git build-essential gdb gcc-multilib tmux
-
-RUN git clone http://web.mit.edu/ccutler/www/qemu.git -b 6.828-2.3.0
-
-RUN apt-get install -y libsdl1.2-dev libtool-bin libglib2.0-dev libz-dev libpixman-1-dev
-
-RUN cd qemu && ./configure --disable-kvm --target-list="i386-softmmu x86_64-softmmu" && make && make install && cd ..
-
-ADD ./jos jos
-
-WORKDIR jos
-
-CMD ["/bin/bash"]
-
-```
-
-需要把代码目录放到与Dockerfile文件同一层级下
-- `docker build -t xv6 .` 用于构建镜像
-- `docker run --rm -it -v $PWD/jos:/jos xv6` 启动镜像并挂在文件，这样可以在macos中编辑文件，同时docker中也会同步显示了，及时编译
-- `docker exec -it 'ps_id' bash` 进入运行的Docker，在用gdb调试的时候需要
-
+由于用macos编译太过于麻烦，所以就安装Docker来进行操作，参考[Docker](02-docker.md)
 
 
 编译运行
