@@ -2,7 +2,7 @@
 author: xnzone 
 title: 分段
 date: 1906-01-01
-image: covers/os-tutorial.png
+image: /covers/os-tutorial.png
 cover: false 
 weight: 6
 tags: ["tutorial", "os"]

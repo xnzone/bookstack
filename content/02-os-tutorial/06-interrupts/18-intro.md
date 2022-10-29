@@ -2,7 +2,7 @@
 author: xnzone 
 title: 中断介绍
 date: 1906-01-01
-image: covers/os-tutorial.png
+image: /covers/os-tutorial.png
 cover: false 
 weight: 1
 tags: ["tutorial", "os"]

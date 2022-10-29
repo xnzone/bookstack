@@ -2,7 +2,7 @@
 author: xnzone 
 title: 实验操作
 date: 2021-09-10
-image: covers/xv6.png
+image: /covers/xv6.png
 cover: false 
 weight: 2
 tags: ["xv6", "os", "protect"]

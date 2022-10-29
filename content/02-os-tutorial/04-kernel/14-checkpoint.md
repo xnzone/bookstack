@@ -2,7 +2,7 @@
 author: xnzone 
 title: 断点
 date: 1906-01-01
-image: covers/os-tutorial.png
+image: /covers/os-tutorial.png
 cover: false 
 weight: 4
 tags: ["tutorial", "os"]

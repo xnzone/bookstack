@@ -2,7 +2,7 @@
 author: xnzone 
 title: 实验操作
 date: 2021-09-10
-image: covers/xv6.png
+image: /covers/xv6.png
 cover: false 
 weight: 2
 tags: ["xv6", "os", "network"]
@@ -39,7 +39,7 @@ starting count down: 5 4 3 2 1 0
 ```
 
 ## Exercise 2
->Exercise 2. Browse Intel's Software Developer's Manual for the E1000. This manual covers several closely related Ethernet controllers. QEMU emulates the 82540EM.
+>Exercise 2. Browse Intel's Software Developer's Manual for the E1000. This manual /covers several closely related Ethernet controllers. QEMU emulates the 82540EM.
 
 >You should skim over chapter 2 now to get a feel for the device. To write your driver, you'll need to be familiar with chapters 3 and 14, as well as 4.1 (though not 4.1's subsections). You'll also need to use chapter 13 as reference. The other chapters mostly cover components of the E1000 that your driver won't have to interact with. Don't worry about the details right now; just get a feel for how the document is structured so you can find things later.
 

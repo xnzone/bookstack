@@ -2,7 +2,7 @@
 author: xnzone 
 title: xv6环境
 date: 1906-01-01
-image: covers/xv6.png
+image: /covers/xv6.png
 cover: false 
 weight: 1
 tags: ["xv6", "os"]
