@@ -9,7 +9,7 @@ tags: ["xv6", "os", "bootstrap"]
 ---
 
 ## PC Bootstrap
-第一个练习的目的是介绍x86会变语言和PC bootstrap程序，使用QEMU和QEMU/GDB进行调试。这部分你不用写任何代码，但是不管怎样，你最好过一遍，并且回答文章后面的问题
+第一个练习的目的是介绍x86会变语言和PC bootstrap程序，使用QEMU和QEMU/GDB进行调试。这部分你不用写任何代码，但是不管怎样，你最好过一遍，并且回答文章后面的问题
 
 ### x86汇编
 

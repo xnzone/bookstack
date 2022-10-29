@@ -12,9 +12,9 @@ tags: ["tutorial", "os"]
 
 **目标：搭建构造内核的开发环境**
 
-如果你使用的是Mac，你需要按照这个流程做下去。否则，对于一些接下来的课程，你可能需要等待一些时间。不管怎样，一旦我们跳转在一个更高级的编程语言开发，比如C，[阅读为什么](https://os-tutorial-cn.vercel.app/11-kernel-crosscompiler/)，你需要一个交叉编译环境
+如果你使用的是Mac，你需要按照这个流程做下去。否则，对于一些接下来的课程，你可能需要等待一些时间。不管怎样，一旦我们跳转在一个更高级的编程语言开发，比如C，[阅读为什么](/02-os-tutorial/04-kernel/11-kernel-crosscompiler/)，你需要一个交叉编译环境
 
-我将根据[OSDev wiki](https://os-tutorial-cn.vercel.app/11-kernel-crosscompiler/)介绍
+我将根据[OSDev wiki](/02-os-tutorial/04-kernel/11-kernel-crosscompiler/)介绍
 
 ## 需要的包
 

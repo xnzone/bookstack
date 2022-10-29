@@ -14,7 +14,7 @@ tags: ["tutorial", "os"]
 
 请打开[this document](http://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)第14页, 并且查阅内存结构图
 
-![内存结构图](https://cdn.jsdelivr.net/gh/ovbox/solar/2021/03/05/20210305173850.png)
+![内存结构图](https://gitcode.net/xnzone/solar/-/raw/master/2021/03/05/20210305173850.png)
 
 这节课的唯一目的是学习引导扇区保存在哪里
 
