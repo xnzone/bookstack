@@ -48,7 +48,7 @@ dw 0xaa55
 
 编译：`nasm -f bin boot_sec_sample.asm -o boot_sec_sample.bin`
 
-> 警告:如果有error，阅读[环境配置](https://os-tutorial-cn.vercel.app/00-environment/)
+> 警告:如果有error，阅读[环境配置](/02-os-tutorial/01-env/00-env)
 
 我知道你非常期待想要尝试运行它，我也一样，所以淦 `qemu boot_sec_sample.bin`
 
