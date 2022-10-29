@@ -1,6 +1,6 @@
 ---
 author: xnzone 
-title: 显示驱动
+title: 显示器驱动
 date: 1906-01-01
 image: /covers/os-tutorial.png
 cover: false 

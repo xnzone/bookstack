@@ -1,6 +1,6 @@
 ---
 author: xnzone 
-title: 显示端口号
+title: 显示器端口号
 date: 1906-01-01
 image: /covers/os-tutorial.png
 cover: false 
