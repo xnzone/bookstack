@@ -11,7 +11,7 @@ tags: ["xv6", "os"]
 
 使用Docker
 ----------------
-由于用macos编译太过于麻烦，所以就安装Docker来进行操作，参考[Docker](02-docker.md)
+由于用macos编译太过于麻烦，所以就安装Docker来进行操作，参考[Docker](/01-xv6-lab/lab0-envs/02-docker)
 
 
 编译运行

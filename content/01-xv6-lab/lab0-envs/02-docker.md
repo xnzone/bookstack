@@ -4,7 +4,7 @@ title: Docker
 date: 1906-01-01
 image: covers/xv6.png
 cover: false 
-weight: 1
+weight: 2
 tags: ["xv6", "os"]
 ---
 
