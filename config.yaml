@@ -1,0 +1,14 @@
+baseURL: "https://bookstack.xnzone.eu.org"
+title: bookstack
+paginate: 6
+theme: bookstack
+
+menu:
+  main:
+    - identifier: search
+      name: Search
+      url: search/
+outputs:
+    home:
+        - HTML
+        - JSON
