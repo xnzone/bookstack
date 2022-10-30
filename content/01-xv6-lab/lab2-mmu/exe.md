@@ -167,7 +167,7 @@ page_insert()
 3. `inc/mmu.h`中定义的宏是非常有用的，需要配合使用完成这个代码
 
 有了上面的提示和分析，就知道`pgdir_walk`是干嘛的了，核心还是`page2kva`转换成虚拟地址，里面还有额外的分配要求，补上就可以了
-{{< /highlight  >}}c
+{{< highlight c  >}}
 pte_t *
 pgdir_walk(pde_t *pgdir, const void *va, int create)
 {

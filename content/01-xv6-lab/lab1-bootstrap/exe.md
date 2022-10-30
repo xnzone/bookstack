@@ -150,7 +150,7 @@ if (crt_pos >= CRT_SIZE) {
 
 >Trace the execution of the following code step-by-step:
 
-{{< /highlight  >}}c
+{{< highlight c >}}
 int x = 1, y = 3, z = 4;
 cprintf("x %d, y %x, z %d\n", x, y, z);
 {{< /highlight  >}}
