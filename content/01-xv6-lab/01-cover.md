@@ -8,6 +8,8 @@ weight: 1
 tags: ["xv6", "os"]
 ---
 
+>xv6课程网址[6.828-2018](https://pdos.csail.mit.edu/6.828/2018/)
+
 ## Introduction
 xv6 is a teaching operating system developed in the summer of 2006, which we ported xv6 to RISC-V for a new undergraduate class 6.1810.
 

@@ -8,6 +8,8 @@ weight: 2
 tags: ["tutorial", "os"]
 ---
 
+>翻译自[os-tutorial](https://github.com/cfenollosa/os-tutorial)
+
 ## 操作系统教程
 
 怎么使用`scratch`开发一个操作系统！
