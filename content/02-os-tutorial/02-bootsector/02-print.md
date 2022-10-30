@@ -24,7 +24,7 @@ tags: ["tutorial", "os"]
 
 我们的引导扇区像这样:
 
-{{< highlight armasm >}}
+{{< highlight asm >}}
 mov ah, 0x0e ; tty模式
 mov al, 'H'
 int 0x10

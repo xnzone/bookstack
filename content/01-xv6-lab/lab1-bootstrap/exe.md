@@ -37,9 +37,7 @@ tags: ["xv6", "os", "bootstrap"]
     {{< highlight c >}}
     ((void (*)(void)) (ELFHDR->e_entry))();
     {{< /highlight  >}}
-    bootloader最后一行代码是这一条，整个`bootmain`函数的作用就是从硬盘读取内核，然后跳到`entry`入口，执行内核。
-
-    镜像文件是按照`elf`格式存在硬盘上的，`ELFHDR`是指向`0x10000`，整个内核程序块是从`0x10000`（物理地址）开始运行的。`entry`的虚拟地址，在之前打印过，是`0xf010000c`,转化成物理地址为`0x10000c`。所以内核加载的第一条指令是`movw   $0x1234,0x472` 
+    bootloader最后一行代码是这一条，整个`bootmain`函数的作用就是从硬盘读取内核，然后跳到`entry`入口，执行内核。镜像文件是按照`elf`格式存在硬盘上的，`ELFHDR`是指向`0x10000`，整个内核程序块是从`0x10000`（物理地址）开始运行的。`entry`的虚拟地址，在之前打印过，是`0xf010000c`,转化成物理地址为`0x10000c`。所以内核加载的第一条指令是`movw   $0x1234,0x472` 
 3. Where is the first instruction of the kernel?
    {{< highlight asm >}}
    movw   $0x1234,0x472

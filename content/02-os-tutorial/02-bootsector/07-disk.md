@@ -20,7 +20,7 @@ tags: ["tutorial", "os"]
 
 这节课程，我们将第一次使用进位，当前寄存器溢出时，需要额外的一位保存进位
 
-{{< highlight armnasm >}}
+{{< highlight asm >}}
 mov ax, 0xFFFF
 add ax, 1 ; ax = 0x0000 and carry = 1
 {{< /highlight  >}}
