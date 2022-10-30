@@ -16,7 +16,7 @@ weight: 4
 - 最后遍历一遍就是结果，如果跑到最后，直接输出`n+1`
 
 
-{{< highlight c++ >}}
+{{< highlight cpp >}}
 int firstMissingPositive(vector<int> &nums) {
     int n = nums.size();
     vector<int> tmp(n + 1, 1);
