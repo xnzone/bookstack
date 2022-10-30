@@ -39,7 +39,7 @@ int firstMissingPositive(vector<int> &nums) {
 - 一层旋转结束了，就往里旋转，直到层数大于`n / 2`
 - 注意判断特殊情况
 
-```c++
+```cpp
 void rotate(vector<vector<int>> &matrix) {
     int n = matrix.size();
     int layer = 0;
@@ -58,7 +58,7 @@ void rotate(vector<vector<int>> &matrix) {
 
 - 直接新建一个数组保存
 
-```c++
+```cpp
 void rotate(vector<vector<int>> &matrix) {
     vector<vector<int>> tmp(matrix);
     for (int i = 0; i < matrix.size(); i++) {
