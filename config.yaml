@@ -12,3 +12,10 @@ outputs:
     home:
         - HTML
         - JSON
+
+markup:
+  highlight:
+    style: "manni"
+  goldmark:
+    renderer:
+      unsafe: true
