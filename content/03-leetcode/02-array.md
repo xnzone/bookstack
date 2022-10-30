@@ -15,7 +15,8 @@ weight: 4
 - 遍历数组，如果出现了，设为0，大于n或者小于0，忽略
 - 最后遍历一遍就是结果，如果跑到最后，直接输出`n+1`
 
-```c++
+
+{{< highlight c++ >}}
 int firstMissingPositive(vector<int> &nums) {
     int n = nums.size();
     vector<int> tmp(n + 1, 1);
@@ -28,7 +29,8 @@ int firstMissingPositive(vector<int> &nums) {
     }
     return n + 1;
 }
-```
+{{< /highlight >}}
+
 
 ## Rotate Image
 [LeetCode](https://leetcode.com/problems/rotate-image)/[力扣](https://leetcode-cn.com/problems/rotate-image)
