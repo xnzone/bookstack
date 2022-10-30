@@ -29,24 +29,24 @@ tags: ["tutorial", "os"]
 
 一旦安装了，找到你安装的gcc（记住，不是clang）的位置，并且添加到环境变量，例如
 
-```bash
+{{< highlight bash >}}
 export CC=/usr/local/bin/gcc-4.9
 export LD=/usr/local/bin/gcc-4.9
-```
+{{< /highlight  >}}
 
 我们需要构建二进制包和一个gcc交叉编译器，我们需要把这些放到`/usr/local/i386elfgcc`。所以让我们把这些放到环境变量吧。可以根据你的喜好来修改他们
 
-```bash
+{{< highlight bash >}}
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 export PATH="$PREFIX/bin:$PATH"
-```
+{{< /highlight  >}}
 
 ## binutils(二进制工具包)
 
 记住：注意从网上复制的文本格式问题。我建议你一行一行复制
 
-```bash
+{{< highlight bash >}}
 mkdir /tmp/src
 cd /tmp/src
 curl -O http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.gz # 如果404，查找一个最近的版本
@@ -55,11 +55,11 @@ mkdir binutils-build
 cd binutils-build
 ../binutils-2.24/configure --target=$TARGET --enable-interwork --enable-multilib --disable-nls --disable-werror --prefix=$PREFIX 2>&1 | tee configure.log
 make all install 2>&1 | tee make.log
-```
+{{< /highlight  >}}
 
 ## gcc
 
-```bash
+{{< highlight bash >}}
 cd /tmp/src
 curl -O https://ftp.gnu.org/gnu/gcc/gcc-4.9.1/gcc-4.9.1.tar.bz2
 tar xf gcc-4.9.1.tar.bz2
@@ -70,7 +70,7 @@ make all-gcc
 make all-target-libgcc 
 make install-gcc 
 make install-target-libgcc
-```
+{{< /highlight  >}}
 
 你应该已经有了所有GNU二进制工具包和`/usr/local/i386elfgcc/bin`编译器，`i386-elf-`前缀是为了避免与系统编译器和二进制工具包冲突
 

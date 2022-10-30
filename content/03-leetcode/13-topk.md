@@ -12,7 +12,7 @@ weight: 15
 
 用优先队列来存k个元素，然后遍历数组，如果比堆顶元素大，则将堆顶元素弹出，并将元素放入
 
-```cpp
+{{< highlight cpp >}}
 int findKthLargest(vector<int>& nums, int k) {
     priority_queue<int, vector<int>, greater<int>> min_heap;
     for(int i = 0; i < k; ++i) {
@@ -28,12 +28,12 @@ int findKthLargest(vector<int>& nums, int k) {
     }
     return min_heap.top();
 }
-```
+{{< /highlight  >}}
 
 ## Kth Smallest Element in a BST
 [LeetCode](https://leetcode.com/problems/kth-smallest-element-in-a-bst)/[力扣](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst)
 
-```cpp
+{{< highlight cpp >}}
 int index = -1;
 int res;
 int kthSmallest(TreeNode* root, int k) {
@@ -50,12 +50,12 @@ void helper(TreeNode* root,int& k) {
     if (index == k - 1) res = root->val;
     else helper(root->right,k);
 }
-```
+{{< /highlight  >}}
 
 ## Top K Frequent Elements
 [LeetCode](https://leetcode.com/problems/top-k-frequent-elements)/[力扣](https://leetcode-cn.com/problems/top-k-frequent-elements)
 
-```cpp
+{{< highlight cpp >}}
 struct compare{
     bool operator()(pair<int, int>& p1, pair<int,int>& p2) {
         return p1.second > p2.second;
@@ -86,12 +86,12 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Sort Characters By Frequency
 [LeetCode](https://leetcode.com/problems/sort-characters-by-frequency)/[力扣](https://leetcode-cn.com/problems/sort-characters-by-frequency)
 
-```cpp
+{{< highlight cpp >}}
 struct compare {
     bool operator()(const pair<int,int> p1, const pair<int,int> p2) {
         return p1.first < p2.first;
@@ -117,12 +117,12 @@ string frequencySort(string s) {
     
     return s;
 }
-```
+{{< /highlight  >}}
 
 ## Course Schedule III
 [LeetCode](https://leetcode.com/problems/course-schedule-iii)/[力扣](https://leetcode.com/problems/course-schedule-iii)
 
-```cpp
+{{< highlight cpp >}}
 static bool cmp(vector<int> & a,vector<int> & b){
     if(a[1] == b[1]){
         return a[0] < b[0];
@@ -151,12 +151,12 @@ int scheduleCourse(vector<vector<int>>& courses) {
     
     return pq.size();
 }
-```
+{{< /highlight  >}}
 
 ## Find K Closest Elements
 [LeetCode](https://leetcode.com/problems/find-k-closest-elements)/[力扣](https://leetcode-cn.com/problems/find-k-closest-elements)
 
-```cpp
+{{< highlight cpp >}}
 vector<int> findClosestElements(vector<int>& arr, int k, int x) {
   int n=arr.size();
   vector<int>res;
@@ -182,12 +182,12 @@ vector<int> findClosestElements(vector<int>& arr, int k, int x) {
 
   return vector<int>(arr.begin()+low,arr.begin()+high+1);
 }
-```
+{{< /highlight  >}}
 
 ## Reorganize String
 [LeetCode](https://leetcode.com/problems/reorganize-string)/[力扣](https://leetcode-cn.com/problems/reorganize-string)
 
-```cpp
+{{< highlight cpp >}}
 string reorganizeString(string S) {
     int n = S.size();
     map<char, int> map;
@@ -228,12 +228,12 @@ string reorganizeString(string S) {
     
     return S;
 }
-```
+{{< /highlight  >}}
 
 ## Maximum Frequency Stack
 [LeetCode](https://leetcode.com/problems/maximum-frequency-stack)/[力扣](https://leetcode-cn.com/problems/maximum-frequency-stack)
 
-```cpp
+{{< highlight cpp >}}
 unordered_map<int,int> freq;
 unordered_map<int,stack<int>> freq_map;
 int mfreq=0;
@@ -253,12 +253,12 @@ int pop() {
         --mfreq;
     return temp;
 }
-```
+{{< /highlight  >}}
 
 ## K Closest Points to Origin
 [LeetCode](https://leetcode.com/problems/k-closest-points-to-origin)/[力扣](https://leetcode-cn.com/problems/k-closest-points-to-origin)
 
-```c++
+{{< highlight cpp >}}
 struct compare {
     bool operator()(vector<int> v1, vector<int> v2) {
         return v1[0] * v1[0] + v1[1] * v1[1] < v2[0] * v2[0] + v2[1] * v2[1];
@@ -282,5 +282,5 @@ vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 

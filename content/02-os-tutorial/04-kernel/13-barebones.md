@@ -19,15 +19,15 @@ tags: ["tutorial", "os"]
 
 我们将注意到一个没有做任何事情的辅助函数。那个函数将强制我们创建一个没有指向`0x0`字节的内核入口点，但是我们知道一个实际标签加载它。在我们这个例子中，就是`main()`函数
 
-```bash
+{{< highlight bash >}}
 i386-elf-gcc -ffreestanding -c kernel.c -o kernel.o
-```
+{{< /highlight  >}}
 
 在`kernel_entry.asm`里面有日常工作。阅读它，你将学会在汇编里怎么使用`[extern]`声明。为了生成一个会被`kernel.o`链接的`elf`格式文件，我们需要编译这个文件，而不是生成一个二进制文件。
 
-```bash
+{{< highlight bash >}}
 nasm kernel_entry.asm -f elf -o kernel_entry.o
-```
+{{< /highlight  >}}
 
 ## 链接
 
@@ -35,9 +35,9 @@ nasm kernel_entry.asm -f elf -o kernel_entry.o
 
 为了链接两个对象文件到一个二进制内核，解决标签引用，运行：
 
-```bash
+{{< highlight bash >}}
 i386-elf-ld -o kernel.bin -Ttext 0x1000 kernel_entry.o kernel.o --oformat binary
-```
+{{< /highlight  >}}
 
 注意不是把内核放到`0x0`位置，而是`0x1000`位置。引导扇区同样也需要知道地址。
 
@@ -53,9 +53,9 @@ i386-elf-ld -o kernel.bin -Ttext 0x1000 kernel_entry.o kernel.o --oformat binary
 
 我们不能把他们连接到一个文件？是的，我们可以，且是非常简单的，仅仅级联他们就可以了：
 
-```bash
+{{< highlight bash >}}
 cat bootsect.bin kernel.bin > os-image.bin
-```
+{{< /highlight  >}}
 
 ## 运行！
 

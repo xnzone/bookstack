@@ -20,10 +20,10 @@ tags: ["tutorial", "os"]
 
 定义string类似于bytes，但是为了能够终止他们，使用一个null-byte终止（是的，类似于C）
 
-```armnasm
+{{< highlight armnasm >}}
 mystring:
     db 'Hello, World', 0
-```
+{{< /highlight  >}}
 
 注意，引用的文本会被汇编转换成ASCII，然而单个的0会被转换成空字节(null byte)`0x00`
 
@@ -33,7 +33,7 @@ mystring:
 
 汇编跳转被定义成之前指令结果。例如
 
-```armnasm
+{{< highlight armnasm >}}
 cmp ax, 4       ; 如果 ax = 4
 je ax_is_four   ; 满足条件的处理，跳转到这个label进行处理
 jmp else        ; else 做其他的事情
@@ -48,7 +48,7 @@ else:
     jmp endif ;通常不需要，但是还是在这个地方输出
 
 endif:
-```
+{{< /highlight  >}}
 
 在你的脑海里使用高级语言思考这个过程，然后使用汇编实现它
 
@@ -65,7 +65,7 @@ endif:
 
 步骤1是非常简单的，`al`(实际上是`ax`)寄存器可以用于参数传递
 
-```armnasm
+{{< highlight armnasm >}}
 mov al, 'X'
 jmp print
 endprint:
@@ -76,7 +76,7 @@ print:
     mov ah, 0x0e    ; tty模式
     int 0x10        ; 假设 'al' 已经有所有的字符串
     jmp endprint    ; 之前已经有的label
-```
+{{< /highlight  >}}
 
 如你所见，这个方法很快就让代码成长为面条式代码。当前的`print`函数，仅仅返回`endprint`，如果其他的函数调用它，会怎么样呢？代码就不能被复用
 
@@ -95,9 +95,9 @@ print:
 
 代码是
 
-```armnasm
+{{< highlight armnasm >}}
 %include "file.asm"
-```
+{{< /highlight  >}}
 
 ## Printing hex values(输出二进制数据)
 

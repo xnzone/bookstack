@@ -14,7 +14,7 @@ weight: 9
 - 递归
 - 交换之后，直接交换下一个节点
 
-```c++
+{{< highlight cpp >}}
 ListNode* swapPairs(ListNode* head) {
     if(head && head->next) {
         swap(head->val, head->next->val);
@@ -22,12 +22,12 @@ ListNode* swapPairs(ListNode* head) {
     }
     return head;
 }
-```
+{{< /highlight  >}}
 
 - 非递归，两两交换
 - 看作先删除，然后再插入
 
-```c++
+{{< highlight cpp >}}
 ListNode* swapPairs(ListNode* head) {
     if(head == nullptr) return head;
     ListNode p(0);
@@ -44,7 +44,7 @@ ListNode* swapPairs(ListNode* head) {
     }
     return node->next;
 }
-```
+{{< /highlight  >}}
 
 ## Reverse Nodes in k-Group
 [LeetCode](https://leetcode.com/problems/reverse-nodes-in-k-group)/[力扣](https://leetcode-cn.com/problems/reverse-nodes-in-k-group)
@@ -52,7 +52,7 @@ ListNode* swapPairs(ListNode* head) {
 - 中间链表反转
 - 记住前后面指针，然后拼接三个链表
 
-```c++
+{{< highlight cpp >}}
 ListNode* reverseKGroup(ListNode* head, int k) {
     ListNode po(0);
     ListNode* p = &po;
@@ -102,14 +102,14 @@ ListNode* reverse(ListNode* head){
     }
     return prev;
 }
-```
+{{< /highlight  >}}
 
 ## Rotate List
 [LeetCode](https://leetcode.com/problems/rotate-list)/[力扣](https://leetcode-cn.com/problems/rotate-list)
 
 记录链表总长度，根据总长度与K的余数，再看从哪里开始断开放到队列首部
 
-```c++
+{{< highlight cpp >}}
 ListNode* rotateRight(ListNode* head, int k) {
     if(head == nullptr || k == 0) return head;
     int n = 0;
@@ -128,14 +128,14 @@ ListNode* rotateRight(ListNode* head, int k) {
     phead->next = nullptr;
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Reverse Linked List II
 [LeetCode](https://leetcode.com/problems/reverse-linked-list-ii)/[力扣](https://leetcode-cn.com/problems/reverse-linked-list-ii)
 
 参考链表反转，将prev替换成nullptr就可以了
 
-```c++
+{{< highlight cpp >}}
  ListNode* reverseBetween(ListNode* head, int m, int n) {
     if(head == nullptr) return head;
     ListNode p(0);
@@ -167,14 +167,14 @@ ListNode* reverse(ListNode* begin, ListNode* end){
     }
     return prev;
 }
-```
+{{< /highlight  >}}
 
 ## Reverse Linked List
 [LeetCode](https://leetcode.com/problems/reverse-linked-list)/[力扣](https://leetcode-cn.com/problems/reverse-linked-list)
 
 非递归，三个指针，每次都是后面指向前面一个
 
-```c++
+{{< highlight cpp >}}
 ListNode* reverseList(ListNode* head) {
     ListNode* prev = nullptr;
     ListNode* cur = head;
@@ -186,14 +186,14 @@ ListNode* reverseList(ListNode* head) {
     }
     return prev;
 }
-```
+{{< /highlight  >}}
 
 ## Odd Even Linked List
 [LeetCode](https://leetcode.com/problems/odd-even-linked-list)/[力扣](https://leetcode-cn.com/problems/odd-even-linked-list)
 
 用两个指针保存奇偶的链表，把偶指针加到奇指针末尾
 
-```c++
+{{< highlight cpp >}}
 ListNode* oddEvenList(ListNode* head) {
     if(head == nullptr || head->next == nullptr) return head;
     ListNode* odd = head;
@@ -208,11 +208,11 @@ ListNode* oddEvenList(ListNode* head) {
     odd->next = eh;
     return head;
 }
-```
+{{< /highlight  >}}
 
 分别保存几个指针，就来回倒腾就可以了
 
-```c++
+{{< highlight cpp >}}
 ListNode* oddEvenList(ListNode* head) {
     if(head == nullptr || head->next == nullptr) return head;
     ListNode* op = head;
@@ -231,4 +231,4 @@ ListNode* oddEvenList(ListNode* head) {
     }
     return head;
 }
-```
+{{< /highlight  >}}

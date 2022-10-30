@@ -12,7 +12,7 @@ weight: 14
 
 先判断中间的和尾部的数字大小，再判断target和首尾中三个数字大小关系，如此便能进行二分搜索
 
-```cpp
+{{< highlight cpp >}}
 int search(vector<int>& nums, int target) {
     if (nums.empty()) return -1;
     int left = 0, right = nums.size() - 1;
@@ -33,14 +33,14 @@ int search(vector<int>& nums, int target) {
     }
     return nums[left] == target ? left : -1;
 }
-```
+{{< /highlight  >}}
 
 ## Search a 2D Matrix
 [LeetCode](https://leetcode.com/problems/search-a-2d-matrix)/[力扣](https://leetcode.com/problems/search-a-2d-matrix)
 
 先找到所在的行，再找所在的列
 
-```cpp
+{{< highlight cpp >}}
 bool searchMatrix(vector<vector<int>>& matrix, int target) {
     int m = matrix.size();
     if (m == 0) return false;
@@ -77,12 +77,12 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
     }
     return false;
 }
-```
+{{< /highlight  >}}
 
 ## Search in Rotated Sorted Array II
 [LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array-ii)/[力扣](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii)
 
-```cpp
+{{< highlight cpp >}}
 bool search(vector<int>& nums, int target) {
     int n = nums.size();
     int l = 0;
@@ -110,12 +110,12 @@ bool search(vector<int>& nums, int target) {
     }
     return false;
 }
-```
+{{< /highlight  >}}
 
 ## Find Minimum in Rotated Sorted Array
 [LeetCode](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array)/[力扣](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array)
 
-```c++
+{{< highlight cpp >}}
 int findMin(vector<int>& nums) {
     int left = 0;
     int right = nums.size() - 1;
@@ -133,12 +133,12 @@ int findMin(vector<int>& nums) {
     return nums[left + 1];
     
 }
-```
+{{< /highlight  >}}
 
 ## Find Peak Element
 [LeetCode](https://leetcode.com/problems/find-peak-element)/[力扣](https://leetcode-cn.com/problems/find-peak-element)
 
-```cpp
+{{< highlight cpp >}}
 int findPeakElement(vector<int>& nums) {
     return search(nums, 0, nums.size() -1);
 }
@@ -150,12 +150,12 @@ int search(vector<int>& nums, int l, int r) {
     
     return search(nums, mid+1, r);
 }
-```
+{{< /highlight  >}}
 
 ## Count of Range Sum
 [LeetCode](https://leetcode.com/problems/count-of-range-sum)/[力扣](https://leetcode-cn.com/problems/count-of-range-sum)
 
-```cpp
+{{< highlight cpp >}}
 int countRangeSum(vector<int>& nums, int lower, int upper) {
     int res = 0;
     long long sum = 0;
@@ -168,12 +168,12 @@ int countRangeSum(vector<int>& nums, int lower, int upper) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Find Smallest Letter Greater Than Target
 [LeetCode](https://leetcode.com/problems/find-smallest-letter-greater-than-target)/[力扣](https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target)
 
-```cpp
+{{< highlight cpp >}}
 char nextGreatestLetter(vector<char>& letters, char target) {
     int left = 0;
     int right = letters.size() - 1;
@@ -191,13 +191,13 @@ char nextGreatestLetter(vector<char>& letters, char target) {
     
     return left >= letters.size() ? letters[0] : letters[left];
 }
-```
+{{< /highlight  >}}
 
 ## Binary Search
 [LeetCode](https://leetcode.com/problems/binary-search)/[力扣](https://leetcode-cn.com/problems/binary-search)
 
 
-```cpp
+{{< highlight cpp >}}
 int search(vector<int>& nums, int target) {
     int left = 0;
     int right = nums.size() - 1;
@@ -211,13 +211,13 @@ int search(vector<int>& nums, int target) {
     
     return -1;
 }
-```
+{{< /highlight  >}}
 
 
 ## Peak Index in a Mountain Array
 [LeetCode](https://leetcode.com/problems/peak-index-in-a-mountain-array)/[力扣](https://leetcode-cn.com/problems/peak-index-in-a-mountain-array)
 
-```cpp
+{{< highlight cpp >}}
 int peakIndexInMountainArray(vector<int>& A) {
     int left = 0;
     int right = A.size() - 1;
@@ -231,4 +231,4 @@ int peakIndexInMountainArray(vector<int>& A) {
     }
     return left;
 }
-```
+{{< /highlight  >}}

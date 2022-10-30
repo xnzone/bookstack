@@ -20,10 +20,10 @@ tags: ["tutorial", "os"]
 
 这节课程，我们将第一次使用进位，当前寄存器溢出时，需要额外的一位保存进位
 
-```armnasm
+{{< highlight armnasm >}}
 mov ax, 0xFFFF
 add ax, 1 ; ax = 0x0000 and carry = 1
-```
+{{< /highlight  >}}
 
 金文不能直接获取，但是可以被其他操作，例如`jc`（如果进位设置了，跳转）用来作为控制结构
 

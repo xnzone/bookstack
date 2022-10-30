@@ -13,7 +13,7 @@ weight: 10
 
 递归
 
-```c++
+{{< highlight cpp >}}
 void levelOrderHelper(vector<vector<int>> &res, int level, TreeNode *root) {
     if (root == NULL) return;
     if (res.size() == level) res.push_back(vector<int>());
@@ -27,11 +27,11 @@ vector<vector<int>> levelOrder(TreeNode* root) {
     levelOrderHelper(res, 0, root);
     return res;
 }
-```
+{{< /highlight  >}}
 
 非递归，层序遍历，用queue保存当前层
 
-```c++
+{{< highlight cpp >}}
 vector<vector<int>> levelOrder(TreeNode* root) {
     vector<vector<int>> res;
     if(root == nullptr) return res;
@@ -63,7 +63,7 @@ vector<vector<int>> levelOrder(TreeNode* root) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Binary Tree Zigzag Level Order Traversal
 [LeetCode](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal)/[力扣](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal)
@@ -73,7 +73,7 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 - 如果是从左开始，直接push_back
 - 如果是从右开始，直接insert到第一个
 
-```c++
+{{< highlight cpp >}}
  vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
     vector<vector<int>> res;
     if (root == nullptr) return res;
@@ -111,14 +111,14 @@ vector<vector<int>> levelOrder(TreeNode* root) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Binary Tree Level Order Traversal II
 [LeetCode](https://leetcode.com/problems/binary-tree-level-order-traversal-ii)/[力扣](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii)
 
 层序遍历，最后直接翻转vector就可以了
 
-```c++
+{{< highlight cpp >}}
 vector<vector<int>> levelOrderBottom(TreeNode* root) {
     vector<vector<int>> res;
     if(root == nullptr) return res;
@@ -144,14 +144,14 @@ vector<vector<int>> levelOrderBottom(TreeNode* root) {
     reverse(res.begin(), res.end());
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Minimum Depth of Binary Tree
 [LeetCode](https://leetcode.com/problems/minimum-depth-of-binary-tree)/[力扣](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree)
 
 递归求解，直接求左子树的高度，然后再求右子树的高度，两个取小的
 
-```c++
+{{< highlight cpp >}}
 int minDepth(TreeNode* root) {
     if (root == nullptr) return 0;
     if (root->left == nullptr && root->right == nullptr) return 1;
@@ -160,7 +160,7 @@ int minDepth(TreeNode* root) {
     
     return min(minDepth(root->left),minDepth(root->right)) + 1;
 }
-```
+{{< /highlight  >}}
 
 ## Populating Next Right Pointers in Each Node
 [LeetCode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node)/[力扣](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node)
@@ -170,7 +170,7 @@ int minDepth(TreeNode* root) {
 
 递归
 
-```c++
+{{< highlight cpp >}}
 Node* connect(Node* root) {
     if(root == nullptr) return root;
     root->next = nullptr;
@@ -191,11 +191,11 @@ void connectHelper(Node* root) {
     connectHelper(root->left);
     connectHelper(root->right);
 }
-```
+{{< /highlight  >}}
 
 非递归
 
-```c++
+{{< highlight cpp >}}
 Node* connect(Node* root) {
     if (!root) return root;
     Node* level = root;
@@ -216,7 +216,7 @@ Node* connect(Node* root) {
     
     return root;
 }
-```
+{{< /highlight  >}}
 
 ## Populating Next Right Pointers in Each Node II
 [LeetCode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii)/[力扣](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii)
@@ -224,7 +224,7 @@ Node* connect(Node* root) {
 
 递归 层序遍历做成递归形式
 
-```c++
+{{< highlight cpp >}}
 void solve(Node* node, int lvl, vector<Node*> &track){
     if(node==NULL){
         return;
@@ -248,11 +248,11 @@ Node* connect(Node* root) {
     solve(root,0,track);
     return root;
 }
-```
+{{< /highlight  >}}
 
 层序遍历，记录当前层的node，然后组成一个链表
 
-```c++
+{{< highlight cpp >}}
 Node* connect(Node* root) {
     if(root == nullptr) return root;
     queue<Node*> q;
@@ -275,7 +275,7 @@ Node* connect(Node* root) {
     }
     return root;
 }
-```
+{{< /highlight  >}}
 
 
 ## Binary Tree Right Side View
@@ -283,7 +283,7 @@ Node* connect(Node* root) {
 
 层序遍历，压入最右边那个
 
-```c++
+{{< highlight cpp >}}
 vector<int> rightSideView(TreeNode* root) {
     vector<int> ans;
     if(!root) return ans;
@@ -307,14 +307,14 @@ vector<int> rightSideView(TreeNode* root) {
     
     return ans;
 }
-```
+{{< /highlight  >}}
 
 ## Number of Islands
 [LeetCode](https://leetcode.com/problems/number-of-islands)/[力扣](https://leetcode-cn.com/problems/number-of-islands)
 
 用一个标记表示有没有访问过
 
-```c++
+{{< highlight cpp >}}
 int numIslands(vector<vector<char>>& grid) {
     int res = 0;
     int m = grid.size();
@@ -360,14 +360,14 @@ int numIslands(vector<vector<char>>& grid) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Average of Levels in Binary Tree
 [LeetCode](https://leetcode.com/problems/average-of-levels-in-binary-tree)/[力扣](https://leetcode-cn.com/problems/average-of-levels-in-binary-tree)
 
 记录每一层的和，求平均值
 
-```c++
+{{< highlight cpp >}}
 vector<double> averageOfLevels(TreeNode* root) {
     vector<double> res;
     if(root == nullptr) return res;
@@ -389,18 +389,18 @@ vector<double> averageOfLevels(TreeNode* root) {
     return res;
     
 }
-```
+{{< /highlight  >}}
 
 ## All Nodes Distance K in Binary Tree
 [LeetCode](https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree)/[力扣](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree)
 
 - 找到目标节点相对于当前节点的深度，然后分四种情况判断
 - 如果当前节点就是目标节点，就再往下寻找k层即可
-- 如果目标节点在当前节点的左分支，且深度为L，则只需要在当前节点的右边节点去寻找```K - L -1```深度即可
+- 如果目标节点在当前节点的左分支，且深度为L，则只需要在当前节点的右边节点去寻找{{< /highlight  >}}K - L -1{{< /highlight  >}}深度即可
 - 如果目标节点在当前节点的右分支，处理情况类似于左分支
 - 如果当目标节点不在当前节点子分支下面，直接返回
 
-```c++
+{{< highlight cpp >}}
 vector<int> res;
 TreeNode* target;
 int K;
@@ -441,4 +441,4 @@ void subtree_helper(TreeNode* root, int dist) {
         subtree_helper(root->right, dist + 1);
     }
 }
-```
+{{< /highlight  >}}

@@ -25,24 +25,24 @@ tags: ["tutorial", "os"]
 
 一旦安装成功，找到你gcc安装包所在位置(记住不是clang)，并且添加到环境变量。例如
 
-```bash
+{{< highlight bash >}}
 export CC=/usr/local/bin/gcc-5
 export LD=/usr/local/bin/gcc-5
-```
+{{< /highlight  >}}
 
 我们需要再次编译二进制构建工具和我们的交叉编译器gcc，输出targets和prefix环境变量
 
-```bash
+{{< highlight bash >}}
 export PREFIX="/usr/local/i386elfgcc"
 export TARGET=i386-elf
 export PATH="$PREFIX/bin:$PATH"
-```
+{{< /highlight  >}}
 
 ## binutils
 
 记住复制的时候格式问题，建议一行一行复制
 
-```bash
+{{< highlight bash >}}
 mkdir /tmp/src
 cd /tmp/src
 curl -O http://ftp.gnu.org/gnu/binutils/binutils-2.24.tar.gz # If the link 404's, look for a more recent version
@@ -51,11 +51,11 @@ mkdir binutils-build
 cd binutils-build
 ../binutils-2.24/configure --target=$TARGET --enable-interwork --enable-multilib --disable-nls --disable-werror --prefix=$PREFIX 2>&1 | tee configure.log
 make all install 2>&1 | tee make.log
-```
+{{< /highlight  >}}
 
 ## gcc
 
-```bash
+{{< highlight bash >}}
 cd /tmp/src
 curl -O http://mirror.bbln.org/gcc/releases/gcc-4.9.1/gcc-4.9.1.tar.bz2
 tar xf gcc-4.9.1.tar.bz2
@@ -66,6 +66,6 @@ make all-gcc
 make all-target-libgcc 
 make install-gcc 
 make install-target-libgcc
-```
+{{< /highlight  >}}
 
 现在在这节课的文件夹内输入`make`， 检查所有的编译是否顺利

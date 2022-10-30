@@ -18,9 +18,9 @@ tags: ["tutorial", "os"]
 
 在80x25的表格里获取特定字符的公式为：
 
-```armnasm
+{{< highlight armnasm >}}
 0xb8000 + 2 *(row * 80 + col)
-```
+{{< /highlight  >}}
 
 每个字符占用两个字节（一个用于ASCII，一个用于颜色等），我们可以看到内存结构是根据行级联的
 

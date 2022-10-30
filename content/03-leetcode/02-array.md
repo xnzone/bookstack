@@ -39,7 +39,7 @@ int firstMissingPositive(vector<int> &nums) {
 - 一层旋转结束了，就往里旋转，直到层数大于`n / 2`
 - 注意判断特殊情况
 
-```cpp
+{{< highlight cpp >}}
 void rotate(vector<vector<int>> &matrix) {
     int n = matrix.size();
     int layer = 0;
@@ -54,11 +54,11 @@ void rotate(vector<vector<int>> &matrix) {
         layer++;
     }
 }
-```
+{{< /highlight  >}}
 
 - 直接新建一个数组保存
 
-```cpp
+{{< highlight cpp >}}
 void rotate(vector<vector<int>> &matrix) {
     vector<vector<int>> tmp(matrix);
     for (int i = 0; i < matrix.size(); i++) {
@@ -67,12 +67,12 @@ void rotate(vector<vector<int>> &matrix) {
         }
     }
 }
-```
+{{< /highlight  >}}
 
 - 先reserve数组
 - 再对角线交换`i`, `j`
 
-```c++
+{{< highlight cpp >}}
 void rotate(vector<vector<int>> &matrix) {
     reserve(matrix.begin(), matrix.end());
     for (int i = 0; i < matrix.size(); i++) {
@@ -81,7 +81,7 @@ void rotate(vector<vector<int>> &matrix) {
         }
     }
 }
-```
+{{< /highlight  >}}
 
 ## Spiral Matrix
 [LeetCode](https://leetcode.com/problems/spiral-matrix)/[力扣](https://leetcode-cn.com/problems/spiral-matrix)
@@ -92,7 +92,7 @@ void rotate(vector<vector<int>> &matrix) {
 
 ![回形输出](https://leetcode.com/problems/spiral-matrix/Figures/54_spiralmatrix.png)
 
-```c++
+{{< highlight cpp >}}
 vector<int> spiralOrder(vector<vector<int>> &matrix) {
     vector<int> res;
     if (matrix.size() <= 0) return res;
@@ -109,7 +109,7 @@ vector<int> spiralOrder(vector<vector<int>> &matrix) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Set Matrix Zeroes
 [LeetCode](https://leetcode.com/problems/set-matrix-zeroes)/[力扣](https://leetcode-cn.com/problems/set-matrix-zeroes)
@@ -117,7 +117,7 @@ vector<int> spiralOrder(vector<vector<int>> &matrix) {
 - 遍历矩阵，遇到0，把行和列都变成0
 - 用map保存需要变换的行和列
 
-```c++
+{{< highlight cpp >}}
 void setZeroes(vector<vector<int>> &matrix) {
     map<int, int> mi;
     map<int, int> mj;
@@ -137,7 +137,7 @@ void setZeroes(vector<vector<int>> &matrix) {
         }
     }
 }
-```
+{{< /highlight  >}}
 
 ## Word Search
 [LeetCode](https://leetcode.com/problems/word-search)/[力扣](https://leetcode-cn.com/problems/word-search)
@@ -145,7 +145,7 @@ void setZeroes(vector<vector<int>> &matrix) {
 - 递归实现。如果前一个节点满足条件，则把其他周围四个节点分别进行递归
 - 递归之前需要用一个标志位表示该节点已经被访问过了。递归之后，将该标志位归零
 
-```c++
+{{< highlight cpp >}}
 bool exist(vector<vector<char>> &board, string word) {
     for(int i = 0; i < board.size(); i++) {
         for(int j = 0; j < board[0].size(); j++) {
@@ -167,7 +167,7 @@ bool helper(int x, int y, vector<vector<char>> &board, string &word, int idx) {
     board[x][y] = t;
     return check
 }
-```
+{{< /highlight  >}}
 
 ## Longest Consecutive Sequence
 [LeetCode](https://leetcode.com/problems/longest-consecutive-sequence)/[力扣](https://leetcode-cn.com/problems/longest-consecutive-sequence)
@@ -179,7 +179,7 @@ bool helper(int x, int y, vector<vector<char>> &board, string &word, int idx) {
 - 每次递增时，用一个变量保存当前递增的个数，直到递增的数字不在set中出现为止
 - 最后取递增个数和当前结果的最大值
 
-```c++
+{{< highlight cpp >}}
 int longestConsecutive(vector<int>& nums) {
     unordered_set<int> s;
     for (int i = 0; i < nums.size(); i++) {
@@ -198,7 +198,7 @@ int longestConsecutive(vector<int>& nums) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Single Number
 [LeetCode](https://leetcode.com/problems/single-number)/[力扣](https://leetcode-cn.com/problems/single-number)
@@ -209,7 +209,7 @@ int longestConsecutive(vector<int>& nums) {
 - A异或0 = A
 - A异或B异或A = A异或A异或B = B
 
-```c++
+{{< highlight cpp >}}
 int singleNumber(vector<int>& nums) {
     int a = 0;
     for(int i = 0; i < nums.size(); i++) {
@@ -217,7 +217,7 @@ int singleNumber(vector<int>& nums) {
     }
     return a;
 }
-```
+{{< /highlight  >}}
 
 ## Contains Duplicate
 [LeetCode](https://leetcode.com/problems/contains-duplicate)/[力扣](https://leetcode-cn.com/problems/contains-duplicate)
@@ -226,7 +226,7 @@ int singleNumber(vector<int>& nums) {
 
 - 另一种解法，用map或set保存遍历过的，如果已经存在map中，直接返回true(以空间换时间)
 
-```c++
+{{< highlight cpp >}}
 bool containsDunplicate(vector<int>& nums) {
     if(nums.size() <= 0) return false;
     sort(nums.begin(), nums.end());
@@ -235,7 +235,7 @@ bool containsDunplicate(vector<int>& nums) {
     }
     return false; 
 }
-```
+{{< /highlight  >}}
 
 ## Product of Array Except Self
 [LeetCode](https://leetcode.com/problems/product-of-array-except-self)/[力扣](https://leetcode-cn.com/problems/product-of-array-except-self)
@@ -244,7 +244,7 @@ bool containsDunplicate(vector<int>& nums) {
 - 用`prod`从右往左与`nums`相乘
 - 最后结果就是除去了当前这个数的乘积
 
-```c++
+{{< highlight cpp >}}
 vector<int> productExeceptSelf(vector<int>& nums) {
     int n = nums.size();
     vector<int> res(nums);
@@ -259,7 +259,7 @@ vector<int> productExeceptSelf(vector<int>& nums) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Missing Number
 [LeetCode](https://leetcode.com/problems/missing-number)/[力扣](https://leetcode-cn.com/problems/missing-number)
@@ -267,7 +267,7 @@ vector<int> productExeceptSelf(vector<int>& nums) {
 - 直接求和
 - 把理论值和实际值相减
 
-```c++
+{{< highlight cpp >}}
 int missingNumber(vector<int>& nums) {
     int sum = 0;
     int n = nums.size();
@@ -276,7 +276,7 @@ int missingNumber(vector<int>& nums) {
     }
     return n * (n - 1) / 2 - sum;
 }
-```
+{{< /highlight  >}}
 
 ## Find the Duplicate Number
 [LeetCode](https://leetcode.com/problems/find-the-duplicate-number)/[力扣](https://leetcode-cn.com/problems/find-the-duplicate-number)
@@ -286,7 +286,7 @@ int missingNumber(vector<int>& nums) {
 - 最后慢指针从头开始，快慢指针每次运动一步
 - 两个相等的时候，快指针就是结果
 
-```c++
+{{< highlight cpp >}}
 int findDuplicate(vector<int>& nums) {
     int tortoise = nums[0], hare = nums[0];
     do {
@@ -301,7 +301,7 @@ int findDuplicate(vector<int>& nums) {
     }
     return hare;
 }
-```
+{{< /highlight  >}}
 
 ## Find All Duplicates in an Array
 [LeetCode](https://leetcode.com/problems/find-all-duplicates-in-an-array)/[力扣](https://leetcode-cn.com/problems/find-all-duplicates-in-an-array)
@@ -309,7 +309,7 @@ int findDuplicate(vector<int>& nums) {
 - 修改数组，将出现的那个地方改成负数
 - 后续遍历到，如果为负数，就是重复了
 
-```c++
+{{< highlight cpp >}}
 vector<int> findDuplicates(vector<int>& nums) {
     vector<int> v;
     for(int i = 0; i < nums.size(); i++){
@@ -321,7 +321,7 @@ vector<int> findDuplicates(vector<int>& nums) {
     }
     return v;
 }
-```
+{{< /highlight  >}}
 
 ## Find All Numbers Disappeared in an Array
 [LeetCode](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array)/[力扣](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array)
@@ -329,7 +329,7 @@ vector<int> findDuplicates(vector<int>& nums) {
 - 先把所有数字改成负数
 - 再遍历，如果位置为正数，则说明数字没有出现
 
-```c++
+{{< highlight cpp >}}
 vector<int> findDisappearedNumbers(vector<int>& nums) {
     vector<int> res;
     for(int i = 0; i < nums.size(); i++) {
@@ -342,12 +342,12 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
     }
     return res;'
 }
-```
+{{< /highlight  >}}
 
 ## Circular Array Loop
 [LeetCode](https://leetcode.com/problems/circular-array-loop)/[力扣](https://leetcode-cn.com/problems/circular-array-loop)
 
-```c++
+{{< highlight cpp >}}
 int next(vector<int>& nums, int idx) {
     int res = (idx + nums[idx]);
     while(res < 0) res += nums.size();
@@ -375,7 +375,7 @@ bool circularArrayLoop(vector<int>& nums) {
     }
     return false;
 }
-```
+{{< /highlight  >}}
 
 ## Shortest Unsorted Continuous Subarray
 [LeetCode](https://leetcode.com/problems/shortest-unsorted-continuous-subarray)/[力扣](https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray)
@@ -383,7 +383,7 @@ bool circularArrayLoop(vector<int>& nums) {
 - 先排序
 - 把辅助的数组与原数组比较
 
-```c++
+{{< highlight cpp >}}
 int findUnsortedSubarray(vector<int>& nums) {
     vector<int> helper = nums;
     sort(helper.begin(), helper.end());
@@ -396,7 +396,7 @@ int findUnsortedSubarray(vector<int>& nums) {
     }
     return right - left >= 0 ? right - left + 1 : 0;
 }
-```
+{{< /highlight  >}}
 
 
 ## Number of Matching Subsequences
@@ -405,7 +405,7 @@ int findUnsortedSubarray(vector<int>& nums) {
 - 用map或vector保存字典
 - 然后用二分法查找
 
-```c++
+{{< highlight cpp >}}
 int numMatchingSubseq(string S, vector<string>& words) {
     int res = 0;
     vector<vector<int>> vc(128, vector<int>(0, 0));
@@ -427,4 +427,4 @@ int numMatchingSubseq(string S, vector<string>& words) {
     }
     return res;
 }
-```
+{{< /highlight  >}}

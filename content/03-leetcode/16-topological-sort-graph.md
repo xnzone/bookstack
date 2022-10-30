@@ -10,7 +10,7 @@ weight:  18
 ## Course Schedule
 [LeetCode](https://leetcode.com/problems/course-schedule)/[力扣](https://leetcode-cn.com/problems/course-schedule)
 
-```cpp
+{{< highlight cpp >}}
 bool res = true;
 bool canFinish(int n, vector<vector<int>>& preps) {
     vector<vector<int>> graph(n, vector<int>());
@@ -39,12 +39,12 @@ void helper(vector<vector<int> >&graph, int idx, vector<int>&visited) {
     }
     visited[idx] = 1;
 }
-```
+{{< /highlight  >}}
 
 ## Course Schedule II
 [LeetCode](https://leetcode.com/problems/course-schedule-ii)/[力扣](https://leetcode-cn.com/problems/course-schedule-ii)
 
-```cpp
+{{< highlight cpp >}}
 bool res = true;
 bool canFinish(int n, vector<vector<int>>& preps) {
     vector<vector<int>> graph(n, vector<int>());
@@ -73,12 +73,12 @@ void helper(vector<vector<int> >&graph, int idx, vector<int>&visited) {
     }
     visited[idx] = 1;
 }
-```
+{{< /highlight  >}}
 
 ## Minimum Height Trees
 [LeetCode](https://leetcode.com/problems/minimum-height-trees)/[力扣](https://leetcode-cn.com/problems/minimum-height-trees)
 
-```cpp
+{{< highlight cpp >}}
 vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
             vector<int> leaves;
     vector<vector<int>> graph(n,vector<int>());
@@ -112,13 +112,13 @@ vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         return {0};
     return leaves;
 }
-```
+{{< /highlight  >}}
 
 
 ## Clone Graph
 [LeetCode](https://leetcode.com/problems/clone-graph)/[力扣](https://leetcode-cn.com/problems/clone-graph)
 
-```cpp
+{{< highlight cpp >}}
 unordered_map<Node*, Node*> m;
 Node* cloneGraph(Node* node) {
     if(node == nullptr) return node;
@@ -135,12 +135,12 @@ Node* cloneGraph(Node* node) {
     }
     return root;
 }
-```
+{{< /highlight  >}}
 
 ## Pacific Atlantic Water Flow
 [LeetCode](https://leetcode.com/problems/pacific-atlantic-water-flow)/[力扣](https://leetcode-cn.com/problems/pacific-atlantic-water-flow)
 
-```c++
+{{< highlight cpp >}}
 bool res = true;
 bool canFinish(int n, vector<vector<int>>& preps) {
     vector<vector<int>> graph(n, vector<int>());
@@ -169,5 +169,5 @@ void helper(vector<vector<int> >&graph, int idx, vector<int>&visited) {
     }
     visited[idx] = 1;
 }
-```
+{{< /highlight  >}}
 

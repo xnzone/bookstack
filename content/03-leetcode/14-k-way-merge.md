@@ -10,7 +10,7 @@ weight: 16
 ## Merge Two Sorted Lists
 [LeetCode](https://leetcode.com/problems/merge-two-sorted-lists)/[力扣](https://leetcode-cn.com/problems/merge-two-sorted-lists)
 
-```c++
+{{< highlight cpp >}}
 ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
     if(l2 == nullptr) return l1;
     if(l1 == nullptr) return l2;
@@ -23,13 +23,13 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         return l1;
     }
 }
-```
+{{< /highlight  >}}
 
 ## Merge k Sorted Lists
 [LeetCode](https://leetcode.com/problems/merge-k-sorted-lists)/[力扣](https://leetcode-cn.com/problems/merge-k-sorted-lists)
 
 
-```cpp
+{{< highlight cpp >}}
 ListNode* mergeKLists(vector<ListNode*>& lists) {
   priority_queue<ListNode*, vector<ListNode*>,compare> q;
   for(auto l : lists){
@@ -52,9 +52,9 @@ struct compare {
         return l1->val > l2->val;
     }
 };
-```
+{{< /highlight  >}}
 
-```cpp
+{{< highlight cpp >}}
 ListNode* mergeKLists(vector<ListNode*>& lists) {
     ListNode* list = nullptr;
     for(int i = 0; i < lists.size(); i++){
@@ -74,12 +74,12 @@ ListNode* mergeTwoList(ListNode* l1, ListNode* l2) {
         return l2;
     }
 }
-```
+{{< /highlight  >}}
 
 ## Find K Pairs with Smallest Sums
 [LeetCode](https://leetcode.com/problems/find-k-pairs-with-smallest-sums)/[力扣](https://leetcode-cn.com/problems/find-k-pairs-with-smallest-sums)
 
-```cpp
+{{< highlight cpp >}}
 struct compare {
     bool operator()(vector<int>& v1, vector<int>& v2) {
         return v1[0] + v1[1] < v2[0] + v2[1];
@@ -100,12 +100,12 @@ vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Kth Smallest Element in a Sorted Matrix
 [LeetCode](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix)/[力扣](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix)
 
-```cpp
+{{< highlight cpp >}}
 struct Node {
     int row;
     int col;
@@ -134,13 +134,13 @@ int kthSmallest(vector<vector<int>>& matrix, int k) {
     }
     return lo;
 }  
-```
+{{< /highlight  >}}
 
 ## Smallest Range Covering Elements from K Lists
 [LeetCode](https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists)/[力扣](https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists)
 
 
-```cpp
+{{< highlight cpp >}}
 vector<int> smallestRange(vector<vector<int>>& nums) {
   int curMin = INT_MAX, curMax = INT_MIN;
   
@@ -170,4 +170,4 @@ typedef vector<vector<int>::iterator> VI; // (curItr, endItr)
 struct Comp { 
   bool operator()(const VI& a, const VI& b) { return *a[0] > *b[0]; }
 };
-```
+{{< /highlight  >}}

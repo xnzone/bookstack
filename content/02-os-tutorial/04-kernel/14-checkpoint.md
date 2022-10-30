@@ -20,7 +20,7 @@ tags: ["tutorial", "os"]
 
 而且，从现在开始，大多数的代码都是C，我们将利用qemu可以打开gdb连接的能力。首先，让我们安装一个交叉编译的`gdb`，因为OSX使用不能兼容ELF文件的`lldb`(Homebrew仓库也没有`gdb`)
 
-```bash
+{{< highlight bash >}}
 cd /tmp/src
 curl -O http://ftp.rediris.es/mirror/GNU/gdb/gdb-7.8.tar.gz
 tar xf gdb-7.8.tar.gz
@@ -31,7 +31,7 @@ export TARGET=i386-elf
 ../gdb-7.8/configure --target="$TARGET" --prefix="$PREFIX" --program-prefix=i386-elf-
 make
 make install
-```
+{{< /highlight  >}}
 
 检查Makefile文件`make debug`。这个目标使用构建`kernel.elf`，这是一个对象文件(不是二进制)，带有很多在内核中生成的链接符号，感谢gcc的`-g`标签。使用`xxd`测试它，你可以看到一些字符串。实际上，正确测试对象文件中的字符串方法是`strings kernel.elf`
 
@@ -53,7 +53,7 @@ make install
 
 用7.8的版本编译会报错，无法解决，故采用的7.6的版本
 
-```bash
+{{< highlight bash >}}
 cd /tmp/src
 curl -O http://ftp.gnu.org/gnu/gdb/gdb-7.6.tar.gz
 tar xf gdb-7.6.tar.gz
@@ -64,6 +64,6 @@ export TARGET=i386-elf
 ../gdb-7.8/configure --target="$TARGET" --prefix="$PREFIX" --program-prefix=i386-elf- --disable-werror
 make
 make install
-```
+{{< /highlight  >}}
 
 如果报`no termcap library found` 错误，执行`sudo apt-get install libncurses5-dev` 即可。提示没有权限，前面添加`sudo`

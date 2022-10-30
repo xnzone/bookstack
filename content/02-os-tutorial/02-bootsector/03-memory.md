@@ -26,10 +26,10 @@ tags: ["tutorial", "os"]
 
 首先我们将`X`定义成一个数据，并且使用一个label
 
-```armasm
+{{< highlight armasm >}}
 the_secret:
     db "X"
-```
+{{< /highlight  >}}
 
 然后我们将尝试4种不同的方式去读取`the_secret`
 
@@ -50,9 +50,9 @@ the_secret:
 
 现在，在每个地方都偏移`0x7C00`属实不方便,汇编可以对每个内存位置定义一个全局偏移(global offset)，其命令为`org`
 
-```armasm
+{{< highlight armasm >}}
 [org 0x7C00]
-```
+{{< /highlight  >}}
 
 1. 现在去打开`boot_sect_memory_org.asm`，你将看到用引导扇区打印数据的典型方法
 2. 编译并运行代码，你将看到`org`是如何印象每个之前的解决方案

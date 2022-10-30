@@ -22,12 +22,12 @@ tags: ["tutorial", "os"]
 
 这是一个最简单的引导扇区
 
-```
+{{< highlight text >}}
 e9 fd ff 00 00 00 00 00 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 [ 29 more lines with sixteen zero-bytes each ]
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 55 aa
-```
+{{< /highlight  >}}
 
 基本上都是0，最后16位以`0xAA55`(需要注意大小端，x86是小端编码)，前3个字节表示无限跳转
 
@@ -35,7 +35,7 @@ e9 fd ff 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 你既可以把上面512个字节写入到二进制编辑器，也可以使用下面的汇编语言
 
-```armasm
+{{< highlight armasm >}}
 ;无限循环(e9 fd ff)
 loop:
     jmp loop
@@ -44,7 +44,7 @@ loop:
 times 510-($-$$) db 0
 ;魔术数
 dw 0xaa55
-```
+{{< /highlight  >}}
 
 编译：`nasm -f bin boot_sec_sample.asm -o boot_sec_sample.bin`
 

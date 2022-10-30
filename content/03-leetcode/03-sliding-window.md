@@ -15,7 +15,7 @@ weight: 5
 - 如果为-1，则将字符加入子串，即窗口右移动
 - 如果不为-1， 将窗口左边移动到子串中最后一个字符的下一个字符所在位置
 
-```c++
+{{< highlight cpp >}}
 int lengthOfLongestSubString(string s) {
     string subs = "";
     int max = 0;
@@ -30,7 +30,7 @@ int lengthOfLongestSubString(string s) {
     }
     return max;
 }
-```
+{{< /highlight  >}}
 
 ## Substring with Concatenation of All Words
 [LeetCode](https://leetcode.com/problems/substring-with-concatenation-of-all-words)/[力扣](https://leetcode-cn.com/problems/substring-with-concatenation-of-all-words)
@@ -39,7 +39,7 @@ int lengthOfLongestSubString(string s) {
 - 第二层使用定长的滑动窗口，判断值是否在words中出现，并记录出现次数
 - 记录words出现的值用map
 
-```c++
+{{< highlight cpp >}}
 bool checkSubstring(string s, vector<string>& words) {
     int width = words[0].size();
     map<string, int> wmap;
@@ -74,7 +74,7 @@ vector<int> findSubstring(string s, vector<string>& words) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Minimum Window Substring
 [LeetCode](https://leetcode.com/problems/minimum-window-substring)/[力扣](https://leetcode-cn.com/problems/minimum-window-substring)
@@ -84,7 +84,7 @@ vector<int> findSubstring(string s, vector<string>& words) {
 - 开始移动左指针，条件满足时，更新结果，并继续移动，直到窗口大小和T字符串大小相等为止
 - 重复上述过程，直到s字符串末尾
 
-```c++
+{{< highlight cpp >}}
 string minWindow(string s, string t) {
     unordered_map<char, int> tcnt;
     unordered_map<char, int> scnt;
@@ -123,11 +123,11 @@ string minWindow(string s, string t) {
     if (asize == INT_MAX) return "";
     return s.substr(lans, asize + 1);
 }
-```
+{{< /highlight  >}}
 
 - 优化后的滑动窗口
 
-```c++
+{{< highlight cpp >}}
 string minWindow(string s, string t) {
     vector<int> hist(128, 0);
     for (char c : t) hist[c]++;
@@ -147,7 +147,7 @@ string minWindow(string s, string t) {
         
     return minLen < numeric_limits<int>::max() ? s.substr(minStart, minLen) : "";
 }
-```
+{{< /highlight  >}}
 
 ## Minimum Size Subarray Sum
 [LeetCode](https://leetcode.com/problems/minimum-size-subarray-sum)/[力扣](https://leetcode-cn.com/problems/minimum-size-subarray-sum)
@@ -158,7 +158,7 @@ string minWindow(string s, string t) {
 - 当和等于结果时，两个指针同时移动
 - 最终结果，可以用vector把和记录下来
 
-```c++
+{{< highlight cpp >}}
 int minSubArrayLen(int s, vector<int>& nums) {
     if(nums.size() == 0) return 0;
     int sum = 0, begin = 0, end = 0;
@@ -186,7 +186,7 @@ int minSubArrayLen(int s, vector<int>& nums) {
     }
     return res == nums.size() + 1 ? 0 : res;
 }
-```
+{{< /highlight  >}}
 
 ## Sliding Window Maximum
 [LeetCode](https://leetcode.com/problems/sliding-window-maximum)/[力扣](https://leetcode-cn.com/problems/sliding-window-maximum)
@@ -196,7 +196,7 @@ int minSubArrayLen(int s, vector<int>& nums) {
 - 小循环结束后，需要把当前数和位置信息放入队列，并把队列首部数字保存到结果中
 - 最后判断一下队列首部数字是否在`k`大小的滑动窗口中，如果不在，则`pop`出来
 
-```c++
+{{< highlight cpp >}}
 vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     int n = nums.size();
     vector<int> res;
@@ -222,7 +222,7 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Longest Repeating Character Replacement
 [LeetCode](https://leetcode.com/problems/longest-repeating-character-replacement)/[力扣](https://leetcode-cn.com/problems/longest-repeating-character-replacement)
@@ -232,7 +232,7 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
 - 否则，左边指针移动
 - 计算当前窗口的替换值用map来保存，当前窗口中所有字符出现的总次数 - 最大字符长度 = 剩下要替换的次数
 
-```c++
+{{< highlight cpp >}}
 int characterReplacement(string s, int k) {
     if(s == "") return 0;
     int left = 0, right = 0, max = 0;
@@ -263,11 +263,11 @@ int characterReplacement(string s, int k) {
     } while(left <= right && right <= s.size())
     return max;
 }
-```
+{{< /highlight  >}}
 
 - 上述方法可以改进，用一个长度为26的数组来替代map
 
-```c++
+{{< highlight cpp >}}
 int characterReplacement(string s, int k) {
     int n = s.size();
     if(n == 0 || n == 1 || k > n) {
@@ -290,7 +290,7 @@ int characterReplacement(string s, int k) {
     }
     return maxLen;
 }
-```
+{{< /highlight  >}}
 
 ## Permutation in String
 [LeetCode](https://leetcode.com/problems/permutation-in-string)/[力扣](https://leetcode-cn.com/problems/permutation-in-string)
@@ -299,7 +299,7 @@ int characterReplacement(string s, int k) {
 - 如果不为组合，则继续向前滑动
 - 如果为组合，直接返回true
 
-```c++
+{{< highlight cpp >}}
 bool checkZero(map<char, int>& cmap) {
     map<char, int>::iterator it = cmap.begin();
     while(it != cmap.end()) {
@@ -327,11 +327,11 @@ bool checkInclusion(string s1, string s2) {
     }
     return false;
 }
-```
+{{< /highlight  >}}
 
 - 上述操作无法通过最后一个案例，超时，所以可以改进一下
 
-```c++
+{{< highlight cpp >}}
 bool checkInclusion(string s1, string s2) {
     vector<int> a(26, 0), b(26, 0);
     for(const auto& c : s1) {
@@ -349,12 +349,12 @@ bool checkInclusion(string s1, string s2) {
     }
     return false;
 }
-```
+{{< /highlight  >}}
 
 ## Count Unique Characters of All Substrings of a Given String
 [LeetCode](https://leetcode.com/problems/count-unique-characters-of-all-substrings-of-a-given-string)/[力扣](https://leetcode-cn.com/problems/count-unique-characters-of-all-substrings-of-a-given-string)
 
-```c++
+{{< highlight cpp >}}
 int uniqueLetterString(string s) {
     unordered_map<char, vector<int>> m;
     for(int i = 0; i < s.size(); i++) {
@@ -371,12 +371,12 @@ int uniqueLetterString(string s) {
     }
     return (int) (res % 1000000007 )
 }
-```
+{{< /highlight  >}}
 
 ## Fruit Into Baskets
 [LeetCode](https://leetcode.com/problems/fruit-into-baskets)/[力扣](https://leetcode-cn.com/problems/fruit-into-baskets)
 
-```c++
+{{< highlight cpp >}}
 int totalFruit(vector<int>& tree) {
     int n = tree.size();
     if(n <= 1)return n;
@@ -413,12 +413,12 @@ int totalFruit(vector<int>& tree) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Minimum Number of K Consecutive Bit Flips
 [LeetCode](https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips)/[力扣](https://leetcode-cn.com/problems/minimum-number-of-k-consecutive-bit-flips)
 
-```c++
+{{< highlight cpp >}}
 int minKBitFlips(vector<int>& A, int K) {
     int n = A.size();
     vector<int> hint(n,0);
@@ -435,4 +435,4 @@ int minKBitFlips(vector<int>& A, int K) {
     }
     return ans;
 }
-```
+{{< /highlight  >}}

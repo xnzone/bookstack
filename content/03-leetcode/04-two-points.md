@@ -16,7 +16,7 @@ weight: 6
 
 上述方法需要额外保存排序前的位置，所以可解，但不推荐，现给出排序好的解法(不是当前题目解法)
 
-```C++
+{{< highlight cpp >}}
 vector<int> twoSum(vector<int>& nums, int target) {
     int n = nums.size();
     vectort<int> res;
@@ -34,13 +34,13 @@ vector<int> twoSum(vector<int>& nums, int target) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 - 用map保存已经计算过数值位置
 - 如果找到target - 当前数在map中，直接输出结果
 - 如果不存在，则把结果放入map中
 
-```C++
+{{< highlight cpp >}}
 vector<int> twoSum(vector<int>& nums, int target) {
     int n = nums.size();
     vector<int> res;
@@ -57,7 +57,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Container With Most Water
 [LeetCode](https://leetcode.com/problems/container-with-most-water)/[力扣](https://leetcode-cn.com/problems/container-with-most-water)
@@ -65,7 +65,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
 - 前后指针遍历
 - 哪边数字小，移动哪边
 
-```C++
+{{< highlight cpp >}}
 int maxArea(vector<int>& height) {
     int res = -1, i = 0, j = height.size() - 1;
     while(i <= j) {
@@ -79,7 +79,7 @@ int maxArea(vector<int>& height) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## 3Sum
 [LeetCode](https://leetcode.com/problems/3sum)/[力扣](https://leetcode-cn.com/problems/3sum)
@@ -88,7 +88,7 @@ int maxArea(vector<int>& height) {
 - 然后计算最终是否满足条件
 - 也可以用map来保存上述两个值，过程是一样的
 
-```c++
+{{< highlight cpp >}}
 vector<vector<int>> threeSum(vector<int>& nums) {
   vector<vector<int>> res;
   if(nums.size()==0) return res;
@@ -126,7 +126,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
   }
   return res;
 }
-```
+{{< /highlight  >}}
 
 ## 3Sum Closest
 [LeetCode](https://leetcode.com/problems/3sum-closest)/[力扣](https://leetcode-cn.com/problems/3sum-closest)
@@ -135,7 +135,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 - 如果sum大于target， 则右指针移动
 - 如果sum小于target，则左指针移动
 
-```c++
+{{< highlight cpp >}}
 int threeSumClosest(vector<int>& nums, int target) {
     std::sort(nums.begin(), nums.end());
     int n = nums.size();
@@ -158,7 +158,7 @@ int threeSumClosest(vector<int>& nums, int target) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Trapping Rain Water
 [LeetCode](https://leetcode.com/problems/trapping-rain-water)/[力扣](https://leetcode-cn.com/problems/trapping-rain-water)
@@ -166,7 +166,7 @@ int threeSumClosest(vector<int>& nums, int target) {
 - 只要左右都有黑色方块，那么积水一直会增加
 - 所以可以用双向指针解决问题
 
-```c++
+{{< highlight cpp >}}
 int trap(vector<int>& height) {
     int res = 0, i = 0, j = height.size() - 1;
     int lmax = 0, rmax = 0;
@@ -181,14 +181,14 @@ int trap(vector<int>& height) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 - 动态规划
 - 从左到右，找到当前最大值`left_max`
 - 从右到左，找到当前最大值`right_max`
 - 遍历，找到`left_max`和`right_max`最小值，减去`height`就是积水
 
-```c++
+{{< highlight cpp >}}
 int trap(vector<int>& height) {
     if(height.size() == 0) return 0;
     int res = 0, n = height.size();
@@ -207,7 +207,7 @@ int trap(vector<int>& height) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 ## Sort Colors
 [LeetCode](https://leetcode.com/problems/sort-colors)/[力扣](https://leetcode-cn.com/problems/sort-colors)
@@ -216,7 +216,7 @@ int trap(vector<int>& height) {
 - 如果是0， 跟左指针换
 - 如果是2， 跟右指针换
 
-```c++
+{{< highlight cpp >}}
 void sortColors(vector<int>& nums) {
     int n = nums.size(), n0 = 0, n2 = n - 1;
     int i = 0;
@@ -230,7 +230,7 @@ void sortColors(vector<int>& nums) {
         }
     }
 }
-```
+{{< /highlight  >}}
 
 ## Minimum Window Substring
 [LeetCode](https://leetcode.com/problems/minimum-window-substring)/[力扣](https://leetcode-cn.com/problems/minimum-window-substring)
@@ -240,7 +240,7 @@ void sortColors(vector<int>& nums) {
 - 当所有字符全部存在时，移动左指针
 - 直到不满足条件时，跳出循环
 
-```c++
+{{< highlight cpp >}}
 string minWindow(string s, string t) {
     vector<int> count(128, 0);
     for(char c : t) count[c]++;
@@ -263,7 +263,7 @@ string minWindow(string s, string t) {
     }
     return minLen < INT_MAX ? s.substr(minStart, minLen) : "";
 }
-```
+{{< /highlight  >}}
 
 ## Remove Duplicates from Sorted List
 [LeetCode](https://leetcode.com/problems/remove-duplicates-from-sorted-list)/[力扣](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list)
@@ -273,7 +273,7 @@ string minWindow(string s, string t) {
 - 如果相等， 则 `left -> next = right -> next`
 - 否则 `left = right`
 
-```c++
+{{< highlight cpp >}}
 ListNode* deleteDuplicates(ListNode* head) {
     if(head == nullptr) return head;
     ListNode* left = head;
@@ -289,7 +289,7 @@ ListNode* deleteDuplicates(ListNode* head) {
     }
     return head;
 }
-```
+{{< /highlight  >}}
 
 ## Subarray Product Less Than K
 [LeetCode](https://leetcode.com/problems/subarray-product-less-than-k)/[力扣](https://leetcode-cn.com/problems/subarray-product-less-than-k)
@@ -299,7 +299,7 @@ ListNode* deleteDuplicates(ListNode* head) {
 - 直到程序小于K或`left = right`时
 - 每次结果是`left - right + 1`
 
-```c++
+{{< highlight cpp >}}
 int numSubarrayProductLessThanK(vector<int>& nums, int k) {
     if(k == 0) return 0;
     int size = nums.size(), mul = 0, left = 0, right = 0, res = 0;
@@ -314,7 +314,7 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
     }
     return res;
 }
-```
+{{< /highlight  >}}
 
 
 ## Backspace String Compare
@@ -323,7 +323,7 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
 - 从后面开始遍历，用一个数字记录当前space的个数
 - 然后保存新的字符串即可
 
-```c++
+{{< highlight cpp >}}
 string backspace(string str) {
     string res = "";
     int count = 0;
@@ -345,7 +345,7 @@ string backspace(string str) {
 bool backspaceCompare(string S, string T) {
     return backspace(S) == backspace(T);
 }
-```
+{{< /highlight  >}}
 
 ## Squares of a Sorted Array
 [LeetCode](https://leetcode.com/problems/squares-of-a-sorted-array)/[力扣](https://leetcode-cn.com/problems/squares-of-a-sorted-array)
@@ -355,7 +355,7 @@ bool backspaceCompare(string S, string T) {
 - 如果右边大，则压入左边，左边--
 - 最后把剩下的全都计算平方加进去
 
-```c++
+{{< highlight cpp >}}
 vector<int> sortedSquares(vector<int>& A) {
     vector<int> res;
     int more = 0, less = 0;
@@ -394,4 +394,4 @@ vector<int> sortedSquares(vector<int>& A) {
     }
     return res;
 }
-```
+{{< /highlight  >}}

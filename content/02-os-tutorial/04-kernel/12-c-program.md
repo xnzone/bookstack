@@ -20,15 +20,15 @@ tags: ["tutorial", "os"]
 
 为了编译系统无关的代码，我们使用标记`--ffreestanding`。所以编译`function.c`命令为：
 
-```bash
+{{< highlight bash >}}
 i386-elf-gcc -ffreestanding -c function.c -o function.o
-```
+{{< /highlight  >}}
 
 用编译器查看生成的机器码
 
-```bash
+{{< highlight bash >}}
 i386-elf-objdump -d function.o
-```
+{{< /highlight  >}}
 
 我们认识其中的一些东西，不是吗？
 
@@ -36,9 +36,9 @@ i386-elf-objdump -d function.o
 
 最后，为了生成二进制文件，我们需要链接器。这个步骤最重要的部分是学会高级语言怎么调用函数。我们的函数在内存里会被放到哪个位置？我们实际上并不知道。例如，我们把偏移量定为`0x0` 且使用生成不带label或metadata的机器码`binary`格式
 
-```bash
+{{< highlight bash >}}
 i386-elf-ld -o function.bin -Ttext 0x0 -oformat binary function.o
-```
+{{< /highlight  >}}
 
 *注意：可能会有warning，请忽略它*
 
@@ -48,9 +48,9 @@ i386-elf-ld -o function.bin -Ttext 0x0 -oformat binary function.o
 
 出于好奇，我们测试一下机器码
 
-```bash
+{{< highlight bash >}}
 ndisasm -b 32 function.bin
-```
+{{< /highlight  >}}
 
 ## 补充
 

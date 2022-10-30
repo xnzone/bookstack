@@ -13,7 +13,7 @@ weight: 7
 - 模拟两个数相加
 - 用一个数表示进位
 
-```c++
+{{< highlight cpp >}}
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     ListNode *t1 = l1, *t2 = l2;
     int n1 = 0, n2 = 0, c = 0;
@@ -48,7 +48,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     }
     return n1 >= n2 ? l1 : l2;
 }
-```
+{{< /highlight  >}}
 
 ## Remove Nth Node From End of List
 [LeetCode](https://leetcode.com/problems/remove-nth-node-from-end-of-list)/[力扣](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list)
@@ -58,7 +58,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 - 直到第一个指针移动到了末尾
 - 慢指针后面那个就是要被移除的，执行删除即可
 
-```c++
+{{< highlight cpp >}}
 ListNode* removeNthFromEnd(ListNode* head, int n) {
     ListNode* p = new ListNode(0);
     p->next = head;
@@ -74,7 +74,7 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
     slow -> next = slow -> next == nullptr ? nullptr : slow -> next -> next;
     return p -> next;
 }
-```
+{{< /highlight  >}}
 
 ## Remove Duplicates from Sorted List
 [LeetCode](https://leetcode.com/problems/remove-duplicates-from-sorted-list)/[力扣](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list)
@@ -83,7 +83,7 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
 - 如果两个指针值相同， 直接把slow指针的next指向fast的next
 - 否则 slow = fast，fast = fast -> next
 
-```c++
+{{< highlight cpp >}}
 ListNode* deleteDuplicates(ListNode* head) {
     if(head == nullptr) return head;
     ListNode *left = head, *right = head -> next;
@@ -98,7 +98,7 @@ ListNode* deleteDuplicates(ListNode* head) {
     }
     return head;
 }
-```
+{{< /highlight  >}}
 
 ## Linked List Cycle
 [LeetCode](https://leetcode.com/problems/linked-list-cycle)/[力扣](https://leetcode-cn.com/problems/linked-list-cycle)
@@ -107,7 +107,7 @@ ListNode* deleteDuplicates(ListNode* head) {
 - 如果慢指针追上了快指针，则有环
 - 否则，无环
 
-```c++
+{{< highlight cpp >}}
 bool hasCycle(ListNode* head) {
     if(head == nullptr || head -> next == nullptr) return false;
     ListNode *fast = head -> next, *slow = head;
@@ -119,7 +119,7 @@ bool hasCycle(ListNode* head) {
     }
     return false;
 }
-```
+{{< /highlight  >}}
 
 ## Linked List Cycle II
 [LeetCode](https://leetcode.com/problems/linked-list-cycle-ii)/[力扣](https://leetcode-cn.com/problems/linked-list-cycle-ii)
@@ -129,7 +129,7 @@ bool hasCycle(ListNode* head) {
 - 两者再次相遇的地方就是环开始的地方
 - 否则就没有环
 
-```c++
+{{< highlight cpp >}}
 ListNode* detectCycle(ListNode* head) {
     if(head == nullptr || head -> next == nullptr) return nullptr;
     ListNode *slow = head, *fast = head;
@@ -146,7 +146,7 @@ ListNode* detectCycle(ListNode* head) {
     }
     return slow;
 }
-```
+{{< /highlight  >}}
 
 ## Reorder List
 [LeetCode](https://leetcode.com/problems/reorder-list)/[力扣](https://leetcode-cn.com/problems/reorder-list)
@@ -155,7 +155,7 @@ ListNode* detectCycle(ListNode* head) {
 - 然后后半部分链表翻转
 - 最后两个链表合并
 
-```c++
+{{< highlight cpp >}}
 ListNode* reverse(ListNode* head) {
     ListNode *prev = nullptr, *cur = head;
     while(cur != nullptr) {
@@ -183,14 +183,14 @@ void recorderList(ListNode* head) {
         fast =ft;
     }
 }
-```
+{{< /highlight  >}}
 
 ## Sort List
 [LeetCode](https://leetcode.com/problems/sort-list)/[力扣](https://leetcode-cn.com/problems/sort-list)
 
 - 归并排序
 
-```c++
+{{< highlight cpp >}}
 ListNode* merge(ListNode* p1, ListNode* p2) {
     ListNode* t, *head = p1;
     while(p2 && p1) {
@@ -233,14 +233,14 @@ ListNode* sortList(ListNode* head) {
     if(head == nullptr) return head;
     return sort(head);
 }
-```
+{{< /highlight  >}}
 
 ## Remove Linked List Elements
 [LeetCode](https://leetcode.com/problems/remove-linked-list-elements)/[力扣](https://leetcode-cn.com/problems/remove-linked-list-elements)
 
 - 删除前后，链表不要断
 
-```c++
+{{< highlight cpp >}}
 ListNode* removeElements(ListNode* head, int val) {
     ListNode *prev = head;
     while(prev != nullptr && prev -> val == val) {
@@ -260,14 +260,14 @@ ListNode* removeElements(ListNode* head, int val) {
     }
     return head;
 }
-```
+{{< /highlight  >}}
 
 ## Palindrome Linked List
 [LeetCode](https://leetcode.com/problems/palindrome-linked-list)/[力扣](https://leetcode-cn.com/problems/palindrome-linked-list)
 
 - 递归， 递归到最后，相当于首尾逐个比较
 
-```c++
+{{< highlight cpp >}}
 int ans = 1;
 ListNode *root;
 void helper(ListNode *head) {
@@ -283,13 +283,13 @@ bool isPalindrome(ListNode* head) {
     helper(head);
     return ans == 1;
 }
-```
+{{< /highlight  >}}
 
 - 快慢指针找到后面的链表
 - 然后翻转后半部分
 - 再逐一比较
 
-```c++
+{{< highlight cpp >}}
 ListNode *reverse(ListNode *head) {
     ListNode prev = nullptr;
     while(head) {
@@ -319,14 +319,14 @@ bool isPalindrome(ListNode *head) {
     return true;
 }
 
-```
+{{< /highlight  >}}
 
 ## Middle of the Linked List
 [LeetCode](https://leetcode.com/problems/middle-of-the-linked-list)/[力扣](https://leetcode-cn.com/problems/middle-of-the-linked-list)
 
 - 快慢指针直接解决
 
-```c++
+{{< highlight cpp >}}
 ListNode *middleNode(ListNode *head) {
     if(head == nullptr) return head;
     ListNode *prev = head, *next = head;
@@ -336,4 +336,4 @@ ListNode *middleNode(ListNode *head) {
     }
     return prev;
 }
-```
+{{< /highlight  >}}

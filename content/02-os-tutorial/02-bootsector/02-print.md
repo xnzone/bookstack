@@ -24,7 +24,7 @@ tags: ["tutorial", "os"]
 
 我们的引导扇区像这样:
 
-```armasm
+{{< highlight armasm >}}
 mov ah, 0x0e ; tty模式
 mov al, 'H'
 int 0x10
@@ -41,7 +41,7 @@ jmp $ ; 跳转到当前的地址 = 无限循环
 ;填充和魔术数 
 times 510 - ($-$$) db 0
 dw 0xaa55
-```
+{{< /highlight  >}}
 
 你可以用`xxd file.bin`检查二进制数据
 
