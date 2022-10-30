@@ -28,26 +28,32 @@ tags: ["xv6", "os", "bootstrap"]
 >Trace into bootmain() in boot/main.c, and then into readsect(). Identify the exact assembly instructions that correspond to each of the statements in readsect(). Trace through the rest of readsect() and back out into bootmain(), and identify the begin and end of the for loop that reads the remaining sectors of the kernel from the disk. Find out what code will run when the loop is finished, set a breakpoint there, and continue to that breakpoint. Then step through the remainder of the boot loader.
 
 练习3的目的主要是为了熟悉使用GDB，同时观察引导扇区和内核的具体运作方式。要回答四个问题
+
 1. At what point does the processor start executing 32-bit code? What exactly causes the switch from 16- to 32-bitmode?
     {{< highlight asm >}}
     ljmp    $PROT_MODE_CSEG, $protcseg
     {{< /highlight  >}}
     从这句开始，执行完就从16位实模式切换到32位保护模式了
+
 2. What is the last instruction of the boot loader executed, and what is the first instruction of the kernel it justloaded?
     {{< highlight c >}}
     ((void (*)(void)) (ELFHDR->e_entry))();
     {{< /highlight  >}}
     bootloader最后一行代码是这一条，整个`bootmain`函数的作用就是从硬盘读取内核，然后跳到`entry`入口，执行内核。镜像文件是按照`elf`格式存在硬盘上的，`ELFHDR`是指向`0x10000`，整个内核程序块是从`0x10000`（物理地址）开始运行的。`entry`的虚拟地址，在之前打印过，是`0xf010000c`,转化成物理地址为`0x10000c`。所以内核加载的第一条指令是`movw   $0x1234,0x472` 
+
 3. Where is the first instruction of the kernel?
    {{< highlight asm >}}
    movw   $0x1234,0x472
    {{< /highlight  >}}
+
 4. How does the boot loader decide how many sectors it must read in order to fetch the entire kernel from disk?Where does it find this information?
 
     `elf`格式文件有写，具体结构可以参考[ELF文件结构](https://baike.baidu.com/item/ELF/7120560)，读取操作看`main.c`的`readsect`函数。最终概括成以下这句话
-    >一个扇区大小为512字节。读一个扇区的流程大致为通过outb指令访问I/O地址:0x1f2~-0x1f7来发出读扇区命令，通过in指令了解硬盘是否空闲且就绪，如果空闲且就绪，则通过inb指令读取硬盘扇区数据都内存中。
 
+    >一个扇区大小为512字节。读一个扇区的流程大致为通过outb指令访问I/O地址:0x1f2~-0x1f7来发出读扇区命令，通过in指令了解硬盘是否空闲且就绪，如果空闲且就绪，则通过inb指令读取硬盘扇区数据都内存中。
+    
     ELF文件具体格式如下
+
     {{< highlight text >}}
     I/O地址功能
     0x1f0读数据，当0x1f7不为忙状态时，可以读。
