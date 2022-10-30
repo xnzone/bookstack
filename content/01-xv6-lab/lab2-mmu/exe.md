@@ -10,6 +10,7 @@ tags: ["xv6", "os", "mmu"]
 
 ## Exercise 1
 >Exercise 1. In the file kern/pmap.c, you must implement code for the following functions (probably in the order given).
+
 {{< highlight c >}}
 boot_alloc()    
 mem_init() (only up to the call to check_page_free_list(1))
@@ -17,6 +18,7 @@ page_init()
 page_alloc()   
 page_free()  
 {{< /highlight  >}}
+
 >check_page_free_list() and check_page_alloc() test your physical page allocator. You should boot JOS and see whether check_page_alloc() reports success. Fix your code so that it passes. You may find it helpful to add your own assert()s to verify that your assumptions are correct.
 
 练习1主要是为了熟悉内存分配的操作，页面初始化，页面内存分配以及页面内存释放等
@@ -39,6 +41,7 @@ if (n != 0) {
 boot_alloc memory at f0114000
 Next memory at f0115000
 {{< /highlight  >}}
+
 在`mem_init`中可以看到调用过`boot_alloc`是`boot_alloc(PGSIZE)`,`PGSIZE`是4096，是相吻合的。但是`boot_alloc`最开始的地址是`f0114000`就不是很清楚了
 
 `mem_init`是初始化内存，其中有一个要求是需要初始化`pages`变量，这个变量是保存`struct PageInfo`的结构体的，只需要开辟一块内存空间即可。所以还是使用`boot_alloc`函数用来分配，就很简单了
@@ -46,6 +49,7 @@ Next memory at f0115000
 pages = (struct PageInfo*)boot_alloc(sizeof(struct PageInfo) * npages);
 memset(pages, 0, npages * sizeof(struct PageInfo));
 {{< /highlight  >}}
+
 需要注意的是需要给结构体分配n个页面的大小，即`sizeof(struct PageInfo) * npages`，注意`sizeof`的使用
 
 `page_init`就比较复杂了，不过根据注释来，也可以实现
@@ -78,6 +82,7 @@ page_init(void)
 	}
 }
 {{< /highlight  >}}
+
 >Where is the kernel in physical memory?  Which pages are already in use for page tables and other data structures?
 
 答案就很明显了，IO之后都是内核，最开始在`mem_init`初始化的`kern_pgdir`占用的内存是已经使用的
@@ -157,6 +162,7 @@ page_lookup()
 page_remove()
 page_insert()
 {{< /highlight  >}}
+
 >check_page(), called from mem_init(), tests your page table management routines. You should make sure it reports success before proceeding.
 
 `pgdir_walk`是给定页目录指针`pgdir`，返回指向线性地址页表入口(PTE)的指针。需要走两级页表目录。
@@ -238,7 +244,7 @@ page_remove(pde_t *pgdir, void *va)
 	*pte = 0;
 	tlb_invalidate(pgdir, va);
 }
-``
+{{< /highlight >}}
 
 `page_insert`把物理地址映射到虚拟地址，还有一堆注释，注意阅读使用
 {{< highlight c >}}

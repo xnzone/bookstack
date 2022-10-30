@@ -29,42 +29,43 @@ tags: ["xv6", "os", "bootstrap"]
 
 练习3的目的主要是为了熟悉使用GDB，同时观察引导扇区和内核的具体运作方式。要回答四个问题
 
-1. At what point does the processor start executing 32-bit code? What exactly causes the switch from 16- to 32-bitmode?
-    {{< highlight asm >}}
-    ljmp    $PROT_MODE_CSEG, $protcseg
-    {{< /highlight  >}}
-    从这句开始，执行完就从16位实模式切换到32位保护模式了
+1.At what point does the processor start executing 32-bit code? What exactly causes the switch from 16- to 32-bitmode?
+{{< highlight asm >}}
+ljmp    $PROT_MODE_CSEG, $protcseg
+{{< /highlight  >}}
+从这句开始，执行完就从16位实模式切换到32位保护模式了
 
-2. What is the last instruction of the boot loader executed, and what is the first instruction of the kernel it justloaded?
-    {{< highlight c >}}
-    ((void (*)(void)) (ELFHDR->e_entry))();
-    {{< /highlight  >}}
-    bootloader最后一行代码是这一条，整个`bootmain`函数的作用就是从硬盘读取内核，然后跳到`entry`入口，执行内核。镜像文件是按照`elf`格式存在硬盘上的，`ELFHDR`是指向`0x10000`，整个内核程序块是从`0x10000`（物理地址）开始运行的。`entry`的虚拟地址，在之前打印过，是`0xf010000c`,转化成物理地址为`0x10000c`。所以内核加载的第一条指令是`movw   $0x1234,0x472` 
+2.What is the last instruction of the boot loader executed, and what is the first instruction of the kernel it justloaded?
+{{< highlight c >}}
+((void (*)(void)) (ELFHDR->e_entry))();
+{{< /highlight  >}}
 
-3. Where is the first instruction of the kernel?
-   {{< highlight asm >}}
-   movw   $0x1234,0x472
-   {{< /highlight  >}}
+bootloader最后一行代码是这一条，整个`bootmain`函数的作用就是从硬盘读取内核，然后跳到`entry`入口，执行内核。镜像文件是按照`elf`格式存在硬盘上的，`ELFHDR`是指向`0x10000`，整个内核程序块是从`0x10000`（物理地址）开始运行的。`entry`的虚拟地址，在之前打印过，是`0xf010000c`,转化成物理地址为`0x10000c`。所以内核加载的第一条指令是`movw   $0x1234,0x472` 
 
-4. How does the boot loader decide how many sectors it must read in order to fetch the entire kernel from disk?Where does it find this information?
+3.Where is the first instruction of the kernel?
+{{< highlight asm >}}
+movw   $0x1234,0x472
+{{< /highlight  >}}
 
-    `elf`格式文件有写，具体结构可以参考[ELF文件结构](https://baike.baidu.com/item/ELF/7120560)，读取操作看`main.c`的`readsect`函数。最终概括成以下这句话
+4.How does the boot loader decide how many sectors it must read in order to fetch the entire kernel from disk?Where does it find this information?
 
-    >一个扇区大小为512字节。读一个扇区的流程大致为通过outb指令访问I/O地址:0x1f2~-0x1f7来发出读扇区命令，通过in指令了解硬盘是否空闲且就绪，如果空闲且就绪，则通过inb指令读取硬盘扇区数据都内存中。
-    
-    ELF文件具体格式如下
+`elf`格式文件有写，具体结构可以参考[ELF文件结构](https://baike.baidu.com/item/ELF/7120560)，读取操作看`main.c`的`readsect`函数。最终概括成以下这句话
 
-    {{< highlight text >}}
-    I/O地址功能
-    0x1f0读数据，当0x1f7不为忙状态时，可以读。
-    0x1f2要读写的扇区数，每次读写前，需要指出要读写几个扇区。
-    0x1f3如果是LBA模式，就是LBA参数的0-7位
-    0x1f4如果是LBA模式，就是LBA参数的8-15位
-    0x1f5如果是LBA模式，就是LBA参数的16-23位
-    0x1f6第0~3位：如果是LBA模式就是24-27位第4位：为0主盘；为1从盘
-    第6位：为1=LBA模式；0= CHS模式第7位和第5位必须为1
-    0x1f7状态和命令寄存器。操作时先给命令，再读取内容；如果不是忙状态就从0x1f0端口读数据
-    {{< /highlight  >}}
+一个扇区大小为512字节。读一个扇区的流程大致为通过outb指令访问I/O地址:0x1f2~-0x1f7来发出读扇区命令，通过in指令了解硬盘是否空闲且就绪，如果空闲且就绪，则通过inb指令读取硬盘扇区数据都内存中。
+
+ELF文件具体格式如下
+
+{{< highlight text >}}
+I/O地址功能
+0x1f0读数据，当0x1f7不为忙状态时，可以读。
+0x1f2要读写的扇区数，每次读写前，需要指出要读写几个扇区。
+0x1f3如果是LBA模式，就是LBA参数的0-7位
+0x1f4如果是LBA模式，就是LBA参数的8-15位
+0x1f5如果是LBA模式，就是LBA参数的16-23位
+0x1f6第0~3位：如果是LBA模式就是24-27位第4位：为0主盘；为1从盘
+第6位：为1=LBA模式；0= CHS模式第7位和第5位必须为1
+0x1f7状态和命令寄存器。操作时先给命令，再读取内容；如果不是忙状态就从0x1f0端口读数据
+{{< /highlight  >}}
 
 
 ## Exercise 4
@@ -78,7 +79,7 @@ tags: ["xv6", "os", "bootstrap"]
 
 练习4的目的是为了熟悉C语言代码规则，主要是看K&R的前5章内容，尤其是第五章关于指针部分的内容。可以自行查看
 
-Exercise 5
+## Exercise 5
 >Exercise 5. Trace through the first few instructions of the boot loader again and identify the first instruction that would "break" or otherwise do the wrong thing if you were to get the boot loader's link address wrong. Then change the link address in boot/Makefrag to something wrong, run make clean, recompile the lab with make, and trace into the boot loader again to see what happens. Don't forget to change the link address back and make clean again afterward!
 
 练习5的目的是为了验证`boot/Makefrag`设置链接地址的正确性。需要`make clean`, 然后修改`0x7c00`的数值，尝试实验就可以。其实可以发现并不能启动
@@ -135,10 +136,11 @@ case 'o':
 	break;
 {{< /highlight  >}}
 
->1. Explain the interface between printf.c and console.c. Specifically, what function does console.c export? How is this function used by printf.c?
+1.Explain the interface between printf.c and console.c. Specifically, what function does console.c export? How is this function used by printf.c?
+
 `console.c`主要是在屏幕上输出内容，`printf.c`是根据不同的样式去打印输出，最终还是会调用`console.c`里面的内容
 
->2. Explain the following from console.c:
+2.Explain the following from console.c:
 {{< highlight c >}}
 if (crt_pos >= CRT_SIZE) {
     int i;
@@ -148,9 +150,10 @@ if (crt_pos >= CRT_SIZE) {
     crt_pos -= CRT_COLS;
 }
 {{< /highlight  >}}
+
 代码是在`console.c`里面的`cga_putc`函数，而这部分是根据字符来输出什么内容的，但是当输出大于行的最大缓冲区时，会换行显示，所以这个代码片段就是这个作用
 
->3. For the following questions you might wish to consult the notes for Lecture 2. These notes cover GCC's calling convention on the x86.
+3.For the following questions you might wish to consult the notes for Lecture 2. These notes cover GCC's calling convention on the x86.
 
 >Trace the execution of the following code step-by-step:
 
@@ -158,6 +161,7 @@ if (crt_pos >= CRT_SIZE) {
 int x = 1, y = 3, z = 4;
 cprintf("x %d, y %x, z %d\n", x, y, z);
 {{< /highlight  >}}
+
 >In the call to cprintf(), to what does fmt point? To what does ap point?
 
 >List (in order of execution) each call to cons_putc, va_arg, and vcprintf. For cons_putc, list its argument as well. For va_arg, list what ap points to before and after the call. For vcprintf list the values of its two arguments.
@@ -166,12 +170,13 @@ cprintf("x %d, y %x, z %d\n", x, y, z);
 
 总之是利用一个函数内的所有东西大家都挤在一个栈区这个特点。最后的变量先入栈，最前的变量最后入栈，于是就成了栈顶。既然我们知道了第一个指针fmt的值，就很容易找到紧挨着的下一个位置ap的值，顺着ap一路找下去就能遍历整个var_list了
 
->4. Run the following code.
+4.Run the following code.
 {{< highlight c >}}
     unsigned int i = 0x00646c72;
     cprintf("H%x Wo%s", 57616, &i);
 {{< /highlight  >}}
->5. What is the output? Explain how this output is arrived at in the step-by-step manner of the previous exercise. Here's an ASCII table that maps bytes to characters.
+
+5.What is the output? Explain how this output is arrived at in the step-by-step manner of the previous exercise. Here's an ASCII table that maps bytes to characters.
 
 >The output depends on that fact that the x86 is little-endian. If the x86 were instead big-endian what would you set i to in order to yield the same output? Would you need to change 57616 to a different value?
 
@@ -185,9 +190,10 @@ cprintf("x %d, y %x, z %d\n", x, y, z);
 {{< highlight c >}}
 cprintf("x=%d y=%d", 3);
 {{< /highlight  >}}
+
 输出`x=3 y=随机数` 会把`x`所在地址+4Bit之后当作`y`的地址，然后取出这个数字打印，所以这个值是随机的。同样的也可以把代码贴进去验证
 
->6. Let's say that GCC changed its calling convention so that it pushed arguments on the stack in declaration order, so that the last argument is pushed last. How would you have to change cprintf or its interface so that it would still be possible to pass it a variable number of arguments?
+6.Let's say that GCC changed its calling convention so that it pushed arguments on the stack in declaration order, so that the last argument is pushed last. How would you have to change cprintf or its interface so that it would still be possible to pass it a variable number of arguments?
 
 改变gcc压栈方式，in declaration order。 就是以声明的顺序，最早的变量最先入栈，到了栈底。这样栈顶指针，最后就指向了最后一个变量。此时可以添加一个计算变量总长度的参数`size_t n`。我们拿到栈顶指针`ap`之后，先 `(void *)fmt = ap - n`。就找到了格式化字符串的开头了。
 

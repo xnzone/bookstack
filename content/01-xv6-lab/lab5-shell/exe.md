@@ -334,6 +334,7 @@ sys_env_set_trapframe(envid_t envid, struct Trapframe *tf)
 	return 0;
 }
 {{< /highlight  >}}
+
 同时，这个是个系统调用，需要在`syscall`函数中添加上述的系统调用
 {{< highlight c >}}
 	case SYS_env_set_trapframe:
@@ -386,6 +387,7 @@ duppage(envid_t envid, unsigned pn)
 	return 0;
 }
 {{< /highlight  >}}
+
 然后完成`lib/spawn.c`中的`copy_shared_pages`函数。主要是遍历页表，然后根据是否是`PTE_SHARE`页面，进行页面映射(也就是拷贝到子进程中，文档中说的比较清楚)
 {{< highlight c >}}
 static int

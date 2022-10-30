@@ -39,6 +39,7 @@ boot_map_region(kern_pgdir, UENVS, NENV * sizeof(struct Env), PADDR(envs), PTE_U
 	r = -E_NO_MEM;
 	panic("env_alloc: %e", r);
 {{< /highlight  >}}
+
 >will panic with the message "env_alloc: out of memory".
 
 `env_init`初始化环境，主要是把所有`env`都放到`env_free_list`里面，然后更新`env_free_list`的值，注意从后往前遍历
@@ -306,11 +307,11 @@ Part A score: 30/30
 {{< /highlight  >}}
 
 ## Question
->1. What is the purpose of having an individual handler function for each exception/interrupt? (i.e., if all exceptions/interrupts were delivered to the same handler, what feature that exists in the current implementation could not be provided?)
+>1.What is the purpose of having an individual handler function for each exception/interrupt? (i.e., if all exceptions/interrupts were delivered to the same handler, what feature that exists in the current implementation could not be provided?)
 
 给每个中断或异常提供一个处理函数是更好的隔离和保护
 
->2. Did you have to do anything to make the user/softint program behave correctly? The grade script expects it to produce a general protection fault (trap 13), but softint's code says int $14. Why should this produce interrupt vector 13? What happens if the kernel actually allows softint's int $14 instruction to invoke the kernel's page fault handler (which is interrupt vector 14)?
+>2.Did you have to do anything to make the user/softint program behave correctly? The grade script expects it to produce a general protection fault (trap 13), but softint's code says int $14. Why should this produce interrupt vector 13? What happens if the kernel actually allows softint's int $14 instruction to invoke the kernel's page fault handler (which is interrupt vector 14)?
 
 因为如果系统运行在用户态，权限级别为 3，而 INT 指令是系统指令，权限级别为 0，因此会首先引发 Gerneral Protection Excepetion（即 trap 13）。由 SETGATE 函数定义上方注释可知，通过改变参数 dpl 可以改变调用该 interrupt 需要的权限等级。通过把原来 dpl = 0 的改成 dpl = 3，就可以让用户态程序也可以调用。
 
@@ -380,6 +381,7 @@ trap_dispatch(struct Trapframe *tf)
 	}
 }
 {{< /highlight  >}}
+
 同时还需要把之前初始化的权限改成3，即`trap_init`函数里面。在用户模式进行int 3进入更高特权等级的内核，要求CPL<=DPL
 {{< highlight c >}}
 SETGATE(idt[3], 0, GD_KT, th3, 3);
@@ -397,7 +399,7 @@ breakpoint: OK (6.3s)
 设置DPL可以启用用户模式下的调用
 
 
->4. What do you think is the point of these mechanisms, particularly in light of what the user/softint test program does? 
+>4.What do you think is the point of these mechanisms, particularly in light of what the user/softint test program does? 
 
 主要是保护和隔离
 
@@ -411,6 +413,7 @@ breakpoint: OK (6.3s)
 {{< highlight asm >}}
 TRAPHANDLER_NOEC(th48, 48)
 {{< /highlight  >}}
+
 {{< highlight c >}}
 void
 trap_init(void)
@@ -420,6 +423,7 @@ trap_init(void)
     SETGATE(idt[48], 0, GD_KT, th48, 3);
 }
 {{< /highlight  >}}
+
 {{< highlight c >}}
 static void
 trap_dispatch(struct Trapframe *tf)
@@ -431,6 +435,7 @@ trap_dispatch(struct Trapframe *tf)
 	}
 }
 {{< /highlight  >}}
+
 {{< highlight c >}}
 int32_t
 syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, uint32_t a5)

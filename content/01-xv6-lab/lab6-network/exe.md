@@ -81,6 +81,7 @@ struct pci_driver pci_attach_vendor[] = {
 	{ 0, 0, 0 },
 };
 {{< /highlight  >}}
+
 运行`make grade`，可以看到下面输出就是成功
 {{< highlight c >}}
 testtime: OK (16.9s) 
@@ -193,6 +194,7 @@ static void init_tx() {
     e1000_bar0[E1000_TIPG] = 10; // IEEE 802.3 标准IPG
 }
 {{< /highlight  >}}
+
 同时在之前的`pci_func_attach`要添加初始化
 {{< highlight c >}}
 
@@ -313,7 +315,7 @@ output(envid_t ns_envid)
 使用`make grade`可以看到`testoutput`成功
 
 ## Question
->1. How did you structure your transmit implementation? In particular, what do you do if the transmit ring is full?
+>1.How did you structure your transmit implementation? In particular, what do you do if the transmit ring is full?
 
 transmit的结构体前面有
 
