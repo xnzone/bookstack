@@ -1,6 +1,6 @@
 ---
 author: xnzone 
-title: 分布式系统概述
+title: 概述
 date: 2022-09-10 10:23:32
 image: /covers/distr-fun.png
 cover: false
