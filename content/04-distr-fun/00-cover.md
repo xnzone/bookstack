@@ -1,6 +1,6 @@
 ---
 author: xnzone 
-title: 浅谈分布式系统 
+title: 趣谈分布式系统 
 date: 2022-09-10 10:23:32
 image: /covers/distr-fun.png
 cover: true

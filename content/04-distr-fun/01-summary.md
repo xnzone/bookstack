@@ -1,5 +1,4 @@
 ---
-bookCollapseSection: true
 author: xnzone 
 title: 分布式系统概述
 date: 2022-09-10 10:23:32
