@@ -4,7 +4,7 @@ title: 上下层抽象
 date: 2022-09-10 10:23:32
 image: /covers/distr-fun.png
 cover: false
-weight: 5
+weight: 7
 tags: ["distributed system", "分布式系统"]
 ---
 
@@ -17,4 +17,5 @@ tags: ["distributed system", "分布式系统"]
 为什么我们说X比Y更加抽象？第一，X没有介绍任何新的东西，且从根本上就不同于Y。实际上，X可能移除了Y的某些特性，或者让这些表现起来更容易管理。第二，X在某种意义上比Y更容易理解，假设X从Y中移除的东西并不重要
 
 正如Nietzsche说的：
+
 >
