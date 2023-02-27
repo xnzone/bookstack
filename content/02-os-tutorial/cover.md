@@ -2,7 +2,7 @@
 author: xnzone 
 title: 手把手写操作系统
 date: 2021-09-10 10:23:32
-image: /covers/os-tutorial.png
+image: /covers/os-tutorial.jpg
 cover: true
 weight: 2
 tags: ["tutorial", "os"]
