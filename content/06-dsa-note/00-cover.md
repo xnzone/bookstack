@@ -1,6 +1,6 @@
 ---
 author: xnzone 
-title: 408-数据结构笔记
+title: 408-数据结构
 date: 2023-02-22 10:04:00
 image: /covers/dsa.png
 cover: true

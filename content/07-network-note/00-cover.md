@@ -1,6 +1,6 @@
 ---
 author: xnzone 
-title: 408-计算机网络笔记
+title: 408-计算机网络
 date: 2023-02-27 10:04:00
 image: /covers/network.jpg
 cover: true
