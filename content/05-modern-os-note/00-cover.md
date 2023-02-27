@@ -2,7 +2,7 @@
 author: xnzone 
 title: 现代操作系统笔记
 date: 2022-09-10 10:23:32
-image: /covers/os.png
+image: /covers/os.jpg
 cover: true
 weight: 5
 tags: ["os", "操作系统"]
