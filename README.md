@@ -1,5 +1,5 @@
 <div align="center">
-    <a href="https://github.com/xnzone/bookstack"> <img src="https://badgen.net/github/stars/xnzone/boostack?icon=github"></a>
+    <a href="https://github.com/xnzone/bookstack"> <img src="https://badgen.net/github/stars/xnzone/bookstack?icon=github"></a>
     <a href="https://github.com/xnzone/csnote"> <img src="https://badgen.net/github/forks/xnzone/bookstack?icon=github"></a>
 </div>
 
