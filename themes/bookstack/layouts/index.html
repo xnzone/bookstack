@@ -1,0 +1,29 @@
+{{ define "main"}}
+    <div class="container">
+      <main class="main">
+        {{ template "body" . }}
+          <!-- The part of the page that begins to differ between templates -->
+      </main>
+
+      {{- partialCached "footer.html" . }}
+    </div>
+{{ end }}
+
+{{ define "body" }}
+  {{- partial "profile.html" }}
+
+  {{- $pages := (where site.RegularPages "Params.cover" "eq" true) }}
+  {{ $pages = sort $pages "Params.weight" }}
+  {{- $paginator := .Paginate $pages }}
+
+  <section class="article-list">
+    {{ range $paginator.Pages }}
+      {{ .Render "summary"}}
+    {{ end }}
+  </section>
+
+  {{- if gt $paginator.TotalPages 1 }}
+    {{- partial "pagination.html" . -}}
+  {{- end }}
+
+{{ end }}

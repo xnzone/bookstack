@@ -1,0 +1,18 @@
+{{ if  and .Params  .Params.cover }}
+<article class="article">
+  <a class="article__inner" href="{{ .Permalink }}">
+    <div class="article__header">
+      {{ $image := resources.Get .Params.image }}
+      {{ if $image }}
+      <img class="article__image" src="{{ $image.RelPermalink }}">
+      {{ end }}
+    </div>
+    <div class="article__text">
+      <h3 class="article__title">{{ .Title }}</h3>
+    </div>
+  </a>
+  <footer class="article__footer">
+    <time datetime="{{ .Date }}">{{ .Date.Format "2006/01/02" }}</time>
+  </footer>
+</article>
+{{ end }}
