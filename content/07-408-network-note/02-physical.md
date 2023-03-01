@@ -4,6 +4,7 @@ title: 物理层
 date: 2023-02-27 10:04:00
 image: /covers/network.jpg
 cover: false
+math: true
 weight: 9
 tags: ["王道408", "计算机网络","物理层"]
 ---
