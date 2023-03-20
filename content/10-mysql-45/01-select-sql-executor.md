@@ -3,7 +3,7 @@ author: xnzone
 title: 基础架构：一条SQL查询语句是如何执行的
 date: 2023-02-27 10:04:00
 image: /covers/mysql-45.jpg
-cover: true
+cover: false
 weight: 100
 tags: ["MySQL", "实战45讲", "丁奇", "基础架构"]
 ---
