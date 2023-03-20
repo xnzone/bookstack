@@ -18,7 +18,7 @@ tags: ["os", "操作系统"]
 ### Peterson算法
 Peterson算法的主要代码结构如下
 
-```c
+{{< highlight c >}}
 #define FALSE 0
 #define TRUE 1
 #define N 2 /* 进程数量 */
@@ -37,7 +37,7 @@ void enter_region(int process) { /* 进程是0或者1 */
 void leave_region(int process) {
     interested[process] = FALSE;
 }
-```
+{{< /highlight >}}
 
 主要解决了两个进程之间互斥的问题，用一个`turn`变量来表明是谁的轮次。在使用共享变量（即进入其临界区）之前，各个进程使用其进程号0或1作为参数来调用enter_region。该调用在需要时将使进程等待，直到能安全地进入临界区。在完成对共享变量的操作之后，进程将调用leave_region，表示操作已完成，若其他的进程希望进入临界区，则现在就可以进入。
 

@@ -70,7 +70,7 @@ tags: ["数据结构", "算法", "字符串"]
 - 如果 j > T.length, 则当前串匹配成功，返回第一个字符的位置即 i - T.length
 
 
-{{< highlight C++ >}}
+{{< highlight cpp >}}
 int Index(SString S, SString T) {
     int i = 1, j = 1;
     while(i <= S.length && j <= T.length) {
@@ -114,7 +114,7 @@ int Index(SString S, SString T) {
 - 第三个字符及之后的，在不匹配的位置前边，划一根美丽的分界线模式串一步步往后退，直到分界线之前能对上，此时j指向哪儿，next数组值就是多少
 
 
-{{< highlight C++ >}}
+{{< highlight cpp >}}
 void get_next(SString T, int next[]) {
     int i = 1, j = 0;
     next[1] = 0;
