@@ -35,9 +35,7 @@ tags: ["Redis", "字符串", "SET"]
 
 Note
 
-```
-因为 `SET` 命令可以通过参数来实现 `SETNX` 、 `SETEX` 以及 `PSETEX` 命令的效果， 所以 Redis 将来的版本可能会移除并废弃 `SETNX` 、 `SETEX` 和 `PSETEX` 这三个命令。
-```
+> 因为 `SET` 命令可以通过参数来实现 `SETNX` 、 `SETEX` 以及 `PSETEX` 命令的效果， 所以 Redis 将来的版本可能会移除并废弃 `SETNX` 、 `SETEX` 和 `PSETEX` 这三个命令。
 
 ## 返回值
 
