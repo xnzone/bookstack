@@ -1,10 +1,10 @@
 ---
-author: xnzone 
+author: 丁奇  
 title: MySQL实战45讲
 date: 2023-03-12 10:04:00
-image: /covers/mysql-45.jpg
+image: /covers/01-mysql-45.jpg
 cover: true
-weight: 10
+weight: 1
 tags: ["MySQL", "实战45讲", "丁奇"]
 ---
 
