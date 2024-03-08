@@ -1,6 +1,6 @@
 ---
 author: 丁奇  
-title: MySQL实战45讲
+title: 丁奇 - MySQL实战45讲
 date: 2023-03-12 10:04:00
 image: /covers/01-mysql-45.jpg
 cover: true

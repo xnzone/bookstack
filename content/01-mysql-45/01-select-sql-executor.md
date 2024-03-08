@@ -8,6 +8,9 @@ weight: 100
 tags: ["MySQL", "实战45讲", "丁奇", "基础架构"]
 ---
 
+<audio id="audio" controls="" preload="none">
+      <source id="mp3" src="https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/01-select-sql-executor.mp3">
+</audio>
 
 你好，我是林晓斌。
 
