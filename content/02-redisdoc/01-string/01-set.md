@@ -4,11 +4,11 @@ title: SET
 date: 2024-03-08 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2 
+weight: 1
 tags: ["Redis", "字符串", "SET"]
 ---
 
-# SET key value [[EX seconds]] [[PX milliseconds]] [[NX|XX]]
+# SET key value [EX seconds] [PX milliseconds] [NX|XX]
 
 > 可用版本： >= 1.0.0
 > 
