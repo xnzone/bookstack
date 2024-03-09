@@ -14,7 +14,7 @@ tags: ["Redis", "命令参考", "黄健宏"]
 
 ## 关于
 
-本文档由 [黄健宏（huangz）](http://www.huangz.me/) 翻译， 版权归 Redis 官方所有。
+本文档由 [黄健宏（huangz）](http://www.huangz.me/) 翻译， 版权归 Redis 官方所有。仅限学习交流，如有侵权，联系本人删除
 
 [更新日志(change log)](http://redis.forthxu.com/change_log.html#change-log) 列出了本文档的主要更新细节， 你也可以通过关注 [文档的 github 项目](https://github.com/huangz1990/redis) 来随时追踪文档的最新更新信息。
 
