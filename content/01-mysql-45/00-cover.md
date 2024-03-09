@@ -8,7 +8,7 @@ weight: 1
 tags: ["MySQL", "实战45讲", "丁奇"]
 ---
 
-转载自[MySQL实战45讲](https://time.geekbang.org/column/intro/139)
+转载自[MySQL实战45讲](https://time.geekbang.org/column/intro/139)。仅限学习交流，如有侵权，联系作者本人删除
 
 ## 基础篇
 
