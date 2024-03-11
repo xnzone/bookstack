@@ -16,7 +16,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "索引"]
 
 下面是这个表的初始化语句。
 
-```
+{{< highlight sql >}}
 mysql> create table T (
 ID int primary key,
 k int NOT NULL DEFAULT 0, 
@@ -25,7 +25,7 @@ index k(k))
 engine=InnoDB;
 
 insert into T values(100,1, 'aa'),(200,2,'bb'),(300,3,'cc'),(500,5,'ee'),(600,6,'ff'),(700,7,'gg');
-```
+{{< /highlight >}}
 
 ![图1 InnoDB的索引组织结构](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091036419.png)
 
@@ -60,7 +60,7 @@ insert into T values(100,1, 'aa'),(200,2,'bb'),(300,3,'cc'),(500,5,'ee'),(600,6,
 
 假设这个市民表的定义是这样的：
 
-```
+{{< highlight sql >}}
 CREATE TABLE `tuser` (
   `id` int(11) NOT NULL,
   `id_card` varchar(32) DEFAULT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE `tuser` (
   KEY `id_card` (`id_card`),
   KEY `name_age` (`name`,`age`)
 ) ENGINE=InnoDB
-```
+{{< /highlight >}}
 
 我们知道，身份证号是市民的唯一标识。也就是说，如果有根据身份证号查询市民信息的需求，我们只要在身份证号字段上建立索引就够了。而再建立一个（身份证号、姓名）的联合索引，是不是浪费空间？
 
@@ -113,9 +113,9 @@ CREATE TABLE `tuser` (
 
 我们还是以市民表的联合索引（name, age）为例。如果现在有一个需求：检索出表中“名字第一个字是张，而且年龄是10岁的所有男孩”。那么，SQL语句是这么写的：
 
-```
+{{< highlight sql >}}
 mysql> select * from tuser where name like '张%' and age=10 and ismale=1;
-```
+{{< /highlight >}}
 
 你已经知道了前缀索引规则，所以这个语句在搜索索引树的时候，只能用 “张”，找到第一个满足条件的记录ID3。当然，这还不错，总比全表扫描要好。
 
@@ -150,7 +150,7 @@ mysql> select * from tuser where name like '张%' and age=10 and ismale=1;
 
 实际上主键索引也是可以使用多个字段的。DBA小吕在入职新公司的时候，就发现自己接手维护的库里面，有这么一个表，表结构定义类似这样的：
 
-```
+{{< highlight sql >}}
 CREATE TABLE `geek` (
   `a` int(11) NOT NULL,
   `b` int(11) NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE `geek` (
   KEY `ca` (`c`,`a`),
   KEY `cb` (`c`,`b`)
 ) ENGINE=InnoDB;
-```
+{{< /highlight >}}
 
 公司的同事告诉他说，由于历史原因，这个表需要a、b做联合主键，这个小吕理解了。
 
@@ -169,10 +169,10 @@ CREATE TABLE `geek` (
 
 同事告诉他，是因为他们的业务里面有这样的两种语句：
 
-```
+{{< highlight sql >}}
 select * from geek where c=N order by a limit 1;
 select * from geek where c=N order by b limit 1;
-```
+{{< /highlight >}}
 
 我给你的问题是，这位同事的解释对吗，为了这两个查询模式，这两个索引是否都是必须的？为什么呢？
 
@@ -194,7 +194,7 @@ PS：如果你在面试中，曾有过被MySQL相关问题难住的经历，也�
 
 <center>精选留言</center>
 
-```
+{{< highlight text >}}
 我来也
 老师的每一篇都会讲到平常工作用遇到的事情. 这个专栏真的很值.
 今天这个 alter table T engine=InnoDB 让我想到了我们线上的一个表, 记录日志用的, 会定期删除过早之前的数据. 最后这个表实际内容的大小才10G, 而他的索引却有30G. 在阿里云控制面板上看,就是占了40G空间. 这可花的是真金白银啊.
@@ -209,9 +209,9 @@ PS：如果你在面试中，曾有过被MySQL相关问题难住的经历，也�
 也鼓励大家把平时碰到的问题提出来，大家一起未雨绸缪🤝
 
 2018-11-24 14:55
-```
+{{< /highlight >}}
 
-```
+{{< highlight text >}}
 约书亚
 疑问：
 1. 有些资料提到，在不影响排序结果的情况下，在取出主键后，回表之前，会在对所有获取到的主键排序，请问是否存在这种情况？
@@ -228,9 +228,9 @@ PS：如果你在面试中，曾有过被MySQL相关问题难住的经历，也�
 只能说，持续进化，幸甚至哉😄
 
 2018-11-23 10:37
-```
+{{< /highlight >}}
 
-```
+{{< highlight text >}}
 发条橙子 。
 老师， 因为正文不能无限细节和篇幅的缘故， 有些细节点没有说， 我也一直很困惑， 希望能帮忙解答下，辛苦了
 1. 表的逻辑结构 ，表 —> 段 —> 段中存在数据段(leaf node segment) ，索引段( Non-leaf node segment）,请问数据段就是主键索引的数据， 索引段就是二级索引的数据么
@@ -250,4 +250,4 @@ PS：如果你在面试中，曾有过被MySQL相关问题难住的经历，也�
 5. 基本是你说的流程。不过不是“优化器”去取的，是执行器调用引擎，引擎内部才管理了你说的 段、页这些数据
 
 2018-11-24 14:36
-```
+{{< /highlight >}}

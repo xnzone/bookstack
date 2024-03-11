@@ -12,9 +12,9 @@ tags: ["MySQL", "实战45讲", "丁奇", "基础架构"]
 
 这是专栏的第一篇文章，我想来跟你聊聊MySQL的基础架构。我们经常说，看一个事儿千万不要直接陷入细节里，你应该先鸟瞰其全貌，这样能够帮助你从高维度理解问题。同样，对于MySQL的学习也是这样。平时我们使用数据库，看到的通常都是一个整体。比如，你有个最简单的表，表里只有一个ID字段，在执行下面这个查询语句时：
 
-```
+{{< highlight sql >}}
 mysql> select * from T where ID=10；
-```
+{{< /highlight >}}
 
 我们看到的只是输入一条语句，返回一个结果，却不知道这条语句在MySQL内部的执行过程。
 
@@ -38,9 +38,9 @@ Server层包括连接器、查询缓存、分析器、优化器、执行器等�
 
 第一步，你会先连接到这个数据库上，这时候接待你的就是连接器。连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令一般是这么写的：
 
-```
+{{< highlight sql >}}
 mysql -h$ip -P$port -u$user -p
-```
+{{< /highlight >}}
 
 输完命令之后，你就需要在交互对话里面输入密码。虽然密码也可以直接跟在-p后面写在命令行中，但这样可能会导致你的密码泄露。如果你连的是生产服务器，强烈建议你不要这么做。
 
@@ -86,9 +86,9 @@ MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是
 
 好在MySQL也提供了这种“按需使用”的方式。你可以将参数query_cache_type设置成DEMAND，这样对于默认的SQL语句都不使用查询缓存。而对于你确定要使用查询缓存的语句，可以用SQL_CACHE显式指定，像下面这个语句一样：
 
-```
+{{< highlight sql >}}
 mysql> select SQL_CACHE * from T where ID=10；
-```
+{{< /highlight >}}
 
 需要注意的是，MySQL 8.0版本直接将查询缓存的整块功能删掉了，也就是说8.0开始彻底没有这个功能了。
 
@@ -104,11 +104,11 @@ MySQL从你输入的"select"这个关键字识别出来，这是一个查询语�
 
 如果你的语句不对，就会收到“You have an error in your SQL syntax”的错误提醒，比如下面这个语句select少打了开头的字母“s”。
 
-```
+{{< highlight sql >}}
 mysql> elect * from t where ID=1;
 
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect * from t where ID=1' at line 1
-```
+{{< /highlight >}}
 
 一般语法错误会提示第一个出现错误的位置，所以你要关注的是紧接“use near”的内容。
 
