@@ -4,7 +4,7 @@ title: MGET
 date: 2024-03-10 17:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 318
+weight: 118
 tags: ["Redis", "字符串", "MGET"]
 ---
 

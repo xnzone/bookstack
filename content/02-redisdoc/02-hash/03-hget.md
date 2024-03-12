@@ -4,7 +4,7 @@ title: HGET
 date: 2024-03-11 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 403
+weight: 203
 tags:
   - Redis
   - 哈希表

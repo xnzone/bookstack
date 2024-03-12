@@ -4,7 +4,7 @@ title: INCRBYFLOAT
 date: 2024-03-10 17:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 313
+weight: 113
 tags: ["Redis", "字符串", "INCRBYFLOAT"]
 ---
 

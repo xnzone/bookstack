@@ -4,7 +4,7 @@ title: GETSET
 date: 2024-03-10 17:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 306 
+weight: 106 
 tags: ["Redis", "字符串", "GETSET"]
 ---
 
