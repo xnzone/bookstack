@@ -15,4 +15,4 @@ tags:
 
 **HSCAN key cursor [MATCH pattern] [COUNT count]**
 
-具体信息请参考 [SCAN cursor [MATCH pattern] [COUNT count]](https://bookstack.xnzone.eu.org/09-database/10-scan/) 命令。
+具体信息请参考 [SCAN cursor [MATCH pattern] [COUNT count]](https://bookstack.xnzone.eu.org/02-redisdoc/09-database/10-scan/) 命令。

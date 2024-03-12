@@ -19,7 +19,7 @@ tags:
 
 Note
 
-在Redis2.4以下的版本里， `HDEL` 每次只能删除单个域，如果你需要在一个原子时间内删除多个域，请将命令包含在 [MULTI](https://bookstack.xnzone.eu.org/11-transaction/01-multi) / [EXEC](https://bookstack.xnzone.eu.org/11-transaction/02-exec) 块内。
+在Redis2.4以下的版本里， `HDEL` 每次只能删除单个域，如果你需要在一个原子时间内删除多个域，请将命令包含在 [MULTI](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/01-multi) / [EXEC](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/02-exec) 块内。
 
 **可用版本：**
 
