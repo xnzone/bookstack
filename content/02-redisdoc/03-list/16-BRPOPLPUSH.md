@@ -17,9 +17,9 @@ tags:
 > 
 > 时间复杂度： O(1)
 
-[BRPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16brpoplpush/) 是 [RPOPLPUSH source destination](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/07-rpoplpush/) 的阻塞版本，当给定列表 `source` 不为空时， [BRPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16brpoplpush/) 的表现和 [RPOPLPUSH source destination](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/07-rpoplpush/) 一样。
+[BRPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16-brpoplpush/) 是 [RPOPLPUSH source destination](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/07-rpoplpush/) 的阻塞版本，当给定列表 `source` 不为空时， [BRPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16-brpoplpush/) 的表现和 [RPOPLPUSH source destination](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/07-rpoplpush/) 一样。
 
-当列表 `source` 为空时， [BRPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16brpoplpush/) 命令将阻塞连接，直到等待超时，或有另一个客户端对 `source` 执行 [LPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/01-lpush/) 或 [RPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/03-rpush/) 命令为止。
+当列表 `source` 为空时， [BRPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16-brpoplpush/) 命令将阻塞连接，直到等待超时，或有另一个客户端对 `source` 执行 [LPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/01-lpush/) 或 [RPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/03-rpush/) 命令为止。
 
 超时参数 `timeout` 接受一个以秒为单位的数字作为值。超时参数设为 `0` 表示阻塞时间可以无限期延长(block indefinitely) 。
 
