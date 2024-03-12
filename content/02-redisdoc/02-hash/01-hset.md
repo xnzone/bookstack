@@ -4,8 +4,11 @@ title: HSET
 date: 2024-03-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 41
-tags: ["Redis", "哈希表", "HSET"]
+weight: 401
+tags:
+  - Redis
+  - 哈希表
+  - HSET
 ---
 # HSET hash field value
 

@@ -4,8 +4,11 @@ title: HSETNX
 date: 2024-03-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 42
-tags: ["Redis", "哈希表", "HSETNX"]
+weight: 402
+tags:
+  - Redis
+  - 哈希表
+  - HSETNX
 ---
 
 # HSETNX hash field value
