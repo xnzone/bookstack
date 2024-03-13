@@ -14,7 +14,3 @@ outputs:
         - JSON
 sitemap:
   filename: sitemapindex.xml
-module:
-  mounts:
-  - source: baidu_verify_codeva-AGQ4sYHwHU.html
-    target: baidu_verify_codeva-AGQ4sYHwHU.html
