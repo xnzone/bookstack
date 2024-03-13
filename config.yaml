@@ -12,3 +12,5 @@ outputs:
     home:
         - HTML
         - JSON
+sitemap:
+  filename: sitemapindex.xml
