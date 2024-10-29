@@ -17,7 +17,7 @@ tags:
 > 
 > 时间复杂度： O(1)
 
-命令 [RPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/07-rpoplpush/) 在一个原子时间内，执行以下两个动作：
+命令 [RPOPLPUSH](../../02-redisdoc/03-list/07-rpoplpush/) 在一个原子时间内，执行以下两个动作：
 
 - 将列表 `source` 中的最后一个元素(尾元素)弹出，并返回给客户端。
     
@@ -96,17 +96,17 @@ redis> LRANGE number 0 -1           # 这次是 3 被旋转到了表头
 
 ## 模式： 安全的队列
 
-Redis的列表经常被用作队列(queue)，用于在不同程序之间有序地交换消息(message)。一个客户端通过 [LPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/01-lpush/) 命令将消息放入队列中，而另一个客户端通过 [RPOP key](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/06-rpop/) 或者 [BRPOP key [key …] timeout](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16-brpop/) 命令取出队列中等待时间最长的消息。
+Redis的列表经常被用作队列(queue)，用于在不同程序之间有序地交换消息(message)。一个客户端通过 [LPUSH key value [value …]](../../02-redisdoc/03-list/01-lpush/) 命令将消息放入队列中，而另一个客户端通过 [RPOP key](../../02-redisdoc/03-list/06-rpop/) 或者 [BRPOP key [key …] timeout](../../02-redisdoc/03-list/16-brpop/) 命令取出队列中等待时间最长的消息。
 
 不幸的是，上面的队列方法是『不安全』的，因为在这个过程中，一个客户端可能在取出一个消息之后崩溃，而未处理完的消息也就因此丢失。
 
-使用 [RPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/07-rpoplpush/) 命令(或者它的阻塞版本 [BRPOPLPUSH source destination timeout](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/17-brpoplpush/) )可以解决这个问题：因为它不仅返回一个消息，同时还将这个消息添加到另一个备份列表当中，如果一切正常的话，当一个客户端完成某个消息的处理之后，可以用 [LREM key count value](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/08-lrem/) 命令将这个消息从备份表删除。
+使用 [RPOPLPUSH](../../02-redisdoc/03-list/07-rpoplpush/) 命令(或者它的阻塞版本 [BRPOPLPUSH source destination timeout](../../02-redisdoc/03-list/17-brpoplpush/) )可以解决这个问题：因为它不仅返回一个消息，同时还将这个消息添加到另一个备份列表当中，如果一切正常的话，当一个客户端完成某个消息的处理之后，可以用 [LREM key count value](../../02-redisdoc/03-list/08-lrem/) 命令将这个消息从备份表删除。
 
 最后，还可以添加一个客户端专门用于监视备份表，它自动地将超过一定处理时限的消息重新放入队列中去(负责处理该消息的客户端可能已经崩溃)，这样就不会丢失任何消息了。
 
 ## 模式：循环列表
 
-通过使用相同的 `key` 作为 [RPOPLPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/07-rpoplpush/) 命令的两个参数，客户端可以用一个接一个地获取列表元素的方式，取得列表的所有元素，而不必像 [LRANGE key start stop](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/13-lrange/) 命令那样一下子将所有列表元素都从服务器传送到客户端中(两种方式的总复杂度都是 O(N))。
+通过使用相同的 `key` 作为 [RPOPLPUSH](../../02-redisdoc/03-list/07-rpoplpush/) 命令的两个参数，客户端可以用一个接一个地获取列表元素的方式，取得列表的所有元素，而不必像 [LRANGE key start stop](../../02-redisdoc/03-list/13-lrange/) 命令那样一下子将所有列表元素都从服务器传送到客户端中(两种方式的总复杂度都是 O(N))。
 
 以上的模式甚至在以下的两个情况下也能正常工作：
 

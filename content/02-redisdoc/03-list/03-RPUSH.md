@@ -21,17 +21,17 @@ tags:
 
 如果有多个 `value` 值，那么各个 `value` 值按从左到右的顺序依次插入到表尾：比如对一个空列表 `mylist` 执行 `RPUSH mylist a b c` ，得出的结果列表为 `a b c` ，等同于执行命令 `RPUSH mylist a` 、 `RPUSH mylist b` 、 `RPUSH mylist c` 。
 
-如果 `key` 不存在，一个空列表会被创建并执行 [RPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/03-rpush/) 操作。
+如果 `key` 不存在，一个空列表会被创建并执行 [RPUSH](../../02-redisdoc/03-list/03-rpush/) 操作。
 
 当 `key` 存在但不是列表类型时，返回一个错误。
 
 Note
 
-在 Redis 2.4 版本以前的 [RPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/03-rpush/) 命令，都只接受单个 `value` 值。
+在 Redis 2.4 版本以前的 [RPUSH](../../02-redisdoc/03-list/03-rpush/) 命令，都只接受单个 `value` 值。
 
 ## 返回值
 
-执行 [RPUSH](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/03-rpush/) 操作后，表的长度。
+执行 [RPUSH](../../02-redisdoc/03-list/03-rpush/) 操作后，表的长度。
 
 ## 代码示例
 

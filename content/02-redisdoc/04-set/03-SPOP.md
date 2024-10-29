@@ -20,7 +20,7 @@ tags:
 
 移除并返回集合中的一个随机元素。
 
-如果只想获取一个随机元素，但不想该元素从集合中被移除的话，可以使用 [SRANDMEMBER key [count]](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/04-srandmember/) 命令。
+如果只想获取一个随机元素，但不想该元素从集合中被移除的话，可以使用 [SRANDMEMBER key [count]](../../02-redisdoc/04-set/04-srandmember/) 命令。
 
 ## 返回值
 

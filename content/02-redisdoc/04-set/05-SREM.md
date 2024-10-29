@@ -23,7 +23,7 @@ tags:
 
 Note
 
-在 Redis 2.4 版本以前， [SREM](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/05-srem/) 只接受单个 `member` 值。
+在 Redis 2.4 版本以前， [SREM](../../02-redisdoc/04-set/05-srem/) 只接受单个 `member` 值。
 
 ## 返回值
 

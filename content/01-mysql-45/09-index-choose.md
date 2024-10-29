@@ -32,7 +32,7 @@ select name from CUser where id_card = 'xxxxxxxyyyyyyzzzzz';
 
 现在我要问你的是，从性能的角度考虑，你选择唯一索引还是普通索引呢？选择的依据是什么呢？
 
-简单起见，我们还是用第4篇文章[《深入浅出索引（上）》](https://bookstack.xnzone.eu.org/01-mysql-45/04-index-first/)中的例子来说明，假设字段 k 上的值都不重复。
+简单起见，我们还是用第4篇文章[《深入浅出索引（上）》](../../01-mysql-45/04-index-first/)中的例子来说明，假设字段 k 上的值都不重复。
 
 ![图1 InnoDB的索引组织结构](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091036419.png)
 <center>图1 InnoDB的索引组织结构</center>
@@ -122,7 +122,7 @@ change buffer用的是buffer pool里的内存，因此不能无限增大。chang
 
 在前面文章的评论中，我发现有同学混淆了redo log和change buffer。WAL 提升性能的核心机制，也的确是尽量减少随机读写，这两个概念确实容易混淆。所以，这里我把它们放到了同一个流程里来说明，便于你区分这两个概念。
 
-> 备注：这里，你可以再回顾下第2篇文章[《日志系统：一条SQL更新语句是如何执行的？》](https://bookstack.xnzone.eu.org/01-mysql-45/02-how-sql-execut/)中的相关内容。
+> 备注：这里，你可以再回顾下第2篇文章[《日志系统：一条SQL更新语句是如何执行的？》](../../01-mysql-45/02-how-sql-execut/)中的相关内容。
 
 现在，我们要在表上执行这个插入语句：
 
@@ -203,7 +203,7 @@ mysql> insert into t(id,k) values(id1,k1),(id2,k2);
 
 这个操作序列跑出来，session A看的内容也是能够复现我截图的效果的。这个session B’启动的事务比A要早，其实是上期我们描述事务版本的可见性规则时留的彩蛋，因为规则里还有一个“活跃事务的判断”，我是准备留到这里再补充的。
 
-当我试图在这里讲述完整规则的时候，发现第8篇文章[《事务到底是隔离的还是不隔离的？》](https://bookstack.xnzone.eu.org/01-mysql-45/08-transation-acid/)中的解释引入了太多的概念，以致于分析起来非常复杂。
+当我试图在这里讲述完整规则的时候，发现第8篇文章[《事务到底是隔离的还是不隔离的？》](../../01-mysql-45/08-transation-acid/)中的解释引入了太多的概念，以致于分析起来非常复杂。
 
 因此，我重写了第8篇，这样我们人工去判断可见性的时候，才会更方便。【看到这里，我建议你能够再重新打开第8篇文章并认真学习一次。如果学习的过程中，有任何问题，也欢迎你给我留言】
 

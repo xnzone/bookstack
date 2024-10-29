@@ -29,7 +29,7 @@ tags:
     
 
 ## 返回值
-被移除元素的数量。 因为不存在的 `key` 被视作空表(empty list)，所以当 `key` 不存在时， [LREM](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/08-lrem/) 命令总是返回 `0` 。
+被移除元素的数量。 因为不存在的 `key` 被视作空表(empty list)，所以当 `key` 不存在时， [LREM](../../02-redisdoc/03-list/08-lrem/) 命令总是返回 `0` 。
 
 ## 代码示例
 

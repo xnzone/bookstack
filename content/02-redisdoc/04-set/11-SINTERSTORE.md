@@ -17,7 +17,7 @@ tags:
 > 
 > 时间复杂度: O(N * M)， `N` 为给定集合当中基数最小的集合， `M` 为给定集合的个数。
 
-这个命令类似于 [SINTER key [key …]](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/10-sinter) 命令，但它将结果保存到 `destination` 集合，而不是简单地返回结果集。
+这个命令类似于 [SINTER key [key …]](../../02-redisdoc/04-set/10-sinter) 命令，但它将结果保存到 `destination` 集合，而不是简单地返回结果集。
 
 如果 `destination` 集合已经存在，则将其覆盖。
 

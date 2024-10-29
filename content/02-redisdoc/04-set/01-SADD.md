@@ -25,7 +25,7 @@ tags:
 
 Note
 
-在Redis2.4版本以前， [SADD](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/01-sadd/) 只接受单个 `member` 值。
+在Redis2.4版本以前， [SADD](../../02-redisdoc/04-set/01-sadd/) 只接受单个 `member` 值。
 
 ## 返回值
 

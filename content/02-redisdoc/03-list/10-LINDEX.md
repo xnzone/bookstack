@@ -15,7 +15,7 @@ tags:
 
 > 可用版本： >= 1.0.0
 > 
-> 时间复杂度：O(N)， `N` 为到达下标 `index` 过程中经过的元素数量。因此，对列表的头元素和尾元素执行 [LINDEX](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/10-lindex/) 命令，复杂度为O(1)。
+> 时间复杂度：O(N)， `N` 为到达下标 `index` 过程中经过的元素数量。因此，对列表的头元素和尾元素执行 [LINDEX](../../02-redisdoc/03-list/10-lindex/) 命令，复杂度为O(1)。
 
 返回列表 `key` 中，下标为 `index` 的元素。
 

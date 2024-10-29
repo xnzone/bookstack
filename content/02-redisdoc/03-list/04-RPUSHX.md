@@ -19,11 +19,11 @@ tags:
 
 将值 `value` 插入到列表 `key` 的表尾，当且仅当 `key` 存在并且是一个列表。
 
-和 [RPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/04-rpushx/) 命令相反，当 `key` 不存在时， [RPUSHX](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/04-rpushx/) 命令什么也不做。
+和 [RPUSH key value [value …]](../../02-redisdoc/03-list/04-rpushx/) 命令相反，当 `key` 不存在时， [RPUSHX](../../02-redisdoc/03-list/04-rpushx/) 命令什么也不做。
 
 ## 返回值
 
-[RPUSHX](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/04-rpushx/) 命令执行之后，表的长度。
+[RPUSHX](../../02-redisdoc/03-list/04-rpushx/) 命令执行之后，表的长度。
 
 ## 代码示例
 

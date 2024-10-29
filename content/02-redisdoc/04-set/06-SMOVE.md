@@ -19,11 +19,11 @@ tags:
 
 将 `member` 元素从 `source` 集合移动到 `destination` 集合。
 
-[SMOVE](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/06-smove) 是原子性操作。
+[SMOVE](../../02-redisdoc/04-set/06-smove) 是原子性操作。
 
-如果 `source` 集合不存在或不包含指定的 `member` 元素，则 [SMOVE](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/06-smove) 命令不执行任何操作，仅返回 `0` 。否则， `member` 元素从 `source` 集合中被移除，并添加到 `destination` 集合中去。
+如果 `source` 集合不存在或不包含指定的 `member` 元素，则 [SMOVE](../../02-redisdoc/04-set/06-smove) 命令不执行任何操作，仅返回 `0` 。否则， `member` 元素从 `source` 集合中被移除，并添加到 `destination` 集合中去。
 
-当 `destination` 集合已经包含 `member` 元素时， [SMOVE](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/06-smove) 命令只是简单地将 `source` 集合中的 `member` 元素删除。
+当 `destination` 集合已经包含 `member` 元素时， [SMOVE](../../02-redisdoc/04-set/06-smove) 命令只是简单地将 `source` 集合中的 `member` 元素删除。
 
 当 `source` 或 `destination` 不是集合类型时，返回一个错误。
 

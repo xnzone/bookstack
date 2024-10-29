@@ -25,13 +25,13 @@ tags:
 
 ## 注意LRANGE命令和编程语言区间函数的区别
 
-假如你有一个包含一百个元素的列表，对该列表执行 `LRANGE list 0 10` ，结果是一个包含11个元素的列表，这表明 `stop` 下标也在 [LRANGE](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/13-lrange/) 命令的取值范围之内(闭区间)，这和某些语言的区间函数可能不一致，比如Ruby的 `Range.new` 、 `Array#slice` 和Python的 `range()` 函数。
+假如你有一个包含一百个元素的列表，对该列表执行 `LRANGE list 0 10` ，结果是一个包含11个元素的列表，这表明 `stop` 下标也在 [LRANGE](../../02-redisdoc/03-list/13-lrange/) 命令的取值范围之内(闭区间)，这和某些语言的区间函数可能不一致，比如Ruby的 `Range.new` 、 `Array#slice` 和Python的 `range()` 函数。
 
 ## 超出范围的下标
 
 超出范围的下标值不会引起错误。
 
-如果 `start` 下标比列表的最大下标 `end` ( `LLEN list` 减去 `1` )还要大，那么 [LRANGE](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/13-lrange/) 返回一个空列表。
+如果 `start` 下标比列表的最大下标 `end` ( `LLEN list` 减去 `1` )还要大，那么 [LRANGE](../../02-redisdoc/03-list/13-lrange/) 返回一个空列表。
 
 如果 `stop` 下标比 `end` 下标还要大，Redis将 `stop` 的值设置为 `end` 。
 

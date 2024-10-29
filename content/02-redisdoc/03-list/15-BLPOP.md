@@ -17,23 +17,23 @@ tags:
 > 
 > 时间复杂度： O(1)
 
-[BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 是列表的阻塞式(blocking)弹出原语。
+[BLPOP](../../02-redisdoc/03-list/15-blpop/) 是列表的阻塞式(blocking)弹出原语。
 
-它是 [LPOP key](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/05-lpop/) 命令的阻塞版本，当给定列表内没有任何元素可供弹出的时候，连接将被 [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 命令阻塞，直到等待超时或发现可弹出元素为止。
+它是 [LPOP key](../../02-redisdoc/03-list/05-lpop/) 命令的阻塞版本，当给定列表内没有任何元素可供弹出的时候，连接将被 [BLPOP](../../02-redisdoc/03-list/15-blpop/) 命令阻塞，直到等待超时或发现可弹出元素为止。
 
 当给定多个 `key` 参数时，按参数 `key` 的先后顺序依次检查各个列表，弹出第一个非空列表的头元素。
 
 ## 非阻塞行为
 
-当 [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 被调用时，如果给定 `key` 内至少有一个非空列表，那么弹出遇到的第一个非空列表的头元素，并和被弹出元素所属的列表的名字一起，组成结果返回给调用者。
+当 [BLPOP](../../02-redisdoc/03-list/15-blpop/) 被调用时，如果给定 `key` 内至少有一个非空列表，那么弹出遇到的第一个非空列表的头元素，并和被弹出元素所属的列表的名字一起，组成结果返回给调用者。
 
-当存在多个给定 `key` 时， [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 按给定 `key` 参数排列的先后顺序，依次检查各个列表。
+当存在多个给定 `key` 时， [BLPOP](../../02-redisdoc/03-list/15-blpop/) 按给定 `key` 参数排列的先后顺序，依次检查各个列表。
 
 假设现在有 `job` 、 `command` 和 `request` 三个列表，其中 `job` 不存在， `command` 和 `request` 都持有非空列表。考虑以下命令：
 
 `BLPOP job command request 0`
 
-[BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 保证返回的元素来自 `command` ，因为它是按”查找 `job` -> 查找 `command` -> 查找 `request` “这样的顺序，第一个找到的非空列表。
+[BLPOP](../../02-redisdoc/03-list/15-blpop/) 保证返回的元素来自 `command` ，因为它是按”查找 `job` -> 查找 `command` -> 查找 `request` “这样的顺序，第一个找到的非空列表。
 
 redis> DEL job command request           # 确保key都被删除
 (integer) 0
@@ -50,7 +50,7 @@ redis> BLPOP job command request 0       # job 列表为空，被跳过，紧接
 
 ## 阻塞行为
 
-如果所有给定 `key` 都不存在或包含空列表，那么 [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 命令将阻塞连接，直到等待超时，或有另一个客户端对给定 `key` 的任意一个执行 [LPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/01-lpush/) 或 [RPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/03-rpush/) 命令为止。
+如果所有给定 `key` 都不存在或包含空列表，那么 [BLPOP](../../02-redisdoc/03-list/15-blpop/) 命令将阻塞连接，直到等待超时，或有另一个客户端对给定 `key` 的任意一个执行 [LPUSH key value [value …]](../../02-redisdoc/03-list/01-lpush/) 或 [RPUSH key value [value …]](../../02-redisdoc/03-list/03-rpush/) 命令为止。
 
 超时参数 `timeout` 接受一个以秒为单位的数字作为值。超时参数设为 `0` 表示阻塞时间可以无限期延长(block indefinitely) 。
 
@@ -72,13 +72,13 @@ redis> BLPOP job command 5       # 等待超时的情况
 
 相同的 `key` 可以被多个客户端同时阻塞。
 
-不同的客户端被放进一个队列中，按『先阻塞先服务』(first-BLPOP，first-served)的顺序为 `key` 执行 [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 命令。
+不同的客户端被放进一个队列中，按『先阻塞先服务』(first-BLPOP，first-served)的顺序为 `key` 执行 [BLPOP](../../02-redisdoc/03-list/15-blpop/) 命令。
 
 ## 在MULTI/EXEC事务中的BLPOP
 
-[BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 可以用于流水线(pipline,批量地发送多个命令并读入多个回复)，但把它用在 [MULTI](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/01-multi) / [EXEC](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/02-exec)  块当中没有意义。因为这要求整个服务器被阻塞以保证块执行时的原子性，该行为阻止了其他客户端执行 [LPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/01-lpush/) 或 [RPUSH key value [value …]](http://redis.forthxu.com/list/rpush.html#rpush) 命令。
+[BLPOP](../../02-redisdoc/03-list/15-blpop/) 可以用于流水线(pipline,批量地发送多个命令并读入多个回复)，但把它用在 [MULTI](../../02-redisdoc/11-transaction/01-multi) / [EXEC](../../02-redisdoc/11-transaction/02-exec)  块当中没有意义。因为这要求整个服务器被阻塞以保证块执行时的原子性，该行为阻止了其他客户端执行 [LPUSH key value [value …]](../../02-redisdoc/03-list/01-lpush/) 或 [RPUSH key value [value …]](http://redis.forthxu.com/list/rpush.html#rpush) 命令。
 
-因此，一个被包裹在 [MULTI](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/01-multi) / [EXEC](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/02-exec)  块内的 [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 命令，行为表现得就像 [LPOP key](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/05-lpop/) 一样，对空列表返回 `nil` ，对非空列表弹出列表元素，不进行任何阻塞操作。
+因此，一个被包裹在 [MULTI](../../02-redisdoc/11-transaction/01-multi) / [EXEC](../../02-redisdoc/11-transaction/02-exec)  块内的 [BLPOP](../../02-redisdoc/03-list/15-blpop/) 命令，行为表现得就像 [LPOP key](../../02-redisdoc/03-list/05-lpop/) 一样，对空列表返回 `nil` ，对非空列表弹出列表元素，不进行任何阻塞操作。
 
 ```shell
 # 对非空列表进行操作
@@ -121,7 +121,7 @@ redis> EXEC         # 不阻塞，立即返回
 
 另一种更好的方式是，使用系统提供的阻塞原语，在新元素到达时立即进行处理，而新元素还没到达时，就一直阻塞住，避免轮询占用资源。
 
-对于 Redis ，我们似乎需要一个阻塞版的 [SPOP key](https://bookstack.xnzone.eu.org/02-redisdoc/04-set/03-spop/) 命令，但实际上，使用 [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 或者 [BRPOP key [key …] timeout](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/16-brpop/) 就能很好地解决这个问题。
+对于 Redis ，我们似乎需要一个阻塞版的 [SPOP key](../../02-redisdoc/04-set/03-spop/) 命令，但实际上，使用 [BLPOP](../../02-redisdoc/03-list/15-blpop/) 或者 [BRPOP key [key …] timeout](../../02-redisdoc/03-list/16-brpop/) 就能很好地解决这个问题。
 
 使用元素的客户端(消费者)可以执行类似以下的代码：
 

@@ -37,7 +37,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "删数据"]
 
 ## 数据删除流程
 
-我们先再来看一下InnoDB中一个索引的示意图。在前面[第4](https://bookstack.xnzone.eu.org/01-mysql-45/04-index-first/)和[第5](https://bookstack.xnzone.eu.org/01-mysql-45/05-index-second/)篇文章中，我和你介绍索引时曾经提到过，InnoDB里的数据都是用B+树的结构组织的。
+我们先再来看一下InnoDB中一个索引的示意图。在前面[第4](../../01-mysql-45/04-index-first/)和[第5](../../01-mysql-45/05-index-second/)篇文章中，我和你介绍索引时曾经提到过，InnoDB里的数据都是用B+树的结构组织的。
 
 ![图1 B+树索引示意图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200947949.png)
 <center>图1 B+树索引示意图</center>
@@ -111,7 +111,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "删数据"]
 
 可以看到，与图3过程的不同之处在于，由于日志文件记录和重放操作这个功能的存在，这个方案在重建表的过程中，允许对表A做增删改操作。这也就是Online DDL名字的来源。
 
-我记得有同学在第6篇讲表锁的文章[《全局锁和表锁 ：给表加个字段怎么索这么多阻碍？》](https://bookstack.xnzone.eu.org/01-mysql-45/06-lock-global-and-table/)的评论区留言说，DDL之前是要拿MDL写锁的，这样还能叫Online DDL吗？
+我记得有同学在第6篇讲表锁的文章[《全局锁和表锁 ：给表加个字段怎么索这么多阻碍？》](../../01-mysql-45/06-lock-global-and-table/)的评论区留言说，DDL之前是要拿MDL写锁的，这样还能叫Online DDL吗？
 
 确实，图4的流程中，alter语句在启动的时候需要获取MDL写锁，但是这个写锁在真正拷贝数据之前就退化成读锁了。
 
@@ -170,7 +170,7 @@ alter table t add FULLTEXT(field_name);
 
 最后，我们再延伸一下。
 
-在第10篇文章[《MySQL为什么有时候会选错索引》](https://bookstack.xnzone.eu.org/01-mysql-45/10-mysql-choose-wrong-index/)的评论区中，有同学问到使用optimize table、analyze table和alter table这三种方式重建表的区别。这里，我顺便再简单和你解释一下。
+在第10篇文章[《MySQL为什么有时候会选错索引》](../../01-mysql-45/10-mysql-choose-wrong-index/)的评论区中，有同学问到使用optimize table、analyze table和alter table这三种方式重建表的区别。这里，我顺便再简单和你解释一下。
 
 - 从MySQL 5.6版本开始，alter table t engine = InnoDB（也就是recreate）默认的就是上面图4的流程了；
 - analyze table t 其实不是重建表，只是对表的索引信息做重新统计，没有修改数据，这个过程中加了MDL读锁；

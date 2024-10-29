@@ -27,7 +27,7 @@ tags:
 
 当 `key` 不是列表类型时，返回一个错误。
 
-[LTRIM](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/14-ltrim/) 命令通常和 [LPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/01-lpush/) 命令或 [RPUSH key value [value …]](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/03-rpush/) 命令配合使用，举个例子：
+[LTRIM](../../02-redisdoc/03-list/14-ltrim/) 命令通常和 [LPUSH key value [value …]](../../02-redisdoc/03-list/01-lpush/) 命令或 [RPUSH key value [value …]](../../02-redisdoc/03-list/03-rpush/) 命令配合使用，举个例子：
 
 LPUSH log newest_log
 LTRIM log 0 99
@@ -36,13 +36,13 @@ LTRIM log 0 99
 
 ## 注意LTRIM命令和编程语言区间函数的区别
 
-假如你有一个包含一百个元素的列表 `list` ，对该列表执行 `LTRIM list 0 10` ，结果是一个包含11个元素的列表，这表明 `stop` 下标也在 [LTRIM](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/14-ltrim/) 命令的取值范围之内(闭区间)，这和某些语言的区间函数可能不一致，比如Ruby的 `Range.new` 、 `Array#slice` 和Python的 `range()` 函数。
+假如你有一个包含一百个元素的列表 `list` ，对该列表执行 `LTRIM list 0 10` ，结果是一个包含11个元素的列表，这表明 `stop` 下标也在 [LTRIM](../../02-redisdoc/03-list/14-ltrim/) 命令的取值范围之内(闭区间)，这和某些语言的区间函数可能不一致，比如Ruby的 `Range.new` 、 `Array#slice` 和Python的 `range()` 函数。
 
 ## 超出范围的下标
 
 超出范围的下标值不会引起错误。
 
-如果 `start` 下标比列表的最大下标 `end` ( `LLEN list` 减去 `1` )还要大，或者 `start > stop` ， [LTRIM](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/14-ltrim/) 返回一个空列表(因为 [LTRIM](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/14-ltrim/) 已经将整个列表清空)。
+如果 `start` 下标比列表的最大下标 `end` ( `LLEN list` 减去 `1` )还要大，或者 `start > stop` ， [LTRIM](../../02-redisdoc/03-list/14-ltrim/) 返回一个空列表(因为 [LTRIM](../../02-redisdoc/03-list/14-ltrim/) 已经将整个列表清空)。
 
 如果 `stop` 下标比 `end` 下标还要大，Redis将 `stop` 的值设置为 `end` 。
 

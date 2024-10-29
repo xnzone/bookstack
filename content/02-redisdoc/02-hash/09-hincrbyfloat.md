@@ -28,7 +28,7 @@ tags:
 - 域 `field` 当前的值或给定的增量 `increment` 不能解释(parse)为双精度浮点数(double precision floating point number)
     
 
-`HINCRBYFLOAT` 命令的详细功能和 [INCRBYFLOAT key increment](https://bookstack.xnzone.eu.org/02-redisdoc/01-string/13-incrbyfloat/) 命令类似，请查看 [INCRBYFLOAT key increment](https://bookstack.xnzone.eu.org/02-redisdoc/01-string/13-incrbyfloat/) 命令获取更多相关信息。
+`HINCRBYFLOAT` 命令的详细功能和 [INCRBYFLOAT key increment](../../02-redisdoc/01-string/13-incrbyfloat/) 命令类似，请查看 [INCRBYFLOAT key increment](../../02-redisdoc/01-string/13-incrbyfloat/) 命令获取更多相关信息。
 
 **可用版本：**
 

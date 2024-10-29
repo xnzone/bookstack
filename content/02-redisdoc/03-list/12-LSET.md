@@ -15,13 +15,13 @@ tags:
 
 > 可用版本： >= 1.0.0
 > 
-> 时间复杂度：对头元素或尾元素进行 [LSET](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/12-lset/) 操作，复杂度为 O(1)。其他情况下，为 O(N)， `N` 为列表的长度。
+> 时间复杂度：对头元素或尾元素进行 [LSET](../../02-redisdoc/03-list/12-lset/) 操作，复杂度为 O(1)。其他情况下，为 O(N)， `N` 为列表的长度。
 
 将列表 `key` 下标为 `index` 的元素的值设置为 `value` 。
 
-当 `index` 参数超出范围，或对一个空列表( `key` 不存在)进行 [LSET](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/12-lset/) 时，返回一个错误。
+当 `index` 参数超出范围，或对一个空列表( `key` 不存在)进行 [LSET](../../02-redisdoc/03-list/12-lset/) 时，返回一个错误。
 
-关于列表下标的更多信息，请参考 [LINDEX key index](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/11-lindex/) 命令。
+关于列表下标的更多信息，请参考 [LINDEX key index](../../02-redisdoc/03-list/11-lindex/) 命令。
 
 ## 返回值
 
