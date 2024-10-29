@@ -28,7 +28,7 @@ tags:
 
 ## 代码示例
 
-```redis
+```shell
 redis> SMEMBERS peter's_movies
 1) "bet man"
 2) "start war"

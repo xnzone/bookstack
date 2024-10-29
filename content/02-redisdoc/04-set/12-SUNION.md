@@ -26,7 +26,7 @@ tags:
 
 ## 代码示例
 
-```redis
+```shell
 redis> SMEMBERS songs
 1) "Billie Jean"
 
