@@ -17,7 +17,7 @@ tags:
 > 
 > 时间复杂度: O(N)， `N` 是所有给定集合的成员数量之和。
 
-这个命令类似于 [SUNION key [key …]](./12-sunion) 命令，但它将结果保存到 `destination` 集合，而不是简单地返回结果集。
+这个命令类似于 [SUNION key [key …]](../12-sunion) 命令，但它将结果保存到 `destination` 集合，而不是简单地返回结果集。
 
 如果 `destination` 已经存在，则将其覆盖。
 
