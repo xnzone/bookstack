@@ -32,20 +32,20 @@ tags: ["Redis", "字符串", "DECRBY"]
 
 对已经存在的键执行 `DECRBY` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> SET count 100
 OK
 
 redis> DECRBY count 20
 (integer) 80
-{{< /highlight >}}
+```
 
 对不存在的键执行 `DECRBY` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> EXISTS pages
 (integer) 0
 
 redis> DECRBY pages 10
 (integer) -10
-{{< /highlight >}}
+```

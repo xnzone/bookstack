@@ -28,7 +28,7 @@ tags: ["Redis", "字符串", "MSET"]
 
 同时对多个键进行设置：
 
-{{< highlight shell >}}
+```shell
 redis> MSET date "2012.3.30" time "11:00 a.m." weather "sunny"
 OK
 
@@ -36,11 +36,11 @@ redis> MGET date time weather
 1) "2012.3.30"
 2) "11:00 a.m."
 3) "sunny"
-{{< /highlight >}}
+```
 
 覆盖已有的值：
 
-{{< highlight shell >}}
+```shell
 redis> MGET k1 k2
 1) "hello"
 2) "world"
@@ -51,4 +51,4 @@ OK
 redis> MGET k1 k2
 1) "good"
 2) "bye"
-{{< /highlight >}}
+```

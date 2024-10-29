@@ -29,7 +29,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SMEMBERS songs
 1) "good bye joe"
 2) "hello,peter"
@@ -43,4 +43,4 @@ redis> SINTERSTORE song_interset songs my_songs
 
 redis> SMEMBERS song_interset
 1) "good bye joe"
-{{< /highlight >}}
+```

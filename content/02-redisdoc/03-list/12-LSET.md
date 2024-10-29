@@ -29,7 +29,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 对空列表(key 不存在)进行 LSET
 
 redis> EXISTS list
@@ -59,4 +59,4 @@ redis> LLEN list                    # 列表长度为 1
 
 redis> LSET list 3 'out of range'
 (error) ERR index out of range
-{{< /highlight >}}
+```

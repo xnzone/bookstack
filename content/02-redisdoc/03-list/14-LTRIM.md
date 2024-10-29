@@ -52,7 +52,7 @@ LTRIM log 0 99
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 情况 1： 常见情况， start 和 stop 都在列表的索引范围之内
 
 redis> LRANGE alpha 0 -1       # alpha 是一个包含 5 个字符串的列表
@@ -106,4 +106,4 @@ OK
 
 redis> LRANGE new-alpha 0 -1           # 同样被清空
 (empty list or set)
-{{< /highlight >}}
+```

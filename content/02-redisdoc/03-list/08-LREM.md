@@ -33,7 +33,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 先创建一个表，内容排列是
 # morning hello morning helllo morning
 
@@ -81,4 +81,4 @@ redis> LREM greet 0 hello      # 移除表中所有 hello
 
 redis> LLEN greet
 (integer) 0
-{{< /highlight >}}
+```

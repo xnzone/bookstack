@@ -32,20 +32,20 @@ tags: ["Redis", "字符串", "DECR"]
 
 对储存数字值的键 `key` 执行 `DECR` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> SET failure_times 10
 OK
 
 redis> DECR failure_times
 (integer) 9
-{{< /highlight >}}
+```
 
 对不存在的键执行 `DECR` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> EXISTS count
 (integer) 0
 
 redis> DECR count
 (integer) -1
-{{< /highlight >}}
+```

@@ -16,7 +16,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "索引", "选错索引"]
 
 我们先建一个简单的表，表里有a、b两个字段，并分别建上索引：
 
-{{< highlight sql >}}
+```sql
 CREATE TABLE `t` (
   `id` int(11) NOT NULL,
   `a` int(11) DEFAULT NULL,
@@ -25,13 +25,13 @@ CREATE TABLE `t` (
   KEY `a` (`a`),
   KEY `b` (`b`)
 ) ENGINE=InnoDB；
-{{< /highlight >}}
+```
 
 然后，我们往表t中插入10万行记录，取值按整数递增，即：(1,1,1)，(2,2,2)，(3,3,3) 直到(100000,100000,100000)。
 
 我是用存储过程来插入数据的，这里我贴出来方便你复现：
 
-{{< highlight sql >}}
+```sql
 delimiter ;;
 create procedure idata()
 begin
@@ -44,13 +44,13 @@ begin
 end;;
 delimiter ;
 call idata();
-{{< /highlight >}}
+```
 
 接下来，我们分析一条SQL语句：
 
-{{< highlight sql >}}
+```sql
 mysql> select * from t where a between 10000 and 20000;
-{{< /highlight >}}
+```
 
 你一定会说，这个语句还用分析吗，很简单呀，a上有索引，肯定是要使用索引a的。
 
@@ -75,11 +75,11 @@ mysql> select * from t where a between 10000 and 20000;
 
 下面的三条SQL语句，就是这个实验过程。
 
-{{< highlight sql >}}
+```sql
 set long_query_time=0;
 select * from t where a between 10000 and 20000; /*Q1*/
 select * from t force index(a) where a between 10000 and 20000;/*Q2*/
-{{< /highlight >}}
+```
 
 - 第一句，是将慢查询日志的阈值设置为0，表示这个线程接下来的语句都会被记录入慢查询日志中；
 - 第二句，Q1是session B原来的查询；
@@ -170,9 +170,9 @@ rows这个字段表示的是预计扫描行数。
 
 依然是基于这个表t，我们看看另外一个语句：
 
-{{< highlight sql >}}
+```sql
 mysql> select * from t where (a between 1 and 1000)  and (b between 50000 and 100000) order by b limit 1;
-{{< /highlight >}}
+```
 
 从条件上看，这个查询没有符合条件的记录，因此会返回空集合。
 
@@ -191,9 +191,9 @@ mysql> select * from t where (a between 1 and 1000)  and (b between 50000 and 10
 
 图8是执行explain的结果。
 
-{{< highlight sql >}}
+```sql
 mysql> explain select * from t where (a between 1 and 1000) and (b between 50000 and 100000) order by b limit 1;
-{{< /highlight >}}
+```
 
 ![图8 使用explain方法查看执行计划 2](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183345.png)
 <center>图8 使用explain方法查看执行计划 2</center>
@@ -243,9 +243,9 @@ mysql> explain select * from t where (a between 1 and 1000) and (b between 50000
 
 如果你觉得修改语义这件事儿不太好，这里还有一种改法，图11是执行效果。
 
-{{< highlight sql >}}
+```sql
 mysql> select * from  (select * from t where (a between 1 and 1000)  and (b between 50000 and 100000) order by b limit 100)alias limit 1;
-{{< /highlight >}}
+```
 
 ![图11 改写SQL的explain](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183722.png)
 <center>图11 改写SQL的explain</center>

@@ -16,15 +16,15 @@ tags: ["MySQL", "实战45讲", "丁奇", "日志系统"]
 
 我们还是从一个表的一条更新语句说起，下面是这个表的创建语句，这个表有一个主键ID和一个整型字段c：
 
-{{< highlight sql >}}
+```sql
 mysql> create table T(ID int primary key, c int);
-{{< /highlight >}}
+```
 
 如果要将ID=2这一行的值加1，SQL语句就会这么写：
 
-{{< highlight sql >}}
+```sql
 mysql> update T set c=c+1 where ID=2;
-{{< /highlight >}}
+```
 
 前面我有跟你介绍过SQL语句基本的执行链路，这里我再把那张图拿过来，你也可以先简单看看这个图回顾下。首先，可以确定的说，查询语句的那一套流程，更新语句也是同样会走一遍。
 

@@ -38,9 +38,9 @@ Server层包括连接器、查询缓存、分析器、优化器、执行器等�
 
 第一步，你会先连接到这个数据库上，这时候接待你的就是连接器。连接器负责跟客户端建立连接、获取权限、维持和管理连接。连接命令一般是这么写的：
 
-{{< highlight sql >}}
+```sql
 mysql -h$ip -P$port -u$user -p
-{{< /highlight >}}
+```
 
 输完命令之后，你就需要在交互对话里面输入密码。虽然密码也可以直接跟在-p后面写在命令行中，但这样可能会导致你的密码泄露。如果你连的是生产服务器，强烈建议你不要这么做。
 
@@ -86,9 +86,9 @@ MySQL拿到一个查询请求后，会先到查询缓存看看，之前是不是
 
 好在MySQL也提供了这种“按需使用”的方式。你可以将参数query_cache_type设置成DEMAND，这样对于默认的SQL语句都不使用查询缓存。而对于你确定要使用查询缓存的语句，可以用SQL_CACHE显式指定，像下面这个语句一样：
 
-{{< highlight sql >}}
+```sql
 mysql> select SQL_CACHE * from T where ID=10；
-{{< /highlight >}}
+```
 
 需要注意的是，MySQL 8.0版本直接将查询缓存的整块功能删掉了，也就是说8.0开始彻底没有这个功能了。
 
@@ -104,11 +104,11 @@ MySQL从你输入的"select"这个关键字识别出来，这是一个查询语�
 
 如果你的语句不对，就会收到“You have an error in your SQL syntax”的错误提醒，比如下面这个语句select少打了开头的字母“s”。
 
-{{< highlight sql >}}
+```sql
 mysql> elect * from t where ID=1;
 
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect * from t where ID=1' at line 1
-{{< /highlight >}}
+```
 
 一般语法错误会提示第一个出现错误的位置，所以你要关注的是紧接“use near”的内容。
 
@@ -118,9 +118,9 @@ ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that 
 
 优化器是在表里面有多个索引的时候，决定使用哪个索引；或者在一个语句有多表关联（join）的时候，决定各个表的连接顺序。比如你执行下面这样的语句，这个语句是执行两个表的join：
 
-{{< highlight sql >}}
+```sql
 mysql> select * from t1 join t2 using(ID)  where t1.c=10 and t2.d=20;
-{{< /highlight >}}
+```
 
 -   既可以先从表t1里面取出c=10的记录的ID值，再根据ID值关联到表t2，再判断t2里面d的值是否等于20。
 -   也可以先从表t2里面取出d=20的记录的ID值，再根据ID值关联到t1，再判断t1里面c的值是否等于10。
@@ -135,11 +135,11 @@ MySQL通过分析器知道了你要做什么，通过优化器知道了该怎么
 
 开始执行的时候，要先判断一下你对这个表T有没有执行查询的权限，如果没有，就会返回没有权限的错误，如下所示(在工程实现上，如果命中查询缓存，会在查询缓存放回结果的时候，做权限验证。查询也会在优化器之前调用precheck验证权限)。
 
-{{< highlight sql >}}
+```sql
 mysql> select * from T where ID=10;
 
 ERROR 1142 (42000): SELECT command denied to user 'b'@'localhost' for table 'T'
-{{< /highlight >}}
+```
 
 如果有权限，就打开表继续执行。打开表的时候，执行器就会根据表的引擎定义，去使用这个引擎提供的接口。
 

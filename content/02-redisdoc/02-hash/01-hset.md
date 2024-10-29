@@ -29,20 +29,20 @@ tags:
 ## 代码示例
 设置一个新域：
 
-{{< highlight shell >}}
+```shell
 redis> HSET website google "www.g.cn"
 (integer) 1
 
 redis> HGET website google
 "www.g.cn"
-{{< /highlight >}}
+```
 
 对一个已存在的域进行更新：
 
-{{< highlight shell >}}
+```shell
 redis> HSET website google "www.google.com"
 (integer) 0
 
 redis> HGET website google
 "www.google.com"
-{{< /highlight >}}
+```

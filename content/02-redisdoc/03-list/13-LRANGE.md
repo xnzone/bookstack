@@ -41,7 +41,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> RPUSH fp-language lisp
 (integer) 1
 
@@ -54,4 +54,4 @@ redis> RPUSH fp-language scheme
 redis> LRANGE fp-language 0 1
 1) "lisp"
 2) "scheme"
-{{< /highlight >}}
+```

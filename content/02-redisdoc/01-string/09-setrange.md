@@ -36,7 +36,7 @@ Warning
 
 对非空字符串执行 `SETRANGE` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> SET greeting "hello world"
 OK
 
@@ -45,11 +45,11 @@ redis> SETRANGE greeting 6 "Redis"
 
 redis> GET greeting
 "hello Redis"
-{{< /highlight >}}
+```
 
 对空字符串/不存在的键执行 `SETRANGE` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> EXISTS empty_string
 (integer) 0
 
@@ -58,4 +58,4 @@ redis> SETRANGE empty_string 5 "Redis!"   # 对不存在的 key 使用 SETRANGE
 
 redis> GET empty_string                   # 空白处被"\x00"填充
 "\x00\x00\x00\x00\x00Redis!"
-{{< /highlight >}}
+```

@@ -33,7 +33,7 @@ Note
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 添加单个元素
 
 redis> SADD bbs "discuz.net"
@@ -53,4 +53,4 @@ redis> SMEMBERS bbs
 1) "discuz.net"
 2) "groups.google.com"
 3) "tianya.cn"
-{{< /highlight >}}
+```

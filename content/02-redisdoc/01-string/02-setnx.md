@@ -26,7 +26,7 @@ tags: ["Redis", "字符串", "SETNX"]
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> EXISTS job                # job 不存在
 (integer) 0
 
@@ -38,4 +38,4 @@ redis> SETNX job "code-farmer"   # 尝试覆盖 job ，失败
 
 redis> GET job                   # 没有被覆盖
 "programmer"
-{{< /highlight >}}
+```

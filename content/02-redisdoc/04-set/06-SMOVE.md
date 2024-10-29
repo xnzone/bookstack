@@ -33,7 +33,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SMEMBERS songs
 1) "Billie Jean"
 2) "Believe Me"
@@ -49,4 +49,4 @@ redis> SMEMBERS songs
 
 redis> SMEMBERS my_songs
 1) "Believe Me"
-{{< /highlight >}}
+```

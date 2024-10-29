@@ -25,7 +25,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> RPUSH mylist "one"
 (integer) 1
 
@@ -41,4 +41,4 @@ redis> RPOP mylist           # 返回被弹出的元素
 redis> LRANGE mylist 0 -1    # 列表剩下的元素
 1) "one"
 2) "two"
-{{< /highlight >}}
+```

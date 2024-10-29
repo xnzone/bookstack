@@ -29,7 +29,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 空列表
 
 redis> LLEN job
@@ -45,4 +45,4 @@ redis> LPUSH job "have lunch"
 
 redis> LLEN job
 (integer) 2
-{{< /highlight >}}
+```

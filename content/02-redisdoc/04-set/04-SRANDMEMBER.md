@@ -33,7 +33,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 添加元素
 
 redis> SADD fruit apple banana cherry
@@ -104,4 +104,4 @@ redis> SRANDMEMBER not-exists
 
 redis> SRANDMEMBER not-eixsts 10
 (empty list or set)
-{{< /highlight >}}
+```

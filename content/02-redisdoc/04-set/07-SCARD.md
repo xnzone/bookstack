@@ -25,7 +25,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SADD tool pc printer phone
 (integer) 3
 
@@ -37,4 +37,4 @@ redis> DEL tool
 
 redis> SCARD tool   # 空集合
 (integer) 0
-{{< /highlight >}}
+```

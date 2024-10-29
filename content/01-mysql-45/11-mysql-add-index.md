@@ -12,19 +12,19 @@ tags: ["MySQL", "实战45讲", "丁奇", "索引", "加索引"]
 
 假设，你现在维护一个支持邮箱登录的系统，用户表是这么定义的：
 
-{{< highlight shell >}}
+```shell
 mysql> create table SUser(
 ID bigint unsigned primary key,
 email varchar(64), 
 ... 
 )engine=innodb; 
-{{< /highlight >}}
+```
 
 由于要使用邮箱登录，所以业务代码中一定会出现类似于这样的语句：
 
-{{< highlight shell >}}
+```shell
 mysql> select f1, f2 from SUser where email='xxx';
-{{< /highlight >}}
+```
 
 从第4和第5篇讲解索引的文章中，我们可以知道，如果email这个字段上没有索引，那么这个语句就只能做全表扫描。
 
@@ -32,11 +32,11 @@ mysql> select f1, f2 from SUser where email='xxx';
 
 比如，这两个在email字段上创建索引的语句：
 
-{{< highlight shell >}}
+```shell
 mysql> alter table SUser add index index1(email);
 或
 mysql> alter table SUser add index index2(email(6));
-{{< /highlight >}}
+```
 
 第一个语句创建的index1索引里面，包含了每个记录的整个字符串；而第二个语句创建的index2索引里面，对于每个记录都是只取前6个字节。
 

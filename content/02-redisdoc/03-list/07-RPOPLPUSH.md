@@ -36,7 +36,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # source 和 destination 不同
 
 redis> LRANGE alpha 0 -1         # 查看所有元素
@@ -92,7 +92,7 @@ redis> LRANGE number 0 -1           # 这次是 3 被旋转到了表头
 2) "4"
 3) "1"
 4) "2"
-{{< /highlight >}}
+```
 
 ## 模式： 安全的队列
 

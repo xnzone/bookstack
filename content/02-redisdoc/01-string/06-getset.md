@@ -26,7 +26,7 @@ tags: ["Redis", "字符串", "GETSET"]
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> GETSET db mongodb    # 没有旧值，返回 nil
 (nil)
 
@@ -38,4 +38,4 @@ redis> GETSET db redis      # 返回旧值 mongodb
 
 redis> GET db
 "redis"
-{{< /highlight >}}
+```

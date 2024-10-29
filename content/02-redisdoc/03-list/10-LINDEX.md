@@ -31,7 +31,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> LPUSH mylist "World"
 (integer) 1
 
@@ -46,4 +46,4 @@ redis> LINDEX mylist -1
 
 redis> LINDEX mylist 3        # index不在 mylist 的区间范围内
 (nil)
-{{< /highlight >}}
+```

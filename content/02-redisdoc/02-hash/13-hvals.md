@@ -31,7 +31,7 @@ O(N)， `N` 为哈希表的大小。
 
 当 `key` 不存在时，返回一个空表。
 
-{{< highlight shell >}}
+```shell
 # 非空哈希表
 
 redis> HMSET website google www.google.com yahoo www.yahoo.com
@@ -48,4 +48,4 @@ redis> EXISTS not_exists
 
 redis> HVALS not_exists
 (empty list or set)
-{{< /highlight >}}
+```

@@ -31,7 +31,7 @@ Note
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 测试数据
 
 redis> SMEMBERS languages
@@ -57,4 +57,4 @@ redis> SREM languages lisp python c
 
 redis> SMEMBERS languages
 (empty list or set)
-{{< /highlight >}}
+```

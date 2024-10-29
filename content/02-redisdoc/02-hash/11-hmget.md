@@ -33,7 +33,7 @@ O(N)， `N` 为给定域的数量。
 
 一个包含多个给定域的关联值的表，表值的排列顺序和给定域参数的请求顺序一样。
 
-{{< highlight shell >}}
+```shell
 redis> HMSET pet dog "doudou" cat "nounou"    # 一次设置多个域
 OK
 
@@ -41,4 +41,4 @@ redis> HMGET pet dog cat fake_pet             # 返回值的顺序和传入参�
 1) "doudou"
 2) "nounou"
 3) (nil)                                      # 不存在的域返回nil值
-{{< /highlight >}}
+```

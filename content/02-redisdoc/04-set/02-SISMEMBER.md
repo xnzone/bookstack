@@ -25,7 +25,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SMEMBERS joe's_movies
 1) "hi, lady"
 2) "Fast Five"
@@ -36,4 +36,4 @@ redis> SISMEMBER joe's_movies "bet man"
 
 redis> SISMEMBER joe's_movies "Fast Five"
 (integer) 1
-{{< /highlight >}}
+```

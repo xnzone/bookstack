@@ -31,20 +31,20 @@ tags:
 
 域尚未存在， 设置成功：
 
-{{< highlight shell >}}
+```shell
 redis> HSETNX database key-value-store Redis
 (integer) 1
 
 redis> HGET database key-value-store
 "Redis"
-{{< /highlight >}}
+```
 
 域已经存在， 设置未成功， 域原有的值未被改变：
 
-{{< highlight shell >}}
+```shell
 redis> HSETNX database key-value-store Riak
 (integer) 0
 
 redis> HGET database key-value-store
 "Redis"
-{{< /highlight >}}
+```

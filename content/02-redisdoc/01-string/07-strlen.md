@@ -28,17 +28,17 @@ tags: ["Redis", "字符串", "STRLEN"]
 
 获取字符串值的长度：
 
-{{< highlight shell >}}
+```shell
 redis> SET mykey "Hello world"
 OK
 
 redis> STRLEN mykey
 (integer) 11
-{{< /highlight >}}
+```
 
 不存在的键的长度为 `0` ：
 
-{{< highlight shell >}}
+```shell
 redis> STRLEN nonexisting
 (integer) 0
-{{< /highlight >}}
+```

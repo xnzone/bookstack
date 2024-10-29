@@ -29,17 +29,17 @@ tags:
 
 域存在的情况：
 
-{{< highlight shell >}}
+```shell
 redis> HSET homepage redis redis.com
 (integer) 1
 
 redis> HGET homepage redis
 "redis.com"
-{{< /highlight >}}
+```
 
 域不存在的情况：
 
-{{< highlight shell >}}
+```shell
 redis> HGET site mysql
 (nil)
-{{< /highlight >}}
+```

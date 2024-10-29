@@ -33,7 +33,7 @@ Note
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SET page_view 20
 OK
 
@@ -42,4 +42,4 @@ redis> INCR page_view
 
 redis> GET page_view    # 数字值在 Redis 中以字符串的形式保存
 "21"
-{{< /highlight >}}
+```

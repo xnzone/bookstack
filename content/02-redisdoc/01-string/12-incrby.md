@@ -32,7 +32,7 @@ tags: ["Redis", "字符串", "INCRBY"]
 
 键存在，并且值为数字：
 
-{{< highlight shell >}}
+```shell
 redis> SET rank 50
 OK
 
@@ -41,11 +41,11 @@ redis> INCRBY rank 20
 
 redis> GET rank
 "70"
-{{< /highlight >}}
+```
 
 键不存在：
 
-{{< highlight shell >}}
+```shell
 redis> EXISTS counter
 (integer) 0
 
@@ -54,14 +54,14 @@ redis> INCRBY counter 30
 
 redis> GET counter
 "30"
-{{< /highlight >}}
+```
 
 键存在，但值无法被解释为数字：
 
-{{< highlight shell >}}
+```shell
 redis> SET book "long long ago..."
 OK
 
 redis> INCRBY book 200
 (error) ERR value is not an integer or out of range
-{{< /highlight >}}
+```

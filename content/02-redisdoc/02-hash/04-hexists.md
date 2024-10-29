@@ -27,17 +27,17 @@ tags:
 
 给定域不存在：
 
-{{< highlight shell >}}
+```shell
 redis> HEXISTS phone myphone
 (integer) 0
-{{< /highlight >}}
+```
 
 给定域存在：
 
-{{< highlight shell >}}
+```shell
 redis> HSET phone myphone nokia-1110
 (integer) 1
 
 redis> HEXISTS phone myphone
 (integer) 1
-{{< /highlight >}}
+```

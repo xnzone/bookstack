@@ -31,7 +31,7 @@ tags:
 
 ## 代码示例[
 
-{{< highlight shell >}}
+```shell
 # 非空列表
 
 redis> BRPOPLPUSH msg reciver 500
@@ -49,7 +49,7 @@ redis> LRANGE reciver 0 0
 redis> BRPOPLPUSH msg reciver 1
 (nil)
 (1.34s)
-{{< /highlight >}}
+```
 
 ## 模式：安全队列
 

@@ -26,20 +26,20 @@ tags: ["Redis", "字符串", "APPEND"]
 
 对不存在的 `key` 执行 `APPEND` ：
 
-{{< highlight shell >}}
+```shell
 redis> EXISTS myphone               # 确保 myphone 不存在
 (integer) 0
 
 redis> APPEND myphone "nokia"       # 对不存在的 key 进行 APPEND ，等同于 SET myphone "nokia"
 (integer) 5                         # 字符长度
-{{< /highlight >}}
+```
 
 对已存在的字符串进行 `APPEND` ：
 
-{{< highlight shell >}}
+```shell
 redis> APPEND myphone " - 1110"     # 长度从 5 个字符增加到 12 个字符
 (integer) 12
 
 redis> GET myphone
 "nokia - 1110"
-{{< /highlight >}}
+```

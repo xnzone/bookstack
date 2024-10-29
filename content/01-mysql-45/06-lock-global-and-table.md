@@ -112,10 +112,10 @@ MySQL里面表级别的锁有两种：一种是表锁，一种是元数据锁（
 
 MariaDB已经合并了AliSQL的这个功能，所以这两个开源分支目前都支持DDL NOWAIT/WAIT n这个语法。
 
-{{< highlight sql >}}
+```sql
 ALTER TABLE tbl_name NOWAIT add column ...
 ALTER TABLE tbl_name WAIT N add column ... 
-{{< /highlight >}}
+```
 
 ## 小结
 

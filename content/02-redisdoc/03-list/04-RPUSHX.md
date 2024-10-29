@@ -27,7 +27,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # key不存在
 
 redis> LLEN greet
@@ -47,4 +47,4 @@ redis> RPUSHX greet "hello"     # greet 现在是一个列表类型，RPUSHX 操
 redis> LRANGE greet 0 -1
 1) "hi"
 2) "hello"
-{{< /highlight >}}
+```

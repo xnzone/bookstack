@@ -26,7 +26,7 @@ tags: ["Redis", "字符串", "GET"]
 
 对不存在的键 `key` 或是字符串类型的键 `key` 执行 `GET` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> GET db
 (nil)
 
@@ -35,11 +35,11 @@ OK
 
 redis> GET db
 "redis"
-{{< /highlight >}}
+```
 
 对不是字符串类型的键 `key` 执行 `GET` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> DEL db
 (integer) 1
 
@@ -48,4 +48,4 @@ redis> LPUSH db redis mongodb mysql
 
 redis> GET db
 (error) ERR Operation against a key holding the wrong kind of value
-{{< /highlight >}}
+```

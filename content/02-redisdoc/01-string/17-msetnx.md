@@ -28,7 +28,7 @@ tags: ["Redis", "字符串", "MSETNX"]
 
 对不存在的键执行 `MSETNX` 命令：
 
-{{< highlight shell >}}
+```shell
 redis> MSETNX rmdbs "MySQL" nosql "MongoDB" key-value-store "redis"
 (integer) 1
 
@@ -36,11 +36,11 @@ redis> MGET rmdbs nosql key-value-store
 1) "MySQL"
 2) "MongoDB"
 3) "redis"
-{{< /highlight >}}
+```
 
 对某个已经存在的键进行设置：
 
-{{< highlight shell >}}
+```shell
 redis> MSETNX rmdbs "Sqlite" language "python"  # rmdbs 键已经存在，操作失败
 (integer) 0
 
@@ -49,4 +49,4 @@ redis> EXISTS language                          # 因为 MSETNX 命令没有成�
 
 redis> GET rmdbs                                # rmdbs 键也没有被修改
 "MySQL"
-{{< /highlight >}}
+```

@@ -33,7 +33,7 @@ EXPIRE key seconds  # 设置生存时间
 
 在键 `key` 不存在的情况下执行 `SETEX` ：
 
-{{< highlight shell >}}
+```shell
 redis> SETEX cache_user_id 60 10086
 OK
 
@@ -42,11 +42,11 @@ redis> GET cache_user_id  # 值
 
 redis> TTL cache_user_id  # 剩余生存时间
 (integer) 49
-{{< /highlight >}}
+```
 
 键 `key` 已经存在， 使用 `SETEX` 覆盖旧值：
 
-{{< highlight shell >}}
+```shell
 redis> SET cd "timeless"
 OK
 
@@ -58,4 +58,4 @@ redis> GET cd
 
 redis> TTL cd
 (integer) 2997
-{{< /highlight >}}
+```

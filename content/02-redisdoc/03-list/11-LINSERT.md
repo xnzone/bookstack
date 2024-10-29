@@ -31,7 +31,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> RPUSH mylist "Hello"
 (integer) 1
 
@@ -58,4 +58,4 @@ redis> EXISTS fake_list
 
 redis> LINSERT fake_list BEFORE "nono" "gogogog"
 (integer) 0                                      # 失败
-{{< /highlight >}}
+```

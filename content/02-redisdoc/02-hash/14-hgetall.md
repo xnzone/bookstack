@@ -33,7 +33,7 @@ O(N)， `N` 为哈希表的大小。
 
 若 `key` 不存在，返回空列表。
 
-{{< highlight shell >}}
+```shell
 redis> HSET people jack "Jack Sparrow"
 (integer) 1
 
@@ -45,4 +45,4 @@ redis> HGETALL people
 2) "Jack Sparrow"  # 值
 3) "gump"
 4) "Forrest Gump"
-{{< /highlight >}}
+```

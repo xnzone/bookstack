@@ -31,7 +31,7 @@ O(1)
 
 一个整数。
 
-{{< highlight shell >}}
+```shell
 redis> HMSET myhash f1 "HelloWorld" f2 "99" f3 "-256"
 OK
 
@@ -43,4 +43,4 @@ redis> HSTRLEN myhash f2
 
 redis> HSTRLEN myhash f3
 (integer) 4
-{{< /highlight >}}
+```

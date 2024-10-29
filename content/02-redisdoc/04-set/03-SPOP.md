@@ -28,7 +28,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SMEMBERS db
 1) "MySQL"
 2) "MongoDB"
@@ -46,4 +46,4 @@ redis> SPOP db
 
 redis> SMEMBERS db
 1) "MongoDB"
-{{< /highlight >}}
+```

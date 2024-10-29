@@ -36,7 +36,7 @@ O(N)， `N` 为要删除的域的数量。
 
 ## 测试数据
 
-{{< highlight shell >}}
+```shell
 redis> HGETALL abbr
 1) "a"
 2) "apple"
@@ -46,29 +46,29 @@ redis> HGETALL abbr
 6) "cat"
 7) "d"
 8) "dog"
-{{< /highlight >}}
+```
 
 删除单个域
 
-{{< highlight shell >}}
+```shell
 redis> HDEL abbr a
 (integer) 1
-{{< /highlight >}}
+```
 
 删除不存在的域
 
-{{< highlight shell >}}
+```shell
 redis> HDEL abbr not-exists-field
 (integer) 0
-{{< /highlight >}}
+```
 
 删除多个域
 
-{{< highlight shell >}}
+```shell
 redis> HDEL abbr b c
 (integer) 2
 
 redis> HGETALL abbr
 1) "d"
 2) "dog"
-{{< /highlight >}}
+```

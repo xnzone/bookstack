@@ -27,7 +27,7 @@ O(1)
 
 当 `key` 不存在时，返回 `0` 。
 
-{{< highlight shell >}}
+```shell
 redis> HSET db redis redis.com
 (integer) 1
 
@@ -42,4 +42,4 @@ redis> HSET db mongodb mongodb.org
 
 redis> HLEN db
 (integer) 3
-{{< /highlight >}}
+```

@@ -21,7 +21,7 @@ tags: ["Redis", "字符串", "PSETEX"]
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> PSETEX mykey 1000 "Hello"
 OK
 
@@ -30,4 +30,4 @@ redis> PTTL mykey
 
 redis> GET mykey
 "Hello"
-{{< /highlight >}}
+```

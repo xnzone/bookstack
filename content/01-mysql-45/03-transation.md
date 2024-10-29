@@ -31,10 +31,10 @@ tags: ["MySQL", "实战45讲", "丁奇", "事务隔离"]
 
 其中“读提交”和“可重复读”比较难理解，所以我用一个例子说明这几种隔离级别。假设数据表T中只有一列，其中一行的值为1，下面是按照时间顺序执行两个事务的行为。
 
-{{< highlight sql >}}
+```sql
 mysql> create table T(c int) engine=InnoDB;
 insert into T(c) values(1);
-{{< /highlight >}}
+```
 
 ![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091029271.png)
 
@@ -51,7 +51,7 @@ insert into T(c) values(1);
 
 配置的方式是，将启动参数transaction-isolation的值设置成READ-COMMITTED。你可以用show variables来查看当前的值。
 
-{{< highlight shell >}}
+```shell
 mysql> show variables like 'transaction_isolation';
 
 +-----------------------+----------------+
@@ -63,7 +63,7 @@ mysql> show variables like 'transaction_isolation';
 | transaction_isolation | READ-COMMITTED |
 
 +-----------------------+----------------+
-{{< /highlight >}}
+```
 
 总结来说，存在即合理，哪个隔离级别都有它自己的使用场景，你要根据自己的业务情况来定。我想**你可能会问那什么时候需要“可重复读”的场景呢**？我们来看一个数据校对逻辑的案例。
 
@@ -116,9 +116,9 @@ mysql> show variables like 'transaction_isolation';
 
 你可以在information_schema库的innodb_trx这个表中查询长事务，比如下面这个语句，用于查找持续时间超过60s的事务。
 
-{{< highlight sql >}}
+```sql
 select * from information_schema.innodb_trx where TIME_TO_SEC(timediff(now(),trx_started))>60
-{{< /highlight >}}
+```
 
 ## 小结
 

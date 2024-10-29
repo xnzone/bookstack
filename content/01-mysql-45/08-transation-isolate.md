@@ -14,14 +14,14 @@ tags: ["MySQL", "实战45讲", "丁奇", "事务", "事务隔离"]
 
 我给你举一个例子吧。下面是一个只有两行的表的初始化语句。
 
-{{< highlight sql >}}
+```sql
 mysql> CREATE TABLE `t` (
   `id` int(11) NOT NULL,
   `k` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 insert into t(id, k) values(1,1),(2,2);
-{{< /highlight >}}
+```
 
 ![图1 事务A、B、C的执行流程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311154347.png)
 <center>图1 事务A、B、C的执行流程</center>
@@ -184,10 +184,10 @@ InnoDB里面每个事务有一个唯一的事务ID，叫作transaction id。它�
 
 所以，如果把事务A的查询语句select * from t where id=1修改一下，加上lock in share mode 或 for update，也都可以读到版本号是101的数据，返回的k的值是3。下面这两个select语句，就是分别加了读锁（S锁，共享锁）和写锁（X锁，排他锁）。
 
-{{< highlight sql >}}
+```sql
 mysql> select k from t where id=1 lock in share mode;
 mysql> select k from t where id=1 for update;
-{{< /highlight >}}
+```
 
 再往前一步，假设事务C不是马上提交的，而是变成了下面的事务C’，会怎么样呢？
 
@@ -245,14 +245,14 @@ InnoDB的行数据有多个版本，每个数据版本有自己的row trx_id，�
 
 又到思考题时间了。我用下面的表结构和初始化语句作为试验环境，事务隔离级别是可重复读。现在，我要把所有“字段c和id值相等的行”的c值清零，但是却发现了一个“诡异”的、改不掉的情况。请你构造出这种情况，并说明其原理。
 
-{{< highlight sql >}}
+```sql
 mysql> CREATE TABLE `t` (
   `id` int(11) NOT NULL,
   `c` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 insert into t(id, c) values(1,1),(2,2),(3,3),(4,4);
-{{< /highlight >}}
+```
 
 ![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311160036.png)
 

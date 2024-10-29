@@ -29,7 +29,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SMEMBERS group_1
 1) "LI LEI"
 2) "TOM"
@@ -41,4 +41,4 @@ redis> SMEMBERS group_2
 
 redis> SINTER group_1 group_2
 1) "JACK"
-{{< /highlight >}}
+```

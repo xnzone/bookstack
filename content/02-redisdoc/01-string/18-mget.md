@@ -24,7 +24,7 @@ tags: ["Redis", "字符串", "MGET"]
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SET redis redis.com
 OK
 
@@ -39,4 +39,4 @@ redis> MGET redis mongodb mysql     # 不存在的 mysql 返回 nil
 1) "redis.com"
 2) "mongodb.org"
 3) (nil)
-{{< /highlight >}}
+```

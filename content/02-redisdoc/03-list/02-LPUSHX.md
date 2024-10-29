@@ -27,7 +27,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 对空列表执行 LPUSHX
 
 redis> LLEN greet                       # greet 是一个空列表
@@ -47,4 +47,4 @@ redis> LPUSHX greet "good morning"      # 这次 LPUSHX 执行成功
 redis> LRANGE greet 0 -1
 1) "good morning"
 2) "hello"
-{{< /highlight >}}
+```

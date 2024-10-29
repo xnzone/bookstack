@@ -80,7 +80,7 @@ redis> BLPOP job command 5       # 等待超时的情况
 
 因此，一个被包裹在 [MULTI](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/01-multi) / [EXEC](https://bookstack.xnzone.eu.org/02-redisdoc/11-transaction/02-exec)  块内的 [BLPOP](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/15-blpop/) 命令，行为表现得就像 [LPOP key](https://bookstack.xnzone.eu.org/02-redisdoc/03-list/05-lpop/) 一样，对空列表返回 `nil` ，对非空列表弹出列表元素，不进行任何阻塞操作。
 
-{{< highlight shell >}}
+```shell
 # 对非空列表进行操作
 
 redis> RPUSH job programming
@@ -109,7 +109,7 @@ QUEUED
 
 redis> EXEC         # 不阻塞，立即返回
 1) (nil)
-{{< /highlight >}}
+```
 
 ## 返回值
 
@@ -125,20 +125,20 @@ redis> EXEC         # 不阻塞，立即返回
 
 使用元素的客户端(消费者)可以执行类似以下的代码：
 
-{{< highlight shell >}}
+```shell
 LOOP forever
     WHILE SPOP(key) returns elements
         ... process elements ...
     END
     BRPOP helper_key
 END
-{{< /highlight >}}
+```
 
 添加元素的客户端(生产者)则执行以下代码：
 
-{{< highlight shell >}}
+```shell
 MULTI
     SADD key element
     LPUSH helper_key x
 EXEC
-{{< /highlight >}}
+```

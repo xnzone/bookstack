@@ -42,7 +42,7 @@ O(1)
 
 执行加法操作之后 `field` 域的值。
 
-{{< highlight shell >}}
+```shell
 # 值和增量都是普通小数
 
 redis> HSET mykey field 10.50
@@ -79,4 +79,4 @@ redis> HGETALL price
 2) "3.5"
 3) "coffee"
 4) "4.5"
-{{< /highlight >}}
+```

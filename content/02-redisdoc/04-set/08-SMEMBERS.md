@@ -27,7 +27,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # key 不存在或集合为空
 
 redis> EXISTS not_exists_key
@@ -45,4 +45,4 @@ redis> SMEMBERS language
 1) "Python"
 2) "Ruby"
 3) "Clojure"
-{{< /highlight >}}
+```

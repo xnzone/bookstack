@@ -22,9 +22,9 @@ tags: ["MySQL", "实战45讲", "丁奇", "索引", "唯一索引", "普通索引
 
 假设你在维护一个市民系统，每个人都有一个唯一的身份证号，而且业务代码已经保证了不会写入两个重复的身份证号。如果市民系统需要按照身份证号查姓名，就会执行类似这样的SQL语句：
 
-{{< highlight sql >}}
+```sql
 select name from CUser where id_card = 'xxxxxxxyyyyyyzzzzz';
-{{< /highlight >}}
+```
 
 所以，你一定会考虑在id_card字段上建索引。
 
@@ -126,9 +126,9 @@ change buffer用的是buffer pool里的内存，因此不能无限增大。chang
 
 现在，我们要在表上执行这个插入语句：
 
-{{< highlight sql >}}
+```sql
 mysql> insert into t(id,k) values(id1,k1),(id2,k2);
-{{< /highlight >}}
+```
 
 这里，我们假设当前k索引树的状态，查找到位置后，k1所在的数据页在内存(InnoDB buffer pool)中，k2所在的数据页不在内存中。如图2所示是带change buffer的更新状态图。
 

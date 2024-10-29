@@ -35,7 +35,7 @@ Note
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 # 添加单个元素
 
 redis> RPUSH languages c
@@ -59,4 +59,4 @@ redis> LRANGE mylist 0 -1
 1) "a"
 2) "b"
 3) "c"
-{{< /highlight >}}
+```

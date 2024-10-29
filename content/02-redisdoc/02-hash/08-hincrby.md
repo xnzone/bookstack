@@ -39,7 +39,7 @@ O(1)
 
 执行 `HINCRBY` 命令之后，哈希表 `key` 中域 `field` 的值。
 
-{{< highlight shell >}}
+```shell
 # increment 为正数
 
 redis> HEXISTS counter page_view    # 对空域进行设置
@@ -75,4 +75,4 @@ redis> HINCRBY myhash string 1              # 命令执行失败，错误。
 
 redis> HGET myhash string                   # 原值不变
 "hello,world"
-{{< /highlight >}}
+```

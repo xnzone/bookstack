@@ -47,28 +47,28 @@ Note
 
 对不存在的键进行设置：
 
-{{< highlight shell>}}
+```shell
 redis> SET key "value"
 OK
 
 redis> GET key
 "value"
-{{< /highlight >}}
+```
 
 
 对已存在的键进行设置：
 
-{{< highlight shell >}}
+```shell
 redis> SET key "new-value"
 OK
 
 redis> GET key
 "new-value"
-{{< /highlight >}}
+```
 
 使用 `EX` 选项：
 
-{{< highlight shell >}}
+```shell
 redis> SET key-with-expire-time "hello" EX 10086
 OK
 
@@ -77,11 +77,11 @@ redis> GET key-with-expire-time
 
 redis> TTL key-with-expire-time
 (integer) 10069
-{{< /highlight >}}
+```
 
 使用 `PX` 选项：
 
-{{< highlight shell >}}
+```shell
 redis> SET key-with-pexpire-time "moto" PX 123321
 OK
 
@@ -90,11 +90,11 @@ redis> GET key-with-pexpire-time
 
 redis> PTTL key-with-pexpire-time
 (integer) 111939
-{{< /highlight >}}
+```
 
 使用 `NX` 选项：
 
-{{< highlight shell >}}
+```shell
 redis> SET not-exists-key "value" NX
 OK      # 键不存在，设置成功
 
@@ -106,11 +106,11 @@ redis> SET not-exists-key "new-value" NX
 
 redis> GEt not-exists-key
 "value" # 维持原值不变
-{{< /highlight >}}
+```
 
 使用 `XX` 选项：
 
-{{< highlight shell >}}
+```shell
 redis> EXISTS exists-key
 (integer) 0
 
@@ -125,4 +125,4 @@ OK      # 设置新值成功
 
 redis> GET exists-key
 "new-value"
-{{< /highlight >}}
+```

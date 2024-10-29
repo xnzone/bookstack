@@ -31,7 +31,7 @@ Note
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> SET greeting "hello, my friend"
 OK
 
@@ -49,4 +49,4 @@ redis> GETRANGE greeting 0 -1         # 从第一个到最后一个
 
 redis> GETRANGE greeting 0 1008611    # 值域范围不超过实际字符串，超过部分自动被符略
 "hello, my friend"
-{{< /highlight >}}
+```

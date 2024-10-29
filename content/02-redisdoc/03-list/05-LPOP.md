@@ -25,7 +25,7 @@ tags:
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> LLEN course
 (integer) 0
 
@@ -37,4 +37,4 @@ redis> RPUSH course c++101
 
 redis> LPOP course  # 移除头元素
 "algorithm001"
-{{< /highlight >}}
+```

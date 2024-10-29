@@ -37,7 +37,7 @@ tags: ["Redis", "字符串", "INCRBYFLOAT"]
 
 ## 代码示例
 
-{{< highlight shell >}}
+```shell
 redis> GET decimal
 "3.0"
 
@@ -46,4 +46,4 @@ redis> INCRBYFLOAT decimal 2.56
 
 redis> GET decimal
 "5.56"
-{{< /highlight >}}
+```

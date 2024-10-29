@@ -16,7 +16,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "索引"]
 
 下面是这个表的初始化语句。
 
-{{< highlight sql >}}
+```sql
 mysql> create table T (
 ID int primary key,
 k int NOT NULL DEFAULT 0, 
@@ -25,7 +25,7 @@ index k(k))
 engine=InnoDB;
 
 insert into T values(100,1, 'aa'),(200,2,'bb'),(300,3,'cc'),(500,5,'ee'),(600,6,'ff'),(700,7,'gg');
-{{< /highlight >}}
+```
 
 ![图1 InnoDB的索引组织结构](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091036419.png)
 
@@ -60,7 +60,7 @@ insert into T values(100,1, 'aa'),(200,2,'bb'),(300,3,'cc'),(500,5,'ee'),(600,6,
 
 假设这个市民表的定义是这样的：
 
-{{< highlight sql >}}
+```sql
 CREATE TABLE `tuser` (
   `id` int(11) NOT NULL,
   `id_card` varchar(32) DEFAULT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE `tuser` (
   KEY `id_card` (`id_card`),
   KEY `name_age` (`name`,`age`)
 ) ENGINE=InnoDB
-{{< /highlight >}}
+```
 
 我们知道，身份证号是市民的唯一标识。也就是说，如果有根据身份证号查询市民信息的需求，我们只要在身份证号字段上建立索引就够了。而再建立一个（身份证号、姓名）的联合索引，是不是浪费空间？
 
@@ -113,9 +113,9 @@ CREATE TABLE `tuser` (
 
 我们还是以市民表的联合索引（name, age）为例。如果现在有一个需求：检索出表中“名字第一个字是张，而且年龄是10岁的所有男孩”。那么，SQL语句是这么写的：
 
-{{< highlight sql >}}
+```sql
 mysql> select * from tuser where name like '张%' and age=10 and ismale=1;
-{{< /highlight >}}
+```
 
 你已经知道了前缀索引规则，所以这个语句在搜索索引树的时候，只能用 “张”，找到第一个满足条件的记录ID3。当然，这还不错，总比全表扫描要好。
 
@@ -150,7 +150,7 @@ mysql> select * from tuser where name like '张%' and age=10 and ismale=1;
 
 实际上主键索引也是可以使用多个字段的。DBA小吕在入职新公司的时候，就发现自己接手维护的库里面，有这么一个表，表结构定义类似这样的：
 
-{{< highlight sql >}}
+```sql
 CREATE TABLE `geek` (
   `a` int(11) NOT NULL,
   `b` int(11) NOT NULL,
@@ -161,7 +161,7 @@ CREATE TABLE `geek` (
   KEY `ca` (`c`,`a`),
   KEY `cb` (`c`,`b`)
 ) ENGINE=InnoDB;
-{{< /highlight >}}
+```
 
 公司的同事告诉他说，由于历史原因，这个表需要a、b做联合主键，这个小吕理解了。
 
@@ -169,10 +169,10 @@ CREATE TABLE `geek` (
 
 同事告诉他，是因为他们的业务里面有这样的两种语句：
 
-{{< highlight sql >}}
+```sql
 select * from geek where c=N order by a limit 1;
 select * from geek where c=N order by b limit 1;
-{{< /highlight >}}
+```
 
 我给你的问题是，这位同事的解释对吗，为了这两个查询模式，这两个索引是否都是必须的？为什么呢？
 

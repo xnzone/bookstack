@@ -35,7 +35,7 @@ O(N)， `N` 为 `field-value` 对的数量。
 
 当 `key` 不是哈希表(hash)类型时，返回一个错误。
 
-{{< highlight shell >}}
+```shell
 redis> HMSET website google www.google.com yahoo www.yahoo.com
 OK
 
@@ -44,4 +44,4 @@ redis> HGET website google
 
 redis> HGET website yahoo
 "www.yahoo.com"
-{{< /highlight >}}
+```
