@@ -1,9 +1,0 @@
-<nav class="book-nav">
-{{ partial "book-menu-filetree" . }}
-</nav>
-
-<!-- Restore menu position as soon as possible to avoid flickering -->
-{{ $script := resources.Get "js/menu-reset.js" | resources.Minify }}
-{{ with $script.Content }}
-  <script>{{ . | safeJS }}</script>
-{{ end }}
