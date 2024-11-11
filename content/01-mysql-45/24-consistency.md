@@ -20,7 +20,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "一致性"]
 
 如图1所示就是基本的主备切换流程。
 
-![](https://s2.loli.net/2024/11/11/xU6LQEn452cs7Cd.png)
+![](https://s2.loli.net/2024/11/11/4lfZQIYP5NeyFwS.png)
 
 图 1 MySQL主备切换流程
 
