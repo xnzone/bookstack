@@ -20,7 +20,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "一致性"]
 
 如图1所示就是基本的主备切换流程。
 
-![](https://s2.loli.net/2024/11/11/4lfZQIYP5NeyFwS.png)
+![](https://s2.loli.net/2024/11/12/7gGkc61OmuStP4E.png)
 
 图 1 MySQL主备切换流程
 
@@ -43,7 +43,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "一致性"]
 
 接下来，我们再看看**节点A到B这条线的内部流程是什么样的**。图2中画出的就是一个update语句在节点A执行，然后同步到节点B的完整流程图。
 
-![](https://static001.geekbang.org/resource/image/a6/a3/a66c154c1bc51e071dd2cc8c1d6ca6a3.png)
+![](https://s2.loli.net/2024/11/12/YJMwTWtN29ePv5y.png)
 
 图2 主备流程图
 
@@ -105,7 +105,7 @@ mysql> show binlog events in 'master.000001';
 
 命令看binlog中的内容。
 
-![](https://static001.geekbang.org/resource/image/b9/31/b9818f73cd7d38a96ddcb75350b52931.png)
+![](https://s2.loli.net/2024/11/12/WnBvdMNo7fqrLOi.png)
 
 图3 statement格式binlog 示例
 
@@ -115,11 +115,11 @@ mysql> show binlog events in 'master.000001';
 - 第二行是一个BEGIN，跟第四行的commit对应，表示中间是一个事务；
 - 第三行就是真实执行的语句了。可以看到，在真实执行的delete命令之前，还有一个“use ‘test’”命令。这条命令不是我们主动执行的，而是MySQL根据当前要操作的表所在的数据库，自行添加的。这样做可以保证日志传到备库去执行的时候，不论当前的工作线程在哪个库里，都能够正确地更新到test库的表t。  
     use 'test’命令之后的delete 语句，就是我们输入的SQL原文了。可以看到，binlog“忠实”地记录了SQL命令，甚至连注释也一并记录了。
-- 最后一行是一个COMMIT。你可以看到里面写着xid=61。你还记得这个XID是做什么用的吗？如果记忆模糊了，可以再回顾一下[第15篇文章](https://time.geekbang.org/column/article/73161)中的相关内容。
+- 最后一行是一个COMMIT。你可以看到里面写着xid=61。你还记得这个XID是做什么用的吗？如果记忆模糊了，可以再回顾一下[第15篇文章](../15-qa-log-index)中的相关内容。
 
 为了说明statement 和 row格式的区别，我们来看一下这条delete命令的执行效果图：
 
-![](https://static001.geekbang.org/resource/image/96/2b/96c2be9c0fcbff66883118526b26652b.png)
+![](https://s2.loli.net/2024/11/12/pHgDLbKuUGofz5v.png)
 
 图4 delete执行warnings
 
@@ -136,7 +136,7 @@ mysql> show binlog events in 'master.000001';
 
 那么，如果我把binlog的格式改为binlog_format=‘row’， 是不是就没有这个问题了呢？我们先来看看这时候binog中的内容吧。
 
-![](https://static001.geekbang.org/resource/image/d6/26/d67a38db154afff610ae3bb64e266826.png)
+![](https://s2.loli.net/2024/11/12/SWnvOR4c9hTAyB5.png)
 
 图5 row格式binlog 示例
 
@@ -153,7 +153,7 @@ mysql> show binlog events in 'master.000001';
 mysqlbinlog  -vv data/master.000001 --start-position=8900;
 ```
 
-![](https://static001.geekbang.org/resource/image/c3/c2/c342cf480d23b05d30a294b114cebfc2.png)
+![](https://s2.loli.net/2024/11/12/Nb9quJVOSCeGDyp.png)
 
 图6 row格式binlog 示例的详细信息
 
@@ -204,7 +204,7 @@ mysql> insert into t values(10,10, now());
 
 先不要着急说结果，我们一起来看一下这条语句执行的效果。
 
-![](https://static001.geekbang.org/resource/image/01/ef/0150301698979255a6f27711c35e9eef.png)
+![](https://s2.loli.net/2024/11/12/Ku74tpBIFGRY9Un.png)
 
 图7 mixed格式和now()
 
@@ -212,7 +212,7 @@ mysql> insert into t values(10,10, now());
 
 接下来，我们再用mysqlbinlog工具来看看：
 
-![](https://static001.geekbang.org/resource/image/1a/41/1ad3a4c4b9a71955edba5195757dd041.png)
+![](https://s2.loli.net/2024/11/12/xInzCDJtu6p4WoA.png)
 
 图8 TIMESTAMP 命令
 
@@ -238,7 +238,7 @@ mysqlbinlog master.000001  --start-position=2738 --stop-position=2973 | mysql -h
 
 因此，我们可以认为正常情况下主备的数据是一致的。也就是说，图1中A、B两个节点的内容是一致的。其实，图1中我画的是M-S结构，但实际生产上使用比较多的是双M结构，也就是图9所示的主备切换流程。
 
-![](https://static001.geekbang.org/resource/image/20/56/20ad4e163115198dc6cf372d5116c956.png)
+![](https://s2.loli.net/2024/11/12/uGNJ6xXK9l4REwd.png)
 
 图 9 MySQL主备切换流程--双M结构
 
