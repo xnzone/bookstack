@@ -4,7 +4,7 @@ title: 如何判断一个数据库是不是出问题了？
 date: 2024-10-18 18:04:00
 image: /covers/01-mysql-45.jpg
 cover: false
-weight: 128
+weight: 129
 tags: ["MySQL", "实战45讲", "丁奇", "数据库问题"]
 ---
 
