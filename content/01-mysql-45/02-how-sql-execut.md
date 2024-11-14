@@ -28,7 +28,7 @@ mysql> update T set c=c+1 where ID=2;
 
 前面我有跟你介绍过SQL语句基本的执行链路，这里我再把那张图拿过来，你也可以先简单看看这个图回顾下。首先，可以确定的说，查询语句的那一套流程，更新语句也是同样会走一遍。
 
-![MySQL的逻辑架构图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240308093857.png)
+![](https://s2.loli.net/2024/11/14/YIEagLwZj6yrxbT.png)
 
 你执行语句前要先连接数据库，这是连接器的工作。
 
@@ -61,7 +61,7 @@ mysql> update T set c=c+1 where ID=2;
 
 与此类似，InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么这块“粉板”总共就可以记录4GB的操作。从头开始写，写到末尾就又回到开头循环写，如下面这个图所示。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240308103213.jpeg)
+![](https://s2.loli.net/2024/11/14/yZBwfTICNAbRaPq.jpg)
 
 write pos是当前记录的位置，一边写一边后移，写到第3号文件末尾后就回到0号文件开头。checkpoint是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要把记录更新到数据文件。
 
@@ -103,7 +103,7 @@ write pos和checkpoint之间的是“粉板”上还空着的部分，可以用�
 
 这里我给出这个update语句的执行流程图，图中浅色框表示是在InnoDB内部执行的，深色框表示是在执行器中执行的。
 
-![update语句执行流程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240308103533.png)
+![](https://s2.loli.net/2024/11/14/PhoBtcdqWCrm2DO.png)
 
 你可能注意到了，最后三步看上去有点“绕”，将redo log的写入拆成了两个步骤：prepare和commit，这就是"两阶段提交"。
 

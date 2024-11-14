@@ -22,7 +22,7 @@ mysql> select * from T where ID=10；
 
 下面我给出的是MySQL的基本架构示意图，从中你可以清楚地看到SQL语句在MySQL的各个功能模块中的执行过程。
 
-![MySQL的逻辑架构图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240308093857.png)
+![](https://s2.loli.net/2024/11/14/YIEagLwZj6yrxbT.png)
 
 大体来说，MySQL可以分为Server层和存储引擎层两部分。
 
@@ -53,7 +53,7 @@ mysql -h$ip -P$port -u$user -p
 
 连接完成后，如果你没有后续的动作，这个连接就处于空闲状态，你可以在show processlist命令中看到它。文本中这个图是show processlist的结果，其中的Command列显示为“Sleep”的这一行，就表示现在系统里面有一个空闲连接。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240309101912.png)
+![](https://s2.loli.net/2024/11/14/CxzhEdwPLIamseQ.png)
 
 客户端如果太长时间没动静，连接器就会自动将它断开。这个时间是由参数wait_timeout控制的，默认值是8小时。
 

@@ -27,7 +27,7 @@ engine=InnoDB;
 insert into T values(100,1, 'aa'),(200,2,'bb'),(300,3,'cc'),(500,5,'ee'),(600,6,'ff'),(700,7,'gg');
 ```
 
-![图1 InnoDB的索引组织结构](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091036419.png)
+![](https://s2.loli.net/2024/11/14/P1KoMhuVfi6GSCZ.png)
 
 现在，我们一起来看看这条SQL查询语句的执行流程：
 
@@ -87,7 +87,7 @@ CREATE TABLE `tuser` (
 
 为了直观地说明这个概念，我们用（name，age）这个联合索引来分析。
 
-![图2 （name，age）索引示意图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091041775.png)
+![](https://s2.loli.net/2024/11/14/JZneQhYBOuarxDf.png)
 
 可以看到，索引项是按照索引定义里面出现的字段顺序排序的。
 
@@ -129,10 +129,10 @@ mysql> select * from tuser where name like '张%' and age=10 and ismale=1;
 
 图3和图4，是这两个过程的执行流程图。
 
-![图3 无索引下推执行流程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091042852.png)
+![](https://s2.loli.net/2024/11/14/xV7GkAD8UqynruM.png)
 <center>图3 无索引下推执行流程</center>
 
-![图4 索引下推执行流程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091042682.png)
+![](https://s2.loli.net/2024/11/14/fFPuCk9bY3j2wZd.png)
 <center>图4 索引下推执行流程</center>
 
 

@@ -36,7 +36,7 @@ mysql> create table T(c int) engine=InnoDB;
 insert into T(c) values(1);
 ```
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091029271.png)
+![](https://s2.loli.net/2024/11/14/EnqVveHA51dk2YG.png)
 
 我们来看看在不同的隔离级别下，事务A会有哪些不同的返回结果，也就是图里面V1、V2、V3的返回值分别是什么。
 
@@ -79,7 +79,7 @@ mysql> show variables like 'transaction_isolation';
 
 假设一个值从1被按顺序改成了2、3、4，在回滚日志里面就会有类似下面的记录。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091030057.png)
+![](https://s2.loli.net/2024/11/14/TDRPcxNntzdV9Fl.png)
 
 当前值是4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的read-view。如图中看到的，在视图A、B、C里面，这一个记录的值分别是1、2、4，同一条记录在系统中可以存在多个版本，就是数据库的多版本并发控制（MVCC）。对于read-view A，要得到1，就必须将当前值依次执行图中所有的回滚操作得到。
 
