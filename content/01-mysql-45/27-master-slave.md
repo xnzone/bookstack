@@ -16,7 +16,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "主从复制"]
 
 如图1所示，就是一个基本的一主多从结构。
 
-![](https://static001.geekbang.org/resource/image/aa/79/aadb3b956d1ffc13ac46515a7d619e79.png)
+![](https://s2.loli.net/2024/11/15/crbQ7EyV1YuZ28C.webp)
 
 图1 一主多从基本结构
 
@@ -26,7 +26,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "主从复制"]
 
 如图2所示，就是主库发生故障，主备切换后的结果。
 
-![](https://static001.geekbang.org/resource/image/00/53/0014f97423bd75235a9187f492fb2453.png)
+![](https://s2.loli.net/2024/11/15/sgh42tARrJev5NW.webp)
 
 图2 一主多从基本结构--主备切换
 
@@ -78,7 +78,7 @@ MASTER_LOG_POS=$master_log_pos
     mysqlbinlog File --stop-datetime=T --start-datetime=T
     
 
-![](https://static001.geekbang.org/resource/image/34/dd/3471dfe4aebcccfaec0523a08cdd0ddd.png)
+![](https://s2.loli.net/2024/11/15/DvroRPhQL5Wlsgu.webp)
 
 图3 mysqlbinlog 部分输出结果
 
@@ -183,7 +183,7 @@ CREATE TABLE `t` (
 insert into t values(1,1);
 ```
 
-![](https://static001.geekbang.org/resource/image/28/c2/28a5cab0079fb12fd5abecd92b3324c2.png)
+![](https://s2.loli.net/2024/11/15/YRaGCI7eNuB8scM.webp)
 
 图4 初始化数据的binlog
 
@@ -211,7 +211,7 @@ start slave;
 
 其中，前三条语句的作用，是通过提交一个空事务，把这个GTID加到实例X的GTID集合中。如图5所示，就是执行完这个空事务之后的show master status的结果。
 
-![](https://static001.geekbang.org/resource/image/c8/57/c8d3299ece7d583a3ecd1557851ed157.png)
+![](https://s2.loli.net/2024/11/15/Qw1tBquEeJNXKzc.webp)
 
 图5 show master status结果
 

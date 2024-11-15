@@ -56,7 +56,7 @@ select * from t where id>9 and id<12 order by id desc for update;
 
 如图1所示，是这个表的索引id的示意图。
 
-![](https://static001.geekbang.org/resource/image/ac/bb/ac1aa07860c565b907b32c5f75c4f2bb.png)
+![](https://s2.loli.net/2024/11/15/wGKDzVqmeWuNF1n.webp)
 
 图1 索引id示意图
 
@@ -79,7 +79,7 @@ select id from t where c in(5,20,10) lock in share mode;
 ```
 
 这条查询语句里用的是in，我们先来看这条语句的explain结果。  
-![](https://static001.geekbang.org/resource/image/8a/b3/8a089159c82c1458b26e2756583347b3.png)
+![](https://s2.loli.net/2024/11/15/1Cbw5KSDLzM2Bck.webp)
 
 图2 in语句的explain结果
 
@@ -118,7 +118,7 @@ select id from t where c in(5,20,10) order by c desc for update;
 ## 怎么看死锁？
 
 图3是在出现死锁后，执行show engine innodb status命令得到的部分输出。这个命令会输出很多信息，有一节LATESTDETECTED DEADLOCK，就是记录的最后一次死锁信息。  
-![](https://static001.geekbang.org/resource/image/a7/f6/a7dccb91bc17d12746703eb194775cf6.png)
+![](https://s2.loli.net/2024/11/15/I3AECvlhLbHU4xz.webp)
 
 图3 死锁现场
 
@@ -168,14 +168,14 @@ select id from t where c in(5,20,10) order by c desc for update;
 
 在第21篇文章的评论区，@Geek_9ca34e 同学做了一个有趣验证，我把复现步骤列出来：
 
-![](https://static001.geekbang.org/resource/image/af/75/af3602b81aeb49e33577ba372d220a75.png)
+![](https://s2.loli.net/2024/11/15/GqatgfOLsNTHbpK.webp)
 
 图4 delete导致间隙变化
 
 可以看到，由于session A并没有锁住c=10这个记录，所以session B删除id=10这一行是可以的。但是之后，session B再想insert id=10这一行回去就不行了。
 
 现在我们一起看一下此时show engine innodb status的结果，看看能不能给我们一些提示。锁信息是在这个命令输出结果的TRANSACTIONS这一节。你可以在文稿中看到这张图片  
-![](https://static001.geekbang.org/resource/image/c3/a6/c3744fb7b61df2a5b45b8eb1f2a853a6.png)
+![](https://s2.loli.net/2024/11/15/ui4DZyW6cnz7o5N.webp)
 
 图 5 锁等待信息
 
@@ -211,7 +211,7 @@ select id from t where c in(5,20,10) order by c desc for update;
 
 看过了insert和delete的加锁例子，我们再来看一个update语句的案例。在留言区中@信信 同学做了这个试验：
 
-![](https://static001.geekbang.org/resource/image/61/a7/61c1ceea7b59201649c2514c9db864a7.png)
+![](https://s2.loli.net/2024/11/15/nshz9ORDNKTxA2m.webp)
 
 图 6 update 的例子
 
@@ -227,7 +227,7 @@ select id from t where c in(5,20,10) order by c desc for update;
     
 
 按照我们上一节说的，索引c上(5,10)间隙是由这个间隙右边的记录，也就是c=10定义的。所以通过这个操作，session A的加锁范围变成了图7所示的样子：  
-![](https://static001.geekbang.org/resource/image/d2/e9/d2f6a0c46dd8d12f6a90dacc466d53e9.png)
+![](https://s2.loli.net/2024/11/15/rFweBcUmASDolqE.webp)
 
 图 7 session B修改后， session A的加锁范围
 

@@ -32,7 +32,7 @@ CREATE TABLE `t` (
  insert into t values(1,1)
 ```
 
-![](https://static001.geekbang.org/resource/image/35/55/35076dd3d0a0d44d22b76d2a29885255.png)
+![](https://s2.loli.net/2024/11/15/ljr4RE6oOY2ZuyI.webp)
 
 图1 查询blocked
 
@@ -69,7 +69,7 @@ MySQL这样设计是非常有意义的。因为，进入锁等待的线程已经
 
 下图2显示的就是这个状态。
 
-![](https://static001.geekbang.org/resource/image/32/1d/3206ea18b8a24b546515b1b95dc4a11d.png)
+![](https://s2.loli.net/2024/11/15/bOc2QKdiV31LXfs.webp)
 
 图2 系统锁死状态（假设等行锁的语句占用并发计数）
 
@@ -156,7 +156,7 @@ insert into mysql.health_check(id, t_modified) values (@@server_id, now()) on du
 
 file_summary_by_event_name表里有很多行数据，我们先来看看event_name='wait/io/file/innodb/innodb_log_file’这一行。
 
-![](https://static001.geekbang.org/resource/image/75/dd/752ccfe43b4eab155be17401838c62dd.png)
+![](https://s2.loli.net/2024/11/15/QYbP9VLFMBz73ou.webp)
 
 图3 performance_schema.file_summary_by_event_name的一行
 

@@ -12,7 +12,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "读写分离"]
 
 我们在上一篇文章中提到的一主多从的结构，其实就是读写分离的基本结构了。这里，我再把这张图贴过来，方便你理解。
 
-![](https://static001.geekbang.org/resource/image/13/aa/1334b9c08b8fd837832fdb2d82e6b0aa.png)
+![](https://s2.loli.net/2024/11/15/TwNy4uOt28njA3g.webp)
 
 图1 读写分离基本结构
 
@@ -20,7 +20,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "读写分离"]
 
 还有一种架构是，在MySQL和客户端之间有一个中间代理层proxy，客户端只连接proxy， 由proxy根据请求类型和上下文决定请求的分发路由。
 
-![](https://static001.geekbang.org/resource/image/06/18/065ef246c59019effc8384967d774318.png)
+![](https://s2.loli.net/2024/11/15/oLqUWcXwikQV6Mv.webp)
 
 图2 带proxy的读写分离架构
 
@@ -103,7 +103,7 @@ seconds_behind_master的单位是秒，如果你觉得精度不够的话，还�
 
 如图3所示，是一个show slave status结果的部分截图。
 
-![](https://static001.geekbang.org/resource/image/00/c1/00110923007513e865d7f43a124887c1.png)
+![](https://s2.loli.net/2024/11/15/jUDK87JL4A2Mtoc.webp)
 
 图3 show slave status结果
 
@@ -141,7 +141,7 @@ seconds_behind_master的单位是秒，如果你觉得精度不够的话，还�
 
 如图4所示就是这样的一个状态。
 
-![](https://static001.geekbang.org/resource/image/55/9e/557445207b57d6c0f2747509d7d6619e.png)
+![](https://s2.loli.net/2024/11/15/irMV6wOXvfJEAL1.webp)
 
 图4 备库还没收到trx3
 
@@ -190,7 +190,7 @@ semi-sync做了这样的设计：
 
 为什么这么说呢？我们来看一下这个时序图。
 
-![](https://static001.geekbang.org/resource/image/9c/09/9cf54f3e91dc8f7b8947d7d8e384aa09.png)
+![](https://s2.loli.net/2024/11/15/SrYX3NJBIVxDdtb.webp)
 
 图5 主备持续延迟一个事务
 
@@ -252,7 +252,7 @@ select master_pos_wait(file, pos[, timeout]);
 
 我把上面这个流程画出来。
 
-![](https://static001.geekbang.org/resource/image/b2/57/b20ae91ea46803df1b63ed683e1de357.png)
+![](https://s2.loli.net/2024/11/15/zqWSfherY4N1DpL.webp)
 
 图6 master_pos_wait方案
 
@@ -300,7 +300,7 @@ MySQL中同样提供了一个类似的命令：
 
 我把这个流程图画出来。
 
-![](https://static001.geekbang.org/resource/image/d5/39/d521de8017297aff59db2f68170ee739.png)
+![](https://s2.loli.net/2024/11/15/mj91C87SorknKWA.webp)
 
 图7 wait_for_executed_gtid_set方案
 
@@ -314,13 +314,13 @@ MySQL中同样提供了一个类似的命令：
 
 比如，为了让客户端在事务提交后，返回的GITD能够在客户端显示出来，我对MySQL客户端代码做了点修改，如下所示：
 
-![](https://static001.geekbang.org/resource/image/97/63/973bdd8741f830acebe005cbf37a7663.png)
+![](https://s2.loli.net/2024/11/15/8CfuSRjFhLJmr9N.webp)
 
 图8 显示更新事务的GTID--代码
 
 这样，就可以看到语句执行完成，显示出GITD的值。
 
-![](https://static001.geekbang.org/resource/image/25/fe/253106d31d9d97aaa2846b2015f593fe.png)
+![](https://s2.loli.net/2024/11/15/RqmvadS72WsUK8p.webp)
 
 图9 显示更新事务的GTID--效果
 

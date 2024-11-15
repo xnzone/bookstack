@@ -39,7 +39,7 @@ mysql -h$host -P$port -u$user -p$pwd -e "select * from db1.t" > $target_file
 
 这个过程对应的流程图如下所示。
 
-![](https://static001.geekbang.org/resource/image/a0/bd/a027c300d7dde8cea4fad8f34b670ebd.jpg)
+![](https://s2.loli.net/2024/11/15/uAt7FeaYXvWHgVJ.webp)
 
 图1 查询结果发送流程
 
@@ -54,7 +54,7 @@ mysql -h$host -P$port -u$user -p$pwd -e "select * from db1.t" > $target_file
 
 比如下面这个状态，就是我故意让客户端不去读socket receive buffer中的内容，然后在服务端show processlist看到的结果。
 
-![](https://static001.geekbang.org/resource/image/18/c3/183a704d4495bebbc13c524695b5b6c3.png)
+![](https://s2.loli.net/2024/11/15/ATuqKEL1tOZFinN.webp)
 
 图2 服务端发送阻塞
 
@@ -81,11 +81,11 @@ mysql -h$host -P$port -u$user -p$pwd -e "select * from db1.t" > $target_file
 
 也就是说，“Sending data”并不一定是指“正在发送数据”，而可能是处于执行器过程中的任意阶段。比如，你可以构造一个锁等待的场景，就能看到Sending data状态。
 
-![](https://static001.geekbang.org/resource/image/76/4b/7640b0d82965bf8b305514f30425424b.png)
+![](https://s2.loli.net/2024/11/15/S3iqZExLz4BMGYt.webp)
 
 图3 读全表被锁
 
-![](https://static001.geekbang.org/resource/image/84/c0/84533515cf36be65582309fbb85e13c0.png)
+![](https://s2.loli.net/2024/11/15/5tqvLEGogp6IJu7.webp)
 
 图 4 Sending data状态
 
@@ -113,7 +113,7 @@ mysql -h$host -P$port -u$user -p$pwd -e "select * from db1.t" > $target_file
 
 执行show engine innodb status ，可以看到“Buffer pool hit rate”字样，显示的就是当前的命中率。比如图5这个命中率，就是99.0%。
 
-![](https://static001.geekbang.org/resource/image/c7/2e/c70a95ee99826812c292c46de508982e.png)
+![](https://s2.loli.net/2024/11/15/VEdwB2pxZaUzTHm.webp)
 
 图5 show engine innodb status显示内存命中率
 
@@ -129,7 +129,7 @@ InnoDB内存管理用的是最近最少使用 (Least Recently Used, LRU)算法�
 
 下图是一个LRU算法的基本模型。
 
-![](https://static001.geekbang.org/resource/image/e0/65/e0ac92febac50a5d881f1188ea5bfd65.jpg)
+![](https://s2.loli.net/2024/11/15/iIBN4JfOQLXZRYa.webp)
 
 图6 基本LRU算法
 
@@ -154,7 +154,7 @@ InnoDB管理Buffer Pool的LRU算法，是用链表来实现的。
 
 所以，InnoDB不能直接使用这个LRU算法。实际上，InnoDB对LRU算法做了改进。
 
-![](https://static001.geekbang.org/resource/image/25/9e/25e18920dd204cf99eec2d62755fe99e.png)
+![](https://s2.loli.net/2024/11/15/fTEisGhKWJqdQCX.webp)
 
 图 7 改进的LRU算法
 

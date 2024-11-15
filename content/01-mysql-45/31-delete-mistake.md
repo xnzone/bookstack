@@ -104,7 +104,7 @@ Flashback恢复数据的原理，是修改binlog的内容，拿回原库重放�
 
 这个流程的示意图如下所示：
 
-![](https://static001.geekbang.org/resource/image/2f/db/2fafd0b75286e0163f432f85428ff8db.png)
+![](https://s2.loli.net/2024/11/15/pWhSj7Bice3VJCE.webp)
 
 图1 数据恢复流程-mysqlbinlog方法
 
@@ -134,7 +134,7 @@ Flashback恢复数据的原理，是修改binlog的内容，拿回原库重放�
 
 这个过程的示意图如下所示。
 
-![](https://static001.geekbang.org/resource/image/65/f1/65bb04929b8235fb677c7a78b5bd67f1.png)
+![](https://s2.loli.net/2024/11/15/NlfbiRLtypO12dT.webp)
 
 图2 数据恢复流程-master-slave方法
 
@@ -241,11 +241,11 @@ select * from t where id>1 for update;
 
 验证方法的话，你可以使用下面的操作序列。你可以在图4中看到显示的结果。
 
-![](https://static001.geekbang.org/resource/image/12/65/12eb6a38c347203f60df72ecaea95565.png)
+![](https://s2.loli.net/2024/11/15/tAK14GYov3Pl6hU.webp)
 
 图3 复现空表的next-key lock
 
-![](https://static001.geekbang.org/resource/image/53/9f/531b6556ffc82c6b02f9a010a3ceb09f.png)
+![](https://s2.loli.net/2024/11/15/iK7zLSDRu8ajZ3c.webp)
 
 图4 show engine innodb status 部分结果
 

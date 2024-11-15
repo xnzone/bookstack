@@ -20,7 +20,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "kill"]
 
 还有一种情况是，语句处于锁等待的时候，直接使用kill命令也是有效的。我们一起来看下这个例子：
 
-![](https://static001.geekbang.org/resource/image/17/d0/17f88dc70c3fbe06a7738a0ac01db4d0.png)
+![](https://s2.loli.net/2024/11/15/uBmVv76MlItYphP.webp)
 
 图1 kill query 成功的例子
 
@@ -62,7 +62,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "kill"]
 
 首先，执行set global innodb_thread_concurrency=2，将InnoDB的并发线程上限数设置为2；然后，执行下面的序列：
 
-![](https://static001.geekbang.org/resource/image/32/6e/32e4341409fabfe271db3dd4c4df696e.png)
+![](https://s2.loli.net/2024/11/15/6XsTqGUDgEu9roJ.webp)
 
 图2 kill query 无效的例子
 
@@ -77,7 +77,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "kill"]
 4. 但是这时候，如果在session E中执行show processlist，你就能看到下面这个图。
     
 
-![](https://static001.geekbang.org/resource/image/91/53/915c20e4c11b104d7bcf9d3457304c53.png)
+![](https://s2.loli.net/2024/11/15/CXA3v2EoNKkTW4y.webp)
 
 图3 kill connection之后的效果
 
@@ -137,7 +137,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "kill"]
 
 有些线上的库，会包含很多表（我见过最多的一个库里有6万个表）。这时候，你就会发现，每次用客户端连接都会卡在下面这个界面上。
 
-![](https://static001.geekbang.org/resource/image/7e/83/7e4666bfd580505180c77447d1f44c83.png)
+![](https://s2.loli.net/2024/11/15/ceCP3XxdYONbSk9.webp)
 
 图4 连接等待
 

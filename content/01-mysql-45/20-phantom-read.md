@@ -46,7 +46,7 @@ commit;
 
 下面先来看一下这个场景（注意：这是我假设的一个场景）：
 
-![](https://static001.geekbang.org/resource/image/5b/8b/5bc506e5884d21844126d26bbe6fa68b.png)
+![](https://s2.loli.net/2024/11/15/Zp85U7kcBPaERhW.webp)
 
 图 1 假设只在id=5这一行加行锁
 
@@ -82,7 +82,7 @@ commit;
 
 如果现在这样看感觉还不明显的话，我再往session B和session C里面分别加一条SQL语句，你再看看会出现什么现象。
 
-![](https://static001.geekbang.org/resource/image/7a/07/7a9ffa90ac3cc78db6a51ff9b9075607.png)
+![](https://s2.loli.net/2024/11/15/AMwNhGBXC6JyaUY.webp)
 
 图 2 假设只在id=5这一行加行锁--语义被破坏
 
@@ -98,7 +98,7 @@ session C也是一样的道理，对id=1这一行的修改，也是破坏了Q1�
 
 为了说明这个问题，我给session A在T1时刻再加一个更新语句，即：update t set d=100 where d=5。
 
-![](https://static001.geekbang.org/resource/image/dc/92/dcea7845ff0bdbee2622bf3c67d31d92.png)
+![](https://s2.loli.net/2024/11/15/t7LFCYcgjMUPno8.webp)
 
 图 3 假设只在id=5这一行加行锁--数据一致性问题
 
@@ -148,7 +148,7 @@ update t set d=100 where d=5;/*所有d=5的行，d改成100*/
 
 那怎么改呢？我们把扫描过程中碰到的行，也都加上写锁，再来看看执行效果。
 
-![](https://static001.geekbang.org/resource/image/34/47/34ad6478281709da833856084a1e3447.png)
+![](https://s2.loli.net/2024/11/15/87PvWRultCT1LXO.webp)
 
 图 4 假设扫描到的行都被加上了行锁
 
@@ -184,7 +184,7 @@ update t set c=5 where id=0; /*(0,5,5)*/
 
 顾名思义，间隙锁，锁的就是两个值之间的空隙。比如文章开头的表t，初始化插入了6个记录，这就产生了7个间隙。
 
-![](https://static001.geekbang.org/resource/image/e7/61/e7f7ca0d3dab2f48c588d714ee3ac861.png)
+![](https://s2.loli.net/2024/11/15/npDKi7IEhdYC8SA.webp)
 
 图 5 表t主键索引上的行锁和间隙锁
 
@@ -196,7 +196,7 @@ update t set c=5 where id=0; /*(0,5,5)*/
 
 比如行锁，分成读锁和写锁。下图就是这两种类型行锁的冲突关系。
 
-![](https://static001.geekbang.org/resource/image/c4/51/c435c765556c0f3735a6eda0779ff151.png)
+![](https://s2.loli.net/2024/11/15/wpP32ejc7A68oZB.webp)
 
 图6 两种行锁间的冲突关系
 
@@ -206,7 +206,7 @@ update t set c=5 where id=0; /*(0,5,5)*/
 
 这句话不太好理解，我给你举个例子：
 
-![](https://static001.geekbang.org/resource/image/7c/98/7c37732d936650f1cda7dbf27daf7498.png)
+![](https://s2.loli.net/2024/11/15/yskXW8j9zHv4lBw.webp)
 
 图7 间隙锁之间不互锁
 
@@ -244,7 +244,7 @@ commit;
 
 这里，我用两个session来模拟并发，并假设N=9。
 
-![](https://static001.geekbang.org/resource/image/df/be/df37bf0bb9f85ea59f0540e24eb6bcbe.png)
+![](https://s2.loli.net/2024/11/15/WMl1Tbq5rjIGiOV.webp)
 
 图8 间隙锁导致的死锁
 
@@ -295,7 +295,7 @@ commit;
 
 作为对下一篇文章的预习，我给你留下一个思考题。
 
-![](https://static001.geekbang.org/resource/image/0d/3d/0d796060073668ca169166a8903fbf3d.png)
+![](https://s2.loli.net/2024/11/15/MTjcVLz7k8yZJn2.webp)
 
 图9 事务进入锁等待状态
 

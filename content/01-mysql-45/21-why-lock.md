@@ -55,7 +55,7 @@ insert into t values(0,0,0),(5,5,5),
 
 第一个例子是关于等值条件操作间隙：
 
-![](https://static001.geekbang.org/resource/image/58/6c/585dfa8d0dd71171a6fa16bed4ba816c.png)
+![](https://s2.loli.net/2024/11/15/BEkcf8KLw4CsAVS.webp)
 
 图1 等值查询的间隙锁
 
@@ -72,7 +72,7 @@ insert into t values(0,0,0),(5,5,5),
 
 第二个例子是关于覆盖索引上的锁：
 
-![](https://static001.geekbang.org/resource/image/46/65/465990fe8f6b418ca3f9992bd1bb5465.png)
+![](https://s2.loli.net/2024/11/15/wZaXvjKRgfFCcVB.webp)
 
 图2 只加在非唯一索引上的锁
 
@@ -110,7 +110,7 @@ mysql> select * from t where id>=10 and id<11 for update;
 
 在逻辑上，这两条查语句肯定是等价的，但是它们的加锁规则不太一样。现在，我们就让session A执行第二个查询语句，来看看加锁效果。
 
-![](https://static001.geekbang.org/resource/image/30/80/30b839bf941f109b04f1a36c302aea80.png)
+![](https://s2.loli.net/2024/11/15/gDb1OC23o9QznL8.webp)
 
 图3 主键索引上范围查询的锁
 
@@ -131,7 +131,7 @@ mysql> select * from t where id>=10 and id<11 for update;
 
 需要注意的是，与案例三不同的是，案例四中查询语句的where部分用的是字段c。
 
-![](https://static001.geekbang.org/resource/image/73/7a/7381475e9e951628c9fc907f5a57697a.png)
+![](https://s2.loli.net/2024/11/15/Kv38RsAkLEXI7mZ.webp)
 
 图4 非唯一索引范围锁
 
@@ -145,7 +145,7 @@ mysql> select * from t where id>=10 and id<11 for update;
 
 前面的四个案例，我们已经用到了加锁规则中的两个原则和两个优化，接下来再看一个关于加锁规则中bug的案例。
 
-![](https://static001.geekbang.org/resource/image/b1/6d/b105f8c4633e8d3a84e6422b1b1a316d.png)
+![](https://s2.loli.net/2024/11/15/UT4g3bAauzsfWtX.webp)
 
 图5 唯一索引范围锁的bug
 
@@ -169,7 +169,7 @@ mysql> insert into t values(30,10,30);
 
 新插入的这一行c=10，也就是说现在表里有两个c=10的行。那么，这时候索引c上的间隙是什么状态了呢？你要知道，由于非唯一索引上包含主键的值，所以是不可能存在“相同”的两行的。
 
-![](https://static001.geekbang.org/resource/image/c1/59/c1fda36c1502606eb5be3908011ba159.png)
+![](https://s2.loli.net/2024/11/15/wvEyBDsktULW91j.webp)
 
 图6 非唯一索引等值的例子
 
@@ -181,7 +181,7 @@ mysql> insert into t values(30,10,30);
 
 这次我们用delete语句来验证。注意，delete语句加锁的逻辑，其实跟select ... for update 是类似的，也就是我在文章开始总结的两个“原则”、两个“优化”和一个“bug”。
 
-![](https://static001.geekbang.org/resource/image/b5/78/b55fb0a1cac3500b60e1cf9779d2da78.png)
+![](https://s2.loli.net/2024/11/15/pDfLPVmNk4njqCM.webp)
 
 图7 delete 示例
 
@@ -190,7 +190,7 @@ mysql> insert into t values(30,10,30);
 然后，session A向右查找，直到碰到(c=15,id=15)这一行，循环才结束。根据优化2，这是一个等值查询，向右查找到了不满足条件的行，所以会退化成(c=10,id=10) 到 (c=15,id=15)的间隙锁。
 
 也就是说，这个delete语句在索引c上的加锁范围，就是下图中蓝色区域覆盖的部分。  
-![](https://static001.geekbang.org/resource/image/bb/24/bb0ad92483d71f0dcaeeef278f89cb24.png)
+![](https://s2.loli.net/2024/11/15/svVbZ3wigG1Mnz9.webp)
 
 图8 delete加锁效果示例
 
@@ -200,7 +200,7 @@ mysql> insert into t values(30,10,30);
 
 例子6也有一个对照案例，场景如下所示：
 
-![](https://static001.geekbang.org/resource/image/af/2e/afc3a08ae7a254b3251e41b2a6dae02e.png)
+![](https://s2.loli.net/2024/11/15/ok4yHrVpqbQ7z23.webp)
 
 图9 limit 语句加锁
 
@@ -209,7 +209,7 @@ mysql> insert into t values(30,10,30);
 这是因为，案例七里的delete语句明确加了limit 2的限制，因此在遍历到(c=10, id=30)这一行之后，满足条件的语句已经有两条，循环就结束了。
 
 因此，索引c上的加锁范围就变成了从（c=5,id=5)到（c=10,id=30)这个前开后闭区间，如下图所示：  
-![](https://static001.geekbang.org/resource/image/e5/d5/e5408ed94b3d44985073255db63bd0d5.png)
+![](https://s2.loli.net/2024/11/15/CRX8ubj4EAsynFJ.webp)
 
 图10 带limit 2的加锁效果
 
@@ -223,7 +223,7 @@ mysql> insert into t values(30,10,30);
 
 你一定会疑惑，这个概念不是一开始就说了吗？不要着急，我们先来看下面这个例子：
 
-![](https://static001.geekbang.org/resource/image/7b/06/7b911a4c995706e8aa2dd96ff0f36506.png)
+![](https://s2.loli.net/2024/11/15/yZAun9SUYLtxVsJ.webp)
 
 图11 案例八的操作序列
 
@@ -261,7 +261,7 @@ mysql> insert into t values(30,10,30);
 经过这篇文章的介绍，你再看一下上一篇文章最后的思考题，再来尝试分析一次。
 
 我把题目重新描述和简化一下：还是我们在文章开头初始化的表t，里面有6条记录，图12的语句序列中，为什么session B的insert操作，会被锁住呢？  
-![](https://static001.geekbang.org/resource/image/3a/1e/3a7578e104612a188a2d574eaa3bd81e.png)
+![](https://s2.loli.net/2024/11/15/Q1jaYcJq9VUKkux.webp)
 
 图12 锁分析思考题
 

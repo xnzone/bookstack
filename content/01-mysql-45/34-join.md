@@ -60,7 +60,7 @@ select * from t1 straight_join t2 on (t1.a=t2.a);
 
 现在，我们来看一下这条语句的explain结果。
 
-![](https://static001.geekbang.org/resource/image/4b/90/4b9cb0e0b83618e01c9bfde44a0ea990.png)
+![](https://s2.loli.net/2024/11/15/B48mL9uGk6sgCOd.webp)
 
 图1 使用索引字段join的 explain结果
 
@@ -79,7 +79,7 @@ select * from t1 straight_join t2 on (t1.a=t2.a);
 
 它对应的流程图如下所示：
 
-![](https://static001.geekbang.org/resource/image/d8/f6/d83ad1cbd6118603be795b26d38f8df6.jpg)
+![](https://s2.loli.net/2024/11/15/c5tWsN9ERVXzKjM.webp)
 
 图2 Index Nested-Loop Join算法的执行流程
 
@@ -164,13 +164,13 @@ select * from t1 straight_join t2 on (t1.a=t2.b);
 
 这个过程的流程图如下：
 
-![](https://static001.geekbang.org/resource/image/15/73/15ae4f17c46bf71e8349a8f2ef70d573.jpg)
+![](https://s2.loli.net/2024/11/15/FogcU8YfGVDbrvW.webp)
 
 图3 Block Nested-Loop Join 算法的执行流程
 
 对应地，这条SQL语句的explain结果如下所示：
 
-![](https://static001.geekbang.org/resource/image/67/e1/676921fa0883e9463dd34fb2bc5e87e1.png)
+![](https://s2.loli.net/2024/11/15/tvEnBj2SgYlAoDq.webp)
 
 图4 不使用索引字段join的 explain结果
 
@@ -210,7 +210,7 @@ select * from t1 straight_join t2 on (t1.a=t2.b);
 
 执行流程图也就变成这样：
 
-![](https://static001.geekbang.org/resource/image/69/c4/695adf810fcdb07e393467bcfd2f6ac4.jpg)
+![](https://s2.loli.net/2024/11/15/1PcSuRBMWf9C8A4.webp)
 
 图5 Block Nested-Loop Join -- 两段
 

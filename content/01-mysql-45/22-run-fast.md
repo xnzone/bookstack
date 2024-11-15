@@ -36,7 +36,7 @@ max_connections的计算，不是看谁在running，是只要连着就占用一�
 
 但是需要注意，在show processlist的结果里，踢掉显示为sleep的线程，可能是有损的。我们来看下面这个例子。
 
-![](https://static001.geekbang.org/resource/image/90/2a/9091ff280592c8c68665771b1516c62a.png)
+![](https://s2.loli.net/2024/11/15/2PAaQrIjZc8Nm3n.webp)
 
 图1 sleep线程的两种状态
 
@@ -44,13 +44,13 @@ max_connections的计算，不是看谁在running，是只要连着就占用一�
 
 但是，怎么判断哪些是事务外空闲的呢？session C在T时刻之后的30秒执行show processlist，看到的结果是这样的。
 
-![](https://static001.geekbang.org/resource/image/ae/25/ae6a9ceecf8517e47f9ebfc565f0f925.png)
+![](https://s2.loli.net/2024/11/15/g3ft75yR4eznSTV.webp)
 
 图2 sleep线程的两种状态，show processlist结果
 
 图中id=4和id=5的两个会话都是Sleep 状态。而要看事务具体状态的话，你可以查information_schema库的innodb_trx表。
 
-![](https://static001.geekbang.org/resource/image/ca/e8/ca4b455c8eacbf32b98d1fe9ed9876e8.png)
+![](https://s2.loli.net/2024/11/15/6JH9PtBkL51lhYu.webp)
 
 图3 从information_schema.innodb_trx查询事务状态
 
@@ -122,7 +122,7 @@ call query_rewrite.flush_rewrite_rules();
 
 这里，call query_rewrite.flush_rewrite_rules()这个存储过程，是让插入的新规则生效，也就是我们说的“查询重写”。你可以用图4中的方法来确认改写规则是否生效。
 
-![](https://static001.geekbang.org/resource/image/47/8a/47a1002cbc4c05c74841591d20f7388a.png)
+![](https://s2.loli.net/2024/11/15/6JuXPr4xSEmbBMF.webp)
 
 图4 查询重写效果
 
@@ -193,7 +193,7 @@ DBA虽然可以通过语句重写来暂时处理问题，但是这本身是一�
 
 前两期我给你留的问题是，下面这个图的执行序列中，为什么session B的insert语句会被堵住。
 
-![](https://static001.geekbang.org/resource/image/3a/1e/3a7578e104612a188a2d574eaa3bd81e.png)  
+![](https://s2.loli.net/2024/11/15/Q1jaYcJq9VUKkux.webp)  
 我们用上一篇的加锁规则来分析一下，看看session A的select语句加了哪些锁：
 
 1. 由于是order by c desc，第一个要定位的是索引c上“最右边的”c=20的行，所以会加上间隙锁(20,25)和next-key lock (15,20]。

@@ -16,7 +16,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "主从延迟"]
 
 为了便于你理解，我们再一起看一下第24篇文章[《MySQL是怎么保证主备一致的？》](../24-consistency)的主备流程图。
 
-![](https://static001.geekbang.org/resource/image/1a/ef/1a85a3bac30a32438bfd8862e5a34eef.png)
+![](https://s2.loli.net/2024/11/15/NPxe35nrm7wDJ8U.webp)
 
 图1 主备流程图
 
@@ -32,7 +32,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "主从延迟"]
 
 其实说到底，所有的多线程复制机制，都是要把图1中只有一个线程的sql_thread，拆成多个线程，也就是都符合下面的这个模型：
 
-![](https://static001.geekbang.org/resource/image/bc/45/bcf75aa3b0f496699fd7885426bc6245.png)
+![](https://s2.loli.net/2024/11/15/dIiw1TRbLYQymv6.webp)
 
 图2 多线程模型
 
@@ -67,7 +67,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "主从延迟"]
 
 当然，如果有跨表的事务，还是要把两张表放在一起考虑的。如图3所示，就是按表分发的规则。
 
-![](https://static001.geekbang.org/resource/image/8b/76/8b6976fedd6e644022d4026581fb8d76.png)
+![](https://s2.loli.net/2024/11/15/jp9Zns4mKdXPaNc.webp)
 
 图3 按表并行复制程模型
 
@@ -129,7 +129,7 @@ insert into t1 values(1,1,1),(2,2,2),(3,3,3),(4,4,4),(5,5,5);
 
 假设，接下来我们要在主库执行这两个事务：
 
-![](https://static001.geekbang.org/resource/image/f1/78/f19916e27b8ff28e87ed3ad9f5473378.png)
+![](https://s2.loli.net/2024/11/15/QOP7iIejsx5u4gq.webp)
 
 图4 唯一键冲突示例
 
@@ -222,13 +222,13 @@ insert into t1 values(1,1,1),(2,2,2),(3,3,3),(4,4,4),(5,5,5);
 
 如图5所示，假设了三组事务在主库的执行情况，你可以看到在trx1、trx2和trx3提交的时候，trx4、trx5和trx6是在执行的。这样，在第一组事务提交完成的时候，下一组事务很快就会进入commit状态。
 
-![](https://static001.geekbang.org/resource/image/8f/c3/8fec5fb48d6095aecc80016826efbfc3.png)
+![](https://s2.loli.net/2024/11/15/ymFwGiH4SC6Nrft.webp)
 
 图5 主库并行事务
 
 而按照MariaDB的并行复制策略，备库上的执行效果如图6所示。
 
-![](https://static001.geekbang.org/resource/image/8a/22/8ac3799c1ff2f9833619a1624ca3e622.png)
+![](https://s2.loli.net/2024/11/15/EgJcQIu5YSNm3ex.webp)
 
 图6 MariaDB 并行复制，备库并行效果
 
@@ -257,7 +257,7 @@ insert into t1 values(1,1,1),(2,2,2),(3,3,3),(4,4,4),(5,5,5);
 
 这时候，你可以再回顾一下两阶段提交，我把前面[第23篇文章](../23-no-loss-data)中介绍过的两阶段提交过程图贴过来。
 
-![](https://static001.geekbang.org/resource/image/5a/28/5ae7d074c34bc5bd55c82781de670c28.png)
+![](https://s2.loli.net/2024/11/15/83KUejfRnSiZ6Cg.webp)
 
 图7 两阶段提交细化过程图
 
