@@ -25,7 +25,7 @@ tags:
 
 ## 代码示例
 
-```shell
+```bash
 redis > ZADD salary 2000 tom    # 添加一个成员
 (integer) 1
 
