@@ -52,7 +52,7 @@ mysql> select word from words order by rand() limit 3;
 
 我们先用explain命令来看看这个语句的执行情况。
 
-![](https://static001.geekbang.org/resource/image/59/50/59a4fb0165b7ce1184e41f2d061ce350.png)
+![](https://s2.loli.net/2024/11/15/eU8dkYr6sCc3WDw.webp)
 
 图1 使用explain命令查看语句的执行情况
 
@@ -62,11 +62,11 @@ Extra字段显示Using temporary，表示的是需要使用临时表；Using fil
 
 这里，你可以先回顾一下[上一篇文章](../16-order-by)中全字段排序和rowid排序的内容。我把上一篇文章的两个流程图贴过来，方便你复习。
 
-![](https://static001.geekbang.org/resource/image/6c/72/6c821828cddf46670f9d56e126e3e772.jpg)
+![](https://s2.loli.net/2024/11/15/RjGUadO1lvnW6u3.webp)
 
 图2 全字段排序
 
-![](https://static001.geekbang.org/resource/image/dc/6d/dc92b67721171206a302eb679c83e86d.jpg)
+![](https://s2.loli.net/2024/11/15/Iu2Uci3WPlG7Zhb.webp)
 
 图3 rowid排序
 
@@ -107,7 +107,7 @@ select word from words order by rand() limit 3;
 
 现在，我来把完整的排序执行流程图画出来。
 
-![](https://static001.geekbang.org/resource/image/2a/fc/2abe849faa7dcad0189b61238b849ffc.png)
+![](https://s2.loli.net/2024/11/15/dbl4NTKs5w3vx7Z.webp)
 
 图4 随机排序完整流程图1
 
@@ -153,7 +153,7 @@ select word from words order by rand() limit 3;
 SELECT * FROM `information_schema`.`OPTIMIZER_TRACE`\G
 ```
 
-![](https://static001.geekbang.org/resource/image/78/ab/78d2db9a4fdba81feadccf6e878b4aab.png)
+![](https://s2.loli.net/2024/11/15/mfCbzYNV9MsKSLx.webp)
 
 图5 OPTIMIZER_TRACE部分结果
 
@@ -182,7 +182,7 @@ SELECT * FROM `information_schema`.`OPTIMIZER_TRACE`\G
 
 这里我简单画了一个优先队列排序过程的示意图。
 
-![](https://static001.geekbang.org/resource/image/e9/97/e9c29cb20bf9668deba8981e444f6897.png)
+![](https://s2.loli.net/2024/11/15/mPhivpNTEo4BVSu.webp)
 
 图6 优先队列排序算法示例
 

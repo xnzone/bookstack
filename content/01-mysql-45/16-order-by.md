@@ -38,7 +38,7 @@ select city,name,age from t where city='杭州' order by name limit 1000  ;
 
 在city字段上创建索引之后，我们用explain命令来看看这个语句的执行情况。
 
-![](https://static001.geekbang.org/resource/image/82/03/826579b63225def812330ef6c344a303.png)
+![](https://s2.loli.net/2024/11/15/UsmMxhvro9IpqJ2.webp)
 
 图1 使用explain命令查看语句的执行情况
 
@@ -46,7 +46,7 @@ Extra这个字段中的“Using filesort”表示的就是需要排序，MySQL�
 
 为了说明这个SQL查询语句的执行过程，我们先来看一下city这个索引的示意图。
 
-![](https://static001.geekbang.org/resource/image/53/3e/5334cca9118be14bde95ec94b02f0a3e.png)
+![](https://s2.loli.net/2024/11/15/eyIxdq3tUMm7BLJ.webp)
 
 图2 city字段的索引示意图
 
@@ -71,7 +71,7 @@ Extra这个字段中的“Using filesort”表示的就是需要排序，MySQL�
 
 我们暂且把这个排序过程，称为全字段排序，执行流程的示意图如下所示，下一篇文章中我们还会用到这个排序。
 
-![](https://static001.geekbang.org/resource/image/6c/72/6c821828cddf46670f9d56e126e3e772.jpg)
+![](https://s2.loli.net/2024/11/15/RjGUadO1lvnW6u3.webp)
 
 图3 全字段排序
 
@@ -103,7 +103,7 @@ select @b-@a;
 
 这个方法是通过查看 OPTIMIZER_TRACE 的结果来确认的，你可以从 number_of_tmp_files中看到是否使用了临时文件。
 
-![](https://static001.geekbang.org/resource/image/89/95/89baf99cdeefe90a22370e1d6f5e6495.png)
+![](https://s2.loli.net/2024/11/15/7UpN8ZFhfKrk3Cv.webp)
 
 图4 全排序的OPTIMIZER_TRACE部分结果
 
@@ -164,7 +164,7 @@ city、name、age 这三个字段的定义总长度是36，我把max_length_for_
 
 这个执行流程的示意图如下，我把它称为rowid排序。
 
-![](https://static001.geekbang.org/resource/image/dc/6d/dc92b67721171206a302eb679c83e86d.jpg)
+![](https://s2.loli.net/2024/11/15/Iu2Uci3WPlG7Zhb.webp)
 
 图5 rowid排序
 
@@ -180,7 +180,7 @@ city、name、age 这三个字段的定义总长度是36，我把max_length_for_
 
 因为这时候除了排序过程外，在排序完成后，还要根据id去原表取值。由于语句是limit 1000，因此会多读1000行。
 
-![](https://static001.geekbang.org/resource/image/27/9b/27f164804d1a4689718291be5d10f89b.png)
+![](https://s2.loli.net/2024/11/15/2aN31LXOEZFve4V.webp)
 
 图6 rowid排序的OPTIMIZER_TRACE部分输出
 
@@ -219,7 +219,7 @@ alter table t add index city_user(city, name);
 
 作为与city索引的对比，我们来看看这个索引的示意图。
 
-![](https://static001.geekbang.org/resource/image/f9/bf/f980201372b676893647fb17fac4e2bf.png)
+![](https://s2.loli.net/2024/11/15/uP6NL2ep3KBX5bi.webp)
 
 图7 city和name联合索引示意图
 
@@ -236,13 +236,13 @@ alter table t add index city_user(city, name);
 4. 重复步骤2、3，直到查到第1000条记录，或者是不满足city='杭州’条件时循环结束。
     
 
-![](https://static001.geekbang.org/resource/image/3f/92/3f590c3a14f9236f2d8e1e2cb9686692.jpg)
+![](https://s2.loli.net/2024/11/15/OAJPIo5RnCKpk2b.webp)
 
 图8 引入(city,name)联合索引后，查询语句的执行计划
 
 可以看到，这个查询过程不需要临时表，也不需要排序。接下来，我们用explain的结果来印证一下。
 
-![](https://static001.geekbang.org/resource/image/fc/8a/fc53de303811ba3c46d344595743358a.png)
+![](https://s2.loli.net/2024/11/15/3u2MItbiCyXLRlk.webp)
 
 图9 引入(city,name)联合索引后，查询语句的执行计划
 
@@ -269,13 +269,13 @@ alter table t add index city_user_age(city, name, age);
 3. 重复执行步骤2，直到查到第1000条记录，或者是不满足city='杭州’条件时循环结束。
     
 
-![](https://static001.geekbang.org/resource/image/df/d6/df4b8e445a59c53df1f2e0f115f02cd6.jpg)
+![](https://s2.loli.net/2024/11/15/BFq9tiZ5uWJnH3S.webp)
 
 图10 引入(city,name,age)联合索引后，查询语句的执行流程
 
 然后，我们再来看看explain的结果。
 
-![](https://static001.geekbang.org/resource/image/9e/23/9e40b7b8f0e3f81126a9171cc22e3423.png)
+![](https://s2.loli.net/2024/11/15/p1yikTqvC5jlzWg.webp)
 
 图11 引入(city,name,age)联合索引后，查询语句的执行计划
 
@@ -315,7 +315,7 @@ mysql> select * from t where city in ('杭州',"苏州") order by name limit 100
 
 假设，当前表t里的值是(1,2)。
 
-![](https://static001.geekbang.org/resource/image/6d/90/6d9d8837560d01b57d252c470157ea90.png)
+![](https://s2.loli.net/2024/11/15/Ca2qyivTNGEwrJf.webp)
 
 图12 锁验证方式
 
@@ -325,7 +325,7 @@ session B的update 语句被blocked了，加锁这个动作是InnoDB才能做的
 
 假设当前表里的值是(1,2)。
 
-![](https://static001.geekbang.org/resource/image/44/96/441682b64a3f5dd50f35b12ca4b87c96.png)
+![](https://s2.loli.net/2024/11/15/PcKGdiR2hCxfS6Z.webp)
 
 图13 可见性验证方式
 
@@ -341,7 +341,7 @@ session A的第二个select 语句是一致性读（快照读)，它是不能看
 
 作为验证，你可以看一下下面这个例子。
 
-![](https://static001.geekbang.org/resource/image/63/c1/63dd6df32dacdb827d256e5acb9837c1.png)
+![](https://s2.loli.net/2024/11/15/qn4vLOSQyMlcBFU.webp)
 
 图14 可见性验证方式--对照
 
@@ -357,7 +357,7 @@ session A的第二个select 语句是一致性读（快照读)，它是不能看
 
 对应的代码如图15所示。这是MySQL 5.6版本引入的，在此之前我没有看过。所以，特此说明。
 
-![](https://static001.geekbang.org/resource/image/d4/89/d413b9235d56c62f9829750a68b06b89.png)
+![](https://s2.loli.net/2024/11/15/npuSgK7WMiQEaxX.webp)
 
 图15 binlog_row_image=FULL读字段逻辑
 

@@ -42,7 +42,7 @@ mysql> select count(*) from tradelog where month(t_modified)=7;
 
 下面是这个t_modified索引的示意图。方框上面的数字就是month()函数对应的值。
 
-![](https://static001.geekbang.org/resource/image/3e/86/3e30d9a5e67f711f5af2e2599e800286.png)
+![](https://s2.loli.net/2024/11/15/pCDvrRnBM6yAwdF.webp)
 
 图1 t_modified索引示意图
 
@@ -60,7 +60,7 @@ mysql> select count(*) from tradelog where month(t_modified)=7;
 
 接下来，我们使用explain命令，查看一下这条SQL语句的执行结果。
 
-![](https://static001.geekbang.org/resource/image/27/55/27c2f5ff3549b18ba37a28f4919f3655.png)
+![](https://s2.loli.net/2024/11/15/Dkqm6cdrAVJULXz.webp)
 
 图2 explain 结果
 
@@ -111,7 +111,7 @@ mysql> select * from tradelog where tradeid=110717;
 
 验证结果如图3所示。
 
-![](https://static001.geekbang.org/resource/image/2b/14/2b67fc38f1651e2622fe21d49950b214.png)
+![](https://s2.loli.net/2024/11/15/cWyH27vugmEho89.webp)
 
 图3 MySQL中字符串和数字转换的效果示意图
 
@@ -191,7 +191,7 @@ mysql> select d.* from tradelog l, trade_detail d where d.tradeid=l.tradeid and 
 
 接下来，我们看下这个explain结果表示的执行流程：
 
-![](https://static001.geekbang.org/resource/image/82/a9/8289c184c8529acea0269a7460dc62a9.png)
+![](https://s2.loli.net/2024/11/15/7YIKF3ylwD5o4id.webp)
 
 图5 语句Q1的执行过程
 
@@ -239,7 +239,7 @@ CONVERT()函数，在这里的意思是把输入的字符串转成utf8mb4字符�
 mysql>select l.operator from tradelog l , trade_detail d where d.tradeid=l.tradeid and d.id=4;
 ```
 
-![](https://static001.geekbang.org/resource/image/92/11/92cb498ceb3557e41700fae53ce9bd11.png)
+![](https://s2.loli.net/2024/11/15/5ja9JZp4POyYrKx.webp)
 
 图6 explain 结果
 
@@ -278,7 +278,7 @@ select d.* from tradelog l, trade_detail d where d.tradeid=l.tradeid and l.id=2;
     mysql> select d.* from tradelog l , trade_detail d where d.tradeid=CONVERT(l.tradeid USING utf8) and l.id=2;
     
 
-![](https://static001.geekbang.org/resource/image/aa/d6/aa844a7bf35d330b9ec96fc159331bd6.png)
+![](https://s2.loli.net/2024/11/15/BtWnL1NFXehIU43.webp)
 
 图7 SQL语句优化后的explain结果
 

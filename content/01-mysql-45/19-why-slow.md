@@ -48,7 +48,7 @@ mysql> select * from t where id=1;
 
 查询结果长时间不返回。
 
-![](https://static001.geekbang.org/resource/image/87/2a/8707b79d5ed906950749f5266014f22a.png)
+![](https://s2.loli.net/2024/11/15/ihOFQJ3yV6nHrb7.webp)
 
 图1 查询长时间不返回
 
@@ -60,7 +60,7 @@ mysql> select * from t where id=1;
 
 如图2所示，就是使用show processlist命令查看Waiting for table metadata lock的示意图。
 
-![](https://static001.geekbang.org/resource/image/50/28/5008d7e9e22be88a9c80916df4f4b328.png)
+![](https://s2.loli.net/2024/11/15/I4v7ljMFGbKwgDZ.webp)
 
 图2 Waiting for table metadata lock状态示意图
 
@@ -69,7 +69,7 @@ mysql> select * from t where id=1;
 在第6篇文章[《全局锁和表锁 ：给表加个字段怎么有这么多阻碍？》](https://time.geekbang.org/column/article/69862)中，我给你介绍过一种复现方法。但需要说明的是，那个复现过程是基于MySQL 5.6版本的。而MySQL 5.7版本修改了MDL的加锁策略，所以就不能复现这个场景了。
 
 不过，在MySQL 5.7版本下复现这个场景，也很容易。如图3所示，我给出了简单的复现步骤。  
-![](https://static001.geekbang.org/resource/image/74/ca/742249a31b83f4858c51bfe106a5daca.png)
+![](https://s2.loli.net/2024/11/15/ow9JSVlrMT1vIRu.webp)
 
 图3 MySQL 5.7中Waiting for table metadata lock的复现步骤
 
@@ -81,7 +81,7 @@ session A 通过lock table命令持有表t的MDL写锁，而session B的查询�
 
 通过查询sys.schema_table_lock_waits这张表，我们就可以直接找出造成阻塞的process id，把这个连接用kill 命令断开即可。
 
-![](https://static001.geekbang.org/resource/image/74/01/74fb24ba3826e3831eeeff1670990c01.png)
+![](https://s2.loli.net/2024/11/15/MpzXt5uqiOBbAfI.webp)
 
 图4 查获加表锁的线程id
 
@@ -98,7 +98,7 @@ mysql> select * from information_schema.processlist where id=1;
 这里，我先卖个关子。
 
 你可以看一下图5。我查出来这个线程的状态是Waiting for table flush，你可以设想一下这是什么原因。  
-![](https://static001.geekbang.org/resource/image/2d/24/2d8250398bc7f8f7dce8b6b1923c3724.png)
+![](https://s2.loli.net/2024/11/15/qEo3Td7ySG6iXHK.webp)
 
 图5 Waiting for table flush状态示意图
 
@@ -118,7 +118,7 @@ flush tables with read lock;
 
 现在，我们一起来复现一下这种情况，**复现步骤**如图6所示：
 
-![](https://static001.geekbang.org/resource/image/2b/9c/2bbc77cfdb118b0d9ef3fdd679d0a69c.png)
+![](https://s2.loli.net/2024/11/15/WMp8OEmfTu2yNwq.webp)
 
 图6 Waiting for table flush的复现步骤
 
@@ -126,7 +126,7 @@ flush tables with read lock;
 
 图7是这个复现步骤的show processlist结果。这个例子的排查也很简单，你看到这个show processlist的结果，肯定就知道应该怎么做了。
 
-![](https://static001.geekbang.org/resource/image/39/7e/398407014180be4146c2d088fc07357e.png)
+![](https://s2.loli.net/2024/11/15/EzAPoq8fxU79brG.webp)
 
 图 7 Waiting for table flush的show processlist 结果
 
@@ -144,11 +144,11 @@ mysql> select * from t where id=1 lock in share mode;
 
 复现步骤和现场如下：
 
-![](https://static001.geekbang.org/resource/image/3e/75/3e68326b967701c59770612183277475.png)
+![](https://s2.loli.net/2024/11/15/9sRTHeoUIODLmpE.webp)
 
 图 8 行锁复现
 
-![](https://static001.geekbang.org/resource/image/3c/8f/3c266e23fc307283aa94923ecbbc738f.png)
+![](https://s2.loli.net/2024/11/15/Kwh3TxzbiU1G27o.webp)
 
 图 9 行锁show processlist 现场
 
@@ -162,7 +162,7 @@ mysql> select * from t where id=1 lock in share mode;
 mysql> select * from t sys.innodb_lock_waits where locked_table=`'test'.'t'`\G
 ```
 
-![](https://static001.geekbang.org/resource/image/d8/18/d8603aeb4eaad3326699c13c46379118.png)
+![](https://s2.loli.net/2024/11/15/cp7TlqKUitQ1AGo.webp)
 
 图10 通过sys.innodb_lock_waits 查行锁
 
@@ -186,7 +186,7 @@ mysql> select * from t where c=50000 limit 1;
 
 作为确认，你可以看一下慢查询日志。注意，这里为了把所有语句记录到slow log里，我在连接后先执行了 set long_query_time=0，将慢查询日志的时间阈值设置为0。
 
-![](https://static001.geekbang.org/resource/image/d8/3c/d8b2b5f97c60ae4fc4a03c616847503c.png)
+![](https://s2.loli.net/2024/11/15/ZdXtGx2S9FDOw5a.webp)
 
 图11 全表扫描5万行的slow log
 
@@ -204,7 +204,7 @@ mysql> select * from t where id=1；
 
 虽然扫描行数是1，但执行时间却长达800毫秒。
 
-![](https://static001.geekbang.org/resource/image/66/46/66f26bb885401e8e460451ff6b0c0746.png)
+![](https://s2.loli.net/2024/11/15/WOxlVHb3nd4g1cf.webp)
 
 图12 扫描一行却执行得很慢
 
@@ -212,7 +212,7 @@ mysql> select * from t where id=1；
 
 如果我把这个slow log的截图再往下拉一点，你可以看到下一个语句，select * from t where id=1 lock in share mode，执行时扫描行数也是1行，执行时间是0.2毫秒。
 
-![](https://static001.geekbang.org/resource/image/bd/d2/bde83e269d9fa185b27900c8aa8137d2.png)
+![](https://s2.loli.net/2024/11/15/QMjEPZIKUcmglOf.webp)
 
 图 13 加上lock in share mode的slow log
 
@@ -220,13 +220,13 @@ mysql> select * from t where id=1；
 
 可能有的同学已经有答案了。如果你还没有答案的话，我再给你一个提示信息，图14是这两个语句的执行输出结果。
 
-![](https://static001.geekbang.org/resource/image/1f/1c/1fbb84bb392b6bfa93786fe032690b1c.png)
+![](https://s2.loli.net/2024/11/15/78awBGN3xiWIbfQ.webp)
 
 图14 两个语句的输出结果
 
 第一个语句的查询结果里c=1，带lock in share mode的语句返回的是c=1000001。看到这里应该有更多的同学知道原因了。如果你还是没有头绪的话，也别着急。我先跟你说明一下复现步骤，再分析原因。
 
-![](https://static001.geekbang.org/resource/image/84/ff/84667a3449dc846e393142600ee7a2ff.png)
+![](https://s2.loli.net/2024/11/15/ZJ3mLAaV4xbeysn.webp)
 
 图15 复现步骤
 
@@ -234,7 +234,7 @@ mysql> select * from t where id=1；
 
 session B执行完100万次update语句后，id=1这一行处于什么状态呢？你可以从图16中找到答案。
 
-![](https://static001.geekbang.org/resource/image/46/8c/46bb9f5e27854678bfcaeaf0c3b8a98c.png)
+![](https://s2.loli.net/2024/11/15/mWj2bZwa3T1tJSs.webp)
 
 图16 id=1的数据状态
 

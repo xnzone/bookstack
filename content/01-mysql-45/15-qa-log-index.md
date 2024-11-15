@@ -26,7 +26,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "日志", "索引"]
 
 我再放一次两阶段提交的图，方便你学习下面的内容。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200959876.jpeg)
+![](https://s2.loli.net/2024/11/15/aBecIhO8PE94CoX.jpg)
 <center>图1 两阶段提交示意图</center>
 
 这里，我要先和你解释一个误会式的问题。有同学在评论区问到，这个图不是一个update语句的执行流程吗，怎么还会调用commit语句？
@@ -104,7 +104,7 @@ InnoDB接入了MySQL后，发现既然binlog没有崩溃恢复的能力，那就
 
 而如果说**实现上的原因**的话，就有很多了。就按照问题中说的，只用binlog来实现崩溃恢复的流程，我画了一张示意图，这里就没有redo log了。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403201005106.jpeg)
+![](https://s2.loli.net/2024/11/15/9LinEO2bpfI3gGK.jpg)
 <center>图2 只用binlog支持崩溃恢复</center>
 
 这样的流程下，binlog还是不能支持崩溃恢复的。我说一个不支持的点吧：binlog没有能力恢复“数据页”。
@@ -227,7 +227,7 @@ CREATE TABLE `friend` (
 
 现在，我用你已经熟悉的时刻顺序表的形式，把这两个事务的执行语句列出来：  
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403201007497.png)
+![](https://s2.loli.net/2024/11/15/mV8uFTdvPkRNtsB.png)
 <center>图3 并发“喜欢”逻辑操作顺序</center>
 
 由于一开始A和B之间没有关注关系，所以两个事务里面的select语句查出来的结果都是空。
@@ -312,7 +312,7 @@ mysql> update t set a=2 where id=1;
 
 你会看到这样的结果：
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403201007378.png)
+![](https://s2.loli.net/2024/11/15/Qal3AiPWXkGb2O8.png)
 
 结果显示，匹配(rows matched)了一行，修改(Changed)了0行。
 
