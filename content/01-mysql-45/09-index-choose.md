@@ -34,7 +34,7 @@ select name from CUser where id_card = 'xxxxxxxyyyyyyzzzzz';
 
 简单起见，我们还是用第4篇文章[《深入浅出索引（上）》](../../01-mysql-45/04-index-first/)中的例子来说明，假设字段 k 上的值都不重复。
 
-![图1 InnoDB的索引组织结构](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403091036419.png)
+![](https://s2.loli.net/2024/11/15/CNqvZHM5wF7z8c3.png)
 <center>图1 InnoDB的索引组织结构</center>
 
 接下来，我们就从这两种索引对查询语句和更新语句的性能影响来进行分析。
@@ -132,7 +132,7 @@ mysql> insert into t(id,k) values(id1,k1),(id2,k2);
 
 这里，我们假设当前k索引树的状态，查找到位置后，k1所在的数据页在内存(InnoDB buffer pool)中，k2所在的数据页不在内存中。如图2所示是带change buffer的更新状态图。
 
-![图2 带change buffer的更新过程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311182132.png)
+![](https://s2.loli.net/2024/11/15/3C8bTW6N74mtfyD.png)
 <center>图2 带change buffer的更新过程</center>
 
 分析这条更新语句，你会发现它涉及了四个部分：内存、redo log（ib_log_fileX）、 数据表空间（t.ibd）、系统表空间（ibdata1）。
@@ -156,7 +156,7 @@ mysql> insert into t(id,k) values(id1,k1),(id2,k2);
 
 如果读语句发生在更新语句后不久，内存中的数据都还在，那么此时的这两个读操作就与系统表空间（ibdata1）和 redo log（ib_log_fileX）无关了。所以，我在图中就没画出这两部分。
 
-![图3 带change buffer的读过程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311182332.png)
+![](https://s2.loli.net/2024/11/15/Dpo6rvgx3l8hLCT.png)
 <center>图3 带change buffer的读过程</center>
 
 
@@ -193,13 +193,13 @@ mysql> insert into t(id,k) values(id1,k1),(id2,k2);
 
 上期的问题是：如何构造一个“数据无法修改”的场景。评论区里已经有不少同学给出了正确答案，这里我再描述一下。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311182538.png)
+![](https://s2.loli.net/2024/11/15/qFV7i8AGQETmHk1.png)
 
 这样，session A看到的就是我截图的效果了。
 
 其实，还有另外一种场景，同学们在留言区都还没有提到。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311182715.png)
+![](https://s2.loli.net/2024/11/15/dsuYOwPKU1qC4kR.png)
 
 这个操作序列跑出来，session A看的内容也是能够复现我截图的效果的。这个session B’启动的事务比A要早，其实是上期我们描述事务版本的可见性规则时留的彩蛋，因为规则里还有一个“活跃事务的判断”，我是准备留到这里再补充的。
 

@@ -56,14 +56,14 @@ mysql> select * from t where a between 10000 and 20000;
 
 你说得没错，图1显示的就是使用explain命令看到的这条语句的执行情况。
 
-![图1 使用explain命令查看语句执行情况](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311182946.png)
+![](https://s2.loli.net/2024/11/15/dl6PWnu2JprxIvq.png)
 <center>图1 使用explain命令查看语句执行情况</center>
 
 从图1看上去，这条查询语句的执行也确实符合预期，key这个字段值是’a’，表示优化器选择了索引a。
 
 不过别急，这个案例不会这么简单。在我们已经准备好的包含了10万行数据的表上，我们再做如下操作。
 
-![图2 session A和session B的执行流程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183015.png)
+![](https://s2.loli.net/2024/11/15/aRdEtmHKfZwSYjB.png)
 <center>图2 session A和session B的执行流程</center>
 
 
@@ -87,7 +87,7 @@ select * from t force index(a) where a between 10000 and 20000;/*Q2*/
 
 如图3所示是这三条SQL语句执行完成后的慢查询日志。
 
-![图3 slow log结果](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183054.png)
+![](https://s2.loli.net/2024/11/15/R9DdF8XIWkoyvCa.png)
 <center>图3 slow log结果</center>
 
 可以看到，Q1扫描了10万行，显然是走了全表扫描，执行时间是40毫秒。Q2扫描了10001行，执行了21毫秒。也就是说，我们在没有使用force index的时候，MySQL用错了索引，导致了更长的执行时间。
@@ -112,7 +112,7 @@ MySQL在真正开始执行语句之前，并不能精确地知道满足这个条
 
 我们可以使用show index方法，看到一个索引的基数。如图4所示，就是表t的show index 的结果 。虽然这个表的每一行的三个字段值都是一样的，但是在统计信息中，这三个索引的基数值并不同，而且其实都不准确。
 
-![图4 表t的show index 结果](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183125.png)
+![](https://s2.loli.net/2024/11/15/nQb7O6jEL9ACtXk.png)
 <center>图4 表t的show index 结果</center>
 
 那么，**MySQL是怎样得到索引的基数的呢？**这里，我给你简单介绍一下MySQL采样统计的方法。
@@ -138,7 +138,7 @@ MySQL在真正开始执行语句之前，并不能精确地知道满足这个条
 
 接下来，我们再一起看看优化器预估的，这两个语句的扫描行数是多少。
 
-![图5 意外的explain结果](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183155.png)
+![](https://s2.loli.net/2024/11/15/exHrEaTB614zQLk.png)
 <center>图5 意外的explain结果</center>
 
 rows这个字段表示的是预计扫描行数。
@@ -159,7 +159,7 @@ rows这个字段表示的是预计扫描行数。
 
 既然是统计信息不对，那就修正。analyze table t 命令，可以用来重新统计索引信息。我们来看一下执行效果。
 
-![图6 执行analyze table t 命令恢复的explain结果](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183219.png)
+![](https://s2.loli.net/2024/11/15/jkQgMW95UtOloBY.png)
 <center>图6 执行analyze table t 命令恢复的explain结果</center>
 
 这回对了。
@@ -180,7 +180,7 @@ mysql> select * from t where (a between 1 and 1000)  and (b between 50000 and 10
 
 为了便于分析，我们先来看一下a、b这两个索引的结构图。
 
-![图7 a、b索引的结构图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183255.png)
+![](https://s2.loli.net/2024/11/15/lO5yhNgu2PzjTUA.png)
 <center>图7 a、b索引的结构图</center>
 
 如果使用索引a进行查询，那么就是扫描索引a的前1000个值，然后取到对应的id，再到主键索引上去查出每一行，然后根据字段b来过滤。显然这样需要扫描1000行。
@@ -195,7 +195,7 @@ mysql> select * from t where (a between 1 and 1000)  and (b between 50000 and 10
 mysql> explain select * from t where (a between 1 and 1000) and (b between 50000 and 100000) order by b limit 1;
 ```
 
-![图8 使用explain方法查看执行计划 2](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183345.png)
+![](https://s2.loli.net/2024/11/15/zMmcS3Lh4FTZart.png)
 <center>图8 使用explain方法查看执行计划 2</center>
 
 可以看到，返回结果中key字段显示，这次优化器选择了索引b，而rows字段显示需要扫描的行数是50198。
@@ -215,7 +215,7 @@ mysql> explain select * from t where (a between 1 and 1000) and (b between 50000
 
 我们来看看第二个例子。刚开始分析时，我们认为选择索引a会更好。现在，我们就来看看执行效果：
 
-![图9 使用不同索引的语句执行耗时](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183416.png)
+![](https://s2.loli.net/2024/11/15/tePdzc6Kgsuqn9p.png)
 <center>图9 使用不同索引的语句执行耗时</center>
 
 可以看到，原本语句需要执行2.23秒，而当你使用force index(a)的时候，只用了0.05秒，比优化器的选择快了40多倍。
@@ -232,7 +232,7 @@ mysql> explain select * from t where (a between 1 and 1000) and (b between 50000
 
 我们来看看改之后的效果：
 
-![图10 order by b,a limit 1 执行结果](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183501.png)
+![](https://s2.loli.net/2024/11/15/WQcuXFklB5idb92.png)
 <center>图10 order by b,a limit 1 执行结果</center>
 
 之前优化器选择使用索引b，是因为它认为使用索引b可以避免排序（b本身是索引，已经是有序的了，如果选择索引b的话，不需要再做排序，只需要遍历），所以即使扫描行数多，也判定为代价更小。
@@ -247,7 +247,7 @@ mysql> explain select * from t where (a between 1 and 1000) and (b between 50000
 mysql> select * from  (select * from t where (a between 1 and 1000)  and (b between 50000 and 100000) order by b limit 100)alias limit 1;
 ```
 
-![图11 改写SQL的explain](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311183722.png)
+![](https://s2.loli.net/2024/11/15/68rLINocPSqHzZK.png)
 <center>图11 改写SQL的explain</center>
 
 在这个例子里，我们用limit 100让优化器意识到，使用b索引代价是很高的。其实是我们根据数据特征诱导了一下优化器，也不具备通用性。

@@ -39,7 +39,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "删数据"]
 
 我们先再来看一下InnoDB中一个索引的示意图。在前面[第4](../../01-mysql-45/04-index-first/)和[第5](../../01-mysql-45/05-index-second/)篇文章中，我和你介绍索引时曾经提到过，InnoDB里的数据都是用B+树的结构组织的。
 
-![图1 B+树索引示意图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200947949.png)
+![](https://s2.loli.net/2024/11/15/pzN3P7AKbaUk4Bc.png)
 <center>图1 B+树索引示意图</center>
 
 假设，我们要删掉R4这个记录，InnoDB引擎只会把R4这个记录标记为删除。如果之后要再插入一个ID在300和600之间的记录时，可能会复用这个位置。但是，磁盘文件的大小并不会缩小。
@@ -66,7 +66,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "删数据"]
 
 假设图1中page A已经满了，这时我要再插入一行数据，会怎样呢？
 
-![图2 插入数据导致页分裂](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200949644.png)
+![](https://s2.loli.net/2024/11/15/RpIHrTPLQ3X7AZs.png)
 <center>图2 插入数据导致页分裂</center>
 
 可以看到，由于page A满了，再插入一个ID是550的数据时，就不得不再申请一个新的页面page B来保存数据了。页分裂完成后，page A的末尾就留下了空洞（注意：实际上，可能不止1个记录的位置是空洞）。
@@ -87,7 +87,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "删数据"]
 
 这里，你可以使用alter table A engine=InnoDB命令来重建表。在MySQL 5.5版本之前，这个命令的执行流程跟我们前面描述的差不多，区别只是这个临时表B不需要你自己创建，MySQL会自动完成转存数据、交换表名、删除旧表的操作。
 
-![图3 改锁表DDL](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200949413.png)
+![](https://s2.loli.net/2024/11/15/PkaMmlBoUFCsSJd.png)
 <center>图3 改锁表DDL</center>
 
 显然，花时间最多的步骤是往临时表插入数据的过程，如果在这个过程中，有新的数据要写入到表A的话，就会造成数据丢失。因此，在整个DDL过程中，表A中不能有更新。也就是说，这个DDL不是Online的。
@@ -106,7 +106,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "删数据"]
     
 5. 用临时文件替换表A的数据文件。
 
-![图4 Online DDL](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200950145.png)
+![](https://s2.loli.net/2024/11/15/HzhVAtDv2IUNC7s.png)
 <center>图4 Online DDL</center>
 
 可以看到，与图3过程的不同之处在于，由于日志文件记录和重放操作这个功能的存在，这个方案在重建表的过程中，允许对表A做增删改操作。这也就是Online DDL名字的来源。
@@ -203,7 +203,7 @@ alter table t add FULLTEXT(field_name);
 
 每次事务提交都要写redo log，如果设置太小，很快就会被写满，也就是下面这个图的状态，这个“环”将很快被写满，write pos一直追着CP。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200951580.png)
+![](https://s2.loli.net/2024/11/15/Nfv6i1SebBCgwyd.png)
 
 这时候系统不得不停止所有更新，去推进checkpoint。
 

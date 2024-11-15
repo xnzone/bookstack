@@ -42,10 +42,10 @@ mysql> alter table SUser add index index2(email(6));
 
 那么，这两种不同的定义在数据结构和存储上有什么区别呢？如图2和3所示，就是这两个索引的示意图。
 
-![图1 email 索引结构](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403190956544.png)
+![](https://s2.loli.net/2024/11/15/a3IuMKgyhn5Podj.png)
 <center>图1 email 索引结构</center>
 
-![图2 email(6) 索引结构](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403190958570.jpeg)
+![](https://s2.loli.net/2024/11/15/Jfj9nT4FkuMLhy8.jpg)
 <center>图2 email(6) 索引结构</center>
 
 从图中你可以看到，由于email(6)这个索引结构中每个邮箱字段都只取前6个字节（即：zhangs），所以占用的空间会更小，这就是使用前缀索引的优势。
@@ -227,7 +227,7 @@ delete 语句删掉了所有的数据，然后再通过call idata()插入了10�
 
 这个值的计算方法，我会在后面有文章为你详细讲解。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403191002021.png)
+![](https://s2.loli.net/2024/11/15/ZBEDCrGUqMFIz3J.png)
   
 评论区留言点赞板：
 

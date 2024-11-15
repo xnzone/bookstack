@@ -26,7 +26,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "抖动"]
 
 接下来，我们用一个示意图来展示一下“孔乙己赊账”的整个操作过程。假设原来孔乙己欠账10文，这次又要赊9文。
 
-![图1 “孔乙己赊账”更新和flush过程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403191011968.png)
+![](https://s2.loli.net/2024/11/15/juWOC6RV1Ttwo74.png)
 <center>图1 “孔乙己赊账”更新和flush过程</center>
 
 回到文章开头的问题，你不难想象，平时执行很快的更新操作，其实就是在写内存和日志，而MySQL偶尔“抖”一下的那个瞬间，可能就是在刷脏页（flush）。
@@ -38,7 +38,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "抖动"]
 - 第一种场景是，粉板满了，记不下了。这时候如果再有人来赊账，掌柜就只得放下手里的活儿，将粉板上的记录擦掉一些，留出空位以便继续记账。当然在擦掉之前，他必须先将正确的账目记录到账本中才行。  
     这个场景，对应的就是InnoDB的redo log写满了。这时候系统会停止所有更新操作，把checkpoint往前推进，redo log留出空间可以继续写。我在第二讲画了一个redo log的示意图，这里我改成环形，便于大家理解。
 
-![图2 redo log状态图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403191012059.png)
+![](https://s2.loli.net/2024/11/15/Nfv6i1SebBCgwyd.png)
 <center>图2 redo log状态图</center>
 
 checkpoint可不是随便往前修改一下位置就可以的。比如图2中，把checkpoint位置从CP推进到CP’，就需要将两个点之间的日志（浅绿色部分），对应的所有脏页都flush到磁盘上。之后，图中从write pos到CP’之间就是可以再写入的redo log的区域。
@@ -125,7 +125,7 @@ InnoDB每次写入的日志都有一个序号，当前写入的序号跟checkpoi
 
 上述的计算流程比较抽象，不容易理解，所以我画了一个简单的流程图。图中的F1、F2就是上面我们通过脏页比例和redo log写入速度算出来的两个值。
 
-![图3 InnoDB刷脏页速度策略](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403191012786.png)
+![](https://s2.loli.net/2024/11/15/EVWs4Q2CTc17vtK.png)
 <center>图3 InnoDB刷脏页速度策略</center>
 
 现在你知道了，InnoDB会在后台刷脏页，而刷脏页的过程是要将内存页写入磁盘。所以，无论是你的查询语句在需要内存的时候可能要求淘汰一个脏页，还是由于刷脏页的逻辑会占用IO资源并可能影响到了你的更新语句，都可能是造成你从业务端感知到MySQL“抖”了一下的原因。

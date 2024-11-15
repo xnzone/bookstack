@@ -22,7 +22,7 @@ MySQL的行锁是在引擎层由各个引擎自己实现的。但并不是所有
 
 我先给你举个例子。在下面的操作序列中，事务B的update语句执行时会是什么现象呢？假设字段id是表t的主键。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311100320.png)
+![](https://s2.loli.net/2024/11/15/lqmxr2kZCMLDcFR.png)
 
 这个问题的结论取决于事务A在执行完两条update语句后，持有哪些锁，以及在什么时候释放。你可以验证一下：实际上事务B的update语句会被阻塞，直到事务A执行commit之后，事务B才能继续执行。
 
@@ -57,7 +57,7 @@ MySQL的行锁是在引擎层由各个引擎自己实现的。但并不是所有
 
 当并发系统中不同线程出现循环资源依赖，涉及的线程都在等待别的线程释放资源时，就会导致这几个线程都进入无限等待的状态，称为死锁。这里我用数据库中的行锁举个例子。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311100508.png)
+![](https://s2.loli.net/2024/11/15/r8K6FGcpLldYuwj.png)
 
 这时候，事务A在等待事务B释放id=2的行锁，而事务B在等待事务A释放id=1的行锁。 事务A和事务B在互相等待对方的资源释放，就是进入了死锁状态。当出现死锁以后，有两种策略：
 

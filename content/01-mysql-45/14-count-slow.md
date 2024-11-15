@@ -37,7 +37,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "count"]
 
 我们假设从上到下是按照时间顺序执行的，同一行语句是在同一时刻执行的。
 
-![图1 会话A、B、C的执行流程](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200953754.png)
+![](https://s2.loli.net/2024/11/15/xoMGKIV532ZegOh.png)
 <center>图1 会话A、B、C的执行流程</center>
 
 你会看到，在最后一个时刻，三个会话A、B、C会同时查询表t的总行数，但拿到的结果却不同。
@@ -94,7 +94,7 @@ Redis的数据不能永久地留在内存里，所以你会找一个地方把这
 我们一起来看看这个时序图。
 
 
-![图2 会话A、B执行时序图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200954722.png)
+![](https://s2.loli.net/2024/11/15/y9G4vwpZaqYjLFg.png)
 <center>图2 会话A、B执行时序图</center>
 
 图2中，会话A是一个插入交易记录的逻辑，往数据表里插入一行R，然后Redis计数加1；会话B就是查询页面显示时需要的数据。
@@ -104,7 +104,7 @@ Redis的数据不能永久地留在内存里，所以你会找一个地方把这
 你一定会说，这是因为我们执行新增记录逻辑时候，是先写数据表，再改Redis计数。而读的时候是先读Redis，再读数据表，这个顺序是相反的。那么，如果保持顺序一样的话，是不是就没问题了？我们现在把会话A的更新顺序换一下，再看看执行结果。
 
 
-![图3 调整顺序后，会话A、B的执行时序图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200955632.png)
+![](https://s2.loli.net/2024/11/15/B7zix9OHGYE6Zdr.png)
 <center>图3 调整顺序后，会话A、B的执行时序图</center>
 
 你会发现，这时候反过来了，会话B在T3时刻查询的时候，Redis计数加了1了，但还查不到新插入的R这一行，也是数据不一致的情况。
@@ -130,7 +130,7 @@ Redis的数据不能永久地留在内存里，所以你会找一个地方把这
 所谓以子之矛攻子之盾，现在我们就利用“事务”这个特性，把问题解决掉。
 
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/202403200956250.png)
+![](https://s2.loli.net/2024/11/15/wRYUDl2p8rHx5se.png)
 <center>图4 会话A、B的执行时序图</center>
 
 我们来看下现在的执行结果。虽然会话B的读操作仍然是在T3执行的，但是因为这时候更新事务还没有提交，所以计数值加1这个操作对会话B还不可见。

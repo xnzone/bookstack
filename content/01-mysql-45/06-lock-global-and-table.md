@@ -35,7 +35,7 @@ tags: ["MySQL", "实战45讲", "丁奇", "锁", "全局锁", "表锁"]
 
 如果时间顺序上是先备份账户余额表(u_account)，然后用户购买，然后备份用户课程表(u_course)，会怎么样呢？你可以看一下这个图：
 
-![图1 业务和备份状态图](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311095405.png)
+![](https://s2.loli.net/2024/11/14/oP9Clf45spu7W1b.png)
 <center>图1 业务和备份状态图</center>
 
 可以看到，这个备份结果里，用户A的数据状态是“账户余额没扣，但是用户课程表里面已经多了一门课”。如果后面用这个备份来恢复数据的话，用户A就发现，自己赚了。
@@ -90,7 +90,7 @@ MySQL里面表级别的锁有两种：一种是表锁，一种是元数据锁（
 
 > 备注：这里的实验环境是MySQL 5.6。
 
-![](https://jihulab.com/xnzone/bookstack-images/-/raw/master/01-mysql-45/20240311095812.png)
+![](https://s2.loli.net/2024/11/14/6BjfHxktnq1u3yE.png)
 
 我们可以看到session A先启动，这时候会对表t加一个MDL读锁。由于session B需要的也是MDL读锁，因此可以正常执行。
 
