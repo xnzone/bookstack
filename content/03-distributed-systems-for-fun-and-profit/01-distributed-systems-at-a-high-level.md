@@ -1,7 +1,7 @@
 ---
 author: mixu
 title: Distributed systems at a high level
-date: 2024-04-10 10:23:32
+date: 2024-10-10 10:23:32
 image: /covers/distr-fun.jpg
 cover: false
 weight: 301
