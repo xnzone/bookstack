@@ -47,7 +47,7 @@ call idata();
 
 下图是这个语句的explain结果。
 
-![](https://static001.geekbang.org/resource/image/40/4e/402cbdef84eef8f1b42201c6ec4bad4e.png)
+![](https://s2.loli.net/2024/11/18/mIK83vuMsgGw7zZ.webp)
 
 图1 union语句explain 结果
 
@@ -71,7 +71,7 @@ call idata();
 
 这个过程的流程图如下所示：
 
-![](https://static001.geekbang.org/resource/image/5d/0e/5d038c1366d375cc997005a5d65c600e.jpg)
+![](https://s2.loli.net/2024/11/18/dhzPfQ1IJ7KNluY.webp)
 
 图 2 union 执行流程
 
@@ -79,7 +79,7 @@ call idata();
 
 顺便提一下，如果把上面这个语句中的union改成union all的话，就没有了“去重”的语义。这样执行的时候，就依次执行子查询，得到的结果直接作为结果集的一部分，发给客户端。因此也就不需要临时表了。
 
-![](https://static001.geekbang.org/resource/image/c1/6d/c1e90d1d7417b484d566b95720fe3f6d.png)
+![](https://s2.loli.net/2024/11/18/JOsCd5MoWhT3LHB.webp)
 
 图3 union all的explain结果
 
@@ -95,7 +95,7 @@ select id%10 as m, count(*) as c from t1 group by m;
 
 这个语句的逻辑是把表t1里的数据，按照 id%10 进行分组统计，并按照m的结果排序后输出。它的explain结果如下：
 
-![](https://static001.geekbang.org/resource/image/3d/98/3d1cb94589b6b3c4bb57b0bdfa385d98.png)
+![](https://s2.loli.net/2024/11/18/qg3UucfbdFzTjLW.webp)
 
 图4 group by 的explain结果
 
@@ -118,13 +118,13 @@ select id%10 as m, count(*) as c from t1 group by m;
 
 这个流程的执行图如下：
 
-![](https://static001.geekbang.org/resource/image/03/54/0399382169faf50fc1b354099af71954.jpg)
+![](https://s2.loli.net/2024/11/18/Q7KUBROLV42aG9W.webp)
 
 图5 group by执行流程
 
 图中最后一步，对内存临时表的排序，在[第17篇文章](../17-random)中已经有过介绍，我把图贴过来，方便你回顾。
 
-![](https://static001.geekbang.org/resource/image/b5/68/b5168d201f5a89de3b424ede2ebf3d68.jpg)
+![](https://s2.loli.net/2024/11/18/7wlvkF1TMZbShco.webp)
 
 图6 内存临时表排序流程
 
@@ -132,7 +132,7 @@ select id%10 as m, count(*) as c from t1 group by m;
 
 接下来，我们再看一下这条语句的执行结果：
 
-![](https://static001.geekbang.org/resource/image/ae/55/ae6a28d890efc35ee4d07f694068f455.png)
+![](https://s2.loli.net/2024/11/18/3hjm6pyOvPaIilc.webp)
 
 图 7 group by执行结果
 
@@ -144,7 +144,7 @@ select id%10 as m, count(*) as c from t1 group by m order by null;
 
 这样就跳过了最后排序的阶段，直接从临时表中取数据返回。返回的结果如图8所示。
 
-![](https://static001.geekbang.org/resource/image/03/eb/036634e53276eaf8535c3442805dfaeb.png)
+![](https://s2.loli.net/2024/11/18/YgihokWj1EbLvHT.webp)
 
 图8 group + order by null 的结果（内存临时表）
 
@@ -163,7 +163,7 @@ select id%100 as m, count(*) as c from t1 group by m order by null limit 10;
 
 那么，这时候就会把内存临时表转成磁盘临时表，磁盘临时表默认使用的引擎是InnoDB。 这时，返回的结果如图9所示。
 
-![](https://static001.geekbang.org/resource/image/a7/6e/a76381d0f3c947292cc28198901f9e6e.png)
+![](https://s2.loli.net/2024/11/18/k7S2HmceywLoO4j.webp)
 
 图9 group + order by null 的结果（磁盘临时表）
 
@@ -181,7 +181,7 @@ group by的语义逻辑，是统计不同的值出现的个数。但是，由于
 
 假设，现在有一个类似图10的这么一个数据结构，我们来看看group by可以怎么做。
 
-![](https://static001.geekbang.org/resource/image/5c/19/5c4a581c324c1f6702f9a2c70acddd19.jpg)
+![](https://s2.loli.net/2024/11/18/CVepWZPyT6cd84O.webp)
 
 图10 group by算法优化-有序输入
 
@@ -208,7 +208,7 @@ select z, count(*) as c from t1 group by z;
 
 优化后的group by语句的explain结果，如下图所示：
 
-![](https://static001.geekbang.org/resource/image/c9/b9/c9f88fa42d92cf7dde78fca26c4798b9.png)
+![](https://s2.loli.net/2024/11/18/rRLeInZAUjOqvkE.webp)
 
 图11 group by 优化的explain结果
 
@@ -249,11 +249,11 @@ select SQL_BIG_RESULT id%100 as m, count(*) as c from t1 group by m;
 
 下面两张图分别是执行流程图和执行explain命令得到的结果。
 
-![](https://static001.geekbang.org/resource/image/82/6a/8269dc6206a7ef20cb515c23df0b846a.jpg)
+![](https://s2.loli.net/2024/11/18/urbiy2RnVOdctG4.webp)
 
 图12 使用 SQL_BIG_RESULT的执行流程图
 
-![](https://static001.geekbang.org/resource/image/83/ec/83b6cd6b3e37dfbf9699cf0ccc0f1bec.png)
+![](https://s2.loli.net/2024/11/18/7F8soELBdThgmKQ.webp)
 
 图13 使用 SQL_BIG_RESULT的explain 结果
 

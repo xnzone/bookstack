@@ -55,11 +55,11 @@ insert into t values(null);
 
 要验证这个结论的话，你可以通过 gdb 修改系统的自增 row_id 来实现。注意，用 gdb 改变量这个操作是为了便于我们复现问题，只能在测试环境使用。
 
-![img](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/MySQL%e5%ae%9e%e6%88%9845%e8%ae%b2/assets/6a7bfd460f9e75afcfcfc4a963339a9a.png)
+![](https://s2.loli.net/2024/11/18/adNHgupU2fCk1Ej.png)
 
 图 1 row_id 用完的验证序列
 
-![img](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/MySQL%e5%ae%9e%e6%88%9845%e8%ae%b2/assets/5ad1fff81bda3a6b00ec84e84753fa5c.png)
+![](https://s2.loli.net/2024/11/18/htzQOr5fbwHNDa4.png)
 
 图 2 row_id 用完的效果验证
 
@@ -107,7 +107,7 @@ InnoDB 数据可见性的核心思想是：每一行数据都记录了更新它�
 
 我在上一篇文章的末尾留给你的思考题，就是关于从 innodb_trx 表里面查到的 trx_id 的。现在，我们一起来看一个事务现场：
 
-![img](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/MySQL%e5%ae%9e%e6%88%9845%e8%ae%b2/assets/94c704190f7609b3e6443688368cd97c.png)
+![](https://s2.loli.net/2024/11/18/JPYWrjf7N2MysnR.png)
 
 图 3 事务的 trx_id
 
@@ -151,7 +151,7 @@ session B 里，我从 innodb_trx 表里查出的这两个字段，第二个字�
 
 首先我们需要把当前的 max_trx_id 先修改成 248-1。注意：这个 case 里使用的是可重复读隔离级别。具体的操作流程如下：
 
-![img](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/MySQL%e5%ae%9e%e6%88%9845%e8%ae%b2/assets/13735f955a437a848895787bf9c723c0.png)
+![](https://s2.loli.net/2024/11/18/iT2KFrXdEa5wVhq.png)
 
 图 4 复现脏读
 

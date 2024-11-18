@@ -46,7 +46,7 @@ insert into t2(c,d) select c,d from t;
 
 其实，这个问题我们需要考虑的还是日志和数据的一致性。我们看下这个执行序列：
 
-![](https://static001.geekbang.org/resource/image/33/86/33e513ee55d5700dc67f32bcdafb9386.png)
+![](https://s2.loli.net/2024/11/18/GfAdUiMvK8qpYIg.webp)
 
 图1 并发insert场景
 
@@ -81,7 +81,7 @@ insert into t2(c,d)  (select c+1, d from t force index(c) order by c desc limit 
 
 这个语句执行的慢查询日志（slow log），如下图所示：
 
-![](https://static001.geekbang.org/resource/image/3e/74/3efdf8256309a44e23d93089459eda74.png)
+![](https://s2.loli.net/2024/11/18/81nNoyaGRZvVCUz.webp)
 
 图2 慢查询日志--将数据插入表t2
 
@@ -97,7 +97,7 @@ insert into t(c,d)  (select c+1, d from t force index(c) order by c desc limit 1
 
 这时候，我们再看慢查询日志就会发现不对了。
 
-![](https://static001.geekbang.org/resource/image/6f/18/6f90b04c09188bff11dae6e788abb918.png)
+![](https://s2.loli.net/2024/11/18/g2mq7R56IZMOpeP.webp)
 
 图3 慢查询日志--将数据插入表t
 
@@ -107,7 +107,7 @@ insert into t(c,d)  (select c+1, d from t force index(c) order by c desc limit 1
 
 如图4所示就是这条语句的explain结果。
 
-![](https://static001.geekbang.org/resource/image/d7/2a/d7270781ee3f216325b73bd53999b82a.png)
+![](https://s2.loli.net/2024/11/18/bPVz9TqSy4LItOe.webp)
 
 图4 explain结果
 
@@ -119,7 +119,7 @@ insert into t(c,d)  (select c+1, d from t force index(c) order by c desc limit 1
 
 从另一个角度考虑的话，我们可以看看InnoDB扫描了多少行。如图5所示，是在执行这个语句前后查看Innodb_rows_read的结果。
 
-![](https://static001.geekbang.org/resource/image/48/d7/489281d8029e8f60979cb7c4494010d7.png)
+![](https://s2.loli.net/2024/11/18/VzIPXWfcGwa3b6T.webp)
 
 图5 查看 Innodb_rows_read变化
 
@@ -155,7 +155,7 @@ drop table temp_t;
 
 对于有唯一键的表，插入数据时出现唯一键冲突也是常见的情况了。我先给你举一个简单的唯一键冲突的例子。
 
-![](https://static001.geekbang.org/resource/image/83/ca/83fb2d877932941b230d6b5be8cca6ca.png)
+![](https://s2.loli.net/2024/11/18/nubxUWXPL3Z528C.webp)
 
 图6 唯一键冲突加锁
 
@@ -173,7 +173,7 @@ drop table temp_t;
 
 这里，我就先和你分享一个经典的死锁场景，如果你还遇到过其他唯一键冲突导致的死锁场景，也欢迎给我留言。
 
-![](https://static001.geekbang.org/resource/image/63/2d/63658eb26e7a03b49f123fceed94cd2d.png)
+![](https://s2.loli.net/2024/11/18/KSEjo84Vc9yeDu5.webp)
 
 图7 唯一键冲突--死锁
 
@@ -190,7 +190,7 @@ drop table temp_t;
 
 这个流程的状态变化图如下所示。
 
-![](https://static001.geekbang.org/resource/image/3e/b8/3e0bf1a1241931c14360e73fd10032b8.jpg)
+![](https://s2.loli.net/2024/11/18/9YHnDdykjiUmKxB.webp)
 
 图8 状态变化图--死锁
 
@@ -210,7 +210,7 @@ insert into t values(11,10,10) on duplicate key update d=100;
 
 现在表t里面已经有了(1,1,1)和(2,2,2)这两行，我们再来看看下面这个语句执行的效果：
 
-![](https://static001.geekbang.org/resource/image/5f/02/5f384d6671c87a60e1ec7e490447d702.png)
+![](https://s2.loli.net/2024/11/18/UdbRyJXF5WPoI38.webp)
 
 图9 两个唯一键同时冲突
 

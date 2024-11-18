@@ -47,7 +47,7 @@ select * from a left join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q2*/
 
 首先，需要说明的是，这两个 left join 语句的语义逻辑并不相同。我们先来看一下它们的执行结果。
 
-![img](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/assets/871f890532349781fdc4a4287e9f91bd.png)
+![](https://s2.loli.net/2024/11/18/jEix5GoPuH8ZCyU.png)
 
 图 1 两个 join 的查询结果
 
@@ -60,7 +60,7 @@ select * from a left join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q2*/
 
 我们先一起看看语句 Q1 的 explain 结果：
 
-![img](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/assets/b7f27917ceb0be90ef7b201f2794c817.png)
+![](https://s2.loli.net/2024/11/18/BSaEDz6tHflOxuZ.png)
 
 图 2 Q1 的 explain 结果
 
@@ -77,7 +77,7 @@ select * from a left join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q2*/
 
 对应的流程图如下：
 
-![img](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/assets/8fd4b4b179fb84caaecece84b6406ad7.jpg)
+![](https://s2.loli.net/2024/11/18/XTdWDG5AB68r2VK.jpg)
 
 图 3 left join -BNL 算法
 
@@ -85,7 +85,7 @@ select * from a left join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q2*/
 
 你可能会想，语句 Q2 的查询结果里面少了最后两行数据，是不是就是把上面流程中的步骤 3 去掉呢？我们还是先看一下语句 Q2 的 expain 结果吧。
 
-![img](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/assets/f5712c56dc84d331990409a5c313ea9c.png)
+![](https://s2.loli.net/2024/11/18/jRVJlqu7eEK6TYi.png)
 
 图 4 Q2 的 explain 结果
 
@@ -105,7 +105,7 @@ select * from a left join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q2*/
 
 因此，优化器就把这条语句的 left join 改写成了 join，然后因为表 a 的 f1 上有索引，就把表 b 作为驱动表，这样就可以用上 NLJ 算法。在执行 explain 之后，你再执行 show warnings，就能看到这个改写的结果，如图 5 所示。
 
-![img](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/assets/d74878e7469edb8b713a18c6158530ab.png)
+![](https://s2.loli.net/2024/11/18/6bPMC7UEqLNxBYF.png)
 
 图 5 Q2 的改写结果
 
@@ -122,7 +122,7 @@ select * from a join b on(a.f1=b.f1) where (a.f2=b.f2);/*Q4*/
 
 我们再使用一次看 explain 和 show warnings 的方法，看看优化器是怎么做的。
 
-![img](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/assets/d9952e4c2150bc649c7f2977e6ea80f5.png)
+![](https://s2.loli.net/2024/11/18/l3iL4FKOyeCxZnA.png)
 
 图 6 join 语句改写
 
@@ -208,7 +208,7 @@ create table t(id int auto_increment primary key);
 insert into t values(null);
 ```
 
-![img](https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/assets/b55b2167aa301d899ccc86a00b496b25.png)
+![](https://s2.loli.net/2024/11/18/T9jeKrNtbif6sqG.png)
 
 图 7 insert 语句的 binlog
 

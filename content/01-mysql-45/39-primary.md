@@ -30,7 +30,7 @@ CREATE TABLE `t` (
 
 在这个空表 t 里面执行 insert into t values(null, 1, 1); 插入一行数据，再执行 show create table 命令，就可以看到如下图所示的结果：
 
-![img](https://learn.lianglianglee.com/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/assets/cb2637cada0201b18650f56875e94fff-1584367406950.png)
+![](https://s2.loli.net/2024/11/18/D1QRbnscBpNAaf9.png)
 
 图 1 自动生成的 AUTO_INCREMENT 值
 
@@ -92,7 +92,7 @@ insert into t values(null, 1, 1);
 
 对应的执行流程图如下：
 
-![img](https://learn.lianglianglee.com/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/assets/f16d89a6e7ad6e2cde13b32bb2292dd3-1584367406951.jpg)
+![](https://s2.loli.net/2024/11/18/kaibZyXDV1SoPnp.jpg)
 
 图 2 insert(null, 1,1) 唯一键冲突
 
@@ -102,7 +102,7 @@ insert into t values(null, 1, 1);
 
 如图 3 所示就是完整的演示结果。
 
-![img](https://learn.lianglianglee.com/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/assets/77b87820b649692a555f19b562d5d926-1584367406952.png)
+![](https://s2.loli.net/2024/11/18/mRd5FQTxS7VaMY3.png)
 
 图 3 一个自增主键 id 不连续的复现步骤
 
@@ -163,7 +163,7 @@ MySQL 5.1.22 版本引入了一个新策略，新增参数 innodb_autoinc_lock_m
 
 我们一起来看一下这个场景：
 
-![img](https://learn.lianglianglee.com/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/assets/e0a69e151277de54a8262657e4ec89df-1584367406952.png)
+![](https://s2.loli.net/2024/11/18/uLSVWYiwJt8ybkr.png)
 
 图 4 批量插入数据的自增锁
 

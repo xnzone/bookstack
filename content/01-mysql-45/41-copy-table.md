@@ -63,7 +63,7 @@ mysqldump -h$host -P$port -u$user --add-locks=0 --no-create-info --single-transa
 
 通过这条mysqldump命令生成的t.sql文件中就包含了如图1所示的INSERT语句。
 
-![](https://static001.geekbang.org/resource/image/8a/de/8acdcefcaf5c9940570bf7e8f73dbdde.png)
+![](https://s2.loli.net/2024/11/18/1JO42Cpg9iS8qr6.webp)
 
 图1 mysqldump输出文件的部分结果
 
@@ -146,7 +146,7 @@ load data infile '/server_tmp/t.csv' into table db2.t;
 
 执行流程如图2所示：
 
-![](https://static001.geekbang.org/resource/image/3a/fd/3a6790bc933af5ac45a75deba0f52cfd.jpg)
+![](https://s2.loli.net/2024/11/18/3v7bwiUnLC14PN8.webp)
 
 图2 load data的同步流程
 
@@ -196,7 +196,7 @@ mysqldump -h$host -P$port -u$user ---single-transaction  --set-gtid-purged=OFF d
 
 至此，拷贝表数据的操作就完成了。这个流程的执行过程图如下：
 
-![](https://static001.geekbang.org/resource/image/ba/a7/ba1ced43eed4a55d49435c062fee21a7.jpg)
+![](https://s2.loli.net/2024/11/18/5BkqOPsW1IrMVh3.webp)
 
 图3 物理拷贝表
 

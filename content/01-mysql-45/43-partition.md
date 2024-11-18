@@ -28,7 +28,7 @@ PARTITION p_others VALUES LESS THAN MAXVALUE ENGINE = InnoDB);
 insert into t values('2017-4-1',1),('2018-4-1',1);
 ```
 
-![](https://static001.geekbang.org/resource/image/06/f5/06f041129783533de9c75580f9decdf5.png)
+![](https://s2.loli.net/2024/11/18/EojxCkUrtZIy4h2.webp)
 
 图1 表t的磁盘文件
 
@@ -45,7 +45,7 @@ insert into t values('2017-4-1',1),('2018-4-1',1);
 
 我先给你举个在分区表加间隙锁的例子，目的是说明对于InnoDB来说，这是4个表。
 
-![](https://static001.geekbang.org/resource/image/d2/c7/d28d6ab873bd8337d88812d45b9266c7.png)
+![](https://s2.loli.net/2024/11/18/Tw3VWdlEIUKqBPS.webp)
 
 图2 分区表间隙锁示例
 
@@ -53,7 +53,7 @@ insert into t values('2017-4-1',1),('2018-4-1',1);
 
 我们初始化表t的时候，只插入了两行数据， ftime的值分别是，‘2017-4-1’ 和’2018-4-1’ 。session A的select语句对索引ftime上这两个记录之间的间隙加了锁。如果是一个普通表的话，那么T1时刻，在表t的ftime索引上，间隙和加锁状态应该是图3这样的。
 
-![](https://static001.geekbang.org/resource/image/27/d2/273c9ca869f5b52621641d73eb6f72d2.jpg)
+![](https://s2.loli.net/2024/11/18/IhFSHfpP9rQto6Y.webp)
 
 图3 普通表的加锁范围
 
@@ -61,7 +61,7 @@ insert into t values('2017-4-1',1),('2018-4-1',1);
 
 但是，从上面的实验效果可以看出，session B的第一个insert语句是可以执行成功的。这是因为，对于引擎来说，p_2018和p_2019是两个不同的表，也就是说2017-4-1的下一个记录并不是2018-4-1，而是p_2018分区的supremum。所以T1时刻，在表t的ftime索引上，间隙和加锁的状态其实是图4这样的：
 
-![](https://static001.geekbang.org/resource/image/92/5c/92f63aba0b24adefac7316c75463b95c.jpg)
+![](https://s2.loli.net/2024/11/18/Cns8Tw9HNyAOdJX.webp)
 
 图4 分区表t的加锁范围
 
@@ -71,7 +71,7 @@ insert into t values('2017-4-1',1),('2018-4-1',1);
 
 图5就是这时候的show engine innodb status的部分结果。
 
-![](https://static001.geekbang.org/resource/image/e3/0f/e3d83d9ba89de9a6f541c9a2f24a3b0f.png)
+![](https://s2.loli.net/2024/11/18/PxMzUlFS1KEAjty.webp)
 
 图5 session B被锁住信息
 
@@ -79,7 +79,7 @@ insert into t values('2017-4-1',1),('2018-4-1',1);
 
 我首先用alter table t engine=myisam，把表t改成MyISAM表；然后，我再用下面这个例子说明，对于MyISAM引擎来说，这是4个表。
 
-![](https://static001.geekbang.org/resource/image/94/76/941306d4a7193455dcf1cfebf7678876.png)
+![](https://s2.loli.net/2024/11/18/KI1smijxSpwbNFt.webp)
 
 图6 用MyISAM表锁验证
 
@@ -105,7 +105,7 @@ insert into t values('2017-4-1',1),('2018-4-1',1);
 
 下图就是我创建的一个包含了很多分区的表t_myisam，执行一条插入语句后报错的情况。
 
-![](https://static001.geekbang.org/resource/image/ab/e7/abfa0054ec43d97fb18ba3c1c8829ae7.png)
+![](https://s2.loli.net/2024/11/18/TfljydOVbtZwuUJ.webp)
 
 图 7 insert 语句报错
 
@@ -129,11 +129,11 @@ MySQL从5.7.17开始，将MyISAM分区表标记为即将弃用(deprecated)，意
 
 这句话是什么意思呢？接下来，我就用下面这个例子来和你说明。如图8和图9所示，分别是这个例子的操作序列和执行结果图。
 
-![](https://static001.geekbang.org/resource/image/0e/81/0eca5a3190161e59ea58493915bd5e81.png)
+![](https://s2.loli.net/2024/11/18/O5LgIsq1SUMVxcn.webp)
 
 图8 分区表的MDL锁
 
-![](https://static001.geekbang.org/resource/image/af/a8/afe662f5e051a2ceb96a87624a589aa8.png)
+![](https://s2.loli.net/2024/11/18/skEQ3Bbz4m75SZR.webp)
 
 图9 show processlist结果
 

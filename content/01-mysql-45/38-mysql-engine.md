@@ -25,7 +25,7 @@ insert into t2 values(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(0,0)
 
 然后，我分别执行select * from t1和select * from t2。
 
-![](https://static001.geekbang.org/resource/image/3f/e6/3fb1100b6e3390357d4efff0ba4765e6.png)
+![](https://s2.loli.net/2024/11/18/C3deWMfErX6oNT9.webp)
 
 图1 两个查询结果-0的位置
 
@@ -35,7 +35,7 @@ insert into t2 values(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(0,0)
 
 表t2用的是InnoDB引擎，它的主键索引id的组织方式，你已经很熟悉了：InnoDB表的数据就放在主键索引树上，主键索引是B+树。所以表t2的数据组织方式如下图所示：
 
-![](https://static001.geekbang.org/resource/image/4e/8d/4e29e4f9db55ace6ab09161c68ad8c8d.jpg)
+![](https://s2.loli.net/2024/11/18/7pFZlOXnyhvATEu.webp)
 
 图2 表t2的数据组织
 
@@ -43,7 +43,7 @@ insert into t2 values(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(0,0)
 
 与InnoDB引擎不同，Memory引擎的数据和索引是分开的。我们来看一下表t1中的数据内容。
 
-![](https://static001.geekbang.org/resource/image/dd/84/dde03e92074cecba4154d30cd16a9684.jpg)
+![](https://s2.loli.net/2024/11/18/oUnib9zAxBryhvE.webp)
 
 图3 表t1 的数据组织
 
@@ -97,7 +97,7 @@ alter table t1 add index a_btree_index using btree (id);
 
 这时，表t1的数据组织形式就变成了这样：
 
-![](https://static001.geekbang.org/resource/image/17/e3/1788deca56cb83c114d8353c92e3bde3.jpg)
+![](https://s2.loli.net/2024/11/18/CaA69LV2ftJxovS.webp)
 
 图4 表t1的数据组织--增加B-Tree索引
 
@@ -105,7 +105,7 @@ alter table t1 add index a_btree_index using btree (id);
 
 作为对比，你可以看一下这下面这两个语句的输出：
 
-![](https://static001.geekbang.org/resource/image/a8/8a/a85808fcccab24911d257d720550328a.png)
+![](https://s2.loli.net/2024/11/18/ZXHna9xkASQIUBD.webp)
 
 图5 使用B-Tree和hash索引查询返回结果对比
 
@@ -128,13 +128,13 @@ alter table t1 add index a_btree_index using btree (id);
 
 需要注意的是，这里的表锁跟之前我们介绍过的MDL锁不同，但都是表级的锁。接下来，我通过下面这个场景，跟你模拟一下内存表的表级锁。
 
-![](https://static001.geekbang.org/resource/image/f2/29/f216e2d707559ed2ca98fbe21e509f29.png)
+![](https://s2.loli.net/2024/11/18/pXSRyD8NqKGd4Uk.webp)
 
 图6 内存表的表锁--复现步骤
 
 在这个执行序列里，session A的update语句要执行50秒，在这个语句执行期间session B的查询会进入锁等待状态。session C的show processlist 结果输出如下：
 
-![](https://static001.geekbang.org/resource/image/14/16/14d88076dad6db573f0b66f2c17df916.png)
+![](https://s2.loli.net/2024/11/18/EzesjNdYWTck1Ct.webp)
 
 图7 内存表的表锁--结果
 
@@ -150,7 +150,7 @@ alter table t1 add index a_btree_index using btree (id);
 
 **我们先看看M-S架构下，使用内存表存在的问题。**
 
-![](https://static001.geekbang.org/resource/image/5b/e9/5b910e4c0f1afa219aeecd1f291c95e9.jpg)
+![](https://s2.loli.net/2024/11/18/p6zGyLUawEPY3vl.webp)
 
 图8 M-S基本架构
 
@@ -173,7 +173,7 @@ alter table t1 add index a_btree_index using btree (id);
 
 **如果你使用是如图9所示的双M结构的话：**
 
-![](https://static001.geekbang.org/resource/image/40/57/4089c9c1f92ce61d2ed779fd0932ba57.jpg)
+![](https://s2.loli.net/2024/11/18/P4WG2T198CpKNsI.webp)
 
 图9 双M结构
 
@@ -226,7 +226,7 @@ insert into temp_t select * from t2 where b>=1 and b<=2000;
 select * from t1 join temp_t on (t1.b=temp_t.b);
 ```
 
-![](https://static001.geekbang.org/resource/image/a4/92/a468ba6d14ea225623074b6255b99f92.png)
+![](https://s2.loli.net/2024/11/18/KH53o6baqTnRupE.webp)
 
 图10 使用内存临时表的执行效果
 
