@@ -12,6 +12,8 @@ tags:
   - 分布式系统
 ---
 
+本文转载自[Distributed systems: for fun and profit](http://book.mixu.net/distsys/)，仅限学习交流，如有侵权，联系本人删除
+
 ## Introduction
 
 I wanted a text that would bring together the ideas behind many of the more recent distributed systems - systems such as Amazon's Dynamo, Google's BigTable and MapReduce, Apache's Hadoop and so on.
