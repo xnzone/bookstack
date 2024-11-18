@@ -1,10 +1,10 @@
 ---
 author: mixu
 title: Distributed systems at a high level
-date: 2022-09-10 10:23:32
-image: /covers/distr-fun.png
+date: 2024-04-10 10:23:32
+image: /covers/distr-fun.jpg
 cover: false
-weight: 401
+weight: 301
 tags: ["distributed system", "分布式系统"]
 ---
 
