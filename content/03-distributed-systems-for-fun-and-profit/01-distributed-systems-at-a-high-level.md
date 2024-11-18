@@ -23,7 +23,7 @@ It is a current reality that the best value is in mid-range, commodity hardware 
 
 Computations primarily benefit from high-end hardware to the extent to which they can replace slow network accesses with internal memory accesses. The performance advantage of high-end hardware is limited in tasks that require large amounts of communication between nodes.
 
-![cost-efficiency](https://book.mixu.net/distsys/images/barroso_holzle.png)
+![](https://s2.loli.net/2024/11/18/rt2wExMBfbcoGT9.png)
 
 As the figure above from [Barroso, Clidaras & Hölzle](http://www.morganclaypool.com/doi/abs/10.2200/S00516ED2V01Y201306CAC024) shows, the performance gap between high-end and commodity hardware decreases with cluster size assuming a uniform memory access pattern across all nodes.
 
@@ -187,7 +187,7 @@ There are two basic techniques that can be applied to a data set. It can be spli
 
 The picture below illustrates the difference between these two: partitioned data (A and B below) is divided into independent sets, while replicated data (C below) is copied to multiple locations.
 
-![Partition and replicate](https://book.mixu.net/distsys/images/part-repl.png)
+![](https://s2.loli.net/2024/11/18/rOgTMCFoeGn2d3Z.png)
 
 This is the one-two punch for solving any problem where distributed computing plays a role. Of course, the trick is in picking the right technique for your concrete implementation; there are many algorithms that implement replication and partitioning, each with different limitations and advantages which need to be assessed against your design objectives.
 
