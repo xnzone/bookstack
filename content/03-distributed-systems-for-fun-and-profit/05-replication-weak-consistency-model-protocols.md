@@ -365,10 +365,10 @@ Then, if we know that some computation is logically monotonic, then we know that
 
 To better understand this, we need to contrast monotonic logic (or monotonic computations) with [non-monotonic logic](http://plato.stanford.edu/entries/logic-nonmonotonic/) (or non-monotonic computations).
 
-<dl>
-  <dt>Monotony</dt>
-  <dd>if sentence `φ` is a consequence of a set of premises `Γ`, then it can also be inferred from any set `Δ` of premises extending `Γ`</dd>
-</dl>
+
+**Monotony**
+> if sentence `φ` is a consequence of a set of premises `Γ`, then it can also be inferred from any set `Δ` of premises extending `Γ`
+
 
 Most standard logical frameworks are monotonic: any inferences made within a framework such as first-order logic, once deductively valid, cannot be invalidated by new information. A non-monotonic logic is a system in which that property does not hold - in other words, if some conclusions can be invalidated by learning new knowledge.
 
