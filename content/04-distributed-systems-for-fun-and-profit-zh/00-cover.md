@@ -2,7 +2,7 @@
 author: mixu
 title: "趣谈分布式系统"
 date: 2024-09-10 10:23:32
-image: /covers/distr-fun.jpg
+image: /covers/distr-fun-zh.jpg
 cover: true
 weight: 4
 tags:
