@@ -7,6 +7,7 @@ import (
     "path/filepath"
     "strings"
     "encoding/json"
+    "sort"
 )
 
 // 菜单项结构
@@ -156,7 +157,7 @@ func generateContentFiles(contentDir, outputDir string, menu []*MenuItem) {
             }
             generateIndex(item.Children)
             if cover := findCover(item.ID, item.Children); cover != nil {
-                item.Title = cover.Title
+                item.Title = ""
                 relPath, _ := filepath.Rel(contentDir, cover.Path)
                 jsPath := strings.TrimSuffix(relPath, ".md")
                 indexContent += fmt.Sprintf("  '%s': require('./content/%s.js'),\n", 
@@ -165,6 +166,12 @@ func generateContentFiles(contentDir, outputDir string, menu []*MenuItem) {
             if book := findBookCollapseSection(item.ID, item.Children); book != nil {
                 item.Title = book.Title
             }
+            sort.Slice(item.Children, func(i, j int) bool {
+                if item.Children[i].cover {
+                    return true
+                }
+                return false
+            })
         }
     }
     generateIndex(menu)
