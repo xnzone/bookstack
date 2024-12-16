@@ -25,7 +25,7 @@ type MenuItem struct {
 func main() {
     // 基础配置
     contentDir := "../content"
-    outputDir := "../../../wxmp-bookstack/detail/docs"
+    outputDir := "./wxmp-bookstack/detail/docs"
 
     // 创建输出目录
     os.MkdirAll(outputDir, 0755)
