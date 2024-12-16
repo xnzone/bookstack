@@ -16,15 +16,16 @@ type MenuItem struct {
     Title    string      `json:"title"`
     Path     string      `json:"-"`
     Children []*MenuItem  `json:"children,omitempty"`
-    bookCollapseSection bool
-    dir string
-    cover bool
+
+    bookCollapseSection bool // 是否折叠一级目录
+    dir string // 如果是目录，存目录名
+    cover bool // 是否是封面，封面优先排
 }
 
 func main() {
     // 基础配置
     contentDir := "../content"
-    outputDir := "./miniprogram/docs"
+    outputDir := "../../../wxmp-bookstack/detail/docs"
 
     // 创建输出目录
     os.MkdirAll(outputDir, 0755)
@@ -37,8 +38,29 @@ func main() {
     // 生成内容文件
     generateContentFiles(contentDir, outputDir, menu)    
     
+    // 过滤_index的menu
+    var removeIndex func(items []*MenuItem) []*MenuItem
+    removeIndex = func(items []*MenuItem) []*MenuItem {
+        var children []*MenuItem
+        if len(items) <= 0 {
+            return children
+        }
+        for _, item := range items {
+            if item == nil {
+                continue
+            }
+            if len(item.Children) <= 0 && item.bookCollapseSection {
+                continue
+            }
+            item.Children = removeIndex(item.Children)
+            children = append(children, item)
+        }
+        return children
+    }
+    menus := removeIndex(menu)
+
     // 生成菜单JSON文件
-    menuJSON, _ := json.MarshalIndent(menu, "", "  ")
+    menuJSON, _ := json.MarshalIndent(menus, "", "  ")
     ioutil.WriteFile(filepath.Join(outputDir, "menu.js"), 
         []byte("export const menuConfig = "+string(menuJSON)), 0644)
 }
