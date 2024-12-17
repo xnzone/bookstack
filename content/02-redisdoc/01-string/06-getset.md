@@ -8,7 +8,7 @@ weight: 106
 tags: ["Redis", "字符串", "GETSET"]
 ---
 
-# GETSET key value[
+# GETSET key value
 
 > 可用版本： >= 1.0.0
 > 
