@@ -10,3 +10,5 @@
 btw目录存的是go文件，把markdown转换成为微信小程序的脚本代码
 
 微信小程序源代码参考 [wxmp-bookstack](https://github.com/xnzone/wxmp-bookstack.git)
+
+![](https://s2.loli.net/2024/12/18/5HbIe4BowtUzJ61.jpg)
