@@ -11,7 +11,7 @@ tags:
   - SWAPDB
 ---
 
-# SWAPDB db1 db2[](#swapdb-db1-db2 "Permalink to this headline")
+# SWAPDB db1 db2
 
 > 版本要求： >= 4.0.0
 > 
@@ -19,11 +19,11 @@ tags:
 
 对换指定的两个数据库， 使得两个数据库的数据立即互换。
 
-## 返回值[](#id1 "Permalink to this headline")
+## 返回值
 
 `OK`
 
-## 代码示例[](#id2 "Permalink to this headline")
+## 代码示例
 
 ```bash
 # 对换数据库 0 和数据库 1

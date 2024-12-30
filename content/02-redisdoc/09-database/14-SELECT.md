@@ -11,7 +11,7 @@ tags:
   - SELECT
 ---
 
-# SELECT index[](#select-index "Permalink to this headline")
+# SELECT index
 
 > 可用版本： >= 1.0.0
 > 
@@ -21,11 +21,11 @@ tags:
 
 默认使用 `0` 号数据库。
 
-## 返回值[](#id1 "Permalink to this headline")
+## 返回值
 
 `OK`
 
-## 代码示例[](#id2 "Permalink to this headline")
+## 代码示例
 
 ```bash
 redis> SET db_number 0         # 默认使用 0 号数据库
