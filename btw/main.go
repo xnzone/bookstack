@@ -139,8 +139,9 @@ func generateContentFiles(contentDir, outputDir string, menu []*MenuItem) {
 
             // 如果不是section，则生成内容文件
             if !item.bookCollapseSection {
+                
                 jsContent := fmt.Sprintf("module.exports = `%s`;", 
-                    strings.ReplaceAll(contentStr, "`", "\\`"))
+                    strings.ReplaceAll(strings.ReplaceAll(contentStr, "`\\`", "`\\\\`"), "`", "\\`"))
                 
                 // 保持原有目录结构
                 relPath := strings.TrimPrefix(item.Path, contentDir)
