@@ -4,7 +4,7 @@ title: HDEL
 date: 2024-03-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 205
+weight: 2205
 tags:
   - Redis
   - 哈希表

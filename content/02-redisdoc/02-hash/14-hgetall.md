@@ -4,7 +4,7 @@ title: HGETALL
 date: 2024-03-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 214
+weight: 2214
 tags:
   - Redis
   - 哈希表
