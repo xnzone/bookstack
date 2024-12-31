@@ -4,7 +4,7 @@ title: SCAN
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 910
+weight: 2910
 tags:
   - Redis
   - 数据库

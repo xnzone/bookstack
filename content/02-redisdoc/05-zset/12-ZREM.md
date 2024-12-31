@@ -4,7 +4,7 @@ title: ZREM
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 512
+weight: 2512
 tags:
   - Redis
   - 集合

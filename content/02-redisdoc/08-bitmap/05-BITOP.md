@@ -4,7 +4,7 @@ title: BITOP
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 805
+weight: 2805
 tags:
   - Redis
   - 位图

@@ -4,7 +4,7 @@ title: GEODIST
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 703
+weight: 2703
 tags:
   - Redis
   - 地理位置

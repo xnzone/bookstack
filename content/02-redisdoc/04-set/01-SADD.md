@@ -4,7 +4,7 @@ title: SADD
 date: 2024-03-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 401
+weight: 2401
 tags:
   - Redis
   - 集合

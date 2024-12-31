@@ -4,7 +4,7 @@ title: ZADD
 date: 2024-10-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 501
+weight: 2501
 tags:
   - Redis
   - 集合

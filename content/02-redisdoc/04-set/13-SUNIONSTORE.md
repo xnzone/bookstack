@@ -4,7 +4,7 @@ title: SUNIONSTORE
 date: 2024-10-28 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 413
+weight: 2413
 tags:
   - Redis
   - 集合

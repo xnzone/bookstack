@@ -4,7 +4,7 @@ title: GEOHASH
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 706
+weight: 2706
 tags:
   - Redis
   - 地理位置
