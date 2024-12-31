@@ -4,7 +4,7 @@ title: RENAMENX
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2904
+weight: 20904
 tags:
   - Redis
   - 数据库

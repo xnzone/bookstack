@@ -4,7 +4,7 @@ title: ZINCRBY
 date: 2024-10-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2503
+weight: 20503
 tags:
   - Redis
   - 集合

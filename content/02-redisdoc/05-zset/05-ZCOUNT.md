@@ -4,7 +4,7 @@ title: ZCOUNT
 date: 2024-10-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2505
+weight: 20505
 tags:
   - Redis
   - 集合

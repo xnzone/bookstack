@@ -4,7 +4,7 @@ title: SELECT
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2914
+weight: 20914
 tags:
   - Redis
   - 数据库

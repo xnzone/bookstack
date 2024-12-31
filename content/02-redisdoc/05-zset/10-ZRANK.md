@@ -4,7 +4,7 @@ title: ZRANK
 date: 2024-12-16 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2510
+weight: 20510
 tags:
   - Redis
   - 集合

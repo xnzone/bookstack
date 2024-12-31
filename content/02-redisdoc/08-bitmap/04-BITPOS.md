@@ -4,7 +4,7 @@ title: BITPOS
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2804
+weight: 20804
 tags:
   - Redis
   - 位图

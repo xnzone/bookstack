@@ -4,7 +4,7 @@ title: FLUSHDB
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2912
+weight: 20912
 tags:
   - Redis
   - 数据库

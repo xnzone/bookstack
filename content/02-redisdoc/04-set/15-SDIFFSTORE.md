@@ -4,7 +4,7 @@ title: SDIFFSTORE
 date: 2024-10-28 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2415
+weight: 20415
 tags:
   - Redis
   - 集合

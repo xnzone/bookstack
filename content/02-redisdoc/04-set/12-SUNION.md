@@ -4,7 +4,7 @@ title: SUNION
 date: 2024-10-28 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2412
+weight: 20412
 tags:
   - Redis
   - 集合

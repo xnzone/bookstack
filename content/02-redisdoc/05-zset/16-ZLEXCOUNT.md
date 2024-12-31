@@ -4,7 +4,7 @@ title: ZLEXCOUNT
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 2516
+weight: 20516
 tags:
   - Redis
   - 集合
