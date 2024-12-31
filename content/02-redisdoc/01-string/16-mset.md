@@ -4,7 +4,7 @@ title: MSET
 date: 2024-03-10 17:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 116
+weight: 2116
 tags: ["Redis", "字符串", "MSET"]
 ---
 

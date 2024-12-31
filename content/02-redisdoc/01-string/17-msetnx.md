@@ -4,7 +4,7 @@ title: MSETNX
 date: 2024-03-10 17:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 117
+weight: 2117
 tags: ["Redis", "字符串", "MSETNX"]
 ---
 

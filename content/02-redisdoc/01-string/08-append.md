@@ -4,7 +4,7 @@ title: APPEND
 date: 2024-03-10 17:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 108 
+weight: 2108 
 tags: ["Redis", "字符串", "APPEND"]
 ---
 

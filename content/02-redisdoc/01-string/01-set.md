@@ -4,7 +4,7 @@ title: SET
 date: 2024-03-07 15:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
-weight: 101 
+weight: 2101 
 tags: ["Redis", "字符串", "SET"]
 ---
 
