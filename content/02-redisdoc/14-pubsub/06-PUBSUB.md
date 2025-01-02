@@ -11,7 +11,7 @@ tags:
   - PUBSUB
 ---
 
-# PUBSUB <subcommand> [argument [argument …]]
+# PUBSUB \<subcommand\> [argument [argument …]]
 
 > 可用版本：>= 2.8.0
 
