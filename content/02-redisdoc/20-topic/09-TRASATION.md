@@ -13,9 +13,8 @@ tags:
 
 # 事务（transaction）
 
-Note
-
-本文档翻译自： [http://redis.io/topics/transactions](http://redis.io/topics/transactions) 。
+> **Note:**  
+> 本文档翻译自： [http://redis.io/topics/transactions](http://redis.io/topics/transactions) 。
 
 [MULTI](../transaction/multi.html#multi) 、 [EXEC](../transaction/exec.html#exec) 、 [DISCARD](../transaction/discard.html#discard) 和 [WATCH](../transaction/watch.html#watch) 是 Redis 事务的基础。
 
@@ -53,6 +52,7 @@ Note
 
 以下是一个事务例子， 它原子地增加了 `foo` 和 `bar` 两个键的值：
 
+```bash
 > MULTI
 OK
 
@@ -65,6 +65,7 @@ QUEUED
 > EXEC
 1) (integer) 1
 2) (integer) 1
+```
 
 [EXEC](../transaction/exec.html#exec) 命令的回复是一个数组， 数组中的每个元素都是执行事务中的命令所产生的回复。 其中， 回复元素的先后顺序和命令发送的先后顺序一致。
 
@@ -89,6 +90,7 @@ QUEUED
 
 从协议的角度来看这个问题，会更容易理解一些。 以下例子中， [LPOP key](../list/lpop.html#lpop) 命令的执行将出错， 尽管调用它的语法是正确的：
 
+```bash
 Trying 127.0.0.1...
 Connected to localhost.
 Escape character is '^]'.
@@ -108,6 +110,7 @@ EXEC
 *2
 +OK
 -ERR Operation against a key holding the wrong kind of value
+```
 
 [EXEC](../transaction/exec.html#exec) 返回两条批量回复（bulk reply）： 第一条是 `OK` ，而第二条是 `-ERR` 。 至于怎样用合适的方法来表示事务中的错误， 则是由客户端自己决定的。
 
@@ -115,11 +118,13 @@ EXEC
 
 以下例子展示的是另一种情况， 当命令在入队时产生错误， 错误会立即被返回给客户端：
 
+```bash
 MULTI
 +OK
 
 INCR a b c
 -ERR wrong number of arguments for 'incr' command
+```
 
 因为调用 [INCR key](../string/incr.html#incr) 命令的参数格式不正确， 所以这个 [INCR key](../string/incr.html#incr) 命令入队失败。
 
@@ -142,6 +147,7 @@ INCR a b c
 
 当执行 [DISCARD](../transaction/discard.html#discard) 命令时， 事务会被放弃， 事务队列会被清空， 并且客户端会从事务状态中退出：
 
+```bash
 redis> SET foo 1
 OK
 
@@ -156,6 +162,7 @@ OK
 
 redis> GET foo
 "1"
+```
 
 ## 使用 check-and-set 操作实现乐观锁
 
@@ -167,9 +174,11 @@ redis> GET foo
 
 首先我们可能会这样做：
 
+```bash
 val = GET mykey
 val = val + 1
 SET mykey $val
+```
 
 上面的这个实现在只有一个客户端的时候可以执行得很好。 但是， 当多个客户端同时对同一个键进行这样的操作时， 就会产生竞争条件。
 
@@ -177,6 +186,7 @@ SET mykey $val
 
 有了 [WATCH](../transaction/watch.html#watch) ， 我们就可以轻松地解决这类问题了：
 
+```bash
 WATCH mykey
 
 val = GET mykey
@@ -185,6 +195,7 @@ val = val + 1
 MULTI
 SET mykey $val
 EXEC
+```
 
 使用上面的代码， 如果在 [WATCH](../transaction/watch.html#watch) 执行之后， [EXEC](../transaction/exec.html#exec) 执行之前， 有其他客户端修改了 `mykey` 的值， 那么当前客户端的事务就会失败。 程序需要做的， 就是不断重试这个操作， 直到没有发生碰撞为止。
 
@@ -194,16 +205,17 @@ EXEC
 
 [WATCH](../transaction/watch.html#watch) 使得 [EXEC](../transaction/exec.html#exec) 命令需要有条件地执行： 事务只能在所有被监视键都没有被修改的前提下执行， 如果这个前提不能满足的话，事务就不会被执行。
 
-Note
-
-如果你使用 [WATCH](../transaction/watch.html#watch) 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行， 关于这方面的详细情况，请看这个帖子： [http://code.google.com/p/redis/issues/detail?id=270](http://code.google.com/p/redis/issues/detail?id=270)
+> **Note:**  
+> 如果你使用 [WATCH](../transaction/watch.html#watch) 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行， 关于这方面的详细情况，请看这个帖子： [http://code.google.com/p/redis/issues/detail?id=270](http://code.google.com/p/redis/issues/detail?id=270)
 
 [WATCH](../transaction/watch.html#watch) 命令可以被调用多次。 对键的监视从 [WATCH](../transaction/watch.html#watch) 执行之后开始生效， 直到调用 [EXEC](../transaction/exec.html#exec) 为止。
 
 用户还可以在单个 [WATCH](../transaction/watch.html#watch) 命令中监视任意多个键， 就像这样：
 
+```bash
 redis> WATCH key1 key2 key3
 OK
+```
 
 当 [EXEC](../transaction/exec.html#exec) 被调用时， 不管事务是否成功执行， 对所有键的监视都会被取消。
 
@@ -217,11 +229,13 @@ OK
 
 举个例子， 以下代码实现了原创的 `ZPOP` 命令， 它可以原子地弹出有序集合中分值（score）最小的元素：
 
+```bash
 WATCH zset
 element = ZRANGE zset 0 0
 MULTI
     ZREM zset element
 EXEC
+```
 
 程序只要重复执行这段代码， 直到 [EXEC](../transaction/exec.html#exec) 的返回值不是空多条回复（null multi-bulk reply）即可。
 

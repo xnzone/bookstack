@@ -1,6 +1,6 @@
 ---
 author: 黄健宏
-title: 键空间通知（keyspace notification）
+title: 键空间通知
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
@@ -8,13 +8,13 @@ weight: 22006
 tags:
   - Redis
   - 功能文档
-  - 键空间通知（keyspace notification）
+  - 键空间通知
 ---
 
 # 键空间通知（keyspace notification）
 
->Note
->本文档翻译自： [http://redis.io/topics/notifications](http://redis.io/topics/notifications) 。
+> **Note:**  
+> 本文档翻译自： [http://redis.io/topics/notifications](http://redis.io/topics/notifications) 。
 
 >Warning
 >键空间通知功能目前仍在开发中，这个文档所描述的内容，以及功能的具体实现，可能会在未来数周内改变，敬请知悉。
@@ -168,9 +168,8 @@ PUBLISH __keyevent@0__:del mykey
 - 每当一个键因为 `maxmemory` 政策而被删除以回收内存时，产生一个 `evicted` 通知。
     
 
-Note
-
-所有命令都只在键**真的**被改动了之后，才会产生通知。
+> **Note:**  
+> 所有命令都只在键**真的**被改动了之后，才会产生通知。
 
 比如说，当 [SREM key member [member …]](../set/srem.html#srem) 试图删除不存在于集合的元素时，删除操作会执行失败，因为没有真正的改动键，所以这一操作不会发送通知。
 

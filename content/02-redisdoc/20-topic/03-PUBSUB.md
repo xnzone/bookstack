@@ -13,9 +13,8 @@ tags:
 
 # 发布与订阅（pub/sub）
 
-Note
-
-本文档翻译自： [http://redis.io/topics/pubsub](http://redis.io/topics/pubsub) 。
+> **Note:**  
+> 本文档翻译自： [http://redis.io/topics/pubsub](http://redis.io/topics/pubsub) 。
 
 [SUBSCRIBE channel [channel …]](../pubsub/subscribe.html#subscribe) 、 [UNSUBSCRIBE [channel [channel …]]](../pubsub/unsubscribe.html#unsubscribe) 和 [PUBLISH channel message](../pubsub/publish.html#publish) 三个命令实现了[发布与订阅信息泛型](http://en.wikipedia.org/wiki/Publish/subscribe)（Publish/Subscribe messaging paradigm）， 在这个实现中， 发送者（发送信息的客户端）不是将信息直接发送给特定的接收者（接收信息的客户端）， 而是将信息发送给频道（channel）， 然后由频道将信息转发给所有对这个频道感兴趣的订阅者。
 

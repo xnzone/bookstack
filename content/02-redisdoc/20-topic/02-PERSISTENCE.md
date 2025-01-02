@@ -1,6 +1,6 @@
 ---
 author: 黄健宏
-title: 持久化（persistence）
+title: 持久化
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
@@ -8,14 +8,13 @@ weight: 22002
 tags:
   - Redis
   - 功能文档
-  - 持久化（persistence）
+  - 持久化
 ---
 
 # 持久化（persistence）
 
-Note
-
-本文档翻译自 [http://redis.io/topics/persistence](http://redis.io/topics/persistence) 。
+> **Note:**  
+> 本文档翻译自 [http://redis.io/topics/persistence](http://redis.io/topics/persistence) 。
 
 这篇文章提供了 Redis 持久化的技术性描述， 推荐所有 Redis 用户阅读。
 
@@ -82,9 +81,8 @@ Redis 提供了多种不同级别的持久化方式：
 
 有很多用户都只使用 AOF 持久化， 但我们并不推荐这种方式： 因为定时生成 RDB 快照（snapshot）非常便于进行数据库备份， 并且 RDB 恢复数据集的速度也要比 AOF 恢复的速度要快， 除此之外， 使用 RDB 还可以避免之前提到的 AOF 程序的 bug 。
 
-Note
-
-因为以上提到的种种原因， 未来我们可能会将 AOF 和 RDB 整合成单个持久化模型。 （这是一个长期计划。）
+> **Note:**  
+> 因为以上提到的种种原因， 未来我们可能会将 AOF 和 RDB 整合成单个持久化模型。 （这是一个长期计划。）
 
 接下来的几个小节将介绍 RDB 和 AOF 的更多细节。
 
@@ -225,13 +223,11 @@ AOF 重写和 RDB 创建快照一样，都巧妙地利用了写时复制机制�
 
 步骤 3 执行的第二条命令用于关闭 RDB 功能。 这一步是可选的， 如果你愿意的话， 也可以同时使用 RDB 和 AOF 这两种持久化功能。
 
-Note
-
-别忘了在 `redis.conf` 中打开 AOF 功能！ 否则的话， 服务器重启之后， 之前通过 `CONFIG SET` 设置的配置就会被遗忘， 程序会按原来的配置来启动服务器。
-
-Note
-
-译注： 原文这里还有介绍 2.0 版本的切换方式， 考虑到 2.0 已经很老旧了， 这里省略了对那部分文档的翻译， 有需要的请参考原文。
+> **Note:**  
+> 别忘了在 `redis.conf` 中打开 AOF 功能！ 否则的话， 服务器重启之后， 之前通过 `CONFIG SET` 设置的配置就会被遗忘， 程序会按原来的配置来启动服务器。
+<br>
+> **Note:**  
+> 译注： 原文这里还有介绍 2.0 版本的切换方式， 考虑到 2.0 已经很老旧了， 这里省略了对那部分文档的翻译， 有需要的请参考原文。
 
 ## RDB 和 AOF 之间的相互作用
 

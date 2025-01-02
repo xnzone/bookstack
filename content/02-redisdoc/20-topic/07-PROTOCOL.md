@@ -1,6 +1,6 @@
 ---
 author: 黄健宏
-title: 通信协议（protocol）
+title: 通信协议
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
@@ -8,7 +8,7 @@ weight: 22007
 tags:
   - Redis
   - 功能文档
-  - 通信协议（protocol）
+  - 通信协议
 ---
 
 # 通信协议（protocol）
@@ -54,9 +54,8 @@ $<参数 1 的字节数量> CR LF
 $<参数 N 的字节数量> CR LF
 <参数 N 的数据> CR LF
 
-Note
-
-译注：命令本身也作为协议的其中一个参数来发送。
+> **Note:**  
+> 译注：命令本身也作为协议的其中一个参数来发送。
 
 举个例子， 以下是一个命令协议的打印版本：
 

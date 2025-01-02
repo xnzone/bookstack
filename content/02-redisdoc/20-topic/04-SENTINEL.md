@@ -13,9 +13,8 @@ tags:
 
 # Sentinel
 
-Note
-
-本文档翻译自： [http://redis.io/topics/sentinel](http://redis.io/topics/sentinel) 。
+> **Note:**  
+> 本文档翻译自： [http://redis.io/topics/sentinel](http://redis.io/topics/sentinel) 。
 
 Redis 的 Sentinel 系统用于管理多个 Redis 服务器（instance）， 该系统执行以下三个任务：
 
@@ -30,9 +29,8 @@ Redis Sentinel 是一个分布式系统， 你可以在一个架构中运行多�
 
 虽然 Redis Sentinel 释出为一个单独的可执行文件 `redis-sentinel` ， 但实际上它只是一个运行在特殊模式下的 Redis 服务器， 你可以在启动一个普通 Redis 服务器时通过给定 `--sentinel` 选项来启动 Redis Sentinel 。
 
-Warning
-
-Redis Sentinel 目前仍在开发中， 这个文档的内容可能随着 Sentinel 实现的修改而变更。
+> ⚠️ **Warning:**  
+> Redis Sentinel 目前仍在开发中， 这个文档的内容可能随着 Sentinel 实现的修改而变更。
 
 Redis Sentinel 兼容 Redis 2.4.16 或以上版本， 推荐使用 Redis 2.8.0 或以上的版本。
 
@@ -299,9 +297,8 @@ Sentinel 接受 Redis 协议格式的命令请求， 所以你可以使用 `red
 - 当所有从服务器都已经开始复制新的主服务器时， 领头 Sentinel 终止这次故障迁移操作。
     
 
-Note
-
-每当一个 Redis 实例被重新配置（reconfigured） —— 无论是被设置成主服务器、从服务器、又或者被设置成其他主服务器的从服务器 —— Sentinel 都会向被重新配置的实例发送一个 `CONFIG REWRITE` 命令， 从而确保这些配置会持久化在硬盘里。
+> **Note:**  
+> 每当一个 Redis 实例被重新配置（reconfigured） —— 无论是被设置成主服务器、从服务器、又或者被设置成其他主服务器的从服务器 —— Sentinel 都会向被重新配置的实例发送一个 `CONFIG REWRITE` 命令， 从而确保这些配置会持久化在硬盘里。
 
 Sentinel 使用以下规则来选择新的主服务器：
 
@@ -371,9 +368,8 @@ TILT 模式是一种特殊的保护模式： 当 Sentinel 发现系统有些不�
 
 ## 处理 `-BUSY` 状态
 
-Warning
-
-该功能尚未实现
+> ⚠️ **Warning:**  
+> 该功能尚未实现
 
 当 Lua 脚本的运行时间超过指定时限时， Redis 就会返回 `-BUSY` 错误。
 

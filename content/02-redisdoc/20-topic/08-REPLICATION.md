@@ -1,6 +1,6 @@
 ---
 author: 黄健宏
-title: 复制（Replication）
+title: 复制
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
@@ -8,14 +8,13 @@ weight: 22008
 tags:
   - Redis
   - 功能文档
-  - 复制（Replication）
+  - 复制
 ---
 
-# 复制（Replication）
+# 复制
 
-Note
-
-本文档翻译自： [http://redis.io/topics/replication](http://redis.io/topics/replication) 。
+> **Note:**  
+> 本文档翻译自： [http://redis.io/topics/replication](http://redis.io/topics/replication) 。
 
 Redis 支持简单且易用的主从复制（master-slave replication）功能， 该功能可以让从服务器(slave server)成为主服务器(master server)的精确复制品。
 
@@ -94,14 +93,18 @@ Redis 2.8 的这个部分重同步特性会用到一个新增的 [PSYNC master_
 
 配置一个从服务器非常简单， 只要在配置文件中增加以下的这一行就可以了：
 
+```bash
 slaveof 192.168.1.1 6379
+```
 
 当然， 你需要将代码中的 `192.168.1.1` 和 `6379` 替换成你的主服务器的 IP 和端口号。
 
 另外一种方法是调用 [SLAVEOF host port](../replication/slaveof.html#slaveof) 命令， 输入主服务器的 IP 和端口， 然后同步就会开始：
 
+```bash
 127.0.0.1:6379> SLAVEOF 192.168.1.1 10086
 OK
+```
 
 ## 只读从服务器
 
@@ -123,11 +126,15 @@ OK
 
 对于一个正在运行的服务器， 可以使用客户端输入以下命令：
 
+```bash
 config set masterauth <password>
+```
 
 要永久地设置这个密码， 那么可以将它加入到配置文件中：
 
+```bash
 masterauth <password>
+```
 
 另外还有几个选项， 它们和主服务器执行部分重同步时所使用的复制流缓冲区有关， 详细的信息可以参考 Redis 源码中附带的 `redis.conf` 示例文件。
 

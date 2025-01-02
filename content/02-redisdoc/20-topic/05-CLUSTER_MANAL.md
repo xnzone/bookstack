@@ -13,9 +13,8 @@ tags:
 
 # 集群教程
 
-Note
-
-本文档翻译自 [http://redis.io/topics/cluster-tutorial](http://redis.io/topics/cluster-tutorial) 。
+> **Note:**  
+> 本文档翻译自 [http://redis.io/topics/cluster-tutorial](http://redis.io/topics/cluster-tutorial) 。
 
 本文档是 Redis 集群的入门教程， 从用户的角度介绍了设置、测试和操作集群的方法。
 
@@ -85,9 +84,8 @@ Redis 集群**不保证数据的强一致性**（strong consistency）： 在特
 
 如你所见， 主节点对命令的复制工作发生在返回命令回复之后， 因为如果每次处理命令请求都需要等待复制操作完成的话， 那么主节点处理命令请求的速度将极大地降低 —— 我们必须在性能和一致性之间做出权衡。
 
-Note
-
-如果真的有必要的话， Redis 集群可能会在将来提供同步地（synchronou）执行写命令的方法。
+> **Note:**  
+> 如果真的有必要的话， Redis 集群可能会在将来提供同步地（synchronou）执行写命令的方法。
 
 Redis 集群另外一种可能会丢失命令的情况是， 集群出现网络分裂（[network partition](http://en.wikipedia.org/wiki/Network_partition)）， 并且一个客户端与至少包括一个主节点在内的少数（minority）实例被孤立。
 
@@ -437,9 +435,8 @@ $ ./redis-trib.rb reshard 127.0.0.1:7000
 What is the receiving node ID? 9991306f0e50640a5684f1958fd754b38fa034c9
 ```
 
-Note
-
-`redis-trib` 会打印出集群中所有节点的 ID ， 并且我们也可以通过执行以下命令来获得节点的运行 ID ：
+> **Note:**  
+> `redis-trib` 会打印出集群中所有节点的 ID ， 并且我们也可以通过执行以下命令来获得节点的运行 ID ：
 
 ```bash
 $ ./redis-cli -p 7000 cluster nodes | grep myself
@@ -575,9 +572,8 @@ OK
 
 ## 故障转移测试
 
-Note
-
-在执行本节操作的过程中， 请一直运行 `consistency-test` 程序。
+> **Note:**  
+> 在执行本节操作的过程中， 请一直运行 `consistency-test` 程序。
 
 要触发一次故障转移， 最简单的办法就是令集群中的某个主节点进入下线状态。
 
