@@ -1,6 +1,6 @@
 ---
 author: 黄健宏
-title: 事务（transaction）
+title: 事务
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
@@ -8,7 +8,7 @@ weight: 22009
 tags:
   - Redis
   - 功能文档
-  - 事务（transaction）
+  - 事务
 ---
 
 # 事务（transaction）

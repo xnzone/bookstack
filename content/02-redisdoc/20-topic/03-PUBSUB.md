@@ -1,6 +1,6 @@
 ---
 author: 黄健宏
-title: 发布与订阅（pub/sub）
+title: 发布与订阅
 date: 2024-12-29 10:32:21
 image: /covers/02-redisdoc.jpg
 cover: false
@@ -8,7 +8,7 @@ weight: 22003
 tags:
   - Redis
   - 功能文档
-  - 发布与订阅（pub/sub）
+  - 发布与订阅
 ---
 
 # 发布与订阅（pub/sub）

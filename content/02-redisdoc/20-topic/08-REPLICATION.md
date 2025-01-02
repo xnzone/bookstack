@@ -11,7 +11,7 @@ tags:
   - 复制
 ---
 
-# 复制
+# 复制（Replication）
 
 > **Note:**  
 > 本文档翻译自： [http://redis.io/topics/replication](http://redis.io/topics/replication) 。
