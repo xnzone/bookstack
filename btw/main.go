@@ -205,7 +205,8 @@ func generateContentFiles(contentDir, outputDir string, menu []*MenuItem) {
             return item.Children[i].ID < item.Children[j].ID
         })
         // 生成菜单JSON文件
-        menuJSON, _ := json.MarshalIndent([]*MenuItem{item}, "", "  ")
+        item.Children = removeIndex(item.Children)
+        menuJSON, _ := json.Marshal([]*MenuItem{item})
         ioutil.WriteFile(filepath.Join(outputDir, item.dir, "menu.js"), 
             []byte("export const menuConfig = "+string(menuJSON)), 0644)
     }
