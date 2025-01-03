@@ -20,52 +20,43 @@ type MenuItem struct {
     bookCollapseSection bool // 是否折叠一级目录
     dir string // 如果是目录，存目录名
     cover bool // 是否是封面，封面优先排
+    dirLevel int // 目录层级
 }
 
 func main() {
     // 基础配置
     contentDir := "../content"
-    outputDir := "./wxmp-bookstack/detail/docs"
+    outputDir := "./"
 
     // 创建输出目录
     os.MkdirAll(outputDir, 0755)
 
     // 生成菜单结构
-    menu := processDirectory(contentDir)
-
-
+    menu := processDirectory(contentDir, 1)
 
     // 生成内容文件
     generateContentFiles(contentDir, outputDir, menu)    
-    
-    // 过滤_index的menu
-    var removeIndex func(items []*MenuItem) []*MenuItem
-    removeIndex = func(items []*MenuItem) []*MenuItem {
-        var children []*MenuItem
-        if len(items) <= 0 {
-            return children
-        }
-        for _, item := range items {
-            if item == nil {
-                continue
-            }
-            if len(item.Children) <= 0 && item.bookCollapseSection {
-                continue
-            }
-            item.Children = removeIndex(item.Children)
-            children = append(children, item)
-        }
-        return children
-    }
-    menus := removeIndex(menu)
-
-    // 生成菜单JSON文件
-    menuJSON, _ := json.MarshalIndent(menus, "", "  ")
-    ioutil.WriteFile(filepath.Join(outputDir, "menu.js"), 
-        []byte("export const menuConfig = "+string(menuJSON)), 0644)
 }
 
-func processDirectory(dir string) []*MenuItem {
+func removeIndex(items []*MenuItem) []*MenuItem {
+    var children []*MenuItem
+    if len(items) <= 0 {
+        return children
+    }
+    for _, item := range items {
+        if item == nil {
+            continue
+        }
+        if len(item.Children) <= 0 && item.bookCollapseSection {
+            continue
+        }
+        item.Children = removeIndex(item.Children)
+        children = append(children, item)
+    }
+    return children
+}
+
+func processDirectory(dir string, dirLevel int) []*MenuItem {
     var items []*MenuItem
     
     files, err := ioutil.ReadDir(dir)
@@ -77,14 +68,16 @@ func processDirectory(dir string) []*MenuItem {
     for _, file := range files {
         if file.IsDir() {
             // 处理目录
-            children := processDirectory(filepath.Join(dir, file.Name()))
+            children := processDirectory(filepath.Join(dir, file.Name()), dirLevel + 1)
             item := &MenuItem{
                 ID:       generateID(file.Name()),
                 Title:    formatTitle(file.Name()),
                 Children: children,
                 dir: file.Name(),
+                dirLevel: dirLevel,
             }
             items = append(items, item)
+        } else if file.Name() == "search.md" {
         } else if strings.HasSuffix(file.Name(), ".md") {
             // 处理markdown文件
             item := &MenuItem{
@@ -146,7 +139,9 @@ func generateContentFiles(contentDir, outputDir string, menu []*MenuItem) {
                 // 保持原有目录结构
                 relPath := strings.TrimPrefix(item.Path, contentDir)
                 jsPath := strings.TrimSuffix(relPath, ".md") + ".js"
-                outputPath := filepath.Join(outputDir, "content", jsPath)
+                outputPath := filepath.Join(outputDir, jsPath)
+                firstPath := strings.Split(outputPath, "/")[0]
+                outputPath = filepath.Join(firstPath, outputPath)
                 
                 os.MkdirAll(filepath.Dir(outputPath), 0755)
                 ioutil.WriteFile(outputPath, []byte(jsContent), 0644)
@@ -158,50 +153,63 @@ func generateContentFiles(contentDir, outputDir string, menu []*MenuItem) {
             generateContentFiles(contentDir, outputDir, item.Children)
         }
     }
-
-    // 生成内容索引文件
-    indexContent := "module.exports = {\n"
-    var generateIndex func(items []*MenuItem)
-    generateIndex = func(items []*MenuItem) {
-        for _, item := range items {
-            if item.ID == "_index" {
-                continue
-            }
-            if item.cover {
-                relPath, _ := filepath.Rel(contentDir, item.Path)
-                item.ID = strings.ReplaceAll(relPath, "/", "_")
-                item.ID = strings.TrimSuffix(item.ID, ".md")
-            }
-            if item.Path != "" {
-                relPath, _ := filepath.Rel(contentDir, item.Path)
-                jsPath := strings.TrimSuffix(relPath, ".md")
-                indexContent += fmt.Sprintf("  '%s': require('./content/%s.js'),\n", 
-                    item.ID, jsPath)
-            }
-            generateIndex(item.Children)
-            if cover := findCover(item.ID, item.Children); cover != nil {
-                item.Title = ""
-                relPath, _ := filepath.Rel(contentDir, cover.Path)
-                jsPath := strings.TrimSuffix(relPath, ".md")
-                indexContent += fmt.Sprintf("  '%s': require('./content/%s.js'),\n", 
-                    item.ID, jsPath)
-            }
-            if book := findBookCollapseSection(item.ID, item.Children); book != nil {
-                item.Title = book.Title
-            }
-            sort.Slice(item.Children, func(i, j int) bool {
-                if item.Children[i].cover {
-                    return true
-                }
-                return false
-            })
+    // 生成每个第一级目录的menu.js和contents.js
+    for _, item := range menu {
+        if item.dirLevel != 1 {
+            continue
         }
+        // 生成内容索引文件
+        indexContent := "module.exports = {\n"
+        var generateIndex func(items []*MenuItem)
+        generateIndex = func(items []*MenuItem) {
+            for _, item := range items {
+                if item.ID == "_index" {
+                    continue
+                }
+                if item.cover {
+                    relPath, _ := filepath.Rel(contentDir, item.Path)
+                    item.ID = strings.ReplaceAll(relPath, "/", "_")
+                    item.ID = strings.TrimSuffix(item.ID, ".md")
+                }
+                if item.Path != "" {
+                    relPath, _ := filepath.Rel(contentDir, item.Path)
+                    jsPath := strings.TrimSuffix(relPath, ".md")
+                    indexContent += fmt.Sprintf("  '%s': require('./%s.js'),\n", 
+                        item.ID, jsPath)
+                }
+                generateIndex(item.Children)
+                if cover := findCover(item.ID, item.Children); cover != nil {
+                    item.Title = ""
+                    relPath, _ := filepath.Rel(contentDir, cover.Path)
+                    jsPath := strings.TrimSuffix(relPath, ".md")
+                    indexContent += fmt.Sprintf("  '%s': require('./%s.js'),\n", 
+                        item.ID, jsPath)
+                }
+                if book := findBookCollapseSection(item.ID, item.Children); book != nil {
+                    item.Title = book.Title
+                }
+            }
+        }
+        generateIndex([]*MenuItem{item})
+        indexContent += "};"
+        
+        ioutil.WriteFile(filepath.Join(outputDir, item.dir, "contents.js"), 
+            []byte(indexContent), 0644)
+        sort.Slice(item.Children, func(i, j int) bool {
+            if item.Children[i].cover && !item.Children[j].cover {
+                return true
+            }
+            if !item.Children[i].cover && item.Children[j].cover {
+                return false
+            }
+            return item.Children[i].ID < item.Children[j].ID
+        })
+        // 生成菜单JSON文件
+        menuJSON, _ := json.MarshalIndent([]*MenuItem{item}, "", "  ")
+        ioutil.WriteFile(filepath.Join(outputDir, item.dir, "menu.js"), 
+            []byte("export const menuConfig = "+string(menuJSON)), 0644)
     }
-    generateIndex(menu)
-    indexContent += "};"
-    
-    ioutil.WriteFile(filepath.Join(outputDir, "contents.js"), 
-        []byte(indexContent), 0644)
+
 }
 
 func generateID(name string) string {
