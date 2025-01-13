@@ -169,6 +169,7 @@ _A Lamport clock_ is simple. Each process maintains a counter using the followi
 
 Expressed as code:
 
+```js
 function LamportClock() {
   this.value = 1;
 }
@@ -184,6 +185,7 @@ LamportClock.prototype.increment = function() {
 LamportClock.prototype.merge = function(other) {
   this.value = Math.max(this.value, other.value) + 1;
 }
+```
 
 A [Lamport clock](https://en.wikipedia.org/wiki/Lamport_timestamps) allows counters to be compared across systems, with a caveat: Lamport clocks define a partial order. If `timestamp(a) < timestamp(b)`:
 
@@ -210,6 +212,7 @@ _A vector clock_ is an extension of Lamport clock, which maintains an array `[
 
 Again, expressed as code:
 
+```js
 function VectorClock(value) {
   // expressed as a hash keyed by node id: e.g. { node1: 1, node2: 3 }
   this.value = value || {};
@@ -244,6 +247,7 @@ VectorClock.prototype.merge = function(other) {
     });
   this.value = result;
 };
+```
 
 This illustration ([source](https://en.wikipedia.org/wiki/Vector_clock)) shows a vector clock:
 

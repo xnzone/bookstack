@@ -1,6 +1,6 @@
 ---
 author: xnzone
-title: "分布式系统基本概念"
+title: "基本概念"
 date: 2024-09-10 10:23:32
 image: /covers/distr-fun-zh.jpg
 cover: false

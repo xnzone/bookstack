@@ -170,6 +170,7 @@ _一个Lamport时钟_是简单的。每个进程使用以下规则维护一个�
 
 Expressed as code:
 
+```js
 function LamportClock() {
   this.value = 1;
 }
@@ -185,6 +186,7 @@ LamportClock.prototype.increment = function() {
 LamportClock.prototype.merge = function(other) {
   this.value = Math.max(this.value, other.value) + 1;
 }
+```
 
 一个[Lamport时钟](https://en.wikipedia.org/wiki/Lamport_timestamps)允许在系统之间比较计数器，但有一个警告：Lamport时钟定义了一个部分顺序。如果`timestamp(a) < timestamp(b)`：
 
@@ -211,6 +213,7 @@ _向量时钟_是Lamport时钟的扩展，它维护一个数组`[ t1, t2, ... ]`
 
 Again, expressed as code:
 
+```js
 function VectorClock(value) {
   // expressed as a hash keyed by node id: e.g. { node1: 1, node2: 3 }
   this.value = value || {};
@@ -245,6 +248,7 @@ VectorClock.prototype.merge = function(other) {
     });
   this.value = result;
 };
+```
 
 这个插图（[来源](https://en.wikipedia.org/wiki/Vector_clock)）展示了一个向量时钟：
 

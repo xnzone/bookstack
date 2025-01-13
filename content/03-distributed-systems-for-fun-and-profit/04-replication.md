@@ -150,11 +150,13 @@ To prevent inopportune failures from causing consistency guarantees to be violat
 
 [Two phase commit](https://en.wikipedia.org/wiki/Two-phase_commit_protocol) (2PC) is a protocol used in many classic relational databases. For example, MySQL Cluster (not to be confused with the regular MySQL) provides synchronous replication using 2PC. The diagram below illustrates the message flow:
 
+```text
 [ Coordinator ] -> OK to commit?     [ Peers ]
                 <- Yes / No
 
 [ Coordinator ] -> Commit / Rollback [ Peers ]
                 <- ACK
+```
 
 In the first phase (voting), the coordinator sends the update to all the participants. Each participant processes the update and votes whether to commit or abort. When voting to commit, the participants store the update onto a temporary area (the write-ahead log). Until the second phase completes, the update is considered temporary.
 
@@ -266,6 +268,7 @@ To ensure that no competing proposals emerge between the time the proposer asks 
 
 Putting the pieces together, reaching a decision using Paxos requires two rounds of communication:
 
+```text
 [ Proposer ] -> Prepare(n)                                [ Followers ]
              <- Promise(n; previous proposal number
                 and previous value if accepted a
@@ -275,6 +278,7 @@ Putting the pieces together, reaching a decision using Paxos requires two rounds
                 associated with the highest proposal number
                 reported by the followers)
                 <- Accepted(n, value)
+```
 
 The prepare stage allows the proposer to learn of any competing or previous proposals. The second phase is where either a new value or a previously accepted value is proposed. In some cases - such as if two proposers are active at the same time (dueling); if messages are lost; or if a majority of the nodes have failed - then no proposal is accepted by a majority. But this is acceptable, since the decision rule for what value to propose converges towards a single value (the one with the highest proposal number in the previous attempt).
 
