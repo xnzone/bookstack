@@ -31,39 +31,39 @@ tags:
 希望你喜欢这篇文章！如果你想表达感谢，可以在 [Github](https://github.com/mixu/) 或 [Twitter](https://twitter.com/mikitotakada) 上关注我。如果发现错误，[请在 Github 提交 pull request](https://github.com/mixu/distsysbook/issues)。
 
 
-### 1. 基础知识
+### 1. 基本概念
 
-[第一章](../../03-distributed-systems-for-fun-and-profit/01-distributed-systems-at-a-high-level) 概括性地介绍了分布式系统，涵盖了一些重要术语和概念，包括扩展性、可用性、性能、延迟和容错性等目标，以及这些目标为何难以实现，还探讨了抽象和模型、分区和复制的作用。
+[第一章](../../04-distributed-systems-for-fun-and-profit-zh/01-distributed-systems-at-a-high-level-zh) 概括性地介绍了分布式系统，涵盖了一些重要术语和概念，包括扩展性、可用性、性能、延迟和容错性等目标，以及这些目标为何难以实现，还探讨了抽象和模型、分区和复制的作用。
 
 ---
 
 ### 2. 抽象的层次
 
-[第二章](../../03-distributed-systems-for-fun-and-profit/02-up-and-down-the-level-of-abstraction) 深入探讨了抽象和不可能性结论。它以尼采的引言开篇，介绍了系统模型及典型系统模型中的假设。随后讨论了 CAP 定理并总结了 FLP 不可能性结论，然后转向 CAP 定理的影响，其中之一是探索其他一致性模型的必要性，文中讨论了一些一致性模型。
+[第二章](../../04-distributed-systems-for-fun-and-profit-zh/02-up-and-down-the-level-of-abstraction-zh) 深入探讨了抽象和不可能性结论。它以尼采的引言开篇，介绍了系统模型及典型系统模型中的假设。随后讨论了 CAP 定理并总结了 FLP 不可能性结论，然后转向 CAP 定理的影响，其中之一是探索其他一致性模型的必要性，文中讨论了一些一致性模型。
 
 ---
 
 ### 3. 时间与顺序
 
-理解分布式系统的一大关键是理解时间与顺序。若我们未能正确理解和建模时间，系统就会失败。[第三章](../../03-distributed-systems-for-fun-and-profit/03-time-and-order) 探讨了时间与顺序以及时钟的相关内容，以及时间、顺序和时钟的各种用途（如向量时钟和故障检测器）。
+理解分布式系统的一大关键是理解时间与顺序。若我们未能正确理解和建模时间，系统就会失败。[第三章](../../04-distributed-systems-for-fun-and-profit-zh/03-time-and-order-zh) 探讨了时间与顺序以及时钟的相关内容，以及时间、顺序和时钟的各种用途（如向量时钟和故障检测器）。
 
 ---
 
 ### 4. 复制：防止分歧
 
-[第四章](../../03-distributed-systems-for-fun-and-profit/04-replication) 介绍了复制问题，以及两种基本的实现方式。事实上，大多数相关特性可以通过这些简单的方式进行讨论。随后，文中探讨了从最低容错性（2PC）到 Paxos 的单副本一致性复制方法。
+[第四章](../../04-distributed-systems-for-fun-and-profit-zh/04-replication-zh) 介绍了复制问题，以及两种基本的实现方式。事实上，大多数相关特性可以通过这些简单的方式进行讨论。随后，文中探讨了从最低容错性（2PC）到 Paxos 的单副本一致性复制方法。
 
 ---
 
 ### 5. 复制：接受分歧
 
-[第五章](../../03-distributed-systems-for-fun-and-profit/05-replication-weak-consistency-model-protocols) 探讨了弱一致性保证的复制问题。它引入了一个基本的对账场景，即分区的副本尝试达成一致。然后以 Amazon 的 Dynamo 为例，讨论了弱一致性保证的系统设计。最后，讨论了无序编程的两种视角：CRDT 和 CALM 定理。
+[第五章](../../04-distributed-systems-for-fun-and-profit-zh/05-replication-weak-consistency-model-protocols-zh) 探讨了弱一致性保证的复制问题。它引入了一个基本的对账场景，即分区的副本尝试达成一致。然后以 Amazon 的 Dynamo 为例，讨论了弱一致性保证的系统设计。最后，讨论了无序编程的两种视角：CRDT 和 CALM 定理。
 
 ---
 
 ### 附录
 
-[附录](../../03-distributed-systems-for-fun-and-profit/06-further-reading-and-appendix) 提供了进一步阅读的推荐资料。
+[附录](../../04-distributed-systems-for-fun-and-profit-zh/06-further-reading-and-appendix-zh) 提供了进一步阅读的推荐资料。
 
 ---
 
