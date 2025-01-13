@@ -31,13 +31,13 @@ tags:
 希望你喜欢这篇文章！如果你想表达感谢，可以在 [Github](https://github.com/mixu/) 或 [Twitter](https://twitter.com/mikitotakada) 上关注我。如果发现错误，[请在 Github 提交 pull request](https://github.com/mixu/distsysbook/issues)。
 
 
-### 1. 基本概念
+### 1. 概览
 
 [第一章](../../04-distributed-systems-for-fun-and-profit-zh/01-distributed-systems-at-a-high-level-zh) 概括性地介绍了分布式系统，涵盖了一些重要术语和概念，包括扩展性、可用性、性能、延迟和容错性等目标，以及这些目标为何难以实现，还探讨了抽象和模型、分区和复制的作用。
 
 ---
 
-### 2. 抽象的层次
+### 2. 基本概念
 
 [第二章](../../04-distributed-systems-for-fun-and-profit-zh/02-up-and-down-the-level-of-abstraction-zh) 深入探讨了抽象和不可能性结论。它以尼采的引言开篇，介绍了系统模型及典型系统模型中的假设。随后讨论了 CAP 定理并总结了 FLP 不可能性结论，然后转向 CAP 定理的影响，其中之一是探索其他一致性模型的必要性，文中讨论了一些一致性模型。
 

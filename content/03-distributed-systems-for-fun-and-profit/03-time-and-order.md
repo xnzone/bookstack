@@ -53,9 +53,11 @@ Note that totality implies reflexivity; so a partial order is a weaker variant o
 
 Git branches are an example of a partial order. As you probably know, the git revision control system allows you to create multiple branches from a single base branch - e.g. from a master branch. Each branch represents a history of source code changes derived based on a common ancestor:
 
+```text
 [ branch A (1,2,0)]  [ master (3,0,0) ]  [ branch B (1,0,2) ]
 [ branch A (1,1,0)]  [ master (2,0,0) ]  [ branch B (1,0,1) ]
                   \  [ master (1,0,0) ]  /
+```
 
 The branches A and B were derived from a common ancestor, but there is no definite order between them: they represent different histories and cannot be reduced to a single linear history without additional work (merging). You could, of course, put all the commits in some arbitrary order (say, sorting them first by ancestry and then breaking ties by sorting A before B or B before A) - but that would lose information by forcing a total order where none existed.
 
