@@ -36,7 +36,7 @@ INSERT INTO orders (id, user_id, amount, discount) VALUES
 
 在 Go 项目中，我们定义了如下结构体：
 
-```go
+```golang
 package main
 
 import (
