@@ -2,7 +2,7 @@
 author: mixu
 title: 时间与顺序
 date: 2024-10-10 10:23:32
-image: /covers/distr-fun.jpg
+image: /covers/distr-fun-zh.jpg
 cover: false
 weight: 403
 tags: ["distributed system", "分布式系统"]

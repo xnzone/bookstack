@@ -2,7 +2,7 @@
 author: mixu
 title: 复制概述
 date: 2024-10-10 10:23:32
-image: /covers/distr-fun.jpg
+image: /covers/distr-fun-zh.jpg
 cover: false
 weight: 404
 tags: ["distributed system", "分布式系统", "复制"]
