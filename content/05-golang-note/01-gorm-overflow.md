@@ -13,7 +13,6 @@ tags: ["Golang", "Go", "Gorm"]
 
 本文将通过一个真实的案例展示如何发现、分析并最终验证这一现象，并详细剖析 GORM 的内部实现。
 
----
 
 ## 示例案例
 
@@ -80,7 +79,6 @@ func main() {
 
 ❗ 可以看到，`amount` 字段的值被错误地置为了 `0`，而其余字段的数据正常。这是因为 MySQL 中 `BIGINT` 类型的值 `5000000000` 和 `2147483648` 超出了 `int32` 的取值范围，导致溢出。
 
----
 
 ## 原因分析
 
@@ -165,7 +163,6 @@ func (db *DB) scanIntoStruct(rows Rows, reflectValue reflect.Value, values []int
 
 ⚠️ 在映射过程中，如果数据库的列值超出了目标字段的类型范围（比如 `BIGINT` 转换为 `int32`），会导致溢出错误或结果被置为默认值 `0`。
 
----
 
 ## 问题解决
 
@@ -174,14 +171,14 @@ func (db *DB) scanIntoStruct(rows Rows, reflectValue reflect.Value, values []int
 1. **字段类型匹配**
    确保 Go 结构体的字段类型与数据库列类型一致，例如：
 
-   ```go
-   type Order struct {
-   	ID       int64 `gorm:"column:id;primaryKey" json:"id"`
-   	UserID   int64 `gorm:"column:user_id" json:"user_id"`
-   	Amount   int64 `gorm:"column:amount" json:"amount"`
-   	Discount int32 `gorm:"column:discount" json:"discount"`
-   }
-   ```
+```go
+type Order struct {
+	ID       int64 `gorm:"column:id;primaryKey" json:"id"`
+	UserID   int64 `gorm:"column:user_id" json:"user_id"`
+	Amount   int64 `gorm:"column:amount" json:"amount"`
+	Discount int32 `gorm:"column:discount" json:"discount"`
+}
+```
 
 2. **类型检查工具**
    使用静态检查工具或代码生成工具（如 `gorm gen`），确保自动生成的结构体与数据库模式一致。
@@ -192,28 +189,26 @@ func (db *DB) scanIntoStruct(rows Rows, reflectValue reflect.Value, values []int
 4. **使用 GORM Logger 捕获 SQL 执行情况**
    可以通过 GORM 提供的 Logger 接口捕获和记录 SQL 执行过程。例如：
 
-   ```go
-   import (
-   	"gorm.io/gorm/logger"
-   	"log"
-   	"os"
-   )
+```go
+import (
+	"gorm.io/gorm/logger"
+	"log"
+	"os"
+)
 
-   newLogger := logger.New(
-   	log.New(os.Stdout, "\r\n", log.LstdFlags),
-   	logger.Config{
-   		SlowThreshold: time.Second,
-   		LogLevel:      logger.Info,
-   		Colorful:      true,
-   	},
-   )
+newLogger := logger.New(
+	log.New(os.Stdout, "\r\n", log.LstdFlags),
+	logger.Config{
+		SlowThreshold: time.Second,
+		LogLevel:      logger.Info,
+		Colorful:      true,
+	},
+)
 
-   db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-   	Logger: newLogger,
-   })
-   ```
-
----
+db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+	Logger: newLogger,
+})
+```
 
 ## 结论
 
