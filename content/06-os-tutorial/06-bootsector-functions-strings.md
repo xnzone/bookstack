@@ -27,7 +27,7 @@ Strings
 Define strings like bytes, but terminate them with a null-byte (yes, like C)
 to be able to determine their end.
 
-```nasm
+```armasm
 mystring:
     db 'Hello, World', 0
 ```
@@ -43,7 +43,7 @@ We have already used one: `jmp $` for the infinite loop.
 
 Assembler jumps are defined by the *previous* instruction result. For example:
 
-```nasm
+```armasm
 cmp ax, 4      ; if ax = 4
 je ax_is_four  ; do something (by jumping to that label)
 jmp else       ; else, do another thing
@@ -78,7 +78,7 @@ The tricky part are the parameters. There are two steps to working with paramete
 
 Step 1 is easy. Let's just agree that we will use `al` (actually, `ax`) for the parameters.
 
-```nasm
+```armasm
 mov al, 'X'
 jmp print
 endprint:
@@ -116,7 +116,7 @@ I assume you are a programmer and don't need to convince you why this is
 a good idea.
 
 The syntax is
-```nasm
+```armasm
 %include "file.asm"
 ```
 

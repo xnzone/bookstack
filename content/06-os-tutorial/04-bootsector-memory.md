@@ -27,7 +27,7 @@ and see which ones work and why.
 **Open the file `boot_sect_memory.asm`**
 
 First, we will define the X as data, with a label:
-```nasm
+```armasm
 the_secret:
     db "X"
 ```
@@ -57,7 +57,7 @@ The global offset
 Now, since offsetting `0x7c00` everywhere is very inconvenient, assemblers let
 us define a "global offset" for every memory location, with the `org` command:
 
-```nasm
+```armasm
 [org 0x7c00]
 ```
 

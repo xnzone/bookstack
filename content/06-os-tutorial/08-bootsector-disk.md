@@ -27,7 +27,7 @@ On this lesson we will use for the first time the *carry bit*, which is an extra
 present on each register which stores when an operation has overflowed its current
 capacity:
 
-```nasm
+```armasm
 mov ax, 0xFFFF
 add ax, 1 ; ax = 0x0000 and carry = 1
 ```
