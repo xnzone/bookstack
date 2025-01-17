@@ -33,7 +33,7 @@ For this example we don't need to take care of that since we are
 the only thing running on the CPU.
 
 Our new boot sector looks like this:
-```asm
+```armasm
 mov ah, 0x0e ; tty mode
 mov al, 'H'
 int 0x10
