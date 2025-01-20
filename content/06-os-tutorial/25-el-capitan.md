@@ -1,6 +1,6 @@
 ---
 author: cfenollosa  
-title: EL Capitan
+title: El Capitan
 date: 2025-01-12 10:04:00
 image: /covers/os-tutorial.jpg
 cover: false
