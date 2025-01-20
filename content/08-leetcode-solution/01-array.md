@@ -29,7 +29,7 @@ int firstMissingPositive(vector<int> &nums) {
     }
     return n + 1;
 }
-{{< /highlight >}}
+```
 
 
 ## Rotate Image
