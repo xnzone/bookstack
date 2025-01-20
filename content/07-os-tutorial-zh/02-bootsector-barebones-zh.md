@@ -22,7 +22,7 @@ tags: ["tutorial", "os"]
 
 这是一个最简单的引导扇区
 
-```text
+```shell
 e9 fd ff 00 00 00 00 00 00 00 00 00 00 00 00 00
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 [ 29 more lines with sixteen zero-bytes each ]
@@ -35,7 +35,7 @@ e9 fd ff 00 00 00 00 00 00 00 00 00 00 00 00 00
 
 你既可以把上面512个字节写入到二进制编辑器，也可以使用下面的汇编语言
 
-```asm
+```armasm
 ;无限循环(e9 fd ff)
 loop:
     jmp loop

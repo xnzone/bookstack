@@ -20,7 +20,7 @@ tags: ["tutorial", "os"]
 
 定义string类似于bytes，但是为了能够终止他们，使用一个null-byte终止（是的，类似于C）
 
-```asm
+```armasm
 mystring:
     db 'Hello, World', 0
 ```
@@ -33,7 +33,7 @@ mystring:
 
 汇编跳转被定义成之前指令结果。例如
 
-```asm
+```armasm
 cmp ax, 4       ; 如果 ax = 4
 je ax_is_four   ; 满足条件的处理，跳转到这个label进行处理
 jmp else        ; else 做其他的事情
@@ -65,7 +65,7 @@ endif:
 
 步骤1是非常简单的，`al`(实际上是`ax`)寄存器可以用于参数传递
 
-```asm
+```armasm
 mov al, 'X'
 jmp print
 endprint:
@@ -95,7 +95,7 @@ print:
 
 代码是
 
-```asm
+```armasm
 %include "file.asm"
 ```
 

@@ -26,7 +26,7 @@ tags: ["tutorial", "os"]
 
 首先我们将`X`定义成一个数据，并且使用一个label
 
-```asm
+```armasm
 the_secret:
     db "X"
 ```
@@ -50,7 +50,7 @@ the_secret:
 
 现在，在每个地方都偏移`0x7C00`属实不方便,汇编可以对每个内存位置定义一个全局偏移(global offset)，其命令为`org`
 
-```asm
+```armasm
 [org 0x7C00]
 ```
 
