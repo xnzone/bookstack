@@ -3,7 +3,7 @@ author: cfenollosa
 title: 32 Bit Enter
 date: 2025-01-12 10:04:00
 image: /covers/os-tutorial.jpg
-cover: true
+cover: false
 weight: 611
 tags: ["os", "tutorial"]
 ---

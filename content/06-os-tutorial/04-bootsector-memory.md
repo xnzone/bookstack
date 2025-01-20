@@ -3,7 +3,7 @@ author: cfenollosa
 title: Bootsector Memory
 date: 2025-01-12 10:04:00
 image: /covers/os-tutorial.jpg
-cover: true
+cover: false
 weight: 604
 tags: ["os", "tutorial"]
 ---

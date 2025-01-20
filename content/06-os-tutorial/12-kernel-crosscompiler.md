@@ -3,7 +3,7 @@ author: cfenollosa
 title: Kernel Crosscompiler
 date: 2025-01-12 10:04:00
 image: /covers/os-tutorial.jpg
-cover: true
+cover: false
 weight: 612
 tags: ["os", "tutorial"]
 ---

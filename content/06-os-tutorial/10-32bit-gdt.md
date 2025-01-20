@@ -3,7 +3,7 @@ author: cfenollosa
 title: 32 Bit GDT
 date: 2025-01-12 10:04:00
 image: /covers/os-tutorial.jpg
-cover: true
+cover: false
 weight: 610
 tags: ["os", "tutorial"]
 ---
