@@ -16,7 +16,7 @@ weight: 803
 
 上述方法需要额外保存排序前的位置，所以可解，但不推荐，现给出排序好的解法(不是当前题目解法)
 
-```c++
+```cpp
 vector<int> twoSum(vector<int>& nums, int target) {
     int n = nums.size();
     vectort<int> res;
@@ -40,7 +40,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
 - 如果找到target - 当前数在map中，直接输出结果
 - 如果不存在，则把结果放入map中
 
-```c++
+```cpp
 vector<int> twoSum(vector<int>& nums, int target) {
     int n = nums.size();
     vector<int> res;
@@ -65,7 +65,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
 - 前后指针遍历
 - 哪边数字小，移动哪边
 
-```c++
+```cpp
 int maxArea(vector<int>& height) {
     int res = -1, i = 0, j = height.size() - 1;
     while(i <= j) {
@@ -88,7 +88,7 @@ int maxArea(vector<int>& height) {
 - 然后计算最终是否满足条件
 - 也可以用map来保存上述两个值，过程是一样的
 
-```c++
+```cpp
 vector<vector<int>> threeSum(vector<int>& nums) {
   vector<vector<int>> res;
   if(nums.size()==0) return res;
@@ -135,7 +135,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 - 如果sum大于target， 则右指针移动
 - 如果sum小于target，则左指针移动
 
-```c++
+```cpp
 int threeSumClosest(vector<int>& nums, int target) {
     std::sort(nums.begin(), nums.end());
     int n = nums.size();
@@ -166,7 +166,7 @@ int threeSumClosest(vector<int>& nums, int target) {
 - 只要左右都有黑色方块，那么积水一直会增加
 - 所以可以用双向指针解决问题
 
-```c++
+```cpp
 int trap(vector<int>& height) {
     int res = 0, i = 0, j = height.size() - 1;
     int lmax = 0, rmax = 0;
@@ -188,7 +188,7 @@ int trap(vector<int>& height) {
 - 从右到左，找到当前最大值`right_max`
 - 遍历，找到`left_max`和`right_max`最小值，减去`height`就是积水
 
-```c++
+```cpp
 int trap(vector<int>& height) {
     if(height.size() == 0) return 0;
     int res = 0, n = height.size();
@@ -216,7 +216,7 @@ int trap(vector<int>& height) {
 - 如果是0， 跟左指针换
 - 如果是2， 跟右指针换
 
-```c++
+```cpp
 void sortColors(vector<int>& nums) {
     int n = nums.size(), n0 = 0, n2 = n - 1;
     int i = 0;
@@ -240,7 +240,7 @@ void sortColors(vector<int>& nums) {
 - 当所有字符全部存在时，移动左指针
 - 直到不满足条件时，跳出循环
 
-```c++
+```cpp
 string minWindow(string s, string t) {
     vector<int> count(128, 0);
     for(char c : t) count[c]++;
@@ -273,7 +273,7 @@ string minWindow(string s, string t) {
 - 如果相等， 则 `left -> next = right -> next`
 - 否则 `left = right`
 
-```c++
+```cpp
 ListNode* deleteDuplicates(ListNode* head) {
     if(head == nullptr) return head;
     ListNode* left = head;
@@ -299,7 +299,7 @@ ListNode* deleteDuplicates(ListNode* head) {
 - 直到程序小于K或`left = right`时
 - 每次结果是`left - right + 1`
 
-```c++
+```cpp
 int numSubarrayProductLessThanK(vector<int>& nums, int k) {
     if(k == 0) return 0;
     int size = nums.size(), mul = 0, left = 0, right = 0, res = 0;
@@ -323,7 +323,7 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
 - 从后面开始遍历，用一个数字记录当前space的个数
 - 然后保存新的字符串即可
 
-```c++
+```cpp
 string backspace(string str) {
     string res = "";
     int count = 0;
@@ -355,7 +355,7 @@ bool backspaceCompare(string S, string T) {
 - 如果右边大，则压入左边，左边--
 - 最后把剩下的全都计算平方加进去
 
-```c++
+```cpp
 vector<int> sortedSquares(vector<int>& A) {
     vector<int> res;
     int more = 0, less = 0;

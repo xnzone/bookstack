@@ -10,7 +10,7 @@ weight: 815
 ## Course Schedule
 [LeetCode](https://leetcode.com/problems/course-schedule)/[力扣](https://leetcode-cn.com/problems/course-schedule)
 
-```c++
+```cpp
 bool res = true;
 bool canFinish(int n, vector<vector<int>>& preps) {
     vector<vector<int>> graph(n, vector<int>());
@@ -44,7 +44,7 @@ void helper(vector<vector<int> >&graph, int idx, vector<int>&visited) {
 ## Course Schedule II
 [LeetCode](https://leetcode.com/problems/course-schedule-ii)/[力扣](https://leetcode-cn.com/problems/course-schedule-ii)
 
-```c++
+```cpp
 bool res = true;
 bool canFinish(int n, vector<vector<int>>& preps) {
     vector<vector<int>> graph(n, vector<int>());
@@ -78,7 +78,7 @@ void helper(vector<vector<int> >&graph, int idx, vector<int>&visited) {
 ## Minimum Height Trees
 [LeetCode](https://leetcode.com/problems/minimum-height-trees)/[力扣](https://leetcode-cn.com/problems/minimum-height-trees)
 
-```c++
+```cpp
 vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
             vector<int> leaves;
     vector<vector<int>> graph(n,vector<int>());
@@ -118,7 +118,7 @@ vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
 ## Clone Graph
 [LeetCode](https://leetcode.com/problems/clone-graph)/[力扣](https://leetcode-cn.com/problems/clone-graph)
 
-```c++
+```cpp
 unordered_map<Node*, Node*> m;
 Node* cloneGraph(Node* node) {
     if(node == nullptr) return node;
@@ -140,7 +140,7 @@ Node* cloneGraph(Node* node) {
 ## Pacific Atlantic Water Flow
 [LeetCode](https://leetcode.com/problems/pacific-atlantic-water-flow)/[力扣](https://leetcode-cn.com/problems/pacific-atlantic-water-flow)
 
-```c++
+```cpp
 bool res = true;
 bool canFinish(int n, vector<vector<int>>& preps) {
     vector<vector<int>> graph(n, vector<int>());

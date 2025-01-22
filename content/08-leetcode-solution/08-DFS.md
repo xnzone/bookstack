@@ -13,7 +13,7 @@ weight: 808
 
 递归
 
-```c++
+```cpp
 bool isValidBST(TreeNode* root) {
     double lower = DBL_MIN;
     double upper = DBL_MAX;
@@ -38,7 +38,7 @@ bool helper(TreeNode* root, double lower, double upper) {
 
 递归
 
-```c++
+```cpp
 bool isSameTree(TreeNode* p, TreeNode* q) {
     if(p == nullptr && q == nullptr) return true;
     
@@ -53,7 +53,7 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
 ## Maximum Depth of Binary Tree
 [LeetCode](https://leetcode.com/problems/maximum-depth-of-binary-tree)/[力扣](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree)
 
-```c++
+```cpp
 int maxDepth(TreeNode* root) {
     if(root ==  nullptr)
         return 0;
@@ -71,7 +71,7 @@ int maxDepth(TreeNode* root) {
 
 就是重建树。要了解到前序遍历（中左右）和中序遍历（左中右）的特点
 
-```c++
+```cpp
 TreeNode* buildTree(vector<int>& pre, vector<int>& in) {
     return helper(pre, 0, pre.size() - 1, in, 0, in.size() - 1);
 }
@@ -95,7 +95,7 @@ TreeNode* helper(vector<int>& pre, int pleft, int pright, vector<int>& ino, int 
 ## Path Sum
 [LeetCode](https://leetcode.com/problems/path-sum)/[力扣](https://leetcode-cn.com/problems/path-sum)
 
-```c++
+```cpp
 bool hasPathSum(TreeNode* root, int sum) {
     if(root == nullptr) return false;
     return helper(root, sum, 0);
@@ -112,7 +112,7 @@ bool helper(TreeNode* root, int sum, int temp) {
 ## Path Sum II
 [LeetCode](https://leetcode.com/problems/path-sum-ii)/[力扣](https://leetcode-cn.com/problems/path-sum-ii)
 
-```c++
+```cpp
 vector<vector<int>> pathSum(TreeNode* root, int sum) {
     vector<int> tv;
     vector<vector<int>> res;
@@ -137,7 +137,7 @@ void helper(TreeNode* root, int sum, int temp,int len, vector<int>& tv, vector<v
 ## Binary Tree Maximum Path Sum
 [LeetCode](https://leetcode.com/problems/binary-tree-maximum-path-sum)/[力扣](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum)
 
-```c++
+```cpp
 int res = INT_MIN;
 int maxPathSum(TreeNode* root) {
     helper(root);
@@ -162,7 +162,7 @@ int helper(TreeNode* root) {
 ## Implement Trie (Prefix Tree)
 [LeetCode](https://leetcode.com/problems/implement-trie-prefix-tree)/[力扣](https://leetcode-cn.com/problems/implement-trie-prefix-tree)
 
-```c++
+```cpp
 class Trie {
 public:
     struct newTrie
@@ -252,7 +252,7 @@ public:
 ## Word Search II
 [LeetCode](https://leetcode.com/problems/word-search-ii)/[力扣](https://leetcode-cn.com/problems/word-search-ii)
 
-```c++
+```cpp
 vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
     vector<string> res;
     for(int i = 0; i < words.size();i++){
@@ -290,7 +290,7 @@ bool existedHelper(int x, int y, vector<vector<char>>& board, string& word, int 
 ## Invert Binary Tree
 [LeetCode](https://leetcode.com/problems/invert-binary-tree)/[力扣](https://leetcode-cn.com/problems/invert-binary-tree)
 
-```c++
+```cpp
 TreeNode* invertTree(TreeNode* root) {
     if(root == nullptr) return root;
     swap(root->left, root->right);
@@ -303,7 +303,7 @@ TreeNode* invertTree(TreeNode* root) {
 ## Kth Smallest Element in a BST
 [LeetCode](https://leetcode.com/problems/kth-smallest-element-in-a-bst)/[力扣](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst)
 
-```c++
+```cpp
 int index = -1;
 int res;
 int kthSmallest(TreeNode* root, int k) {
@@ -324,7 +324,7 @@ void helper(TreeNode* root,int& k) {
 ## Lowest Common Ancestor of a Binary Search Tree
 [LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree)/[力扣](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree)
 
-```c++
+```cpp
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
     if(root == nullptr) return root;
     int maxVal = max(p->val,q->val);
@@ -338,7 +338,7 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 ## Lowest Common Ancestor of a Binary Tree
 [LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree)/[力扣](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree)
 
-```c++
+```cpp
 TreeNode* res = nullptr;
 TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
     helper(root, p, q);
@@ -363,7 +363,7 @@ bool helper(TreeNode* root, TreeNode* p, TreeNode* q) {
 ## Serialize and Deserialize Binary Tree
 [LeetCode](https://leetcode.com/problems/serialize-and-deserialize-binary-tree)/[力扣](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree)
 
-```c++
+```cpp
 // Encodes a tree to a single string.
 string serialize(TreeNode* root) {
     stringstream ss;
@@ -408,7 +408,7 @@ void deserializeHelper(stringstream& ss, TreeNode* &cur) {
 ## Path Sum III
 [LeetCode](https://leetcode.com/problems/path-sum-iii)/[力扣](https://leetcode-cn.com/problems/path-sum-iii)
 
-```c++
+```cpp
 int pathSum(TreeNode* root, int sum) {
     if(root == nullptr) return 0;
     return helper(root, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
@@ -427,7 +427,7 @@ int helper(TreeNode* root, int sum) {
 ## Diameter of Binary Tree
 [LeetCode](https://leetcode.com/problems/diameter-of-binary-tree)/[力扣](https://leetcode-cn.com/problems/diameter-of-binary-tree)
 
-```c++
+```cpp
 int diameterOfBinaryTree(TreeNode* root) {
     depth = 1;
     helper(root);
@@ -446,7 +446,7 @@ int helper(TreeNode* root){
 ## Subtree of Another Tree
 [LeetCode](https://leetcode.com/problems/subtree-of-another-tree)/[力扣](https://leetcode-cn.com/problems/subtree-of-another-tree)
 
-```c++
+```cpp
 bool isSubtree(TreeNode* s, TreeNode* t) {
     if(s == nullptr && t == nullptr) return true;
     if(s == nullptr || t == nullptr) return false;
@@ -467,7 +467,7 @@ bool helper(TreeNode* root, TreeNode* t) {
 ## Merge Two Binary Trees
 [LeetCode](https://leetcode.com/problems/merge-two-binary-trees)/[力扣](https://leetcode-cn.com/problems/merge-two-binary-trees)
 
-```c++
+```cpp
 TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
     if(t1 == nullptr) return t2;
     if(t2 == nullptr) return t1;
@@ -481,7 +481,7 @@ TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
 ## Maximum Binary Tree
 [LeetCode](https://leetcode.com/problems/maximum-binary-tree)/[力扣](https://leetcode-cn.com/problems/maximum-binary-tree)
 
-```c++
+```cpp
 TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
     return helper(nums, 0, nums.size() - 1);
 }
@@ -501,7 +501,7 @@ TreeNode* helper(vector<int>& nums, int left, int right) {
 ## Maximum Width of Binary Tree
 [LeetCode](https://leetcode.com/problems/maximum-width-of-binary-tree)/[力扣](https://leetcode-cn.com/problems/maximum-width-of-binary-tree)
 
-```c++
+```cpp
 int widthOfBinaryTree(TreeNode* root) {
     if(root == nullptr) return 0;
     queue<TreeNode*> q;

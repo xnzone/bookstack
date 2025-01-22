@@ -14,7 +14,7 @@ weight: 806
 - 递归
 - 交换之后，直接交换下一个节点
 
-```c++
+```cpp
 ListNode* swapPairs(ListNode* head) {
     if(head && head->next) {
         swap(head->val, head->next->val);
@@ -27,7 +27,7 @@ ListNode* swapPairs(ListNode* head) {
 - 非递归，两两交换
 - 看作先删除，然后再插入
 
-```c++
+```cpp
 ListNode* swapPairs(ListNode* head) {
     if(head == nullptr) return head;
     ListNode p(0);
@@ -52,7 +52,7 @@ ListNode* swapPairs(ListNode* head) {
 - 中间链表反转
 - 记住前后面指针，然后拼接三个链表
 
-```c++
+```cpp
 ListNode* reverseKGroup(ListNode* head, int k) {
     ListNode po(0);
     ListNode* p = &po;
@@ -109,7 +109,7 @@ ListNode* reverse(ListNode* head){
 
 记录链表总长度，根据总长度与K的余数，再看从哪里开始断开放到队列首部
 
-```c++
+```cpp
 ListNode* rotateRight(ListNode* head, int k) {
     if(head == nullptr || k == 0) return head;
     int n = 0;
@@ -135,7 +135,7 @@ ListNode* rotateRight(ListNode* head, int k) {
 
 参考链表反转，将prev替换成nullptr就可以了
 
-```c++
+```cpp
  ListNode* reverseBetween(ListNode* head, int m, int n) {
     if(head == nullptr) return head;
     ListNode p(0);
@@ -174,7 +174,7 @@ ListNode* reverse(ListNode* begin, ListNode* end){
 
 非递归，三个指针，每次都是后面指向前面一个
 
-```c++
+```cpp
 ListNode* reverseList(ListNode* head) {
     ListNode* prev = nullptr;
     ListNode* cur = head;
@@ -193,7 +193,7 @@ ListNode* reverseList(ListNode* head) {
 
 用两个指针保存奇偶的链表，把偶指针加到奇指针末尾
 
-```c++
+```cpp
 ListNode* oddEvenList(ListNode* head) {
     if(head == nullptr || head->next == nullptr) return head;
     ListNode* odd = head;
@@ -212,7 +212,7 @@ ListNode* oddEvenList(ListNode* head) {
 
 分别保存几个指针，就来回倒腾就可以了
 
-```c++
+```cpp
 ListNode* oddEvenList(ListNode* head) {
     if(head == nullptr || head->next == nullptr) return head;
     ListNode* op = head;

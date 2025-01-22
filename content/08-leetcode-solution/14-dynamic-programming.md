@@ -10,7 +10,7 @@ weight: 814
 ## Longest Palindromic Substring
 [LeetCode](https://leetcode.com/problems/longest-palindromic-substring)/[力扣](https://leetcode-cn.com/problems/longest-palindromic-substring)
 
-```c++
+```cpp
 string longestPalindrome(string s) {
     if (s.size() <= 1){
         return s;
@@ -42,7 +42,7 @@ string longestPalindrome(string s) {
 ## Maximum Subarray
 [LeetCode](https://leetcode.com/problems/maximum-subarray)/[力扣](https://leetcode-cn.com/problems/maximum-subarray)
 
-```c++
+```cpp
 int maxSubArray(vector<int>& nums) {
     int sum = INT_MIN,csum = 0, n = nums.size();
     for(int i=0;i<n;i++)
@@ -57,7 +57,7 @@ int maxSubArray(vector<int>& nums) {
 ## Jump Game
 [LeetCode](https://leetcode.com/problems/jump-game)/[力扣](https://leetcode-cn.com/problems/jump-game)
 
-```c++
+```cpp
 bool canJump(vector<int>& nums) {
     int n = nums.size();
     int dp = nums[0]; // 当前能达到的最远距离
@@ -72,7 +72,7 @@ bool canJump(vector<int>& nums) {
 ## Unique Paths
 [LeetCode](https://leetcode.com/problems/unique-paths)/[力扣](https://leetcode-cn.com/problems/unique-paths)
 
-```c++
+```cpp
 int uniquePaths(int m, int n) {
     vector<vector<int>> dp(m,vector(n,0));
     for(int i = 0; i < m; i++) {
@@ -93,7 +93,7 @@ int uniquePaths(int m, int n) {
 ## Climbing Stairs
 [LeetCode](https://leetcode.com/problems/climbing-stairs)/[力扣](https://leetcode-cn.com/problems/climbing-stairs)
 
-```c++
+```cpp
 int climbStairs(int n) {
     if(n <= 2) return n;
     vector<int> dp(n,0);
@@ -108,7 +108,7 @@ int climbStairs(int n) {
 ## Decode Ways
 [LeetCode](https://leetcode.com/problems/decode-ways)/[力扣](https://leetcode-cn.com/problems/decode-ways)
 
-```c++
+```cpp
 int numDecodings(string s) {
     int ways_1 = 0, ways_2 = 0, ways = 0; // read as ways minus 1, ways minus 2 and ways
     
@@ -134,7 +134,7 @@ int numDecodings(string s) {
 ## Best Time to Buy and Sell Stock
 [LeetCode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock)/[力扣](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock)
 
-```c++
+```cpp
 int maxProfit(vector<int>& prices) {
     if(prices.size() <= 1) return 0;
     int mini = 0;
@@ -153,7 +153,7 @@ int maxProfit(vector<int>& prices) {
 ## Word Break
 [LeetCode](https://leetcode.com/problems/word-break)/[力扣](https://leetcode-cn.com/problems/word-break)
 
-```c++
+```cpp
 bool wordBreak(string s, vector<string>& wordDict) {
     unordered_set<string> dict(wordDict.begin(), wordDict.end());
     int n = s.size();
@@ -179,7 +179,7 @@ bool wordBreak(string s, vector<string>& wordDict) {
 [LeetCode](https://leetcode.com/problems/maximum-product-subarray)/[力扣](https://leetcode-cn.com/problems/maximum-product-subarray)
 
 除了保存当前最大值，还要保存负数的最小值，因为乘法负负得正
-```c++
+```cpp
 int maxProduct(vector<int>& nums) {
     int ans=nums[0];
     int imax=ans,imin=ans;
@@ -202,7 +202,7 @@ int maxProduct(vector<int>& nums) {
 ## House Robber
 [LeetCode](https://leetcode.com/problems/house-robber)/[力扣](https://leetcode-cn.com/problems/house-robber)
 
-```c++
+```cpp
 int rob(vector<int>& nums) {
     int n = nums.size();
     if(n == 0) return 0;
@@ -223,7 +223,7 @@ int rob(vector<int>& nums) {
 ## House Robber II
 [LeetCode](https://leetcode.com/problems/house-robber-ii)/[力扣](https://leetcode-cn.com/problems/house-robber-ii)
 
-```c++
+```cpp
 int rob(vector<int>& nums) {
     int n = nums.size();
     if(n==0) return 0;
@@ -244,7 +244,7 @@ int rob(vector<int>& nums) {
 ## Longest Increasing Subsequence
 [LeetCode](https://leetcode.com/problems/longest-increasing-subsequence)/[力扣](https://leetcode-cn.com/problems/longest-increasing-subsequence)
 
-```c++
+```cpp
 int lengthOfLIS(vector<int>& nums) {
     int n = nums.size();
     if(n <= 1) return n;
@@ -269,7 +269,7 @@ int lengthOfLIS(vector<int>& nums) {
 ## Range Sum Query - Immutable
 [LeetCode](https://leetcode.com/problems/range-sum-query-immutable)/[力扣](https://leetcode-cn.com/problems/range-sum-query-immutable)
 
-```c++
+```cpp
 class NumArray {
 vector<int> sum;
 NumArray(vector<int>& nums) {
@@ -295,7 +295,7 @@ int sumRange(int i, int j) {
 ## Best Time to Buy and Sell Stock with Cooldown
 [LeetCode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown)/[力扣](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown)
 
-```c++
+```cpp
 int maxProfit(vector<int>& prices) {
      if(prices.size()<=1) return 0;
      int len=prices.size();
@@ -317,7 +317,7 @@ int maxProfit(vector<int>& prices) {
 ## Coin Change
 [LeetCode](https://leetcode.com/problems/coin-change)/[力扣](https://leetcode-cn.com/problems/coin-change)
 
-```c++
+```cpp
 int coinChange(vector<int>& coins, int amount) {
     vector<int> dp(amount + 1, amount + 1);
     dp[0] = 0;
@@ -335,7 +335,7 @@ int coinChange(vector<int>& coins, int amount) {
 ## Counting Bits
 [LeetCode](https://leetcode.com/problems/counting-bits)/[力扣](https://leetcode-cn.com/problems/counting-bits)
 
-```c++
+```cpp
 vector<int> countBits(int num) {
     vector<int> dp(num + 1, 0);
     // int cur = 0;
@@ -354,7 +354,7 @@ vector<int> countBits(int num) {
 ## Combination Sum IV
 [LeetCode](https://leetcode.com/problems/combination-sum-iv)/[力扣](https://leetcode-cn.com/problems/combination-sum-iv)
 
-```c++
+```cpp
 int combinationSum4(vector<int>& nums, int target) {
     vector<int> dp(target+1);
     dp[0] = 1;
@@ -372,7 +372,7 @@ int combinationSum4(vector<int>& nums, int target) {
 ## Partition Equal Subset Sum
 [LeetCode](https://leetcode.com/problems/partition-equal-subset-sum)/[力扣](https://leetcode-cn.com/problems/partition-equal-subset-sum)
 
-```c++
+```cpp
 // If you know how to solve any of the combination sum problems (such as https://leetcode.com/problems/combination-sum-ii/),
 // you'll be able to solve this very easily as well, because it's basically the same problem (only worded differently).
 bool canPartition(vector<int>& nums)
@@ -426,7 +426,7 @@ bool helper(const std::vector<int>& nums, int index, int sum, std::unordered_map
 ## Palindromic Substrings
 [LeetCode](https://leetcode.com/problems/palindromic-substrings)/[力扣](https://leetcode-cn.com/problems/palindromic-substrings)
 
-```c++
+```cpp
 int countSubstrings(string s) {
     int n = s.size(), res = 0;
     for(int i = 0; i <= 2*n - 1; i++) {
@@ -445,7 +445,7 @@ int countSubstrings(string s) {
 ## Number of Longest Increasing Subsequence
 [LeetCode](https://leetcode.com/problems/number-of-longest-increasing-subsequence)/[力扣](https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence)
 
-```c++
+```cpp
 int findNumberOfLIS(vector<int>& nums) {
     int n = nums.size();
     if(n <= 1) return n;
@@ -481,7 +481,7 @@ int findNumberOfLIS(vector<int>& nums) {
 ## Partition to K Equal Sum Subsets
 [LeetCode](https://leetcode.com/problems/partition-to-k-equal-sum-subsets)/[力扣](https://leetcode-cn.com/problems/partition-to-k-equal-sum-subsets)
 
-```c++
+```cpp
 //currsum is the current sum of subset we are working on and targetsum is the sum we require for each subset
     
 bool dfs(vector<int>& nums,vector<int>visited,int idx,int k,int currsum,int targetsum)

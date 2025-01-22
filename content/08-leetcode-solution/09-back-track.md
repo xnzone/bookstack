@@ -11,7 +11,7 @@ weight: 809
 ## Letter Combinations of a Phone Number
 [LeetCode](https://leetcode.com/problems/letter-combinations-of-a-phone-number)/[力扣](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number)
 
-```c++
+```cpp
 vector<string> letterCombinations(string digits) {
     if(digits.length() == 0) return {};
     map<char,string> num_to_char{
@@ -45,7 +45,7 @@ void letterCombinations(string digits, string& combination, int idx, map<char,st
 ## Generate Parentheses
 [LeetCode](https://leetcode.com/problems/generate-parentheses)/[力扣](https://leetcode-cn.com/problems/generate-parentheses)
 
-```c++
+```cpp
 vector<string> generateParenthesis(int n) {
     vector<string> result;
     if (n <= 0) return result;
@@ -76,7 +76,7 @@ void addItem(vector<string> &result,string &tmpString, int pre, int end) {
 ## Sudoku Solver
 [LeetCode](https://leetcode.com/problems/sudoku-solver)/[力扣](https://leetcode-cn.com/problems/sudoku-solver)
 
-```c++
+```cpp
 void solveSudoku(vector<vector<char>>& board) {
     helper(board,0,0);
 }
@@ -111,7 +111,7 @@ bool safe(vector<vector<char>>& board, int i,int j, int target) {
 ## Combination Sum
 [LeetCode](https://leetcode.com/problems/combination-sum)/[力扣](https://leetcode-cn.com/problems/combination-sum)
 
-```c++
+```cpp
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
     vector<int> temp;
     vector<vector<int>> res;
@@ -137,7 +137,7 @@ void helper(vector<int>& can, int target,int index, int sum, vector<int>& temp, 
 ## Combination Sum II
 [LeetCode](https://leetcode.com/problems/combination-sum-ii)/[力扣](https://leetcode-cn.com/problems/combination-sum-ii)
 
-```c++
+```cpp
 vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
     vector<int> temp;
     vector<vector<int>> res;
@@ -164,7 +164,7 @@ void helper(vector<int>& can, int target, vector<int>& temp, vector<vector<int>>
 ## Permutations
 [LeetCode](https://leetcode.com/problems/permutations)/[力扣](https://leetcode-cn.com/problems/permutations)
 
-```c++
+```cpp
 vector<vector<int>> permute(vector<int>& nums) {
     vector<int> temp;
     vector<vector<int>> res;
@@ -192,7 +192,7 @@ void helper(vector<int>& nums, int len, vector<int>& temp, vector<vector<int>>& 
 ## Permutations II
 [LeetCode](https://leetcode.com/problems/permutations-ii)/[力扣](https://leetcode-cn.com/problems/permutations-ii)
 
-```c++
+```cpp
 vector<vector<int>> permuteUnique(vector<int>& nums) {
     vector<int> temp;
     unordered_map<int, int> m;
@@ -223,7 +223,7 @@ void helper(vector<int>& nums, int len, vector<int>& temp, vector<vector<int>>& 
 ## N-Queens
 [LeetCode](https://leetcode.com/problems/n-queens)/[力扣](https://leetcode-cn.com/problems/n-queens)
 
-```c++
+```cpp
 vector<vector<int>> placements;
 vector<int> placement, br, bd1, bd2;
 void dfs(int col, int n) {
@@ -260,7 +260,7 @@ vector<vector<string>> solveNQueens(int n) {
 ## Combinations
 [LeetCode](https://leetcode.com/problems/combinations)/[力扣](https://leetcode-cn.com/problems/combinations)
 
-```c++
+```cpp
 vector<vector<int>> combine(int n, int k) {
     vector<int> t;
     vector<vector<int>> r;
@@ -288,7 +288,7 @@ void helper(vector<int>& t, vector<vector<int>>& r,int idx, int n, int k,vector<
 ## Subsets
 [LeetCode](https://leetcode.com/problems/subsets)/[力扣](https://leetcode-cn.com/problems/subsets)
 
-```c++
+```cpp
 vector<vector<int>> subsets(vector<int>& nums) {
     vector<int> t;
     vector<vector<int>> r;
@@ -315,7 +315,7 @@ void helper(vector<int>& t, vector<vector<int>>& r, vector<int>& nums, int idx) 
 ## Subsets II
 [LeetCode](https://leetcode.com/problems/subsets-ii)/[力扣](https://leetcode-cn.com/problems/subsets-ii)
 
-```c++
+```cpp
 vector<vector<int>> subsetsWithDup(vector<int>& nums) {
     sort(nums.begin(), nums.end());
     vector<int> t;
@@ -342,7 +342,7 @@ void helper(vector<int>& t, vector<vector<int>>& r, vector<int>& nums, int idx) 
 ## Palindrome Partitioning
 [LeetCode](https://leetcode.com/problems/palindrome-partitioning)/[力扣](https://leetcode-cn.com/problems/palindrome-partitioning)
 
-```c++
+```cpp
 void _solve(int ind, string &s, vector<vector<bool>> &dp, vector<string> &ans, vector<vector<string>> &res){
     if(ind == s.length()){
         res.push_back(ans);
@@ -381,7 +381,7 @@ vector<vector<string>> partition(string s) {
 ## Combination Sum III
 [LeetCode](https://leetcode.com/problems/combination-sum-iii)/[力扣](https://leetcode-cn.com/problems/combination-sum-iii)
 
-```c++
+```cpp
 vector<vector<int>> combinationSum3(int k, int n) {
     vector<int> t;
     vector<vector<int>> r;
@@ -410,7 +410,7 @@ void helper(int k, int n, vector<int>& t, vector<vector<int>>& r, int sum,int in
 ## Target Sum
 [LeetCode](https://leetcode.com/problems/target-sum)/[力扣](https://leetcode-cn.com/problems/target-sum)
 
-```c++
+```cpp
 int findTargetSumWays(vector<int>& nums, int target) {
     long sum=0,n=nums.size();
     for(auto x:nums) sum+=x;
@@ -431,7 +431,7 @@ int findTargetSumWays(vector<int>& nums, int target) {
 ## Letter Case Permutation
 [LeetCode](https://leetcode.com/problems/letter-case-permutation)/[力扣](https://leetcode-cn.com/problems/letter-case-permutation)
 
-```c++
+```cpp
 vector<string> letterCasePermutation(string S) {
     vector<string> r;
     helper(r,S,0);

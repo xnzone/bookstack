@@ -12,7 +12,7 @@ weight: 810
 
 数组保存数据，add的时候直接在末尾插入，查找的时候，先排序，然后再算其中的结果
 
-```c++
+```cpp
 vector<int> data;
 /** initialize your data structure here. */
 MedianFinder() {
@@ -37,7 +37,7 @@ double findMedian() {
 
 上述方案应该过不了案例，插入的时候用二分查找，先找到要插入的位置，然后直接插入，find的时候直接计算就可以了
 
-```c++
+```cpp
 vector<int> data;
 
 void addNum(int num){
@@ -60,7 +60,7 @@ double findMedian() {
 
 二叉堆，可以用两个stl的优先队列（内部是用二叉堆）来维护，一个队列是最大堆，一个队列是最小堆，最大堆保存的是小半部分的数字，最小堆保存的是大半部分的数字，这样队首的和就是中位数了
 
-```c++
+```cpp
 priority_queue<int, vector<int>, less<int>> max_heap;
 priority_queue<int, vector<int>, greater<int>> min_heap;
 
@@ -85,7 +85,7 @@ double findMedian() {
 
 将k中的数字用vector保存，分别定义add，del和find方法，分别表示添加和删除元素，以及查找中位数
 
-```c++
+```cpp
 vector<double> medianSlidingWindow(vector<int>& nums, int k) {
     vector<int> curs;
     vector<double> res;
@@ -124,7 +124,7 @@ void del(vector<int>& curs, int num){
 
 用multiset来保存当前的数组，这是当前第一名的那个解法
 
-```c++
+```cpp
 vector<double> medianSlidingWindow(vector<int>& nums, int k) {
     vector<double> res;
     multiset<double> ms(nums.begin(), nums.begin() + k);

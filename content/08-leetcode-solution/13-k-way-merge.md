@@ -10,7 +10,7 @@ weight: 813
 ## Merge Two Sorted Lists
 [LeetCode](https://leetcode.com/problems/merge-two-sorted-lists)/[力扣](https://leetcode-cn.com/problems/merge-two-sorted-lists)
 
-```c++
+```cpp
 ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
     if(l2 == nullptr) return l1;
     if(l1 == nullptr) return l2;
@@ -29,7 +29,7 @@ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
 [LeetCode](https://leetcode.com/problems/merge-k-sorted-lists)/[力扣](https://leetcode-cn.com/problems/merge-k-sorted-lists)
 
 
-```c++
+```cpp
 ListNode* mergeKLists(vector<ListNode*>& lists) {
   priority_queue<ListNode*, vector<ListNode*>,compare> q;
   for(auto l : lists){
@@ -54,7 +54,7 @@ struct compare {
 };
 ```
 
-```c++
+```cpp
 ListNode* mergeKLists(vector<ListNode*>& lists) {
     ListNode* list = nullptr;
     for(int i = 0; i < lists.size(); i++){
@@ -79,7 +79,7 @@ ListNode* mergeTwoList(ListNode* l1, ListNode* l2) {
 ## Find K Pairs with Smallest Sums
 [LeetCode](https://leetcode.com/problems/find-k-pairs-with-smallest-sums)/[力扣](https://leetcode-cn.com/problems/find-k-pairs-with-smallest-sums)
 
-```c++
+```cpp
 struct compare {
     bool operator()(vector<int>& v1, vector<int>& v2) {
         return v1[0] + v1[1] < v2[0] + v2[1];
@@ -105,7 +105,7 @@ vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k
 ## Kth Smallest Element in a Sorted Matrix
 [LeetCode](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix)/[力扣](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix)
 
-```c++
+```cpp
 struct Node {
     int row;
     int col;
@@ -140,7 +140,7 @@ int kthSmallest(vector<vector<int>>& matrix, int k) {
 [LeetCode](https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists)/[力扣](https://leetcode-cn.com/problems/smallest-range-covering-elements-from-k-lists)
 
 
-```c++
+```cpp
 vector<int> smallestRange(vector<vector<int>>& nums) {
   int curMin = INT_MAX, curMax = INT_MIN;
   

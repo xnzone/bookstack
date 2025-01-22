@@ -13,7 +13,7 @@ weight: 807
 
 递归
 
-```c++
+```cpp
 void levelOrderHelper(vector<vector<int>> &res, int level, TreeNode *root) {
     if (root == NULL) return;
     if (res.size() == level) res.push_back(vector<int>());
@@ -31,7 +31,7 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 
 非递归，层序遍历，用queue保存当前层
 
-```c++
+```cpp
 vector<vector<int>> levelOrder(TreeNode* root) {
     vector<vector<int>> res;
     if(root == nullptr) return res;
@@ -73,7 +73,7 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 - 如果是从左开始，直接push_back
 - 如果是从右开始，直接insert到第一个
 
-```c++
+```cpp
  vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
     vector<vector<int>> res;
     if (root == nullptr) return res;
@@ -118,7 +118,7 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 
 层序遍历，最后直接翻转vector就可以了
 
-```c++
+```cpp
 vector<vector<int>> levelOrderBottom(TreeNode* root) {
     vector<vector<int>> res;
     if(root == nullptr) return res;
@@ -151,7 +151,7 @@ vector<vector<int>> levelOrderBottom(TreeNode* root) {
 
 递归求解，直接求左子树的高度，然后再求右子树的高度，两个取小的
 
-```c++
+```cpp
 int minDepth(TreeNode* root) {
     if (root == nullptr) return 0;
     if (root->left == nullptr && root->right == nullptr) return 1;
@@ -170,7 +170,7 @@ int minDepth(TreeNode* root) {
 
 递归
 
-```c++
+```cpp
 Node* connect(Node* root) {
     if(root == nullptr) return root;
     root->next = nullptr;
@@ -195,7 +195,7 @@ void connectHelper(Node* root) {
 
 非递归
 
-```c++
+```cpp
 Node* connect(Node* root) {
     if (!root) return root;
     Node* level = root;
@@ -224,7 +224,7 @@ Node* connect(Node* root) {
 
 递归 层序遍历做成递归形式
 
-```c++
+```cpp
 void solve(Node* node, int lvl, vector<Node*> &track){
     if(node==NULL){
         return;
@@ -252,7 +252,7 @@ Node* connect(Node* root) {
 
 层序遍历，记录当前层的node，然后组成一个链表
 
-```c++
+```cpp
 Node* connect(Node* root) {
     if(root == nullptr) return root;
     queue<Node*> q;
@@ -283,7 +283,7 @@ Node* connect(Node* root) {
 
 层序遍历，压入最右边那个
 
-```c++
+```cpp
 vector<int> rightSideView(TreeNode* root) {
     vector<int> ans;
     if(!root) return ans;
@@ -314,7 +314,7 @@ vector<int> rightSideView(TreeNode* root) {
 
 用一个标记表示有没有访问过
 
-```c++
+```cpp
 int numIslands(vector<vector<char>>& grid) {
     int res = 0;
     int m = grid.size();
@@ -367,7 +367,7 @@ int numIslands(vector<vector<char>>& grid) {
 
 记录每一层的和，求平均值
 
-```c++
+```cpp
 vector<double> averageOfLevels(TreeNode* root) {
     vector<double> res;
     if(root == nullptr) return res;
@@ -400,7 +400,7 @@ vector<double> averageOfLevels(TreeNode* root) {
 - 如果目标节点在当前节点的右分支，处理情况类似于左分支
 - 如果当目标节点不在当前节点子分支下面，直接返回
 
-```c++
+```cpp
 vector<int> res;
 TreeNode* target;
 int K;

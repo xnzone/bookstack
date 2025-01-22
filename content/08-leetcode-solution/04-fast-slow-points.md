@@ -13,7 +13,7 @@ weight: 804
 - 模拟两个数相加
 - 用一个数表示进位
 
-```c++
+```cpp
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     ListNode *t1 = l1, *t2 = l2;
     int n1 = 0, n2 = 0, c = 0;
@@ -58,7 +58,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 - 直到第一个指针移动到了末尾
 - 慢指针后面那个就是要被移除的，执行删除即可
 
-```c++
+```cpp
 ListNode* removeNthFromEnd(ListNode* head, int n) {
     ListNode* p = new ListNode(0);
     p->next = head;
@@ -83,7 +83,7 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
 - 如果两个指针值相同， 直接把slow指针的next指向fast的next
 - 否则 slow = fast，fast = fast -> next
 
-```c++
+```cpp
 ListNode* deleteDuplicates(ListNode* head) {
     if(head == nullptr) return head;
     ListNode *left = head, *right = head -> next;
@@ -107,7 +107,7 @@ ListNode* deleteDuplicates(ListNode* head) {
 - 如果慢指针追上了快指针，则有环
 - 否则，无环
 
-```c++
+```cpp
 bool hasCycle(ListNode* head) {
     if(head == nullptr || head -> next == nullptr) return false;
     ListNode *fast = head -> next, *slow = head;
@@ -129,7 +129,7 @@ bool hasCycle(ListNode* head) {
 - 两者再次相遇的地方就是环开始的地方
 - 否则就没有环
 
-```c++
+```cpp
 ListNode* detectCycle(ListNode* head) {
     if(head == nullptr || head -> next == nullptr) return nullptr;
     ListNode *slow = head, *fast = head;
@@ -155,7 +155,7 @@ ListNode* detectCycle(ListNode* head) {
 - 然后后半部分链表翻转
 - 最后两个链表合并
 
-```c++
+```cpp
 ListNode* reverse(ListNode* head) {
     ListNode *prev = nullptr, *cur = head;
     while(cur != nullptr) {
@@ -190,7 +190,7 @@ void recorderList(ListNode* head) {
 
 - 归并排序
 
-```c++
+```cpp
 ListNode* merge(ListNode* p1, ListNode* p2) {
     ListNode* t, *head = p1;
     while(p2 && p1) {
@@ -240,7 +240,7 @@ ListNode* sortList(ListNode* head) {
 
 - 删除前后，链表不要断
 
-```c++
+```cpp
 ListNode* removeElements(ListNode* head, int val) {
     ListNode *prev = head;
     while(prev != nullptr && prev -> val == val) {
@@ -267,7 +267,7 @@ ListNode* removeElements(ListNode* head, int val) {
 
 - 递归， 递归到最后，相当于首尾逐个比较
 
-```c++
+```cpp
 int ans = 1;
 ListNode *root;
 void helper(ListNode *head) {
@@ -289,7 +289,7 @@ bool isPalindrome(ListNode* head) {
 - 然后翻转后半部分
 - 再逐一比较
 
-```c++
+```cpp
 ListNode *reverse(ListNode *head) {
     ListNode prev = nullptr;
     while(head) {
@@ -326,7 +326,7 @@ bool isPalindrome(ListNode *head) {
 
 - 快慢指针直接解决
 
-```c++
+```cpp
 ListNode *middleNode(ListNode *head) {
     if(head == nullptr) return head;
     ListNode *prev = head, *next = head;
