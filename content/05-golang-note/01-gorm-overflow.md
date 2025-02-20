@@ -29,7 +29,7 @@ CREATE TABLE orders (
 );
 
 INSERT INTO orders (id, user_id, amount, discount) VALUES
-(1, 1001, 5000000000, 10),
+(1, 1001, 10, 10),
 (2, 1002, 2147483648, 20);
 ```
 
@@ -72,12 +72,12 @@ func main() {
 
 ```json
 [
-	{"id":1,"user_id":1001,"amount":0,"discount":10},
-	{"id":2,"user_id":1002,"amount":0,"discount":20}
+	{"id":1,"user_id":1001,"amount":10,"discount":10},
+	{"id":2,"user_id":1002,"amount":10,"discount":20}
 ]
 ```
 
-❗ 可以看到，`amount` 字段的值被错误地置为了 `0`，而其余字段的数据正常。这是因为 MySQL 中 `BIGINT` 类型的值 `5000000000` 和 `2147483648` 超出了 `int32` 的取值范围，导致溢出。
+❗ 可以看到，`amount` 字段的值被错误地置为了 `0`，而其余字段的数据正常。这是因为 MySQL 中 `BIGINT` 类型的值 `2147483648` 超出了 `int32` 的取值范围，导致溢出。而且由于 GORM 通过 `Scan` 方法将查询结果填充到结构体中，导致溢出错误被忽略。
 
 
 ## 原因分析
@@ -161,7 +161,7 @@ func (db *DB) scanIntoStruct(rows Rows, reflectValue reflect.Value, values []int
 }
 ```
 
-⚠️ 在映射过程中，如果数据库的列值超出了目标字段的类型范围（比如 `BIGINT` 转换为 `int32`），会导致溢出错误或结果被置为默认值 `0`。
+⚠️ 在映射过程中，如果数据库的列值超出了目标字段的类型范围（比如 `BIGINT` 转换为 `int32`），会导致溢出错误，使用了上次查询的结果。
 
 
 ## 问题解决
