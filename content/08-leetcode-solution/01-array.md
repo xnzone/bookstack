@@ -15,6 +15,7 @@ weight: 801
 - 遍历数组，如果出现了，设为0，大于n或者小于0，忽略
 - 最后遍历一遍就是结果，如果跑到最后，直接输出`n+1`
 
+代码实现
 
 ```cpp
 int firstMissingPositive(vector<int> &nums) {
