@@ -15,6 +15,7 @@ weight: 801
 - 遍历数组，如果出现了，设为0，大于n或者小于0，忽略
 - 最后遍历一遍就是结果，如果跑到最后，直接输出`n+1`
 
+
 代码实现
 
 ```cpp
@@ -40,6 +41,8 @@ int firstMissingPositive(vector<int> &nums) {
 - 一层旋转结束了，就往里旋转，直到层数大于`n / 2`
 - 注意判断特殊情况
 
+代码实现
+
 ```cpp
 void rotate(vector<vector<int>> &matrix) {
     int n = matrix.size();
@@ -59,6 +62,8 @@ void rotate(vector<vector<int>> &matrix) {
 
 - 直接新建一个数组保存
 
+代码实现
+
 ```cpp
 void rotate(vector<vector<int>> &matrix) {
     vector<vector<int>> tmp(matrix);
@@ -72,6 +77,8 @@ void rotate(vector<vector<int>> &matrix) {
 
 - 先reserve数组
 - 再对角线交换`i`, `j`
+
+代码实现
 
 ```cpp
 void rotate(vector<vector<int>> &matrix) {
@@ -92,6 +99,8 @@ void rotate(vector<vector<int>> &matrix) {
 - 如此循环，直到上大于下或左大于右
 
 ![回形输出](https://leetcode.com/problems/spiral-matrix/Figures/54_spiralmatrix.png)
+
+代码实现
 
 ```cpp
 vector<int> spiralOrder(vector<vector<int>> &matrix) {
@@ -117,6 +126,8 @@ vector<int> spiralOrder(vector<vector<int>> &matrix) {
 
 - 遍历矩阵，遇到0，把行和列都变成0
 - 用map保存需要变换的行和列
+
+代码实现
 
 ```cpp
 void setZeroes(vector<vector<int>> &matrix) {
@@ -145,6 +156,8 @@ void setZeroes(vector<vector<int>> &matrix) {
 
 - 递归实现。如果前一个节点满足条件，则把其他周围四个节点分别进行递归
 - 递归之前需要用一个标志位表示该节点已经被访问过了。递归之后，将该标志位归零
+
+代码实现
 
 ```cpp
 bool exist(vector<vector<char>> &board, string word) {
@@ -180,6 +193,8 @@ bool helper(int x, int y, vector<vector<char>> &board, string &word, int idx) {
 - 每次递增时，用一个变量保存当前递增的个数，直到递增的数字不在set中出现为止
 - 最后取递增个数和当前结果的最大值
 
+代码实现
+
 ```cpp
 int longestConsecutive(vector<int>& nums) {
     unordered_set<int> s;
@@ -210,6 +225,8 @@ int longestConsecutive(vector<int>& nums) {
 - A异或0 = A
 - A异或B异或A = A异或A异或B = B
 
+代码实现
+
 ```cpp
 int singleNumber(vector<int>& nums) {
     int a = 0;
@@ -226,6 +243,8 @@ int singleNumber(vector<int>& nums) {
 - 排序，排序完遍历，看前后两个数是否相等
 
 - 另一种解法，用map或set保存遍历过的，如果已经存在map中，直接返回true(以空间换时间)
+
+代码实现
 
 ```cpp
 bool containsDunplicate(vector<int>& nums) {
@@ -244,6 +263,8 @@ bool containsDunplicate(vector<int>& nums) {
 - 先从左向右遍历，但只保存`nums[i - 1]` 和 `prod[i - 1]`的乘积
 - 用`prod`从右往左与`nums`相乘
 - 最后结果就是除去了当前这个数的乘积
+
+代码实现
 
 ```cpp
 vector<int> productExeceptSelf(vector<int>& nums) {
@@ -268,6 +289,8 @@ vector<int> productExeceptSelf(vector<int>& nums) {
 - 直接求和
 - 把理论值和实际值相减
 
+代码实现
+
 ```cpp
 int missingNumber(vector<int>& nums) {
     int sum = 0;
@@ -286,6 +309,8 @@ int missingNumber(vector<int>& nums) {
 - 一个快指针，总能遇到慢指针
 - 最后慢指针从头开始，快慢指针每次运动一步
 - 两个相等的时候，快指针就是结果
+
+代码实现
 
 ```cpp
 int findDuplicate(vector<int>& nums) {
@@ -310,6 +335,8 @@ int findDuplicate(vector<int>& nums) {
 - 修改数组，将出现的那个地方改成负数
 - 后续遍历到，如果为负数，就是重复了
 
+代码实现
+
 ```cpp
 vector<int> findDuplicates(vector<int>& nums) {
     vector<int> v;
@@ -330,6 +357,8 @@ vector<int> findDuplicates(vector<int>& nums) {
 - 先把所有数字改成负数
 - 再遍历，如果位置为正数，则说明数字没有出现
 
+代码实现
+
 ```cpp
 vector<int> findDisappearedNumbers(vector<int>& nums) {
     vector<int> res;
@@ -347,6 +376,8 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 
 ## Circular Array Loop
 [LeetCode](https://leetcode.com/problems/circular-array-loop)/[力扣](https://leetcode-cn.com/problems/circular-array-loop)
+
+代码实现
 
 ```cpp
 int next(vector<int>& nums, int idx) {
@@ -384,6 +415,8 @@ bool circularArrayLoop(vector<int>& nums) {
 - 先排序
 - 把辅助的数组与原数组比较
 
+代码实现
+
 ```cpp
 int findUnsortedSubarray(vector<int>& nums) {
     vector<int> helper = nums;
@@ -405,6 +438,8 @@ int findUnsortedSubarray(vector<int>& nums) {
 
 - 用map或vector保存字典
 - 然后用二分法查找
+
+代码实现
 
 ```cpp
 int numMatchingSubseq(string S, vector<string>& words) {

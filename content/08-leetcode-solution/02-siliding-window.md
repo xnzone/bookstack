@@ -15,6 +15,8 @@ weight: 802
 - 如果为-1，则将字符加入子串，即窗口右移动
 - 如果不为-1， 将窗口左边移动到子串中最后一个字符的下一个字符所在位置
 
+代码实现
+
 ```cpp
 int lengthOfLongestSubString(string s) {
     string subs = "";
@@ -38,6 +40,8 @@ int lengthOfLongestSubString(string s) {
 - 一层遍历子串 
 - 第二层使用定长的滑动窗口，判断值是否在words中出现，并记录出现次数
 - 记录words出现的值用map
+
+代码实现
 
 ```cpp
 bool checkSubstring(string s, vector<string>& words) {
@@ -84,6 +88,8 @@ vector<int> findSubstring(string s, vector<string>& words) {
 - 开始移动左指针，条件满足时，更新结果，并继续移动，直到窗口大小和T字符串大小相等为止
 - 重复上述过程，直到s字符串末尾
 
+代码实现
+
 ```cpp
 string minWindow(string s, string t) {
     unordered_map<char, int> tcnt;
@@ -127,6 +133,8 @@ string minWindow(string s, string t) {
 
 - 优化后的滑动窗口
 
+代码实现
+
 ```cpp
 string minWindow(string s, string t) {
     vector<int> hist(128, 0);
@@ -157,6 +165,8 @@ string minWindow(string s, string t) {
 - 当和小于结果时，右指针移动
 - 当和等于结果时，两个指针同时移动
 - 最终结果，可以用vector把和记录下来
+
+代码实现
 
 ```cpp
 int minSubArrayLen(int s, vector<int>& nums) {
@@ -196,6 +206,8 @@ int minSubArrayLen(int s, vector<int>& nums) {
 - 小循环结束后，需要把当前数和位置信息放入队列，并把队列首部数字保存到结果中
 - 最后判断一下队列首部数字是否在`k`大小的滑动窗口中，如果不在，则`pop`出来
 
+代码实现
+
 ```cpp
 vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     int n = nums.size();
@@ -232,6 +244,8 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
 - 否则，左边指针移动
 - 计算当前窗口的替换值用map来保存，当前窗口中所有字符出现的总次数 - 最大字符长度 = 剩下要替换的次数
 
+代码实现
+
 ```cpp
 int characterReplacement(string s, int k) {
     if(s == "") return 0;
@@ -267,6 +281,8 @@ int characterReplacement(string s, int k) {
 
 - 上述方法可以改进，用一个长度为26的数组来替代map
 
+代码实现
+
 ```cpp
 int characterReplacement(string s, int k) {
     int n = s.size();
@@ -298,6 +314,8 @@ int characterReplacement(string s, int k) {
 - 固定窗口滑动，需要判断两个字符串是否为组合
 - 如果不为组合，则继续向前滑动
 - 如果为组合，直接返回true
+
+代码实现
 
 ```cpp
 bool checkZero(map<char, int>& cmap) {
@@ -331,6 +349,8 @@ bool checkInclusion(string s1, string s2) {
 
 - 上述操作无法通过最后一个案例，超时，所以可以改进一下
 
+代码实现
+
 ```cpp
 bool checkInclusion(string s1, string s2) {
     vector<int> a(26, 0), b(26, 0);
@@ -354,6 +374,8 @@ bool checkInclusion(string s1, string s2) {
 ## Count Unique Characters of All Substrings of a Given String
 [LeetCode](https://leetcode.com/problems/count-unique-characters-of-all-substrings-of-a-given-string)/[力扣](https://leetcode-cn.com/problems/count-unique-characters-of-all-substrings-of-a-given-string)
 
+代码实现
+
 ```cpp
 int uniqueLetterString(string s) {
     unordered_map<char, vector<int>> m;
@@ -375,6 +397,8 @@ int uniqueLetterString(string s) {
 
 ## Fruit Into Baskets
 [LeetCode](https://leetcode.com/problems/fruit-into-baskets)/[力扣](https://leetcode-cn.com/problems/fruit-into-baskets)
+
+代码实现
 
 ```cpp
 int totalFruit(vector<int>& tree) {
@@ -417,6 +441,8 @@ int totalFruit(vector<int>& tree) {
 
 ## Minimum Number of K Consecutive Bit Flips
 [LeetCode](https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips)/[力扣](https://leetcode-cn.com/problems/minimum-number-of-k-consecutive-bit-flips)
+
+代码实现
 
 ```cpp
 int minKBitFlips(vector<int>& A, int K) {

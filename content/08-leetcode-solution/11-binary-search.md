@@ -12,6 +12,8 @@ weight: 811
 
 先判断中间的和尾部的数字大小，再判断target和首尾中三个数字大小关系，如此便能进行二分搜索
 
+代码实现
+
 ```cpp
 int search(vector<int>& nums, int target) {
     if (nums.empty()) return -1;
@@ -39,6 +41,8 @@ int search(vector<int>& nums, int target) {
 [LeetCode](https://leetcode.com/problems/search-a-2d-matrix)/[力扣](https://leetcode.com/problems/search-a-2d-matrix)
 
 先找到所在的行，再找所在的列
+
+代码实现
 
 ```cpp
 bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -82,6 +86,8 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
 ## Search in Rotated Sorted Array II
 [LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array-ii)/[力扣](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii)
 
+代码实现
+
 ```cpp
 bool search(vector<int>& nums, int target) {
     int n = nums.size();
@@ -115,6 +121,8 @@ bool search(vector<int>& nums, int target) {
 ## Find Minimum in Rotated Sorted Array
 [LeetCode](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array)/[力扣](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array)
 
+代码实现
+
 ```cpp
 int findMin(vector<int>& nums) {
     int left = 0;
@@ -138,6 +146,8 @@ int findMin(vector<int>& nums) {
 ## Find Peak Element
 [LeetCode](https://leetcode.com/problems/find-peak-element)/[力扣](https://leetcode-cn.com/problems/find-peak-element)
 
+代码实现
+
 ```cpp
 int findPeakElement(vector<int>& nums) {
     return search(nums, 0, nums.size() -1);
@@ -154,6 +164,8 @@ int search(vector<int>& nums, int l, int r) {
 
 ## Count of Range Sum
 [LeetCode](https://leetcode.com/problems/count-of-range-sum)/[力扣](https://leetcode-cn.com/problems/count-of-range-sum)
+
+代码实现
 
 ```cpp
 int countRangeSum(vector<int>& nums, int lower, int upper) {
@@ -172,6 +184,8 @@ int countRangeSum(vector<int>& nums, int lower, int upper) {
 
 ## Find Smallest Letter Greater Than Target
 [LeetCode](https://leetcode.com/problems/find-smallest-letter-greater-than-target)/[力扣](https://leetcode-cn.com/problems/find-smallest-letter-greater-than-target)
+
+代码实现
 
 ```cpp
 char nextGreatestLetter(vector<char>& letters, char target) {
@@ -197,6 +211,8 @@ char nextGreatestLetter(vector<char>& letters, char target) {
 [LeetCode](https://leetcode.com/problems/binary-search)/[力扣](https://leetcode-cn.com/problems/binary-search)
 
 
+代码实现
+
 ```cpp
 int search(vector<int>& nums, int target) {
     int left = 0;
@@ -216,6 +232,8 @@ int search(vector<int>& nums, int target) {
 
 ## Peak Index in a Mountain Array
 [LeetCode](https://leetcode.com/problems/peak-index-in-a-mountain-array)/[力扣](https://leetcode-cn.com/problems/peak-index-in-a-mountain-array)
+
+代码实现
 
 ```cpp
 int peakIndexInMountainArray(vector<int>& A) {

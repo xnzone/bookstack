@@ -11,6 +11,8 @@ weight: 809
 ## Letter Combinations of a Phone Number
 [LeetCode](https://leetcode.com/problems/letter-combinations-of-a-phone-number)/[力扣](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number)
 
+代码实现
+
 ```cpp
 vector<string> letterCombinations(string digits) {
     if(digits.length() == 0) return {};
@@ -45,6 +47,8 @@ void letterCombinations(string digits, string& combination, int idx, map<char,st
 ## Generate Parentheses
 [LeetCode](https://leetcode.com/problems/generate-parentheses)/[力扣](https://leetcode-cn.com/problems/generate-parentheses)
 
+代码实现
+
 ```cpp
 vector<string> generateParenthesis(int n) {
     vector<string> result;
@@ -75,6 +79,8 @@ void addItem(vector<string> &result,string &tmpString, int pre, int end) {
 
 ## Sudoku Solver
 [LeetCode](https://leetcode.com/problems/sudoku-solver)/[力扣](https://leetcode-cn.com/problems/sudoku-solver)
+
+代码实现
 
 ```cpp
 void solveSudoku(vector<vector<char>>& board) {
@@ -111,6 +117,8 @@ bool safe(vector<vector<char>>& board, int i,int j, int target) {
 ## Combination Sum
 [LeetCode](https://leetcode.com/problems/combination-sum)/[力扣](https://leetcode-cn.com/problems/combination-sum)
 
+代码实现
+
 ```cpp
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
     vector<int> temp;
@@ -136,6 +144,8 @@ void helper(vector<int>& can, int target,int index, int sum, vector<int>& temp, 
 
 ## Combination Sum II
 [LeetCode](https://leetcode.com/problems/combination-sum-ii)/[力扣](https://leetcode-cn.com/problems/combination-sum-ii)
+
+代码实现
 
 ```cpp
 vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
@@ -164,6 +174,8 @@ void helper(vector<int>& can, int target, vector<int>& temp, vector<vector<int>>
 ## Permutations
 [LeetCode](https://leetcode.com/problems/permutations)/[力扣](https://leetcode-cn.com/problems/permutations)
 
+代码实现
+
 ```cpp
 vector<vector<int>> permute(vector<int>& nums) {
     vector<int> temp;
@@ -191,6 +203,8 @@ void helper(vector<int>& nums, int len, vector<int>& temp, vector<vector<int>>& 
 
 ## Permutations II
 [LeetCode](https://leetcode.com/problems/permutations-ii)/[力扣](https://leetcode-cn.com/problems/permutations-ii)
+
+代码实现
 
 ```cpp
 vector<vector<int>> permuteUnique(vector<int>& nums) {
@@ -222,6 +236,8 @@ void helper(vector<int>& nums, int len, vector<int>& temp, vector<vector<int>>& 
 
 ## N-Queens
 [LeetCode](https://leetcode.com/problems/n-queens)/[力扣](https://leetcode-cn.com/problems/n-queens)
+
+代码实现
 
 ```cpp
 vector<vector<int>> placements;
@@ -260,6 +276,8 @@ vector<vector<string>> solveNQueens(int n) {
 ## Combinations
 [LeetCode](https://leetcode.com/problems/combinations)/[力扣](https://leetcode-cn.com/problems/combinations)
 
+代码实现
+
 ```cpp
 vector<vector<int>> combine(int n, int k) {
     vector<int> t;
@@ -288,6 +306,8 @@ void helper(vector<int>& t, vector<vector<int>>& r,int idx, int n, int k,vector<
 ## Subsets
 [LeetCode](https://leetcode.com/problems/subsets)/[力扣](https://leetcode-cn.com/problems/subsets)
 
+代码实现
+
 ```cpp
 vector<vector<int>> subsets(vector<int>& nums) {
     vector<int> t;
@@ -315,6 +335,8 @@ void helper(vector<int>& t, vector<vector<int>>& r, vector<int>& nums, int idx) 
 ## Subsets II
 [LeetCode](https://leetcode.com/problems/subsets-ii)/[力扣](https://leetcode-cn.com/problems/subsets-ii)
 
+代码实现
+
 ```cpp
 vector<vector<int>> subsetsWithDup(vector<int>& nums) {
     sort(nums.begin(), nums.end());
@@ -341,6 +363,8 @@ void helper(vector<int>& t, vector<vector<int>>& r, vector<int>& nums, int idx) 
 
 ## Palindrome Partitioning
 [LeetCode](https://leetcode.com/problems/palindrome-partitioning)/[力扣](https://leetcode-cn.com/problems/palindrome-partitioning)
+
+代码实现
 
 ```cpp
 void _solve(int ind, string &s, vector<vector<bool>> &dp, vector<string> &ans, vector<vector<string>> &res){
@@ -381,6 +405,8 @@ vector<vector<string>> partition(string s) {
 ## Combination Sum III
 [LeetCode](https://leetcode.com/problems/combination-sum-iii)/[力扣](https://leetcode-cn.com/problems/combination-sum-iii)
 
+代码实现
+
 ```cpp
 vector<vector<int>> combinationSum3(int k, int n) {
     vector<int> t;
@@ -410,6 +436,8 @@ void helper(int k, int n, vector<int>& t, vector<vector<int>>& r, int sum,int in
 ## Target Sum
 [LeetCode](https://leetcode.com/problems/target-sum)/[力扣](https://leetcode-cn.com/problems/target-sum)
 
+代码实现
+
 ```cpp
 int findTargetSumWays(vector<int>& nums, int target) {
     long sum=0,n=nums.size();
@@ -430,6 +458,8 @@ int findTargetSumWays(vector<int>& nums, int target) {
 
 ## Letter Case Permutation
 [LeetCode](https://leetcode.com/problems/letter-case-permutation)/[力扣](https://leetcode-cn.com/problems/letter-case-permutation)
+
+代码实现
 
 ```cpp
 vector<string> letterCasePermutation(string S) {

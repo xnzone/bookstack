@@ -13,6 +13,8 @@ weight: 804
 - 模拟两个数相加
 - 用一个数表示进位
 
+代码实现
+
 ```cpp
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     ListNode *t1 = l1, *t2 = l2;
@@ -58,6 +60,8 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 - 直到第一个指针移动到了末尾
 - 慢指针后面那个就是要被移除的，执行删除即可
 
+代码实现
+
 ```cpp
 ListNode* removeNthFromEnd(ListNode* head, int n) {
     ListNode* p = new ListNode(0);
@@ -83,6 +87,8 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
 - 如果两个指针值相同， 直接把slow指针的next指向fast的next
 - 否则 slow = fast，fast = fast -> next
 
+代码实现
+
 ```cpp
 ListNode* deleteDuplicates(ListNode* head) {
     if(head == nullptr) return head;
@@ -107,6 +113,8 @@ ListNode* deleteDuplicates(ListNode* head) {
 - 如果慢指针追上了快指针，则有环
 - 否则，无环
 
+代码实现
+
 ```cpp
 bool hasCycle(ListNode* head) {
     if(head == nullptr || head -> next == nullptr) return false;
@@ -128,6 +136,8 @@ bool hasCycle(ListNode* head) {
 - 然后慢指针从头开始走， 快指针继续走
 - 两者再次相遇的地方就是环开始的地方
 - 否则就没有环
+
+代码实现
 
 ```cpp
 ListNode* detectCycle(ListNode* head) {
@@ -154,6 +164,8 @@ ListNode* detectCycle(ListNode* head) {
 - 先用快慢指针找到中点位置
 - 然后后半部分链表翻转
 - 最后两个链表合并
+
+代码实现
 
 ```cpp
 ListNode* reverse(ListNode* head) {
@@ -189,6 +201,8 @@ void recorderList(ListNode* head) {
 [LeetCode](https://leetcode.com/problems/sort-list)/[力扣](https://leetcode-cn.com/problems/sort-list)
 
 - 归并排序
+
+代码实现
 
 ```cpp
 ListNode* merge(ListNode* p1, ListNode* p2) {
@@ -240,6 +254,8 @@ ListNode* sortList(ListNode* head) {
 
 - 删除前后，链表不要断
 
+代码实现
+
 ```cpp
 ListNode* removeElements(ListNode* head, int val) {
     ListNode *prev = head;
@@ -267,6 +283,8 @@ ListNode* removeElements(ListNode* head, int val) {
 
 - 递归， 递归到最后，相当于首尾逐个比较
 
+代码实现
+
 ```cpp
 int ans = 1;
 ListNode *root;
@@ -288,6 +306,8 @@ bool isPalindrome(ListNode* head) {
 - 快慢指针找到后面的链表
 - 然后翻转后半部分
 - 再逐一比较
+
+代码实现
 
 ```cpp
 ListNode *reverse(ListNode *head) {
@@ -325,6 +345,8 @@ bool isPalindrome(ListNode *head) {
 [LeetCode](https://leetcode.com/problems/middle-of-the-linked-list)/[力扣](https://leetcode-cn.com/problems/middle-of-the-linked-list)
 
 - 快慢指针直接解决
+
+代码实现
 
 ```cpp
 ListNode *middleNode(ListNode *head) {

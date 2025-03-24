@@ -12,6 +12,8 @@ weight: 812
 
 用优先队列来存k个元素，然后遍历数组，如果比堆顶元素大，则将堆顶元素弹出，并将元素放入
 
+代码实现
+
 ```cpp
 int findKthLargest(vector<int>& nums, int k) {
     priority_queue<int, vector<int>, greater<int>> min_heap;
@@ -32,6 +34,8 @@ int findKthLargest(vector<int>& nums, int k) {
 
 ## Kth Smallest Element in a BST
 [LeetCode](https://leetcode.com/problems/kth-smallest-element-in-a-bst)/[力扣](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst)
+
+代码实现
 
 ```cpp
 int index = -1;
@@ -54,6 +58,8 @@ void helper(TreeNode* root,int& k) {
 
 ## Top K Frequent Elements
 [LeetCode](https://leetcode.com/problems/top-k-frequent-elements)/[力扣](https://leetcode-cn.com/problems/top-k-frequent-elements)
+
+代码实现
 
 ```cpp
 struct compare{
@@ -91,6 +97,8 @@ vector<int> topKFrequent(vector<int>& nums, int k) {
 ## Sort Characters By Frequency
 [LeetCode](https://leetcode.com/problems/sort-characters-by-frequency)/[力扣](https://leetcode-cn.com/problems/sort-characters-by-frequency)
 
+代码实现
+
 ```cpp
 struct compare {
     bool operator()(const pair<int,int> p1, const pair<int,int> p2) {
@@ -121,6 +129,8 @@ string frequencySort(string s) {
 
 ## Course Schedule III
 [LeetCode](https://leetcode.com/problems/course-schedule-iii)/[力扣](https://leetcode.com/problems/course-schedule-iii)
+
+代码实现
 
 ```cpp
 static bool cmp(vector<int> & a,vector<int> & b){
@@ -156,6 +166,8 @@ int scheduleCourse(vector<vector<int>>& courses) {
 ## Find K Closest Elements
 [LeetCode](https://leetcode.com/problems/find-k-closest-elements)/[力扣](https://leetcode-cn.com/problems/find-k-closest-elements)
 
+代码实现
+
 ```cpp
 vector<int> findClosestElements(vector<int>& arr, int k, int x) {
   int n=arr.size();
@@ -186,6 +198,8 @@ vector<int> findClosestElements(vector<int>& arr, int k, int x) {
 
 ## Reorganize String
 [LeetCode](https://leetcode.com/problems/reorganize-string)/[力扣](https://leetcode-cn.com/problems/reorganize-string)
+
+代码实现
 
 ```cpp
 string reorganizeString(string S) {
@@ -233,6 +247,8 @@ string reorganizeString(string S) {
 ## Maximum Frequency Stack
 [LeetCode](https://leetcode.com/problems/maximum-frequency-stack)/[力扣](https://leetcode-cn.com/problems/maximum-frequency-stack)
 
+代码实现
+
 ```cpp
 unordered_map<int,int> freq;
 unordered_map<int,stack<int>> freq_map;
@@ -257,6 +273,8 @@ int pop() {
 
 ## K Closest Points to Origin
 [LeetCode](https://leetcode.com/problems/k-closest-points-to-origin)/[力扣](https://leetcode-cn.com/problems/k-closest-points-to-origin)
+
+代码实现
 
 ```cpp
 struct compare {

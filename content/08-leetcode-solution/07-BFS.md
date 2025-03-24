@@ -13,6 +13,8 @@ weight: 807
 
 递归
 
+代码实现
+
 ```cpp
 void levelOrderHelper(vector<vector<int>> &res, int level, TreeNode *root) {
     if (root == NULL) return;
@@ -30,6 +32,8 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 ```
 
 非递归，层序遍历，用queue保存当前层
+
+代码实现
 
 ```cpp
 vector<vector<int>> levelOrder(TreeNode* root) {
@@ -72,6 +76,8 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 - 层序遍历，用一个标识表示是否从左开始
 - 如果是从左开始，直接push_back
 - 如果是从右开始，直接insert到第一个
+
+代码实现
 
 ```cpp
  vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
@@ -118,6 +124,8 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 
 层序遍历，最后直接翻转vector就可以了
 
+代码实现
+
 ```cpp
 vector<vector<int>> levelOrderBottom(TreeNode* root) {
     vector<vector<int>> res;
@@ -151,6 +159,8 @@ vector<vector<int>> levelOrderBottom(TreeNode* root) {
 
 递归求解，直接求左子树的高度，然后再求右子树的高度，两个取小的
 
+代码实现
+
 ```cpp
 int minDepth(TreeNode* root) {
     if (root == nullptr) return 0;
@@ -169,6 +179,8 @@ int minDepth(TreeNode* root) {
 层序遍历
 
 递归
+
+代码实现
 
 ```cpp
 Node* connect(Node* root) {
@@ -194,6 +206,8 @@ void connectHelper(Node* root) {
 ```
 
 非递归
+
+代码实现
 
 ```cpp
 Node* connect(Node* root) {
@@ -224,6 +238,8 @@ Node* connect(Node* root) {
 
 递归 层序遍历做成递归形式
 
+代码实现
+
 ```cpp
 void solve(Node* node, int lvl, vector<Node*> &track){
     if(node==NULL){
@@ -251,6 +267,8 @@ Node* connect(Node* root) {
 ```
 
 层序遍历，记录当前层的node，然后组成一个链表
+
+代码实现
 
 ```cpp
 Node* connect(Node* root) {
@@ -283,6 +301,8 @@ Node* connect(Node* root) {
 
 层序遍历，压入最右边那个
 
+代码实现
+
 ```cpp
 vector<int> rightSideView(TreeNode* root) {
     vector<int> ans;
@@ -313,6 +333,8 @@ vector<int> rightSideView(TreeNode* root) {
 [LeetCode](https://leetcode.com/problems/number-of-islands)/[力扣](https://leetcode-cn.com/problems/number-of-islands)
 
 用一个标记表示有没有访问过
+
+代码实现
 
 ```cpp
 int numIslands(vector<vector<char>>& grid) {
@@ -367,6 +389,8 @@ int numIslands(vector<vector<char>>& grid) {
 
 记录每一层的和，求平均值
 
+代码实现
+
 ```cpp
 vector<double> averageOfLevels(TreeNode* root) {
     vector<double> res;
@@ -399,6 +423,8 @@ vector<double> averageOfLevels(TreeNode* root) {
 - 如果目标节点在当前节点的左分支，且深度为L，则只需要在当前节点的右边节点去寻找`K - L -1`深度即可
 - 如果目标节点在当前节点的右分支，处理情况类似于左分支
 - 如果当目标节点不在当前节点子分支下面，直接返回
+
+代码实现
 
 ```cpp
 vector<int> res;

@@ -14,6 +14,8 @@ weight: 806
 - 递归
 - 交换之后，直接交换下一个节点
 
+代码实现
+
 ```cpp
 ListNode* swapPairs(ListNode* head) {
     if(head && head->next) {
@@ -26,6 +28,8 @@ ListNode* swapPairs(ListNode* head) {
 
 - 非递归，两两交换
 - 看作先删除，然后再插入
+
+代码实现
 
 ```cpp
 ListNode* swapPairs(ListNode* head) {
@@ -51,6 +55,8 @@ ListNode* swapPairs(ListNode* head) {
 
 - 中间链表反转
 - 记住前后面指针，然后拼接三个链表
+
+代码实现
 
 ```cpp
 ListNode* reverseKGroup(ListNode* head, int k) {
@@ -109,6 +115,8 @@ ListNode* reverse(ListNode* head){
 
 记录链表总长度，根据总长度与K的余数，再看从哪里开始断开放到队列首部
 
+代码实现
+
 ```cpp
 ListNode* rotateRight(ListNode* head, int k) {
     if(head == nullptr || k == 0) return head;
@@ -134,6 +142,8 @@ ListNode* rotateRight(ListNode* head, int k) {
 [LeetCode](https://leetcode.com/problems/reverse-linked-list-ii)/[力扣](https://leetcode-cn.com/problems/reverse-linked-list-ii)
 
 参考链表反转，将prev替换成nullptr就可以了
+
+代码实现
 
 ```cpp
  ListNode* reverseBetween(ListNode* head, int m, int n) {
@@ -174,6 +184,8 @@ ListNode* reverse(ListNode* begin, ListNode* end){
 
 非递归，三个指针，每次都是后面指向前面一个
 
+代码实现
+
 ```cpp
 ListNode* reverseList(ListNode* head) {
     ListNode* prev = nullptr;
@@ -193,6 +205,8 @@ ListNode* reverseList(ListNode* head) {
 
 用两个指针保存奇偶的链表，把偶指针加到奇指针末尾
 
+代码实现
+
 ```cpp
 ListNode* oddEvenList(ListNode* head) {
     if(head == nullptr || head->next == nullptr) return head;
@@ -211,6 +225,8 @@ ListNode* oddEvenList(ListNode* head) {
 ```
 
 分别保存几个指针，就来回倒腾就可以了
+
+代码实现
 
 ```cpp
 ListNode* oddEvenList(ListNode* head) {
