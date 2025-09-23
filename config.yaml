@@ -14,3 +14,4 @@ outputs:
         - JSON
 sitemap:
   filename: sitemap.xml
+  priority = 0.5
