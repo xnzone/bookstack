@@ -18,7 +18,7 @@ tags: ["tutorial", "os"]
 
 在80x25的表格里获取特定字符的公式为：
 
-{{< highlight asm >}}
+```armasm
 0xb8000 + 2 *(row * 80 + col)
 ```
 
