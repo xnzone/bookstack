@@ -1,4 +1,4 @@
-baseURL: "https://bookstack.xnzone.eu.org"
+baseURL: "https://bookstack.xnzone.vercel.app"
 title: bookstack
 paginate: 6
 theme: bookstack
@@ -13,4 +13,4 @@ outputs:
         - HTML
         - JSON
 sitemap:
-  filename: sitemapindex.xml
+  filename: sitemap.xml
