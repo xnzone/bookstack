@@ -3,14 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   {{- range where .Site.Pages "Params.cover" "eq" true }}
     <url>
-      <loc>https://bookstack.xnzone.vercel.app{{ .Permalink }}</loc>
-      <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</lastmod>
-      {{ if ne .Site.Params.defaultChangeFreq "" }}
-        <changefreq>{{ .Site.Params.defaultChangeFreq }}</changefreq>
-      {{ end }}
-      {{ if ge .Site.Params.defaultPriority 0.0 }}
-        <priority>{{ .Site.Params.defaultPriority }}</priority>
-      {{ end }}
+      <loc>{{ .Permalink }}</loc>
+      <lastmod>{{ safeHTML ( .Lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
+      <changefreq>{{ . }}</changefreq>{{ end }}{{ if ge .Sitemap.Priority 0.0 }}
+      <priority>{{ .Sitemap.Priority }}</priority>{{ end }}
     </url>
   {{ end -}}
 </urlset>
