@@ -15,4 +15,5 @@ outputs:
 sitemap:
   filename: sitemap.xml
   priority: 0.5
-  changefreq: weekly
+  changefreq: daily
+enableRobotsTXT: true
