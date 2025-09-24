@@ -1,4 +1,4 @@
-baseURL: "https://bookstack.xnzone.vercel.app"
+baseURL: "https://x-bookstack.vercel.app"
 title: bookstack
 paginate: 6
 theme: bookstack
