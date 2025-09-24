@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 怎么最快地复制一张表？
 date: 2024-10-18 18:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 141
 tags: ["MySQL", "实战45讲", "丁奇", "复制表"]

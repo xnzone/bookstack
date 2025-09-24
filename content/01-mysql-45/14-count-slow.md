@@ -2,7 +2,7 @@
 author: 丁奇 
 title: count(*)这么慢，我该怎么办
 date: 2024-03-18 18:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 114
 tags: ["MySQL", "实战45讲", "丁奇", "count"]

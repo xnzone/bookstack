@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 事务到底是隔离的还是不隔离的
 date: 2024-03-10 15:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 108
 tags: ["MySQL", "实战45讲", "丁奇", "事务", "事务隔离"]

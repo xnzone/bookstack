@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 为什么我只查一行语句，也执行这么慢？
 date: 2024-10-18 18:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 119
 tags: ["MySQL", "实战45讲", "丁奇", "执行慢"]

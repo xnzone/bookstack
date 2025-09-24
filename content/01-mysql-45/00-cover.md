@@ -2,7 +2,7 @@
 author: 丁奇  
 title: MySQL实战45讲
 date: 2024-03-06 10:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: true
 weight: 1
 tags: ["MySQL", "实战45讲", "丁奇"]

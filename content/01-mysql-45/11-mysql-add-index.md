@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 怎么给字符串字段加索引
 date: 2024-03-18 18:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 111
 tags: ["MySQL", "实战45讲", "丁奇", "索引", "加索引"]

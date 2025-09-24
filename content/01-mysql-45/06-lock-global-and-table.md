@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 全局锁和表锁：给表加个字段怎么有这么多阻碍
 date: 2024-03-10 10:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 106
 tags: ["MySQL", "实战45讲", "丁奇", "锁", "全局锁", "表锁"]

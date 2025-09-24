@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 到底可不可以使用join？
 date: 2024-10-18 18:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 134
 tags: ["MySQL", "实战45讲", "丁奇", "join"]

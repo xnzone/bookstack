@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 普通索引和唯一索引，应该怎么选择
 date: 2024-03-10 18:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 109
 tags: ["MySQL", "实战45讲", "丁奇", "索引", "唯一索引", "普通索引"]

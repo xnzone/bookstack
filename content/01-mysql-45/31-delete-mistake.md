@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 误删数据后除了跑路，还能怎么办？
 date: 2024-10-18 18:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 131
 tags: ["MySQL", "实战45讲", "丁奇", "数据恢复"]

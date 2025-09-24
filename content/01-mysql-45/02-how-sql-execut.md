@@ -2,7 +2,7 @@
 author: 丁奇 
 title: 日志系统：一条SQL更新语句是如何执行的
 date: 2024-03-06 10:04:00
-image: /covers/01-mysql-45.jpg
+image: https://s2.loli.net/2025/09/24/EfLxhMsOQ8omWCV.png
 cover: false
 weight: 102
 tags: ["MySQL", "实战45讲", "丁奇", "日志系统"]
