@@ -2,7 +2,7 @@
 author: xnzone
 title: xv6(Unix Like OS) Lab
 date: 2021-09-10 10:23:32
-image: /covers/xv6.jpg
+image: https://s2.loli.net/2025/09/24/B9kM2IQLyPN4DRw.jpg
 cover: true
 weight: 12
 tags:
