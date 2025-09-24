@@ -2,7 +2,7 @@
 author: xnzone  
 title: Go语言编程启示录
 date: 2025-01-12 10:04:00
-image: /covers/golang-note.jpg
+image: https://s2.loli.net/2025/09/24/wfr8F2PMbkNUqeD.jpg
 cover: true
 weight: 5
 tags: ["Golang", "Go"]

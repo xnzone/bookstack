@@ -2,7 +2,7 @@
 title: "广度优先搜索"
 date: 2022-06-29T15:43:42+08:00
 tags: ["leetcode", "bfs", "c++"]
-image: /covers/leetcode-solution.jpg
+image: https://s2.loli.net/2025/09/24/aNzcSETVp5LlgHd.jpg
 cover: false
 weight: 807
 ---

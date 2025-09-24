@@ -2,7 +2,7 @@
 author: xnzone
 title: "趣谈分布式系统"
 date: 2024-09-10 10:23:32
-image: /covers/distr-fun-zh.jpg
+image: https://s2.loli.net/2025/09/24/lcAnB5wXs3GbCRm.jpg
 cover: true
 weight: 4
 tags:

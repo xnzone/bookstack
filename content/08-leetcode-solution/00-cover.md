@@ -2,7 +2,7 @@
 author: xnzone 
 title: LeetCode分类题解
 date: 2022-06-23 03:23:32
-image: /covers/leetcode-solution.jpg
+image: https://s2.loli.net/2025/09/24/aNzcSETVp5LlgHd.jpg
 cover: true
 weight: 8
 tags: ["LeetCode", "题解"]

@@ -2,7 +2,7 @@
 author: xnzone
 title: "基本概念"
 date: 2024-09-10 10:23:32
-image: /covers/distr-fun-zh.jpg
+image: https://s2.loli.net/2025/09/24/lcAnB5wXs3GbCRm.jpg
 cover: false
 weight: 402
 tags:

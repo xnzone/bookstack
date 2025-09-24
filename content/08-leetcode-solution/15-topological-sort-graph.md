@@ -2,7 +2,7 @@
 title: "拓扑排序和图论"
 date: 2022-09-10T00:43:42+08:00
 tags: ["leetcode", "topological sort and graph", "c++"]
-image: /covers/leetcode-solution.jpg
+image: https://s2.loli.net/2025/09/24/aNzcSETVp5LlgHd.jpg
 cover: false
 weight: 815
 ---

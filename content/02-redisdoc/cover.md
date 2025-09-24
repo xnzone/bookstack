@@ -2,7 +2,7 @@
 author: 黄健宏
 title: Redis命令参考
 date: 2024-03-07 15:24:00
-image: /covers/02-redisdoc.jpg
+image: https://s2.loli.net/2025/09/24/hzeyjtaJWSTmg32.png
 cover: true
 weight: 2
 tags: ["Redis", "命令参考", "黄健宏"]

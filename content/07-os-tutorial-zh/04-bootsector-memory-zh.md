@@ -2,7 +2,7 @@
 author: xnzone 
 title: 引导扇区内存
 date: 2021-09-10 10:23:32
-image: /covers/os-tutorial-zh.jpg
+image: https://s2.loli.net/2025/09/24/J8Y6zBqZmSn9NkW.jpg
 cover: false
 weight: 704
 tags: ["tutorial", "os"]

@@ -3,7 +3,7 @@ title: "滑动窗口"
 date: 2022-06-24T15:43:42+08:00
 description: "滑动窗口"
 tags: ["leetcode", "slide window", "c++"]
-image: /covers/leetcode-solution.jpg
+image: https://s2.loli.net/2025/09/24/aNzcSETVp5LlgHd.jpg
 cover: false
 weight: 802
 ---

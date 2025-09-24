@@ -2,7 +2,7 @@
 author: 黄健宏
 title: DEL
 date: 2024-12-29 10:32:21
-image: /covers/02-redisdoc.jpg
+image: https://s2.loli.net/2025/09/24/hzeyjtaJWSTmg32.png
 cover: false
 weight: 20906
 tags:

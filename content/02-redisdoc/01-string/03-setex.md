@@ -2,7 +2,7 @@
 author: 黄健宏
 title: SETEX
 date: 2024-03-07 17:32:21
-image: /covers/02-redisdoc.jpg
+image: https://s2.loli.net/2025/09/24/hzeyjtaJWSTmg32.png
 cover: false
 weight: 20103 
 tags: ["Redis", "字符串", "SETEX"]

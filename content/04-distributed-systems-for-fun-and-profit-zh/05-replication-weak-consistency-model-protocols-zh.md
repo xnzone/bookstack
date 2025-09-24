@@ -2,7 +2,7 @@
 author: mixu
 title: "复制：弱一致性模型协议"
 date: 2024-10-10 10:23:32
-image: /covers/distr-fun-zh.jpg
+image: https://s2.loli.net/2025/09/24/lcAnB5wXs3GbCRm.jpg
 cover: false
 weight: 405
 tags: ["distributed system", "分布式系统", "复制", "一致性"]

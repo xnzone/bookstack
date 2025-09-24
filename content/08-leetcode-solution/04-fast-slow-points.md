@@ -2,7 +2,7 @@
 title: "快慢指针"
 date: 2022-06-26T15:43:42+08:00
 tags: ["leetcode", "fast and slow points", "c++"]
-image: /covers/leetcode-solution.jpg
+image: https://s2.loli.net/2025/09/24/aNzcSETVp5LlgHd.jpg
 cover: false
 weight: 804
 ---

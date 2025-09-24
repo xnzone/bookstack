@@ -2,7 +2,7 @@
 author: xnzone  
 title: Gorm类型溢出
 date: 2025-01-12 10:04:00
-image: /covers/golang-note.jpg
+image: https://s2.loli.net/2025/09/24/wfr8F2PMbkNUqeD.jpg
 cover: false
 weight: 501
 tags: ["Golang", "Go", "Gorm"]

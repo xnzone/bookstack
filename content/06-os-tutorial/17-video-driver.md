@@ -2,7 +2,7 @@
 author: cfenollosa  
 title: Video Driver
 date: 2025-01-12 10:04:00
-image: /covers/os-tutorial.jpg
+image: https://s2.loli.net/2025/09/24/mADxctyj3rV8LTq.jpg
 cover: false
 weight: 616
 tags: ["os", "tutorial"]

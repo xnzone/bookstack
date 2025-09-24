@@ -2,7 +2,7 @@
 author: mixu
 title: "Replication: weak consistency model protocols"
 date: 2024-10-10 10:23:32
-image: /covers/distr-fun.jpg
+image: https://s2.loli.net/2025/09/24/cojslieTBfr8H3F.jpg
 cover: false
 weight: 305
 tags: ["distributed system", "分布式系统"]
