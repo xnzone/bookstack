@@ -31,9 +31,9 @@ QEMU提供一个默认地址为`10.0.2.2`的虚拟路由，分配JOS的IP地址�
 `makefile`配置了QEMU网络栈来记录所有进出包，在实验目录的`qemu.pcap`
 
 使用`tcpdump`可以拿到`hex/ASCII`包
-{{< highlight bash >}}
+```bash
 tcpdump -XXnr qemu.pcap
-{{< /highlight  >}}
+```
 
 也可以使用[Wireshark](http://www.wireshark.org/)来图形化分析抓包文件。Wireshark包含上百种网络协议的解包
 
@@ -105,17 +105,17 @@ E1000能产生调试输出，所以你必须启用指定的日志通道。可能
 E1000是一个PCI设备，意味着可以插拔到主板的PCI总线。PCI总线有地址，数据和中断线，并且允许CPU和PCI设备交流，PCI设备读取内存。一个PCI设备在使用之前需要被发现和初始化。发现是一个扫描PCI总线查找附属设备的进程。初始化是分配I/O和内存空间的进程，同时分配IRQ线给设备使用
 
 我们已经在`kern/pci.c`提供了PCI代码。为了在启动的时候初始化PCI，PCI代码遍历PCI总线，查找设备。当它找到了设备，它读取供应商ID和设备ID，使用这两个值作为key来搜索`pci_attach_vendor`数组。数组是由`struct pci_driver`组成的入口
-{{< highlight c >}}
+```c
 struct pci_driver {
     uint32_t key1, key2;
     int (*attachfn) (struct pci_func *pcif);
 };
-{{< /highlight  >}}
+```
 
 如果在数组中发现了设备的供应商ID和设备ID，PCI代码调用入口的`attachfn`来进行设备初始化。(设备也能通过类来标识，这就是`kern/pci.c`驱动表的作用)
 
 附属函数传递了一个PCI函数来初始化。PCI卡能够表现多个函数，尽管E1000只表现一个。下面是JOS的PCI函数
-{{< highlight c >}}
+```c
 struct pci_func {
     struct pci_bus *bus;
     
@@ -129,7 +129,7 @@ struct pci_func {
     uint32_t reg_size[6];
     uint8_t irq_line;
 };
-{{< /highlight  >}}
+```
 
 上面的结构体反射了开发手册表4-1的入口。`struct pci_func`最后三个入口是我们最感兴趣的，因为他们记录了内存，I/O和中断资源。`reg_base`和`reg_size`数组包含六个基本地址寄存器(Base Address Registers)。`reg_base`为内存映射I/O区域保存了基本内存地址(或I/O端口资源基本I/O端口)， `reg_size`包含了字节大小或I/O端口数量， `irq_line`包含了分配给设备中断的IRQ线。E1000的BARs特殊定义在表4-2中给出了
 
@@ -164,16 +164,16 @@ E1000发送和接收函数是基本独立的，所以我们可以同时操作。
 你会发现使用C结构体描述E1000的结构是非常方便的。正如你看到像`struct Trapframe`一样，C结构体让你精确了解内存中的结构数据。C能够在字段之间插入padding，但是E1000的布局让这些不成问题。如果你发现了字段对其问题，看看GCC的"packed"属性
 
 例如，考虑一下手册中表3-8给出的传统发送描述符:
-{{< highlight text >}}
+```text
  63            48 47   40 39   32 31   24 23   16 15             0
   +---------------------------------------------------------------+
   |                         Buffer address                        |
   +---------------+-------+-------+-------+-------+---------------+
   |    Special    |  CSS  | Status|  Cmd  |  CSO  |    Length     |
   +---------------+-------+-------+-------+-------+---------------+
-{{< /highlight  >}}
+```
 结构体的第一个字节开始于最右边，所以转换成C结构体，从右往左读，从上往下读。如果你看对了，你可以看到所有的字段刚刚适合标准大小类型
-{{< highlight c >}}
+```c
 struct tx_desc {
     uint64_t addr;
     uint16_t length;
@@ -183,7 +183,7 @@ struct tx_desc {
     uint8_t css;
     uint8_t special;
 };
-{{< /highlight  >}}
+```
 你的驱动必须为发送描述符数组和由发送描述符指向的包缓存保留内存。有一些方法来做到这些，动态分配页面或申明一个全局变量。无论你选择哪种方法，永远记住E1000直接访问物理内存，意味着访问的任何缓存在物理内存中必须是连续的
 
 也有多种方法处理包缓存。最简单的，也是我们开始推荐的，是在驱动初始化过程中，为每个描述符的包缓存保留空间，然后仅仅拷贝包数据进或出预先分配的缓存。Ethernet包最大的大小是1518字节，这限制了需要多大的缓存。一些复杂的驱动可能动态分配包缓存(例如，为了在用网络时，降低内存)或者甚至直接由用户空间提供缓存(零拷贝技术)，但是最好是从简单的开始
@@ -202,12 +202,12 @@ struct tx_desc {
 
 ### 发送包：网络服务器
 既然已经有发送的系统调用接口了，是时候发送包。输出辅助环境的目标就是做以下循环：从网络服务器接收`NSREQ_OUTPUT`的IPC信息，然后使用系统调用发送包到网络设备驱动。`NSREQ_OUTPUT`的IPC通过在`net/lwip/jos/jif/jif.c`的`low_level_output`函数发送，这个包含了JOS的网络系统lwIP协议栈。每个IPC会包含一个页面`union Nsipc`和`struct jif_pkt pkt`。`struct jif_pkt`长这样
-{{< highlight c >}}
+```c
 struct jif_pkt {
     int jp_len;
     char jp_data[0];
 }
-{{< /highlight  >}}
+```
 `jp_len`表示包的长度，IPC页面上的所有子序列字节表明包的内容。在结构体末尾使用一个0长度的数组比如`jp_data`是C语言的一个小把戏。因为C没有做数组界限检查，只要你确保有足够没有使用的内存，你就可以使用`jp_data`用作任何大小的数组。
 
 当设备驱动的发送队列没有空间的时候，注意设备驱动，输出环境和核心网络服务器之前的交互核心网络服务器用IPC发送包给输出环境。如果输出环境由于发送包系统调用暂停，因为驱动没有更多空闲的空间，核心网络服务器会阻塞等待输出服务器接收IPC调用

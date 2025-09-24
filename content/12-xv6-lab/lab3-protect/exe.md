@@ -13,14 +13,14 @@ tags: ["xv6", "os", "protect"]
 >You should run your code and make sure check_kern_pgdir() succeeds.
 
 分配地址给`envs`，所以代码也是类似的， 在`mem_init`中填充如下代码
-{{< highlight c >}}
+```c
 // Make 'envs' point to an array of size 'NENV' of 'struct Env'.
 // LAB 3: Your code here.
 envs = (struct Env*)boot_alloc(sizeof(struct Env) * NENV);
 
 // LAB 3: Your code here.
 boot_map_region(kern_pgdir, UENVS, NENV * sizeof(struct Env), PADDR(envs), PTE_U);
-{{< /highlight  >}}
+```
 
 编译运行后出现，`check_kern_pgdir() succeeded!`就说明是成功的
 
@@ -35,15 +35,15 @@ boot_map_region(kern_pgdir, UENVS, NENV * sizeof(struct Env), PADDR(envs), PTE_U
 - env_run(): Start a given environment running in user mode.
 
 >As you write these functions, you might find the new cprintf verb %e useful -- it prints a description corresponding to an error code. For example,
-{{< highlight c >}}
+```c
 	r = -E_NO_MEM;
 	panic("env_alloc: %e", r);
-{{< /highlight  >}}
+```
 
 >will panic with the message "env_alloc: out of memory".
 
 `env_init`初始化环境，主要是把所有`env`都放到`env_free_list`里面，然后更新`env_free_list`的值，注意从后往前遍历
-{{< highlight c >}}
+```c
 void
 env_init(void)
 {
@@ -59,10 +59,10 @@ env_init(void)
 	// Per-CPU part of the initialization
 	env_init_percpu();
 }
-{{< /highlight  >}}
+```
 
 `env_setup_vm`设置`env_pgdir`的值, 大部分的代码已经是有的，只是需要初始化`env_pgdir`，使用`page2kva`函数就可以了
-{{< highlight c >}}
+```c
 static int
 env_setup_vm(struct Env *e)
 {
@@ -83,10 +83,10 @@ env_setup_vm(struct Env *e)
 
 	return 0;
 }
-{{< /highlight  >}}
+```
 
 `region_alloc` 分配和映射物理内存，需要注意的是，分配内存要按页大小分配，所以需要用`ROUNDDOWN`和`ROUNDUP`来设置初始地址和结束地址，然后按页大小分配和映射，然后插入到`e->pgdir`的目录下面就可以了
-{{< highlight c >}}
+```c
 static void
 region_alloc(struct Env *e, void *va, size_t len)
 {
@@ -102,10 +102,10 @@ region_alloc(struct Env *e, void *va, size_t len)
 		page_insert(e->env_pgdir, p, (void*)start, PTE_W | PTE_U);
 	}
 }
-{{< /highlight  >}}
+```
 
 `load_icode`是加载ELF文件，所以大部分代码可以参考`boot/main.c`的代码，只是需要处理一下加载的位置就可以了
-{{< highlight c >}}
+```c
 static void
 load_icode(struct Env *e, uint8_t *binary)
 {
@@ -137,10 +137,10 @@ load_icode(struct Env *e, uint8_t *binary)
 	region_alloc(e, (void *)(USTACKTOP- PGSIZE), PGSIZE);
 	lcr3(PADDR(kern_pgdir));
 }
-{{< /highlight  >}}
+```
 
 `env_create` 分配一个内存，然后调用`load_icode`加载ELF文件
-{{< highlight c >}}
+```c
 void
 env_create(uint8_t *binary, enum EnvType type)
 {
@@ -153,10 +153,10 @@ env_create(uint8_t *binary, enum EnvType type)
 	penv->env_type = type;
 	load_icode(penv, binary);
 }
-{{< /highlight  >}}
+```
 
 `env_run` 就是运行，把当前的`env`停掉，然后把`env`设置成运行的。提示中也有要调用`env_pop_tf`来恢复寄存器
-{{< highlight c >}}
+```c
 void
 env_run(struct Env *e)
 {
@@ -172,7 +172,7 @@ env_run(struct Env *e)
 
 	// panic("env_run not yet implemented");
 }
-{{< /highlight  >}}
+```
 
 编译运行，如果出现`Triple fault.`则说明是成功的
 
@@ -209,7 +209,7 @@ env_run(struct Env *e)
 就是用汇编注册一下IDT的代码
 
 `kern/trapentry.S`
-{{< highlight asm >}}
+```armasm
 /*
  * Lab 3: Your code here for generating entry points for the different traps.
  */
@@ -228,9 +228,9 @@ TRAPHANDLER(th12, 12)
 TRAPHANDLER(th13, 13)
 TRAPHANDLER(th14, 14)
 TRAPHANDLER_NOEC(th16, 16)
-{{< /highlight  >}}
+```
 
-{{< highlight asm >}}
+```armasm
 /*
  * Lab 3: Your code here for _alltraps
  */
@@ -247,10 +247,10 @@ _alltraps:
 
     pushl %esp
     call trap
-{{< /highlight  >}}
+```
 
 `kern/trap.c`
-{{< highlight c >}}
+```c
 void
 trap_init(void)
 {
@@ -293,10 +293,10 @@ trap_init(void)
 	// Per-CPU setup 
 	trap_init_percpu();
 }
-{{< /highlight  >}}
+```
 
 最后运行`make grade`看到如下结果就是成功了
-{{< highlight bash >}}
+```bash
 divzero: OK (7.1s) 
     (Old jos.out.divzero failure log removed)
 softint: OK (7.1s) 
@@ -304,7 +304,7 @@ softint: OK (7.1s)
 badsegment: OK (6.6s) 
     (Old jos.out.badsegment failure log removed)
 Part A score: 30/30
-{{< /highlight  >}}
+```
 
 ## Question
 >1.What is the purpose of having an individual handler function for each exception/interrupt? (i.e., if all exceptions/interrupts were delivered to the same handler, what feature that exists in the current implementation could not be provided?)
@@ -319,7 +319,7 @@ Part A score: 30/30
 >Exercise 5. Modify trap_dispatch() to dispatch page fault exceptions to page_fault_handler(). You should now be able to get make grade to succeed on the faultread, faultreadkernel, faultwrite, and faultwritekernel tests. If any of them don't work, figure out why and fix them. Remember that you can boot JOS into a particular user program using make run-x or make run-x-nox. For instance, make run-hello-nox runs the hello user program.
 
 很简单，就是看错误代码是不是`T_PGFLT`，如果是的话，调用`page_fault_handler`就可以了，
-{{< highlight c >}}
+```c
 static void
 trap_dispatch(struct Trapframe *tf)
 {
@@ -339,10 +339,10 @@ trap_dispatch(struct Trapframe *tf)
 		return;
 	}
 }
-{{< /highlight  >}}
+```
 
 最后使用`make grade`，如果有以下输出ok，就是成功的
-{{< highlight bash >}}
+```bash
 faultread: OK (7.3s) 
     (Old jos.out.faultread failure log removed)
 faultreadkernel: OK (6.9s) 
@@ -350,13 +350,13 @@ faultreadkernel: OK (6.9s)
 faultwrite: OK (6.9s) 
     (Old jos.out.faultwrite failure log removed)
 faultwritekernel: OK (7.5s) 
-{{< /highlight  >}}
+```
 
 ## Exercise 6
 >Exercise 6. Modify trap_dispatch() to make breakpoint exceptions invoke the kernel monitor. You should now be able to get make grade to succeed on the breakpoint test.
 
 跟练习5类似
-{{< highlight c >}}
+```c
 static void
 trap_dispatch(struct Trapframe *tf)
 {
@@ -380,18 +380,18 @@ trap_dispatch(struct Trapframe *tf)
 		return;
 	}
 }
-{{< /highlight  >}}
+```
 
 同时还需要把之前初始化的权限改成3，即`trap_init`函数里面。在用户模式进行int 3进入更高特权等级的内核，要求CPL<=DPL
-{{< highlight c >}}
+```c
 SETGATE(idt[3], 0, GD_KT, th3, 3);
-{{< /highlight  >}}
+```
 
 最后调用`make grade`，如果出现以下内容，就是说明成功
-{{< highlight bash >}}
+```bash
 breakpoint: OK (6.3s) 
     (Old jos.out.breakpoint failure log removed)
-{{< /highlight  >}}
+```
 
 ## Question 
 >3.The break point test case will either generate a break point exception or a general protection fault depending on how you initialized the break point entry in the IDT (i.e., your call to SETGATE from trap_init). Why? How do you need to set it up in order to get the breakpoint exception to work as specified above and what incorrect setup would cause it to trigger a general protection fault?
@@ -410,11 +410,11 @@ breakpoint: OK (6.3s)
 
 主要是利用前面文档说的，针对系统调用进行代码编写，需要改的几个地方是`kern/trapentry.S`,`kern/trap.c`的`trap_init()`,`trap_dispatch()`和`kern/syscall.c`的`syscall()`
 
-{{< highlight asm >}}
+```armasm
 TRAPHANDLER_NOEC(th48, 48)
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 void
 trap_init(void)
 {
@@ -422,9 +422,9 @@ trap_init(void)
     void th48();
     SETGATE(idt[48], 0, GD_KT, th48, 3);
 }
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 static void
 trap_dispatch(struct Trapframe *tf)
 {
@@ -434,9 +434,9 @@ trap_dispatch(struct Trapframe *tf)
 		return;
 	}
 }
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 int32_t
 syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, uint32_t a5)
 {
@@ -466,20 +466,20 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
 	}
 	return ret;
 }
-{{< /highlight  >}}
+```
 
 运行`make grade`如果出现以下内容，则说明成功
-{{< highlight bash >}}
+```bash
 testbss: OK (6.9s) 
     (Old jos.out.testbss failure log removed)
-{{< /highlight  >}}
+```
 
 ## Exercise 8
 >Exercise 8. Add the required code to the user library, then boot your kernel. You should see user/hello print "hello, world" and then print "i am environment 00001000". user/hello then attempts to "exit" by calling sys_env_destroy() (see lib/libmain.c and lib/exit.c). Since the kernel currently only supports one user environment, it should report that it has destroyed the only environment and then drop into the kernel monitor. You should be able to get make grade to succeed on the hello test.
 
 主要修改`libmain`的代码，把`thisenv`赋值就可以了
 
-{{< highlight c >}}
+```c
 void
 libmain(int argc, char **argv)
 {
@@ -493,13 +493,13 @@ libmain(int argc, char **argv)
 		}
 	}
 }
-{{< /highlight  >}}
+```
 
 运行`make grade`，出现下面的结果，就是成功
-{{< highlight bash >}}
+```bash
 hello: OK (6.6s) 
     (Old jos.out.hello failure log removed)
-{{< /highlight  >}}
+```
 
 ## Exercise 9
 >Exercise 9. Change kern/trap.c to panic if a page fault happens in kernel mode.
@@ -512,16 +512,16 @@ hello: OK (6.6s)
 
 >Boot your kernel, running user/buggyhello. The environment should be destroyed, and the kernel should not panic. You should see:
 
-{{< highlight text >}}
+```text
 	[00001000] user_mem_check assertion failure for va 00000001
 	[00001000] free env 00001000
 	Destroyed the only environment - nothing more to do!
-{{< /highlight  >}}	
+```	
 
 >Finally, change debuginfo_eip in kern/kdebug.c to call user_mem_check on usd, stabs, and stabstr. If you now run user/breakpoint, you should be able to run backtrace from the kernel monitor and see the backtrace traverse into lib/libmain.c before the kernel panics with a page fault. What causes this page fault? You don't need to fix it, but you should understand why it happens.
 
 需要修改`user_member_check`
-{{< highlight c >}}
+```c
 int
 user_mem_check(struct Env *env, const void *va, size_t len, int perm)
 {
@@ -541,10 +541,10 @@ user_mem_check(struct Env *env, const void *va, size_t len, int perm)
 	}
 	return 0;
 }
-{{< /highlight  >}}
+```
 
 然后在`kdebug.c`文件里面添加校验
-{{< highlight c >}}
+```c
 int
 debuginfo_eip(uintptr_t addr, struct Eipdebuginfo *info)
 {
@@ -560,10 +560,10 @@ debuginfo_eip(uintptr_t addr, struct Eipdebuginfo *info)
     if (user_mem_check(curenv, stabstr, stabstr_end-stabstr, PTE_U))
         return -1;
 }
-{{< /highlight  >}}
+```
 
 修改`page_fault_handler`
-{{< highlight c >}}
+```c
 void
 page_fault_handler(struct Trapframe *tf)
 {
@@ -572,21 +572,21 @@ page_fault_handler(struct Trapframe *tf)
 		panic("page fault in kernel");
 	}
 }
-{{< /highlight  >}}
+```
 
 最后还要校验`sys_cputs`
-{{< highlight c >}}
+```c
 static void
 sys_cputs(const char *s, size_t len)
 {
     // LAB 3: Your code here.
 	user_mem_assert(curenv, s, len, PTE_U);
 }
-{{< /highlight  >}}
+```
 
 运行`make grade`，有以下输出就结束了
 
-{{< highlight bash >}}
+```bash
 buggyhello: OK (7.8s) 
     (Old jos.out.buggyhello failure log removed)
 buggyhello2: OK (9.1s) 
@@ -596,4 +596,4 @@ evilhello: OK (7.0s)
 Part B score: 50/50
 
 Score: 80/80
-{{< /highlight  >}}
+```

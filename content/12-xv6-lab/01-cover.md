@@ -18,22 +18,22 @@ xv6 is a teaching operating system developed in the summer of 2006, which we por
 ## xv6 sources and text
 
 The latest xv6 source and text are available via
-{{< highlight bash >}}
+```bash
 git clone git://github.com/mit-pdos/xv6-riscv.git
-{{< /highlight  >}}
+```
 
 and
 
-{{< highlight bash >}}
+```bash
 git clone git://github.com/mit-pdos/xv6-riscv-book.git
-{{< /highlight  >}}
+```
 
 ## Develop
-{{< highlight bash >}}
+```bash
 git clone https://pdos.csail.mit.edu/6.828/2018/jos.git
-{{< /highlight  >}}
+```
 
-{{< highlight bash >}}
+```bash
 docker build -t xv6 . 
 bash start.sh
-{{< /highlight  >}}
+```

@@ -27,7 +27,7 @@ tags: ["xv6", "os", "bootstrap"]
 在6.828课程中，我们将使用[QEMU](http://www.qemu.org/),QEMU可以配合[GDB](http://www.gnu.org/software/gdb/)一起使用，进行调试。
 
 在`lab`目录输入`make`,可以看到下面的输出
-{{< highlight text >}}
+```text
 + as kern/entry.S
 + cc kern/entrypgdir.c
 + cc kern/init.c
@@ -45,7 +45,7 @@ ld: warning: section `.bss' type changed to PROGBITS
 + ld boot/boot
 boot block is 390 bytes (max 510)
 + mk obj/kern/kernel.img
-{{< /highlight  >}}
+```
 
 如果你有类似于"undefined reference to `__udivdi3`"这种错误，你可能没有32位gcc编译包，如果你运行在Ubuntu或Debian，尝试安装`gcc-multilib`包。使用我的Dockerfile，不会出现这个问题
 
@@ -53,7 +53,7 @@ boot block is 390 bytes (max 510)
 
 运行`make qemu`(有界面)或者`make qemu-nox`(无界面)。将会启动QEMU并且加载硬盘，成功进入系统。具体显示如下
 
-{{< highlight text >}}
+```text
 6828 decimal is XXX octal!
 entering test_backtrace 5
 entering test_backtrace 4
@@ -70,13 +70,13 @@ leaving test_backtrace 5
 Welcome to the JOS kernel monitor!
 Type 'help' for a list of commands.
 K> 
-{{< /highlight  >}}
+```
 
 ### PC物理地址空间
 
 一个计算机的物理内存地址通常是下面的结构
 
-{{< highlight text >}}
+```text
 +------------------+  <- 0xFFFFFFFF (4GB)
 |      32-bit      |
 |  memory mapped   |
@@ -106,7 +106,7 @@ K>
 |    Low Memory    |
 |                  |
 +------------------+  <- 0x00000000
-{{< /highlight  >}}
+```
 
 第一代PC是基于16位Intel 8088处理器，仅仅只有1MB的物理内存。因此早期PC的物理地址空间是从`0x00000000`到`0x000FFFFF`,而不是`0xFFFFFFFF`。其中640KB的区域被标记为只有早期计算机能够使用的RAM(random-access memory),实际上，非常早期的PC能够配置16KB,32KB,或者64KB大小的RAM
 
@@ -124,15 +124,15 @@ Intel的80286和80386处理器最终打破了1MB的障碍，这两款处理器�
 实验提供了一个`.gdbinit`文件，用来启动GDB的16位代码调试，并将其链接到正在监听的QEMU(如果没有起作用，你必须添加一个`add-auto-load-safe-path`在你的`.gdbinit`，确保`gdb`程序是按照上述的操作连到QEMU)
 
 QEMU输出
-{{< highlight text >}}
+```text
 ***
 *** Now run 'make gdb'.
 ***
 qemu-system-i386 -nographic -drive file=obj/kern/kernel.img,index=0,media=disk,format=raw -serial mon:stdio -gdb tcp::25000 -D qemu.log  -S
-{{< /highlight  >}}
+```
 
 GDB输出
-{{< highlight text >}}
+```text
 warning: A handler for the OS ABI "GNU/Linux" is not built into this configuration
 of GDB.  Attempting to continue with the default i8086 settings.
 
@@ -140,7 +140,7 @@ The target architecture is assumed to be i8086
 [f000:fff0]    0xffff0:	ljmp   $0xf000,$0xe05b
 0x0000fff0 in ?? ()
 + symbol-file obj/kern/kernel
-{{< /highlight  >}}
+```
 
 为什么QEMU会如此启动？这与Intel设计的8088处理器有关。因为PC里的BIOS是"硬连接"到物理地址的0x000F0000~0x000FFFFF的，这个设计保证了PC在开机或重启的时候，BIOS总是可以拿到控制权，这一点是非常重要的，因为开机的时候，机器的RAM没有处理器能够执行的其他软件。QEMU仿真器有自己的BIOS，位于处理器仿真的物理地址空间。当处理器重置的时候，仿真的处理器进入到实模式，设置`CS`为`0xF00`， `IP`为`0xFFF0`，以便执行从CS:IP段地址开始。段地址0xF000:0xFFF0是怎么转换成物理地址的呢？
 
@@ -188,7 +188,7 @@ PC的软盘和硬盘被分成512字节的区域成为扇区(*sectors*)。一个�
 当链接器计算程序的内存结构，它会为没有初始化的全局变量保留空间，这个部分被称为`.bss`，紧接者`.data`之后。C会把没有初始化的全局变量初始化成0。因此ELF二进制文件中的`.bss`没有内容。然而，链接器仅仅记录了`.bss`部分的地址和大小。加载器或程序本身必须把0分配给`.bss`部分
 
 测试所有部分的名称，大小和链接地址，可以用指令`objdump -h obj/kern/kernel`
-{{< highlight text >}}
+```text
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .text         00001871  f0100000  00100000  00001000  2**4
@@ -205,14 +205,14 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   6 .comment      00000035  00000000  00000000  00013948  2**0
                   CONTENTS, READONLY
-{{< /highlight  >}}
+```
 
 可以看到不仅仅是上面列的那些内容，但是其他的都不重要。其他的大部分都是保存调试信息的，实际运行过程中是不会加载到内存的
 
 特别注意`.text`部分的"VMA"(或*link address*)和"LMA"(或*load address*)，LMA是加载的地址，VMA是链接的地址。链接器以各种方式对链接地址进行二进制编码，例如当代码需要全局变量地址是，结果是如果从一个没有链接的地址执行，二进制通常不能工作。值得一提的是，可以生成不包含任何绝对地址的代码，这就是通常说的动态链接库，但是6.828不使用
 
 通常，链接和加载地址是相同的，例如可以查看`.text`部分的引导扇区内容`objdump -h obj/boot/boot.out`。可以看到VMA和LMA都是0x7c00，说明引导扇区从这个地方开始加载程序
-{{< highlight text >}}
+```text
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .text         00000186  00007c00  00007c00  00000074  2**2
@@ -225,11 +225,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   4 .comment      00000035  00000000  00000000  00001253  2**0
                   CONTENTS, READONLY
-{{< /highlight  >}}
+```
 
 引导扇区使用ELF程序头去决定怎么加载片段，程序头指定了要加载的内容和目标地址。你可以检查程序头，通过`objdump -x obj/kern/kernel`
 
-{{< highlight text >}}
+```text
 obj/kern/kernel:     file format elf32-i386
 obj/kern/kernel
 architecture: i386, flags 0x00000112:
@@ -260,7 +260,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   6 .comment      00000035  00000000  00000000  00013948  2**0
                   CONTENTS, READONLY
-{{< /highlight  >}}
+```
 
 结果中的程序头部包含了`ELF`的相关信息，需要被加载进内存的用"LOAD"标记。其他信息，如`vaddr`是虚拟地址，`paddr`是物理地址,`memsz`和`filesz`是加载区域。在`boot/main.c`中的代码。
 
@@ -273,12 +273,12 @@ BIOS把引导扇区加载到0x7c00的内存地址位置，因此这是引导扇�
 现在回头来看看内核加载地址和链接地址。不像启动引导，这两个地址是不同的：内核告诉引导加载程序加载低地址(1MB)的内存,但是可能从一个高地址执行，将会在下一个部分深挖
 
 除了段信息，ELF头部也有一个重要的部分，叫做`e_entry`，这个部分保留了程序入口的链接地址。可以通过`objdump -f obj/kern/kernel`查看入口地址
-{{< highlight text >}}
+```text
 obj/kern/kernel:     file format elf32-i386
 architecture: i386, flags 0x00000112:
 EXEC_P, HAS_SYMS, D_PAGED
 start address 0x0010000c
-{{< /highlight  >}}
+```
 
 现在看来最小的`boot/main.c`中加载ELF，就是把内核从硬盘加载到内存，然后跳到内核入口
 

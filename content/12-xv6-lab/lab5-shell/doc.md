@@ -74,15 +74,15 @@ x86处理器使用`EFLAGS`的`IOPL`位寄存器来决定保护模式代码是否
 >进行练习1
 
 注意`GNUmakefile`通过使用文件`obj/kern/kernel.img`作为磁盘0的镜像，`obj/fs/fs.img`作为磁盘1镜像来设置QEMU。这个lab，文件系统应该只使用磁盘1；磁盘0只能用作启动内核。如果你打算毁坏任意一个磁盘镜像，你需要重置他们两个，可以使用
-{{< highlight bash >}}
+```bash
 rm obj/kern/kernel.img obj/fs/fs.img
 make
-{{< /highlight  >}}
+```
 或者
-{{< highlight bash >}}
+```bash
 make clean
 make
-{{< /highlight  >}}
+```
 
 ### 块缓存
 在我们的文件系统中，我们将在处理器虚拟内存系统的帮助下，实现一个简单的缓冲区。块缓存的代码在`fs/bc.c`
@@ -111,7 +111,7 @@ make
 
 ### 文件系统接口
 既然在文件系统环境内部有必要的功能了。我们必须让它能被其他想要使用文件系统的环境访问。因为其他环境不能直接调用文件系统环境中的函数，所以我们通过远程程序调用(RPC)来暴露文件系统环境的访问权限。一个RPC调用文件系统服务如下：
-{{< highlight text >}}
+```text
  Regular env           FS env
    +---------------+   +---------------+
    |      read     |   |   file_read   |
@@ -131,7 +131,7 @@ make
    +-------|-------+   +-------|-------+
            |                   |
            +-------------------+
-{{< /highlight  >}}
+```
 虚线下方的所有内容只是从普通环境到文件系统环境获取读取请求的机制。最开始，`read`工作在任何文件描述符上且仅仅分发到合适的设备读取函数，这种情况下是指`devfile_read`(我们能有更多的设备类型，比如管道)。`devfile_read`为磁盘文件实现了`read`。这个和其他在`lib/file.c`de `devfile_*`函数实现了FS操作的客户端，所有的工作几乎是相同的，绑定一个请求结构体，调用`fsipc`发送IPC请求，然后解包返回结果。`fsipc`函数处理了发送请求给服务器和接收返回的基本细节
 
 文件系统服务器代码在`fs/serv.c`。在`server`函数中循环，收到一个IPC请求时，分发这个请求给合适的处理函数，然后通过IPC发送返回结果。在一个读的例子中，`serve`调度到`server_read`，它将处理特定读取请求的IPC细节，比如解包请求结构体并最终调用`file_read`实际读取文件
@@ -174,13 +174,13 @@ UNIX文件描述符是一个通用的概念，它也包含管道，控制台I/O�
 
 ## Shell
 运行`make run-icode-nox`。这个会运行内核并且开始`user/icode`。`icode`执行初始化，会设置控制台文件描述符为0和1(标准输入和标准输出)。然后生成`sh`也就是`shell`。你能运行下面的命令
-{{< highlight bash >}}
+```bash
 echo hello world | cat
 cat lorem|cat
 cat lorem|num
 cat lorem|num|num|num|num
 lsfd
-{{< /highlight  >}}
+```
 
 注意，用户库程序`cprintf`直接打印到控制台，不需要使用文件描述符代码。这对于调试有用但是不太友好管道到其他程序。为了打印一个特定文件描述符(例如， 1 标准输出)，使用`fprintf(1, "...", ...)`。`printf("...", ...)`是打印到FD 1的简短表达。查看`user/lsfd.c`
 

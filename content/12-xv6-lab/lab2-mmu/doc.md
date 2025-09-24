@@ -16,29 +16,29 @@ tags: ["xv6", "os", "mmu"]
 ### 开始
 在这个和接下来的实验中，你会构建你的内核。我们也提供一些额外的代码。为了拿到源代码，使用Git提交你在lab1中修改的，拉取最新的代码，然后创建一个本地分支`lab2`
 
-{{< highlight bash >}}
+```bash
 cd jos # 进入到jos目录
 git pull # 拉取最新代码
 git checkout -b lab2 origin/lab2 # 切换到lab2
-{{< /highlight  >}}
+```
 
 `git checkout -b`命令做了两件事：1. 根据`origin/lab2`创建一个本地分支`lab2`，2. 修改了本地目录到`lab2`分支。Git也允许通过命令`git checkout branch-name`直接切换到一个存在的分支
 
 需要合并`lab1`中已经提交的代码
-{{< highlight bash >}}
+```bash
 git merge lab1
-{{< /highlight  >}}
+```
 
 在某些情况下，Git可能不能自动合并，这种情况下`git merge`会告诉你哪些文件冲突了，你需要手动解决冲突，然后提交`git commit -a`
 
 `lab2`包含下面几个新的源码文件
-{{< highlight text >}}
+```text
 inc/memlayout.h
 kern/pmap.c
 kern/pmap.h
 kern/kclock.h
 kern/kclock.c
-{{< /highlight  >}}
+```
 
 `memlayout.h`描述了虚拟地址空间的结构，虚拟地址空间必须通过修改`pmap.c`文件去实现.`memlayout.`和`pmap.h`定义了`PageInfo`的结构体，可以使用`PageInfo`结构体定位到哪些物理内存是空闲的。`kclock.h`和`kclock.c`操控着PC电池供电的时钟和CMOS RAM硬件，BIOS记录了PC容纳的物理内存总量和其他信息。`pmap.c`代码需要读取这些设备，以便于计算出有多少物理内存，但是这部分代码已经完成了，你不需要关心CMOS是怎么工作的
 
@@ -66,7 +66,7 @@ kern/kclock.c
 
 ### 虚拟地址、线性地址和物理地址
 在x86系统中，虚拟地址是由段描述符和段偏移值组成的。线性地址是虚拟地址通过段转换得到的，物理地址是线性地址通过页转换得到的，物理地址是最终通过硬件总线到达RAM的地址
-{{< highlight text >}}
+```text
           Selector  +--------------+         +-----------+
           ---------->|              |         |           |
                      | Segmentation |         |  Paging   |
@@ -76,7 +76,7 @@ Software             |              |-------->|           |---------->  RAM
                      +--------------+         +-----------+
             Virtual                   Linear                Physical
 
-{{< /highlight  >}}
+```
 
 一个C指针是虚拟地址的偏移组件。在`boot/boot.S`中，已经初始化了全局描述符表(GDT)，通过把段基地址设为0且把取址最大值设为`0xffffffff`来关闭全局描述符表，因此段描述符没有作用，线性地址始终是虚拟地址的偏移值。在lab3，必须要用分段来设置优先权，但是对于内存转换来说，我们可以忽略，仅仅需要关注页转换
 

@@ -351,7 +351,7 @@ tags: ["数据结构", "算法", "图"]
 
 ### 代码实现
  
- {{< highlight cpp >}}
+ ```c++
 // ... 准备工作，根据图的信息初始化矩阵 A 和 path，入上图
 for(int k = 0; k < n; k++) {
     for(int i = 0; i < n; i++) {
@@ -363,7 +363,7 @@ for(int k = 0; k < n; k++) {
         }
     }
 }
-{{< /highlight >}}
+```
 
 tips:
 

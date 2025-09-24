@@ -12,7 +12,7 @@ tags: ["xv6", "os", "network"]
 >Exercise 1. Add a call to time_tick for every clock interrupt in kern/trap.c. Implement sys_time_msec and add it to syscall in kern/syscall.c so that user space has access to the time.
 
 只是加一个中断，非常简单
-{{< highlight c >}}
+```c
 // trap.c的trap_dispatch函数
     case IRQ_OFFSET + IRQ_TIMER:
         time_tick();
@@ -31,12 +31,12 @@ sys_time_msec(void)
 	case SYS_time_msec:
 		return sys_time_msec();
     
-{{< /highlight  >}}
+```
 
 运行`make INIT_CFLAGS=-DTEST_NO_NS run-testtime-nox`可以看到从5倒数到0，再开始启动
-{{< highlight bash >}}
+```bash
 starting count down: 5 4 3 2 1 0 
-{{< /highlight  >}}
+```
 
 ## Exercise 2
 >Exercise 2. Browse Intel's Software Developer's Manual for the E1000. This manual /covers several closely related Ethernet controllers. QEMU emulates the 82540EM.
@@ -58,7 +58,7 @@ starting count down: 5 4 3 2 1 0
 >When you boot your kernel, you should see it print that the PCI function of the E1000 card was enabled. Your code should now pass the pci attach test of make grade.
 
 主要是跟前面文档介绍的一样，用`pci_func_enable`来启用`struct pci_func`，所以总的代码也比较简单了
-{{< highlight c >}}
+```c
 // kern/e1000.h
 
 #define PCI_E1000_VENDOR_ID 0x8086
@@ -80,13 +80,13 @@ struct pci_driver pci_attach_vendor[] = {
 	{ PCI_E1000_VENDOR_ID, PCI_E1000_DEVICE_ID, &pci_func_attach},
 	{ 0, 0, 0 },
 };
-{{< /highlight  >}}
+```
 
 运行`make grade`，可以看到下面输出就是成功
-{{< highlight c >}}
+```c
 testtime: OK (16.9s) 
 pci attach: OK (10.2s) 
-{{< /highlight  >}}
+```
 
 ## Exercise 4
 >Exercise 4. In your attach function, create a virtual memory mapping for the E1000's BAR 0 by calling mmio_map_region (which you wrote in lab 4 to support memory-mapping the LAPIC).
@@ -96,7 +96,7 @@ pci attach: OK (10.2s)
 >To test your mapping, try printing out the device status register (section 13.4.2). This is a 4 byte register that starts at byte 8 of the register space. You should get 0x80080783, which indicates a full duplex link is up at 1000 MB/s, among other things.
 
 主要是为了映射关系，然后打印日志查看设备状态
-{{< highlight c >}}
+```c
 // kern/e1000.h
 #include <inc/types.h>
 
@@ -125,12 +125,12 @@ pci_func_enable(struct pci_func *f)
     // 添加的内容
     cprintf("e1000 device status: 0x%x\n", e1000_bar0[E1000_STATUS]);
 }
-{{< /highlight  >}}
+```
 
 运行`make qemu-nox`，可以看到输出的设备状态如下就是成功
-{{< highlight bash >}}
+```bash
 e1000 device status: 0x80080783
-{{< /highlight  >}}
+```
 
 ## Exercise 5
 >Exercise 5. Perform the initialization steps described in section 14.5 (but not its subsections). Use section 13 as a reference for the registers the initialization process refers to and sections 3.3.3 and 3.4 for reference to the transmit descriptors and transmit descriptor array.
@@ -141,7 +141,7 @@ e1000 device status: 0x80080783
 
 
 需要在`kern/e1000.c`中添加一个初始化函数。根据上面的提示，应该来说不是特别难
-{{< highlight c >}}
+```c
 // 除以4 作为uint32_t[]使用
 #define E1000_TDBAL (0x03800/4) /* TX Descriptor Base Address Low - RW */
 #define E1000_TDBAH (0x03804/4) /* TX Descriptor Base Address High - RW */
@@ -193,10 +193,10 @@ static void init_tx() {
     e1000_bar0[E1000_TCTL] = ((0x40 << 12)&E1000_TCTL_COLD)|E1000_TCTL_PSP|E1000_TCTL_EN; // 启用tx
     e1000_bar0[E1000_TIPG] = 10; // IEEE 802.3 标准IPG
 }
-{{< /highlight  >}}
+```
 
 同时在之前的`pci_func_attach`要添加初始化
-{{< highlight c >}}
+```c
 
 int
 pci_func_attach(struct pci_func *pcif) 
@@ -205,7 +205,7 @@ pci_func_attach(struct pci_func *pcif)
     init_tx();
     return 0;
 }
-{{< /highlight  >}}
+```
 
 运行`make E1000_DEBUG=TXERR,TX qemu-nox`，可以看到有`e1000: tx disabled`的信息出现就是成功
 
@@ -213,12 +213,12 @@ pci_func_attach(struct pci_func *pcif)
 >Exercise 6. Write a function to transmit a packet by checking that the next descriptor is free, copying the packet data into the next descriptor, and updating TDT. Make sure you handle the transmit queue being full.
 
 就是实现发送函数
-{{< highlight c >}}
+```c
 // kern/e1000.h
 size_t e1000_transmit(const void* buffer, size_t size);
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 size_t e1000_transmit(const void *buffer, size_t size) {
     uint32_t current = e1000_bar0[E1000_TDT];
     if (tdesc[current].status & E1000_TXD_STAT_DD){
@@ -239,13 +239,13 @@ size_t e1000_transmit(const void *buffer, size_t size) {
         return 0;
     }
 }
-{{< /highlight  >}}
+```
 
 ## Exercise 7
 >Exercise 7. Add a system call that lets you transmit packets from user space. The exact interface is up to you. Don't forget to check any pointers passed to the kernel from user space.
 
 添加系统调用，这里就比较简单了
-{{< highlight c >}}
+```c
 // inc/lib.h
 int sys_send(const void *buffer, size_t length);
 // inc/syscall.h
@@ -273,12 +273,12 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
     	case SYS_send:
 		return sys_send((const void*)a1, a2);
 }
-{{< /highlight  >}}
+```
 
 ## Exercise 8
 >Exercise 8. Implement net/output.c.
 
-{{< highlight c >}}
+```c
 void
 output(envid_t ns_envid)
 {
@@ -310,7 +310,7 @@ output(envid_t ns_envid)
 		}
 	}
 }
-{{< /highlight  >}}
+```
 
 使用`make grade`可以看到`testoutput`成功
 
@@ -347,7 +347,7 @@ transmit的结构体前面有
 ## Exercise 13
 >Exercise 13. The web server is missing the code that deals with sending the contents of a file back to the client. Finish the web server by implementing send_file and send_data.
 
-{{< highlight c >}}
+```c
 static int
 send_data(struct http_request *req, int fd)
 {
@@ -415,6 +415,6 @@ end:
 	close(fd);
 	return r;
 }
-{{< /highlight  >}}
+```
 
 最后运行`make grade`，可以看到全部成功

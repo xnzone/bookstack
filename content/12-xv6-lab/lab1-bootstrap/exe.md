@@ -30,22 +30,22 @@ tags: ["xv6", "os", "bootstrap"]
 练习3的目的主要是为了熟悉使用GDB，同时观察引导扇区和内核的具体运作方式。要回答四个问题
 
 1.At what point does the processor start executing 32-bit code? What exactly causes the switch from 16- to 32-bitmode?
-{{< highlight asm >}}
+```armasm
 ljmp    $PROT_MODE_CSEG, $protcseg
-{{< /highlight  >}}
+```
 从这句开始，执行完就从16位实模式切换到32位保护模式了
 
 2.What is the last instruction of the boot loader executed, and what is the first instruction of the kernel it justloaded?
-{{< highlight c >}}
+```c
 ((void (*)(void)) (ELFHDR->e_entry))();
-{{< /highlight  >}}
+```
 
 bootloader最后一行代码是这一条，整个`bootmain`函数的作用就是从硬盘读取内核，然后跳到`entry`入口，执行内核。镜像文件是按照`elf`格式存在硬盘上的，`ELFHDR`是指向`0x10000`，整个内核程序块是从`0x10000`（物理地址）开始运行的。`entry`的虚拟地址，在之前打印过，是`0xf010000c`,转化成物理地址为`0x10000c`。所以内核加载的第一条指令是`movw   $0x1234,0x472` 
 
 3.Where is the first instruction of the kernel?
-{{< highlight asm >}}
+```armasm
 movw   $0x1234,0x472
-{{< /highlight  >}}
+```
 
 4.How does the boot loader decide how many sectors it must read in order to fetch the entire kernel from disk?Where does it find this information?
 
@@ -55,7 +55,7 @@ movw   $0x1234,0x472
 
 ELF文件具体格式如下
 
-{{< highlight text >}}
+```text
 I/O地址功能
 0x1f0读数据，当0x1f7不为忙状态时，可以读。
 0x1f2要读写的扇区数，每次读写前，需要指出要读写几个扇区。
@@ -65,7 +65,7 @@ I/O地址功能
 0x1f6第0~3位：如果是LBA模式就是24-27位第4位：为0主盘；为1从盘
 第6位：为1=LBA模式；0= CHS模式第7位和第5位必须为1
 0x1f7状态和命令寄存器。操作时先给命令，再读取内容；如果不是忙状态就从0x1f0端口读数据
-{{< /highlight  >}}
+```
 
 
 ## Exercise 4
@@ -92,7 +92,7 @@ I/O地址功能
 练习6主要是使用GDB去查看启动时，加载过程，可以在`0x7c00`和`0x0010000c`地址处加断点，使用`x/Nx ADDR`打印加载的地址，主要是看`0x00100000`的内容。可以看到`0x7c00`的时候，全都是空，此时没有数据，运行到`0x0010000c`处时，已经有数据了，说明已经加载了ELF的内容进内存了
 
 GDB主要的命令是
-{{< highlight gdb >}}
+```gdb
 b *0x7c00 # 0x7c00处设置断点
 b *0x00100000 # 0x00100000处设置断点
 
@@ -103,7 +103,7 @@ x /8w 0xf010000 # 查看 0xf010000 内存处的内容
 c # 继续执行代码到0x00100000处
 x /8w 0x0010000 # 查看0x0010000内存处的内容
 x /8w 0xf010000 # 查看 0xf010000 内存处的内容
-{{< /highlight  >}}
+```
 
 
 ## Exercise 7
@@ -113,12 +113,12 @@ x /8w 0xf010000 # 查看 0xf010000 内存处的内容
 
 练习7其实跟练习6是类似的，是需要单步执行，去查看内核加载到底发生了什么。查看`obj/kern/kernel.asm`找到`movl %eax, %cr0`所在的地址，打一个断点，然后查看0x00100000和0xf0100000地址的内容，然后单步运行，在启用保护模式之后再查看两个地址的内容，就可以知道地址映射有区别
 
-{{< highlight gdb >}}
+```gdb
 b *0x10000c # 在0x10000c设置断点,在入口处打断点
 si # 单步执行
 x /5w 0x0010000 # 查看内存内容
 x /5w 0xf010000
-{{< /highlight  >}}
+```
 
 ## Exercise 8
 >Exercise 8. We have omitted a small fragment of code - the code necessary to print octal numbers using patterns of the form "%o". Find and fill in this code fragment.
@@ -127,21 +127,21 @@ x /5w 0xf010000
 
 具体代码如下：
 
-{{< highlight c >}}
+```c
 case 'o':
 // Replace this with your code.
 	num = getuint(&ap, lflag);
 	base = 8;
 	goto number;	
 	break;
-{{< /highlight  >}}
+```
 
 1.Explain the interface between printf.c and console.c. Specifically, what function does console.c export? How is this function used by printf.c?
 
 `console.c`主要是在屏幕上输出内容，`printf.c`是根据不同的样式去打印输出，最终还是会调用`console.c`里面的内容
 
 2.Explain the following from console.c:
-{{< highlight c >}}
+```c
 if (crt_pos >= CRT_SIZE) {
     int i;
     memmove(crt_buf, crt_buf + CRT_COLS, (CRT_SIZE - CRT_COLS) * sizeof(uint16_t));
@@ -149,7 +149,7 @@ if (crt_pos >= CRT_SIZE) {
         crt_buf[i] = 0x0700 | ' ';
     crt_pos -= CRT_COLS;
 }
-{{< /highlight  >}}
+```
 
 代码是在`console.c`里面的`cga_putc`函数，而这部分是根据字符来输出什么内容的，但是当输出大于行的最大缓冲区时，会换行显示，所以这个代码片段就是这个作用
 
@@ -157,10 +157,10 @@ if (crt_pos >= CRT_SIZE) {
 
 >Trace the execution of the following code step-by-step:
 
-{{< highlight c >}}
+```c
 int x = 1, y = 3, z = 4;
 cprintf("x %d, y %x, z %d\n", x, y, z);
-{{< /highlight  >}}
+```
 
 >In the call to cprintf(), to what does fmt point? To what does ap point?
 
@@ -171,10 +171,10 @@ cprintf("x %d, y %x, z %d\n", x, y, z);
 总之是利用一个函数内的所有东西大家都挤在一个栈区这个特点。最后的变量先入栈，最前的变量最后入栈，于是就成了栈顶。既然我们知道了第一个指针fmt的值，就很容易找到紧挨着的下一个位置ap的值，顺着ap一路找下去就能遍历整个var_list了
 
 4.Run the following code.
-{{< highlight c >}}
+```c
     unsigned int i = 0x00646c72;
     cprintf("H%x Wo%s", 57616, &i);
-{{< /highlight  >}}
+```
 
 5.What is the output? Explain how this output is arrived at in the step-by-step manner of the previous exercise. Here's an ASCII table that maps bytes to characters.
 
@@ -187,9 +187,9 @@ cprintf("x %d, y %x, z %d\n", x, y, z);
 其实可以把这个代码复制到`kern/init.c`的`i386_init`函数中，去执行，也可以得到相同的答案。因为内核启动的时候，会在汇编中调用`i386_init`，所以在启动的时候，就可以看到运算结果
 
 >In the following code, what is going to be printed after 'y='? (note: the answer is not a specific value.) Why does this happen?
-{{< highlight c >}}
+```c
 cprintf("x=%d y=%d", 3);
-{{< /highlight  >}}
+```
 
 输出`x=3 y=随机数` 会把`x`所在地址+4Bit之后当作`y`的地址，然后取出这个数字打印，所以这个值是随机的。同样的也可以把代码贴进去验证
 
@@ -219,7 +219,7 @@ x86栈指针(`esp`寄存器)指向当前正在使用栈的最低内存位置，�
 >If you use read_ebp(), note that GCC may generate "optimized" code that calls read_ebp() before mon_backtrace()'s function prologue, which results in an incomplete stack trace (the stack frame of the most recent function call is missing). While we have tried to disable optimizations that cause this reordering, you may want to examine the assembly of mon_backtrace() and make sure the call to read_ebp() is happening after the function prologue.
 
 就是实现`backtrace`函数，直接代码
-{{< highlight c >}}
+```c
 int
 mon_backtrace(int argc, char **argv, struct Trapframe *tf)
 {
@@ -234,7 +234,7 @@ mon_backtrace(int argc, char **argv, struct Trapframe *tf)
     }
     return 0;
 }
-{{< /highlight  >}}
+```
 
 主要是根据提示来改写 kern/monitor.c，重点用到的三个tricks：
 
@@ -248,7 +248,7 @@ mon_backtrace(int argc, char **argv, struct Trapframe *tf)
 同样的也是实现，但是需要命令行输入，同时还要实现一个代码的二分查找
 
 `kern/kdebug.c`中`debuginfo_eip`需要填充部分代码如下
-{{< highlight c >}}
+```c
 // Hint:
 //	There's a particular stabs type used for line numbers.
 //	Look at the STABS documentation and <inc/stab.h> to find
@@ -260,10 +260,10 @@ if (lline <= rline) {
 } else {
     return -1;
 }
-{{< /highlight  >}}
+```
 
 最后再实现一下`mon_backtrace`就可以了,同时更新一下`command`就可以了
-{{< highlight c >}}
+```c
 static struct Command commands[] = {
 	{ "help", "Display this list of commands", mon_help },
 	{ "kerninfo", "Display information about the kernel", mon_kerninfo },
@@ -289,4 +289,4 @@ mon_backtrace(int argc, char **argv, struct Trapframe *tf)
     }
     return 0;
 }
-{{< /highlight  >}}
+```

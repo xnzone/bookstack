@@ -28,10 +28,10 @@ tags: ["os", "操作系统"]
 
 匿名管道用`pipe`函数创建，返回0表示成功，返回-1表示出错。入参传入两个文件描述符，成功后，`fd[0]`用来读，`fd[1]`用来写。后续的UNIX版本支持全双工管道，即，两个文件描述符都可以用来读写
 
-{{< highlight c >}}
+```c
 #include <unistd.h>
 int pipe(int fd[2]);
-{{< /highlight >}}
+```
 
 某些系统提供全双工管道：SVR4的`pipe`函数以及很多内核提供的`socketpair`函数。全双工管道的实现如图，是两个独立的数据流，即两个半双工的管道组成的
 
@@ -39,20 +39,20 @@ int pipe(int fd[2]);
 
 标准I/O提供了两个函数`popen`和`pclose`，创建一个管道并启动另外一个进程，该进程要么从该管道读出标准输入，要么往该管道写入标准输出
 
-{{< highlight c >}}
+```c
 #include <stdio.h>
 FILE *popen(const char* command, const char* type); // 成功返回一个文件指针，失败返回NULL
 int pclose(FILE *stream); // 出错为-1
-{{< /highlight >}}
+```
 
 匿名管道在不考虑文件描述符传递时，只能用于亲缘关系的IPC通道，而FIFO是UNIX实现的一个有名管道，是先进先出的模式，同样也是一个半双工管道，但是每一个管道都有一个名称，FIFO管道由`mkfifo`函数创建
 
-{{< highlight c >}}
+```c
 #include <sys/types.h>
 #include <sys/stat.h>
 
 int mkfifo(const char* pathname, mode_t mode); // 成功为0， 错误为-1
-{{< /highlight >}}
+```
 
 FIFO管道(有名管道)，只能用来读或者写，因为它是一个半双工管道
 
@@ -94,7 +94,7 @@ System V消息队列函数组说明
 
 共享内存主要是通过`mmap`, `munmap`和`msync`函数来实现的
 
-{{< highlight c >}}
+```c
 #include <sys/mmap.h>
 
 void *mmap(void *addr, size_t len, int prot, int flags, int fd, off_t offset); // 成功返回映射区起始地址，失败为MAP_FAILED
@@ -102,7 +102,7 @@ void *mmap(void *addr, size_t len, int prot, int flags, int fd, off_t offset); /
 int munmap(void *addr, size_t len); // 成功为0，失败为-1
 
 int msync(void *addr,size_t len,int flags); // 成功则为0,出错则为−1
-{{< /highlight >}}
+```
 
 共享内存，一旦内存映射了一个文件，我们就不再使用read、write和lseek来访问该文件，而只是存取已由mmap映射到该文件的内存位置。把显式的文件I/O操作变换成存取内存单元往往能够简化我们的程序，有时候还能改善性能
 

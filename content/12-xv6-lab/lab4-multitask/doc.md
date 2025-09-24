@@ -154,7 +154,7 @@ JOS用户异常栈也是一页大小为单位的，栈顶定义了`UXSTACKTOP`�
 你需要修改`kern/trap.c`中页面错误处理代码来处理下面用户模式的页面错误。把用户环境发生错误时间的状态称为`trap-time`状态
 
 如果没有注册页面错误处理程序，JOS内核跟前面一样会销毁用户环境。否则内核在异常栈上设置`trap frame`，定义在`inc/trap.h`的`struct UTrapframe`
-{{< highlight text >}}
+```text
                     <-- UXSTACKTOP
 trap-time esp
 trap-time eflags
@@ -169,7 +169,7 @@ trap-time esi
 trap-time edi       end of struct PushRegs
 tf_err (error code)
 fault_va            <-- %esp when handler is run
-{{< /highlight  >}}
+```
 
 然后内核通过运行在带有`stack frame`异常栈上的页面错误处理程序，来为用户环境恢复运行；你必须要理解这是怎么发生的。`fault_va`是造成页面错误的虚拟地址
 

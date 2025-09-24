@@ -10,7 +10,7 @@ tags: ["xv6", "os"]
 
 ## Dockerfile
 
-{{< highlight Dockerfile >}}
+```dockerfile
 FROM ubuntu:16.04
 
 RUN apt-get -qq update
@@ -28,12 +28,12 @@ ADD ./jos jos
 WORKDIR jos
 
 CMD ["/bin/bash"]
-{{< /highlight >}}
+```
 
 ## startup
 
-{{< highlight bash >}}
+```bash
 joswd=$(pwd)
 echo ${joswd}
 docker run --rm -it -v ${joswd}/jos:/jos xv6
-{{< /highlight >}}
+```

@@ -11,7 +11,7 @@ tags: ["xv6", "os", "multitask"]
 >Exercise 1. Implement mmio_map_region in kern/pmap.c. To see how this is used, look at the beginning of lapic_init in kern/lapic.c. You'll have to do the next exercise, too, before the tests for mmio_map_region will run.
 
 补全`mmio_map_region`，主要是利用`boot_map_region`进行补全代码。同时要注意页面对齐的问题
-{{< highlight c >}}
+```c
 void *
 mmio_map_region(physaddr_t pa, size_t size)
 {
@@ -26,13 +26,13 @@ mmio_map_region(physaddr_t pa, size_t size)
 	base += size;
 	return (void*)(base - size);
 }
-{{< /highlight  >}}
+```
 
 ## Exercise 2
 >Exercise 2. Read boot_aps() and mp_main() in kern/init.c, and the assembly code in kern/mpentry.S. Make sure you understand the control flow transfer during the bootstrap of APs. Then modify your implementation of page_init() in kern/pmap.c to avoid adding the page at MPENTRY_PADDR to the free list, so that we can safely copy and run AP bootstrap code at that physical address. Your code should pass the updated check_page_free_list() test (but might fail the updated check_kern_pgdir() test, which we will fix soon).
 
 主要是在代码中把`MPENTRY_PADDR`的页面过滤掉
-{{< highlight c >}}
+```c
 void
 page_init(void)
 {
@@ -46,14 +46,14 @@ page_init(void)
 		page_free_list = &pages[i];
 	}
 }
-{{< /highlight  >}}
+```
 
 运行`make qemu-nox`，如果出现下面内容，则说明通过
-{{< highlight bash >}}
+```bash
 check_page_free_list() succeeded!
 check_page_alloc() succeeded!
 check_page() succeeded!
-{{< /highlight  >}}
+```
 
 ## Question
 >1.Compare kern/mpentry.S side by side with boot/boot.S. Bearing in mind that kern/mpentry.S is compiled and linked to run above KERNBASE just like everything else in the kernel, what is the purpose of macro MPBOOTPHYS? Why is it necessary in kern/mpentry.S but not in boot/boot.S? In other words, what could go wrong if it were omitted in kern/mpentry.S?
@@ -66,7 +66,7 @@ check_page() succeeded!
 >Exercise 3. Modify mem_init_mp() (in kern/pmap.c) to map per-CPU stacks starting at KSTACKTOP, as shown in inc/memlayout.h. The size of each stack is KSTKSIZE bytes plus KSTKGAP bytes of unmapped guard pages. Your code should pass the new check in check_kern_pgdir().
 
 通过`inc/memlayout.h`里面的内容，去初始化`mem_int_mp`，就是对每个CPU进行内存初始化
-{{< highlight c >}}
+```c
 static void
 mem_init_mp(void)
 {
@@ -77,21 +77,21 @@ mem_init_mp(void)
 		kstack -= KSTKSIZE + KSTKGAP;
 	}
 }
-{{< /highlight  >}}
+```
 
 运行`make qemu-nox`，如果出现以下内容，则说明代码没问题
-{{< highlight bash >}}
+```bash
 check_kern_pgdir() succeeded!
 check_page_free_list() succeeded!
 check_page_installed_pgdir() succeeded!
-{{< /highlight  >}}
+```
 
 ## Exercise 4
 >Exercise 4. The code in trap_init_percpu() (kern/trap.c) initializes the TSS and TSS descriptor for the BSP. It worked in Lab 3, but is incorrect when running on other CPUs. Change the code so that it can work on all CPUs. (Note: your new code should not use the global ts variable any more.)
 
 
 主要是修改`trap_init_percpu`的代码，其实代码主要都给你写好了，只是要针对当前的cpu去修改代码
-{{< highlight c >}}
+```c
 void
 trap_init_percpu(void)
 {
@@ -107,22 +107,22 @@ trap_init_percpu(void)
 	ltr(GD_TSS0 + 8 * cid);
 	lidt(&idt_pd);
 }
-{{< /highlight  >}}
+```
 
 运行`make qemu-nox CPUS=4`，可以看到下面的结果，就是成功
-{{< highlight bash >}}
+```bash
 SMP: CPU 0 found 4 CPU(s)
 enabled interrupts: 1 2
 SMP: CPU 1 starting
 SMP: CPU 2 starting
 SMP: CPU 3 starting
-{{< /highlight  >}}
+```
 
 ## Exercise 5
 >Exercise 5. Apply the big kernel lock as described above, by calling lock_kernel() and unlock_kernel() at the proper locations.
 
 这个非常简单。就是按照文档里面说的添加就好了
-{{< highlight c >}}
+```c
 // i386_init
 lock_kernel();
 boot_aps()
@@ -140,19 +140,19 @@ assert(curenv);
 lcr3(PADDR(e->env_pgdir));
 unlock_kernel();
 env_pop_tf(&e->env_tf);	
-{{< /highlight  >}}
+```
 
 ## Question
 >2.It seems that using the big kernel lock guarantees that only one CPU can run the kernel code at a time. Why do we still need separate kernel stacks for each CPU? Describe a scenario in which using a shared kernel stack will go wrong, even with the protection of the big kernel lock.
 
 当中断发生的时候，在检查锁之前会压入这些信息：
-{{< highlight c >}}
+```c
 uint32_t tf_err;
 uintptr_t tf_eip;
 uint16_t tf_cs;
 uint16_t tf_padding3;
 uint32_t tf_eflags;
-{{< /highlight  >}}
+```
 
 所以如果不区分CPU使用栈的话，地址会比较混乱，导致无法起到保护作用
 
@@ -167,7 +167,7 @@ uint32_t tf_eflags;
 >Run make qemu. You should see the environments switch back and forth between each other five times before terminating, like below.
 
 >Test also with several CPUS: make qemu CPUS=2.
-{{< highlight bash >}}
+```bash
 ...
 Hello, I am environment 00001000.
 Hello, I am environment 00001001.
@@ -179,12 +179,12 @@ Back in environment 00001000, iteration 1.
 Back in environment 00001001, iteration 1.
 Back in environment 00001002, iteration 1.
 ...
-{{< /highlight  >}}
+```
 
 >After the yield programs exit, there will be no runnable environment in the system, the scheduler should invoke the JOS kernel monitor. If any of this does not happen, then fix your code before proceeding.
 
 就是根据文档里面实现`sched_yield`函数，轮询算法还是比较好实现的
-{{< highlight c >}}
+```c
 void
 sched_yield(void)
 {
@@ -208,18 +208,18 @@ sched_yield(void)
 	// sched_halt never returns
 	sched_halt();
 }
-{{< /highlight  >}}
+```
 
 同时需要修改`syscall`来增加一个系统调用，就是
-{{< highlight c >}}
+```c
 case SYS_yield:
     sys_yield();
     ret = 0;
     break;
-{{< /highlight  >}}
+```
 
 最后，正如练习6里面的内容，需要把`fork`相关的测试注释掉，然后自己写几个测试用例，主要修改是在`i386_init()`
-{{< highlight c >}}
+```c
 /* 需要注释掉的代码
 #if defined(TEST)
 	// Don't touch -- used by grading script!
@@ -233,7 +233,7 @@ case SYS_yield:
     ENV_CREATE(user_yield, ENV_TYPE_USER);
     ENV_CREATE(user_yield, ENV_TYPE_USER);
     ENV_CREATE(user_yield, ENV_TYPE_USER);
-{{< /highlight  >}}
+```
 
 最终运行`make qemu-nox CPUS=2`可以看到运行结果如上面所示就是成功
 
@@ -251,7 +251,7 @@ case SYS_yield:
 >Exercise 7. Implement the system calls described above in kern/syscall.c and make sure syscall() calls them. You will need to use various functions in kern/pmap.c and kern/env.c, particularly envid2env(). For now, whenever you call envid2env(), pass 1 in the checkperm parameter. Be sure you check for any invalid system call arguments, returning -E_INVAL in that case. Test your JOS kernel with user/dumbfork and make sure it works before proceeding.
 
 实现五个函数，并且在`syscall`添加相关的调用
-{{< highlight c >}}
+```c
 int32_t
 syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, uint32_t a5)
 {
@@ -279,9 +279,9 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
 	}
 	return ret;
 }
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 static envid_t
 sys_exofork(void)
 {
@@ -361,30 +361,30 @@ sys_page_unmap(envid_t envid, void *va)
 	page_remove(e->env_pgdir, va);
 	return 0;
 }
-{{< /highlight  >}}
+```
 
 同时还有要注释`mp_main`中关于自旋的部分
-{{< highlight c >}}
+```c
 void
 mp_main(void)
 {
 	// Remove this after you finish Exercise 6
 	// for (;;);
 }
-{{< /highlight  >}}
+```
 
 运行`make grade`，可以看到如下信息就是成功
-{{< highlight c >}}
+```c
 dumbfork: OK (9.5s) 
     (Old jos.out.dumbfork failure log removed)
 Part A score: 5/5
-{{< /highlight  >}}
+```
 
 ## Exercise 8
 >Exercise 8. Implement the sys_env_set_pgfault_upcall system call. Be sure to enable permission checking when looking up the environment ID of the target environment, since this is a "dangerous" system call.
 
 经历过Exercise 7，那么这个就很简单了,就是把函数保存在环境里面
-{{< highlight c >}}
+```c
 static int
 sys_env_set_pgfault_upcall(envid_t envid, void *func)
 {
@@ -395,10 +395,10 @@ sys_env_set_pgfault_upcall(envid_t envid, void *func)
 	e->env_pgfault_upcall = func;
 	return 0;
 }
-{{< /highlight  >}}
+```
 
 同时需要修改系统调用的代码
-{{< highlight c >}}
+```c
 int32_t
 syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, uint32_t a5)
 {
@@ -414,13 +414,13 @@ syscall(uint32_t syscallno, uint32_t a1, uint32_t a2, uint32_t a3, uint32_t a4, 
 	}
 	return ret;
 }
-{{< /highlight  >}}
+```
 
 ## Exercise 9
 >Exercise 9. Implement the code in page_fault_handler in kern/trap.c required to dispatch page faults to the user-mode handler. Be sure to take appropriate precautions when writing into the exception stack. (What happens if the user environment runs out of space on the exception stack?)
 
 针对`page_fault_handler`需要处理在`UXSTACKTOP`上面的错误处理。比较简单
-{{< highlight c >}}
+```c
 void
 page_fault_handler(struct Trapframe *tf)
 {
@@ -464,13 +464,13 @@ page_fault_handler(struct Trapframe *tf)
 	print_trapframe(tf);
 	env_destroy(curenv);
 }
-{{< /highlight  >}}
+```
 
 ## Exercise 10
 >Exercise 10. Implement the _pgfault_upcall routine in lib/pfentry.S. The interesting part is returning to the original point in the user code that caused the page fault. You'll return directly there, without going back through the kernel. The hard part is simultaneously switching stacks and re-loading the EIP.
 
 这个地方真不会，其实如果按照里面的汇编语言注视，应该也没问题。但是懒得看了，直接复制github上面的解决方案
-{{< highlight asm >}}
+```armasm
 .text
 .globl _pgfault_upcall
 _pgfault_upcall:
@@ -499,13 +499,13 @@ _pgfault_upcall:
 
 	// LAB 4: Your code here.
 	ret
-{{< /highlight  >}}
+```
 
 ## Exercise 11
 >Exercise 11. Finish set_pgfault_handler() in lib/pgfault.c.
 
 总结来说就是分配内存，然后直接运行就可以了
-{{< highlight c >}}
+```c
 void
 set_pgfault_handler(void (*handler)(struct UTrapframe *utf))
 {
@@ -527,10 +527,10 @@ set_pgfault_handler(void (*handler)(struct UTrapframe *utf))
 	// Save handler pointer for assembly to call.
 	_pgfault_handler = handler;
 }
-{{< /highlight  >}}
+```
 
 然后运行`make grade`，出现以下结果，则说明上面的都是正确的
-{{< highlight c >}}
+```c
 faultread: OK (8.4s) 
 faultwrite: OK (8.7s) 
 faultdie: OK (9.0s) 
@@ -540,7 +540,7 @@ faultallocbad: OK (8.2s)
 faultnostack: OK (8.7s) 
 faultbadhandler: OK (8.4s) 
 faultevilhandler: OK (8.6s) 
-{{< /highlight  >}}
+```
 
 期间还出现了一个小插曲，之前在lab3中写的关于`user_mem_check`函数有点问题，导致`faultdie`的结果失败，其实是因为内存检测的边缘条件问题，已经在原来的内容里面修改了
 
@@ -549,7 +549,7 @@ faultevilhandler: OK (8.6s)
 >Exercise 12. Implement fork, duppage and pgfault in lib/fork.c.
 
 >Test your code with the forktree program. It should produce the following messages, with interspersed 'new env', 'free env', and 'exiting gracefully' messages. The messages may not appear in this order, and the environment IDs may be different.
-{{< highlight text >}}
+```text
 	1000: I am ''
 	1001: I am '0'
 	2000: I am '00'
@@ -565,10 +565,10 @@ faultevilhandler: OK (8.6s)
 	1004: I am '001'
 	1005: I am '111'
 	1006: I am '101'
-{{< /highlight  >}}
+```
 
 主要是实现`lib/fork.c`中的`fork()`功能，涉及到三个函数
-{{< highlight c >}}
+```c
 static void
 pgfault(struct UTrapframe *utf)
 {
@@ -648,12 +648,12 @@ fork(void)
 	}
     return envid;
 }
-{{< /highlight  >}}
+```
 
 同时，需要设置`inc/memlayout.h`中的`JOS_USER`，所以在其中加上
-{{< highlight c >}}
+```c
 #define JOS_USER 1
-{{< /highlight  >}}
+```
 
 运行`make grade`可以看到`Part B`全部通过则说明上述代码都是正确的
 
@@ -669,27 +669,27 @@ fork(void)
 主要是初始化中断，简单
 
 `kern/trapentry.S`里面添加，递增添加16个
-{{< highlight asm >}}
+```armasm
 TRAPHANDLER_NOEC(irq32, IRQ_OFFSET)
-{{< /highlight  >}}
+```
 
 `kern/trap.c`的`trap_init`添加。递增添加16个
-{{< highlight c >}}
+```c
 void irq32();
 SETGATE(idt[IRQ_OFFSET], 0, GD_KT, irq32, 3);
-{{< /highlight  >}}
+```
 
 取消`kern/sched.c`的`sched_halt`的代码
-{{< highlight c >}}
+```c
 "sti\n"
-{{< /highlight  >}}
+```
 
 最后在`kern/env.c`中的`env_alloc`添加返回的flag
-{{< highlight c >}}
+```c
 // Enable interrupts while in user mode.
 // LAB 4: Your code here.
 e->env_tf.tf_eflags |= FL_IF;
-{{< /highlight  >}}
+```
 
 ## Exercise 14
 >Exercise 14. Modify the kernel's trap_dispatch() function so that it calls sched_yield() to find and run a different environment whenever a clock interrupt takes place.
@@ -697,7 +697,7 @@ e->env_tf.tf_eflags |= FL_IF;
 >You should now be able to get the user/spin test to work: the parent environment should fork off the child, sys_yield() to it a couple times but in each case regain control of the CPU after one time slice, and finally kill the child environment and terminate gracefully.
 
 这个就很简单了，只要是时钟中断，就强制调用`sched_yield`就可以了
-{{< highlight c >}}
+```c
 static void
 trap_dispatch(struct Trapframe *tf)
 {
@@ -710,7 +710,7 @@ trap_dispatch(struct Trapframe *tf)
 		return;
 	}
 }
-{{< /highlight  >}}
+```
 
 运行`make grade`，可以有`65/80`就说明是成功的
 
@@ -722,7 +722,7 @@ trap_dispatch(struct Trapframe *tf)
 >Use the user/pingpong and user/primes functions to test your IPC mechanism. user/primes will generate for each prime number a new environment until JOS runs out of environments. You might find it interesting to read user/primes.c to see all the forking and IPC going on behind the scenes.
 
 主要是实现四个函数，都在文档中有写具体的实现。所以按照文档来实现就行了
-{{< highlight c >}}
+```c
 static int
 sys_ipc_try_send(envid_t envid, uint32_t value, void *srcva, unsigned perm)
 {
@@ -751,9 +751,9 @@ sys_ipc_try_send(envid_t envid, uint32_t value, void *srcva, unsigned perm)
 	e->env_tf.tf_regs.reg_eax = 0;
 	return 0;
 }
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 static int
 sys_ipc_recv(void *dstva)
 {
@@ -766,9 +766,9 @@ sys_ipc_recv(void *dstva)
 	sys_yield();
 	return 0;
 }
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 void
 ipc_send(envid_t to_env, uint32_t val, void *pg, int perm)
 {
@@ -781,9 +781,9 @@ ipc_send(envid_t to_env, uint32_t val, void *pg, int perm)
 		sys_yield();
 	}
 }
-{{< /highlight  >}}
+```
 
-{{< highlight c >}}
+```c
 int32_t
 ipc_recv(envid_t *from_env_store, void *pg, int *perm_store)
 {
@@ -800,6 +800,6 @@ ipc_recv(envid_t *from_env_store, void *pg, int *perm_store)
 	return thisenv->env_ipc_value;
 	return 0;
 }
-{{< /highlight  >}}
+```
 
 最后`make grade`，完成
