@@ -149,13 +149,13 @@ tags: ["王道408", "计算机网络","物理层"]
 
 ### 编码与调制的过程
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-encode.jpg)
+![](https://s2.loli.net/2025/09/25/SUurVmac5TbvGLM.png)
 
 **数字数据编码为数字信号**
 
 编码方式有下面六种
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-encode-type.jpg)
+![](https://s2.loli.net/2025/09/25/gNusT9XFV4PyGiO.png)
 
 4B/5B编码，编码效率80%
 
@@ -163,7 +163,7 @@ tags: ["王道408", "计算机网络","物理层"]
 
 数字数据调制技术在发送端将数字信号转为模拟信号，而在接收端将模拟信号还原为数字信号，分别对应于调制解调器和解调过程
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-da.jpg)
+![](https://s2.loli.net/2025/09/25/29oT7q6hC1uImKD.png)
 
 **模拟信号编码为数字信号**
 
@@ -199,21 +199,21 @@ tags: ["王道408", "计算机网络","物理层"]
 
 ### 电路交换
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-cs-1.jpg)
+![](https://s2.loli.net/2025/09/25/36gR5Dq97hQoAwS.png)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-cs-2.jpg)
+![](https://s2.loli.net/2025/09/25/UPX4psi31CTY2r5.png)
 
 ### 报文交换
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-me-1.jpg)
+![](https://s2.loli.net/2025/09/25/fys8HhVi9drQWEO.png)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-me-2.jpg)
+![](https://s2.loli.net/2025/09/25/LJVaesOR41zblTi.png)
 
 ### 分组交换
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-ps-1.jpg)
+![](https://s2.loli.net/2025/09/25/FGmVSYxNcyuIptC.png)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-ps-2.jpg)
+![](https://s2.loli.net/2025/09/25/6pQz8DRCcVETWIA.png)
 
 ### 数据交换的选择
 
@@ -225,7 +225,7 @@ tags: ["王道408", "计算机网络","物理层"]
 
 ### 分组交换-数据报方式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-ps-m.jpg)
+![](https://s2.loli.net/2025/09/25/Azn9vcljwOMY4Ks.png)
 
 数据报方式为网络层提供无连接服务。发送方可以随时发送分组，网络中的节点可随时接收分组
 
@@ -242,7 +242,7 @@ tags: ["王道408", "计算机网络","物理层"]
 
 ### 分组交换-虚电路方式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-ps-v.jpg)
+![](https://s2.loli.net/2025/09/25/Yfl3E2BXFV61QuN.png)
 
 虚电路方式为网络层提供连接服务。源节点和目的节点之间建立一个逻辑连接而非物理连接
 
@@ -258,7 +258,7 @@ tags: ["王道408", "计算机网络","物理层"]
 
 ### 虚电路和数据报的区别
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-physical-ps-mv-diff.jpg)
+![](https://s2.loli.net/2025/09/25/TBWrLAOjUbCvEhd.png)
 
 ## 物理传输介质
 

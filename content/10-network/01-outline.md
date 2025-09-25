@@ -20,7 +20,7 @@ tags: ["王道408", "计算机网络", "网络体系结构"]
 
 ### 工作方式
 
-- 边缘部分（C/S方式:客户和服务；P2P方式：对等连接peer-to-peer)
+- 边缘部分（C/S方式:客户和服务；P2P方式：对等连接peer-to-peer）
 - 核心部分（为边缘部分服务）
 
 ### 功能组成
@@ -160,7 +160,7 @@ OSI是7层模型，是法定标准，但现在基本上都是用TCP/IP协议，�
 
 ### 通信过程
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-osi-transport.jpg)
+![](https://s2.loli.net/2025/09/25/MoQamgpSN7y29U4.png)
 
 ### 应用层
 
@@ -257,7 +257,7 @@ OSI是7层模型，是法定标准，但现在基本上都是用TCP/IP协议，�
 
 ## TCP/IP参考模型
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-tcp-ip.jpg)
+![](https://s2.loli.net/2025/09/25/jcQF1PY2oKmsuEl.png)
 
 ### 与OSI参考模型差异
 
@@ -275,7 +275,7 @@ OSI是7层模型，是法定标准，但现在基本上都是用TCP/IP协议，�
 
 面向连接分为三个阶段，1. 建立连接；2. 建立连接后传输数据；3.数据传输后关闭连接
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-osi-tcpip-diff.jpg)
+![](https://s2.loli.net/2025/09/25/B29tyuGpzjmqREr.png)
 
 ### 五层参考模型
 
@@ -286,4 +286,4 @@ OSI是7层模型，是法定标准，但现在基本上都是用TCP/IP协议，�
 - 数据链路层负责把网络层传下来的数据报封装成帧
 - 物理层负责比特传输
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-five.jpg)
+![](https://s2.loli.net/2025/09/25/tuRsCDXh5nW7vEV.png)
