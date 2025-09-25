@@ -216,7 +216,7 @@ ESC就是一个转义字符
 
 数据帧和确定帧必须编号
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-stop-wait-ack.jpg)
+![](https://s2.loli.net/2025/09/25/y6sqpKMSlFvtOw7.png)
 
 
 ### ACK丢失
