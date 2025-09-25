@@ -63,17 +63,17 @@ tags: ["王道408", "计算机网络","数据链路层"]
 
 ![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-byte-fill-1.jpg)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-byte-fill-2.jpg)
+![](https://s2.loli.net/2025/09/25/CYlQePM58VpHzUX.png)
 
 ESC就是一个转义字符
 
 ### 零比特填充
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-zero-fill.jpg)
+![](https://s2.loli.net/2025/09/25/LYFbfZ5mnQxl6GJ.png)
 
 ### 违规编码法
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-mess-code.jpg)
+![](https://s2.loli.net/2025/09/25/5784BRrwN6vmFfU.png)
 
 ## 差错控制(检错编码)
 
@@ -101,9 +101,9 @@ ESC就是一个转义字符
 - 奇偶校验码：奇校验-1的个数为奇数，偶校验-1的个数位偶数
 - CRC循环冗余码：FCS的生成以及接收端CRC校验都是由硬件实现，处理很迅速，因此不会延误数据传输
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-crc-1.jpg)
+![](https://s2.loli.net/2025/09/25/G1dXWq5BcClLz9R.png)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-crc-2.jpg)
+![](https://s2.loli.net/2025/09/25/cvqACbpPnOUiHBZ.png)
 
 **纠错编码**
 
@@ -140,11 +140,11 @@ ESC就是一个转义字符
 
 **求出校验码的值**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-haiming-solve.jpg)
+![](https://s2.loli.net/2025/09/25/8mgGdwML9kYsFb6.png)
 
 **检错并纠错**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-haiming-valid.jpg)
+![](https://s2.loli.net/2025/09/25/qYhl27KLsnjVCby.png)
 
 ## 流量控制与可靠传输机制
 
@@ -206,7 +206,7 @@ ESC就是一个转义字符
 
 每发送1个数据帧就停止等待，因此用1bit来编号就够了
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-stop-wait-noerror.jpg)
+![](https://s2.loli.net/2025/09/25/p6wk75huMeKciXb.png)
 
 ### ACK：确认帧
 
