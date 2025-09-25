@@ -4,3 +4,4 @@ resources/_gen
 .DS_Store
 output
 .lock
+.obsidian
