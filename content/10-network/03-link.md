@@ -57,11 +57,11 @@ tags: ["王道408", "计算机网络","数据链路层"]
 
 ### 字符计数法
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-byte-cnt.jpg)
+![](https://s2.loli.net/2025/09/26/PCh5Jfxu6OUTZVQ.png)
 
 ### 字符填充法
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-byte-fill-1.jpg)
+![](https://s2.loli.net/2025/09/26/QprqMw3ZJeWm4jl.png)
 
 ![](https://s2.loli.net/2025/09/25/CYlQePM58VpHzUX.png)
 
@@ -221,11 +221,11 @@ ESC就是一个转义字符
 
 ### ACK丢失
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-stop-wait-ack-lost.jpg)
+![](https://s2.loli.net/2025/09/26/3dFp4ulRAX7rvJq.png)
 
 ### ACK迟到
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-stop-wait-ack-later.jpg)
+![](https://s2.loli.net/2025/09/26/mJ4uczG3QvxRylp.png)
 
 ### 性能分析
 
@@ -239,7 +239,7 @@ ESC就是一个转义字符
 
 ## 回退N帧协议
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-gnb.jpg)
+![](https://s2.loli.net/2025/09/26/m1gobJjWxd9SnYp.png)
 
 ### GBN发送方必须响应的三件事
 
@@ -268,7 +268,7 @@ GBN协议中，对n号帧的确认采用累积确认的方式，表明接收方�
 
 ### 运行中的GBN
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-gbn-run.jpg)
+![](https://s2.loli.net/2025/09/26/AVW9ZrlFtIS7npJ.png)
 
 ### 滑动窗口长度
 
@@ -291,7 +291,7 @@ GBN协议中，对n号帧的确认采用累积确认的方式，表明接收方�
 
 解决GBN的缺点：设置单个确认，同时加大接收窗口，设置接收缓存，缓存乱序到达的帧
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-sr.jpg)
+![](https://s2.loli.net/2025/09/26/1sVR8PeiKOqDtv2.png)
 
 ### SR发送方必须响应的三件事
 
@@ -319,7 +319,7 @@ GBN协议中，对n号帧的确认采用累积确认的方式，表明接收方�
 
 ### 运行中的SR
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-sr-run.jpg)
+![](https://s2.loli.net/2025/09/26/GhT2NzJrXP4DpKa.png)
 
 ### 滑动窗口长度
 
@@ -506,7 +506,7 @@ CD：碰撞检测(冲突检测),边发送边监听，适配器这边发送数据
 
 **为什么还会出现冲突-传播时延对载波监听的影响**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-csma-cd.jpg)
+![](https://s2.loli.net/2025/09/26/SJcRPtDnflTsVYd.png)
 
 重传时机：
 
@@ -723,7 +723,7 @@ MAC地址：每个适配器有一个全球唯一的48位二进制地址，前24�
 
 ### 以太网MAC帧
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-ethernet-mac.jpg)
+![](https://s2.loli.net/2025/09/26/26dEAUk5XpOVSha.png)
 
 与IEEE 802.3的区别
 
@@ -817,11 +817,11 @@ WAN，Wide Area Network，通常跨接很大的物理范围，所覆盖的范围
 
 ### PPP协议的状态图
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-ppp-status.jpg)
+![](https://s2.loli.net/2025/09/26/sgviDnuRCbNIojd.png)
 
 ### PPP协议的帧格式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-ppp-fregement.jpg)
+![](https://s2.loli.net/2025/09/26/u6BIE87QPrhkSpY.png)
 
 
 ### HDLC协议
@@ -850,7 +850,7 @@ WAN，Wide Area Network，通常跨接很大的物理范围，所覆盖的范围
 
 ### HDLC帧格式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-link-hdlc-fregement.jpg)
+![](https://s2.loli.net/2025/09/26/mxPbKJR4oXpf6u8.png)
 
 
 信息帧（I）第1位为0，用来传输数据信息，或使用捎带技术对数据进行确认；
