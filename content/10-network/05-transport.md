@@ -75,13 +75,13 @@ UDP首部开销小，8B，TCP要20B
 
 ### UDP首部格式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-udp-head.jpg)
+![](https://s2.loli.net/2025/09/26/W5MsEgyVaDb9wtJ.png)
 
 发送时，找不到对应的目的端口号，就丢弃报文，并给发送方发送ICMP端口不可达差错报文
 
 ### UDP校验
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-udp-check.jpg)
+![](https://s2.loli.net/2025/09/26/9BSm13rIQzyTH4D.png)
 
 伪首部只有在计算校验和时才出现，不向下传送也不向上递交
 
@@ -127,7 +127,7 @@ TCP把应用程序交下来的数据看成仅仅是一连串的无结构的字�
 
 ### TCP报文格式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-tcp-data.jpg)
+![](https://s2.loli.net/2025/09/26/13VSAjqyImONYGv.png)
 
 序号：在一个TCP连接中传送的字节流中的每一个字节都按顺序编号，本字段表示本报文段所发送数据的一个字节的序号
 
@@ -170,7 +170,7 @@ TCP连接的建立采用客户端服务器方式，主动发起连接建立的�
 
 ### TCP连接建立(三次握手)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-tcp-syn.jpg)
+![](https://s2.loli.net/2025/09/26/DTmVsf7MWNd1qRw.png)
 
 
 客户端发送连接请求报文段，无应用层数据。SYN=1，seq=x(随机)
@@ -192,7 +192,7 @@ SYN洪泛攻击发生在OSI第四层，这种方式利用TCP协议的特性，�
 
 ### TCP的连接释放(四次挥手)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-tcp-fin.jpg)
+![](https://s2.loli.net/2025/09/26/WOpQqKaAHL4cGo3.png)
 
 客户端发送连接释放报文段，停止发送数据，主动关闭TCP连接。FIN=1，seq=u
 
@@ -233,7 +233,7 @@ TCP采用自适应算法，动态改变重传时间RTTs(加权平均往返时间
 
 A向B发送数据，连接建立时，B告诉A：我的rwnd=400(字节)。设每一个报文段100B，报文段序号初始值为1
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-tcp-flow.jpg)
+![](https://s2.loli.net/2025/09/26/3LAxshFgKqQXvo4.png)
 
 
 ### 避免主机AB相互等待
@@ -268,10 +268,10 @@ TCP为每一个连接设有一个持续计时器，只要TCP连接的一方收�
 
 ### 慢开始和拥撒避免
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-tcp-congestion-avoid.jpg)
+![](https://s2.loli.net/2025/09/26/lozkyhLD9sHExm8.png)
 
 
 
 ### 快重传和快恢复
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/network-transport-congestion-retry.jpg)
+![](https://s2.loli.net/2025/09/26/JTEyz9iSIFbcGPH.png)
