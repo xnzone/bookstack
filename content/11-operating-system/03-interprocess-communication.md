@@ -35,7 +35,7 @@ int pipe(int fd[2]);
 
 某些系统提供全双工管道：SVR4的`pipe`函数以及很多内核提供的`socketpair`函数。全双工管道的实现如图，是两个独立的数据流，即两个半双工的管道组成的
 
-![](https://gitcode.net/xnzone/solar/-/raw/master/2022/02/14104215.png)
+![](https://s2.loli.net/2025/09/28/9TCHsfIAXimr6ea.png)
 
 标准I/O提供了两个函数`popen`和`pclose`，创建一个管道并启动另外一个进程，该进程要么从该管道读出标准输入，要么往该管道写入标准输出
 

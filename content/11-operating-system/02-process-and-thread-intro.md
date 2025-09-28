@@ -19,7 +19,7 @@ tags: ["os", "操作系统"]
 
 如下图所示，每个进程都有自己的程序，彼此独立运行，然而实际上只有一个CPU，只有一个物理的程序计数器，所以当进程运行的时候，进程的逻辑程序计数器被加载到实际的程序计数器，运行时间结束的时候，就会把物理程序计数器保存到逻辑程序计数器。所以看上去程序都在并行运行，但是在任意时间，都只有一个进程在运行
 
-![](https://gitcode.net/xnzone/solar/-/raw/master/2022/01/06200757.png)
+![](https://s2.loli.net/2025/09/28/1eyKx9gkZbj2Mlv.png)
 
 由于上下文切换时间不确定，所以不能对进程进行基于时间假定的编程。进程是正在运行的程序，而程序一般是保存在磁盘上的，一个程序运行两个，那就是两个进程，但是是同一个程序
 
@@ -64,7 +64,7 @@ UNIX的系统调用是`exit`，Windows的系统调用是`ExitProcess`
 2. 就绪态(Ready) 可以运行的，但是临时暂停让其他进程运行。没有占用CPU
 3. 阻塞态(Blocked) 直到一些事件发生的时候才能运行。就算CPU空闲都不会运行
 
-![](https://gitcode.net/xnzone/solar/-/raw/master/2022/01/07130633.png)
+![](https://s2.loli.net/2025/09/28/jKB8YLwxinZs2OI.png)
 
 如上图，三个状态之间有四个转换
 - 转换1: 运行态->阻塞态。一般是执行系统调用或者等待事件
@@ -74,7 +74,7 @@ UNIX的系统调用是`exit`，Windows的系统调用是`ExitProcess`
 
 所以进程模型总结来说就是下面这个图。操作系统底层是调度器，上层是各种进程，调度器实现了一些隐藏的细节比如上下文切换，进程数据保存和恢复等
 
-![](https://gitcode.net/xnzone/solar/-/raw/master/2022/01/07131347.png)
+![](https://s2.loli.net/2025/09/28/tUsZXPHSx1wYiTe.png)
 
 ## 进程实现
 进程主要是通过进程表(process table)结构体实现整个进程，也有称为进程控制块(process control blocks,即PCB)。主要的数据有：程序计数器，栈计数器，内存分配，打开文件的状态，还有一些上下文切换所必须要的数据
@@ -104,7 +104,7 @@ UNIX的系统调用是`exit`，Windows的系统调用是`ExitProcess`
 
 内核级线程，内核维护一张线程表，线程的操作都是通过内核调用来实现的
 
-![用户级和内核级线程](https://gitcode.net/xnzone/solar/-/raw/master/2022/01/21174550.png)
+![](https://s2.loli.net/2025/09/28/BomXvrLcbhM43Yd.png)
 
 
 

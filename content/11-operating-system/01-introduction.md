@@ -13,7 +13,8 @@ tags: ["os", "操作系统"]
 2. 管理硬件资源
 
 ## 操作系统硬件资源
-![](https://gitcode.net/xnzone/solar/-/raw/master/2021/11/30141903.png)
+
+![](https://s2.loli.net/2025/09/28/x3WUyKp6uYM4kPE.png)
 
 主要有：处理器，内存，硬盘，I/O设备，总线
 
@@ -66,7 +67,7 @@ I/O设备主要是用来输入输出，因为需要及时反馈，所以又有�
 
 大部分系统都提供一个目录(*directory*)，把多个文件集中在一起。主要模型如下
 
-![](https://gitcode.net/xnzone/solar/-/raw/master/2021/11/30163835.png)
+![](https://s2.loli.net/2025/09/28/ksGiQ3Sjdt9fX6O.png)
 
 文件也有操作权限，所以也相对来说提供了保护
 
@@ -85,7 +86,7 @@ I/O设备主要是用来输入输出，因为需要及时反馈，所以又有�
 ## 系统调用
 系统调用(*system call*)是用户态的进程调用内核态的函数的方式。比如读取的系统调用过程
 
-![](https://gitcode.net/xnzone/solar/-/raw/master/2021/11/30170134.png)
+![](https://s2.loli.net/2025/09/28/xJSsZ8qz6DytWV2.png)
 
 介绍一些系统调用的用法
 
