@@ -125,7 +125,7 @@ tags: ["数据结构", "算法", "树"]
 - 判断i是否有右孩子: 2i + 1 <= n
 - 判断i是否是叶子/分支节点： i > n / 2
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/tree-array.jpg)
+![](https://s2.loli.net/2025/09/28/OUeyS9H7o1wLAXC.png)
 
 
 ### 链式存储
@@ -133,7 +133,7 @@ tags: ["数据结构", "算法", "树"]
 - 可以简单找到p节点的左右节孩子，但只能通过从根开始遍历找到p的父节点
 - 可以多定义一个父节点指针来方便查找父节点
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/tree-list.jpg)
+![](https://s2.loli.net/2025/09/28/X1gVH8myQBNcetL.png)
 
 
 ## 二叉树遍历
@@ -145,16 +145,16 @@ tags: ["数据结构", "算法", "树"]
 
 ### 前序遍历
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/tree-pre-order.jpg)
+![](https://s2.loli.net/2025/09/28/fn51EOekLZW4tDx.png)
 
 
 ### 中序遍历
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/tree-in-order.jpg)
+![](https://s2.loli.net/2025/09/28/O6Q4gidBP7tlaDH.png)
 
 ### 后序遍历
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/tree-post-order.jpg)
+![](https://s2.loli.net/2025/09/28/8gms6ONM1WXGFrc.png)
 
 ### 层序遍历
 
@@ -163,7 +163,7 @@ tags: ["数据结构", "算法", "树"]
 - 若队列非空，则队头节点处队，访问该节点，并将左右孩子插入队尾
 - 重复第三步，直到队列为空
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/tree-level-order.jpg)
+![](https://s2.loli.net/2025/09/28/IOb1ulScfxPGrWJ.png)
 
 
 ## 构造二叉树
@@ -189,22 +189,91 @@ tags: ["数据结构", "算法", "树"]
 
 非递归
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/bst-search.jpg)
+```c++
+// 在二叉排序树中查找值为key的结点
+BSTNode *BST_Search(BSTree T, int key) {
+    // 若树空或等于根结点值，则结束循环
+    while (T != NULL && key != T->key) {
+        // 小于，则在左子树上查找
+        if (key < T->key) T = T->lchild;
+        // 大于，则在右子树上查找
+        else T = T->rchild;
+    }
+    return T;
+}
+```
+
+
 
 递归方式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/bst-search-track.jpg)
+```c++
+// 在二叉排序树中查找值为key的结点（递归实现）
+BSTNode *BSTSearch(BSTree T, int key) {
+    if (T == NULL)
+        // 查找失败
+        return NULL;
+    if (key == T->key)
+        // 查找成功
+        return T;
+    else if (key < T->key)
+        // 在左子树中找
+        return BSTSearch(T->lchild, key);
+    else
+        // 在右子树中找
+        return BSTSearch(T->rchild, key);
+}
+```
+
+
 
 ### 插入
 
 - 二叉树为空，直接插入节点
 - 若关键字k小于根节点，插入左子树，否则插入右子树
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/bst-insert.jpg)
+```c++
+// 在二叉排序树插入关键字为k的新结点（递归实现）
+int BST_Insert(BSTree &T, int k) {
+    // 原树为空，新插入的结点为根结点
+    if (T == NULL) {
+        T = (BSTree)malloc(sizeof(BSTNode));
+        T->key = k;
+        T->lchild = T->rchild = NULL;
+        // 返回1，插入成功
+        return 1;
+    }
+    // 树中存在相同关键字的结点，插入失败
+    else if (k == T->key)
+        return 0;
+    // 插入到T的左子树
+    else if (k < T->key)
+        return BST_Insert(T->lchild, k);
+    // 插入到T的右子树
+    else
+        return BST_Insert(T->rchild, k);
+}
+```
+
+
 
 ### 构造
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/bst-create.jpg)
+```c++
+// 按照 str[] 中的关键字序列建立二叉排序树
+void Creat_BST(BSTree &T, int str[], int n) {
+    // 初始时T为空树
+    T = NULL;
+    int i = 0;
+    // 依次将每个关键字插入到二叉排序树中
+    while (i < n) {
+        BST_Insert(T, str[i]);
+        i++;
+    }
+}
+```
+
+
 
 ### 删除
 
@@ -254,7 +323,7 @@ LL平衡旋转
 - 将A节点向右下旋转称为B的右子树的根节点
 - B的原右子树则作为A节点的左子树
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/avl-ll.jpg)
+![](https://s2.loli.net/2025/09/28/HzRmucb6hTVilxQ.png)
 
 RR平衡旋转
 
@@ -263,7 +332,7 @@ RR平衡旋转
 - 将A节点向左下旋转称为B的左子树的根节点
 - B的原左子树作为A节点的右子树
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/avl-rr.jpg)
+![](https://s2.loli.net/2025/09/28/6PlLmFAX4kWHZTi.png)
 
 LR平衡旋转
 
@@ -271,7 +340,7 @@ LR平衡旋转
 - 将A节点的左孩子的右子树的根节C点向左上旋转提升至节B节点的位置
 - 再把该C节点向右上旋转提升到A节点的位置
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/avl-lr.jpg)
+![](https://s2.loli.net/2025/09/28/xUcgfSCA721ph8R.png)
 
 RL平衡旋转
 
@@ -279,7 +348,7 @@ RL平衡旋转
 - 将A结点的右孩子B的左子树的根结点C向右上旋转提升到B结点的位置
 - 然后再把该C结点向左上旋转提升到A结点的位置
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/avl-rl.jpg)
+![](https://s2.loli.net/2025/09/28/mH8CG2aw6WtPpFD.png)
 
 
 ## 哈夫曼树
@@ -288,7 +357,7 @@ RL平衡旋转
 
 - 在含有n个带权叶节点的二叉树中，其中带权路径长度(WPL)最小的二叉树称为哈夫曼树，也称最优二叉树
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/hafman-tree.jpg)
+![](https://s2.loli.net/2025/09/28/M8OcCDtS1u3zsnW.png)
 
 ### 构造
 
@@ -305,7 +374,7 @@ RL平衡旋转
 - 哈夫曼树中不存在度为1的节点
 - 哈夫曼树并不惟一，但WPL必然相同并最优
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/hafman-create.jpg)
+![](https://s2.loli.net/2025/09/28/2rDpTL1sJlkj3R7.png)
 
 
 ### 哈夫曼编码
@@ -325,11 +394,11 @@ RL平衡旋转
 
 实际上就是树的双亲表示法，里面的值就是自己对应的根节点下标
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/find-union-create.jpg)
+![](https://s2.loli.net/2025/09/28/6zwFP9fmEIdlt2y.png)
 
 ### 并、查
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/find-union.jpg)
+![](https://s2.loli.net/2025/09/28/u9mRcO4TWMiQGIa.png)
 
 ### 并的优化
 
@@ -338,7 +407,7 @@ RL平衡旋转
 - union操作让小树合并到大树
 - 查的最坏时间复杂度变为O($\log_2n$)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/union-best.jpg)
+![](https://s2.loli.net/2025/09/28/WpxoidVKEG8SfUl.png)
 
 
 ### 压缩路径
@@ -346,7 +415,26 @@ RL平衡旋转
 - 核心思想就是让树越来越矮
 - Find操作先找到根节点，再将查找路径上所有节点都挂到根节点下
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/find-union-path.jpg)
+```c++
+// Find "查"操作优化，先找到根节点，再进行"压缩路径"
+int Find(int S[], int x) {
+    int root = x;
+    // 循环找到根
+    while (S[root] >= 0) root = S[root];
+    // 压缩路径
+    while (x != root) {
+        // t指向x的父节点
+        int t = S[x];
+        // x直接挂到根节点下
+        S[x] = root;
+        x = t;
+    }
+    // 返回根节点编号
+    return root;
+}
+```
+
+
 
 - 这样可以让树的高度不超过O($\alpha(n)$)
 - O($\alpha(n)$)是一个增长很慢的函数，对于常见的n值，O($\alpha(n)$)通常<=4
