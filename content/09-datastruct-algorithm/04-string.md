@@ -43,19 +43,19 @@ tags: ["数据结构", "算法", "字符串"]
 - 方案3: 没有长度变量，已字符'\0'表示结尾，缺点：获取长度需要遍历
 - 方案4: ch[0]废弃不用，外加一个长度变量
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/str-array.jpg)
+![](https://s2.loli.net/2025/09/28/sPNB5K8A97cIUkO.png)
 
 ### 链式存储
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/str-list.jpg)
+![](https://s2.loli.net/2025/09/28/MmcO5aIJGHQUDvF.png)
 
 ### 基本操作实现-第四种方案
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/str-substr.jpg)
+![](https://s2.loli.net/2025/09/28/XHPZzFaVpqQ1UB6.png)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/str-compare.jpg)
+![](https://s2.loli.net/2025/09/28/NM8fdRCF7WSPZQc.png)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/str-index.jpg)
+![](https://s2.loli.net/2025/09/28/mSQhs1gjPVuXBvH.png)
 
 ## 匹配问题-朴素算法
 
@@ -101,7 +101,7 @@ int Index(SString S, SString T) {
 - 根据模式串T，求出next数组
 - 利用next数组进行匹配（主串指针不回溯）
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/str-kmp.jpg)
+![](https://s2.loli.net/2025/09/28/GUOeBnSjbiyWdok.png)
 
 ### 求next数组
 
