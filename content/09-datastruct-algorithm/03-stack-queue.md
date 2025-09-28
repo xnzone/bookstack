@@ -35,19 +35,19 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 
 **栈的定义和初始化**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-array-init.jpg)
+![](https://s2.loli.net/2025/09/28/DFY61hwMmeplq9B.png)
 
 **进栈操作**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-array-push.jpg)
+![](https://s2.loli.net/2025/09/28/e28CzaDxHTwkJfE.png)
 
 **出栈操作**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-array-pop.jpta)
+![](https://s2.loli.net/2025/09/28/UdkG83TWzBxAorS.png)
 
 **读取栈顶元素**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-array-top.jpg)
+![](https://s2.loli.net/2025/09/28/hwkF43srDGWZpUA.png)
 
 **共享栈**
 
@@ -56,7 +56,7 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 - 栈满的条件： top0 + 1 = top1
 
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-array-static.jpg)
+![](https://s2.loli.net/2025/09/28/dCR92TA4kBSD3HZ.png)
 
 
 ### 链式存储结构
@@ -68,7 +68,7 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 
 **定义**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-list-init.jpg)
+![](https://s2.loli.net/2025/09/28/9NtkCQc17xwsMoz.png)
 
 ## 队列
 
@@ -92,7 +92,7 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 
 **初始化**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-array-init.jpg)
+![](https://s2.loli.net/2025/09/28/1uFYvgDoKZlzCfb.png)
 
 **入队**
 
@@ -100,13 +100,13 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 - 队列已满的条件：队尾指针的再下一个位置是队头，即 `(Q.rear + 1) % MaxSize == Q.front`
 - 代价：牺牲了一个存储单元，因为如果rear和front相同，与判空条件相同了
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-array-enqueue.jpg)
+![](https://s2.loli.net/2025/09/28/PCHkU53QSTszRNj.png)
 
 **出队**
 
 实际上获取队头元素的值就是出队操作去掉队头指针后移的代码
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-array-dequeue.jpg)
+![](https://s2.loli.net/2025/09/28/VcqELPasjwmdGWN.png)
 
 **判空**
 
@@ -143,27 +143,27 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 
 **初始化-带头节点**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-list-head-init.jpg)
+![](https://s2.loli.net/2025/09/28/VOYM8xrXzvuUWJQ.png)
 
 **初始化-不带头节点**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-list-nohead-init.jpg)
+![](https://s2.loli.net/2025/09/28/rbVANOU5ozLC3vX.png)
 
 **入队-带头节点**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-list-head-enqueue.jpg)
+![](https://s2.loli.net/2025/09/28/JDclP1Oyg3tWFoY.png)
 
 **入队-不带头节点**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-list-nohead-enqueue.jpg)
+![](https://s2.loli.net/2025/09/28/naU5OAyrImQTWpo.png)
 
 **出队-带头节点**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-list-head-dequeue.jpg)
+![](https://s2.loli.net/2025/09/28/bYvL9JF4VWEdKq2.png)
 
 **出队-不带头节点**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/queue-list-nohead-dequeue.jpg)
+![](https://s2.loli.net/2025/09/28/ziS8klpHCrZAvKy.png)
 
 **队满条件**
 
@@ -191,7 +191,7 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 
 实现
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-match.jpg)
+![](https://s2.loli.net/2025/09/28/fciobCvXaSzP5IN.png)
 
 
 ## 栈在求值表达式中的应用
@@ -201,7 +201,7 @@ n个不同元素进栈，出栈元素不同排列的个数为 $\frac{1}{n+1}C_{2
 - 逆波兰表达式=后缀表达式
 - 波兰表达式=前缀表达式
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/stack-state-example.jpg)
+![](https://s2.loli.net/2025/09/28/4CnhUyzx5f2dE6Y.png)
 
 **中缀转后缀**
 
