@@ -234,7 +234,7 @@ void HeapSort(int A[], int len) {
 - m路归并：每选出一个小的元素，需要对比关键字m-1次
 - 核心操作：把数组内的两个有序序列归并为一个
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-merge-base.jpg)
+![](https://s2.loli.net/2025/09/28/EZ7PryoNmqYpikv.png)
 
 ### 代码实现
 
@@ -285,8 +285,8 @@ void Merge(int A[], int low, int mid, int high) {
 - 分配：顺序扫描各个元素，若当前处理的关键字位=x，则将元素插入Qx队尾
 - 收集：把Qr-1,Qr-2,...,Q0各个队列中的节点一次出队并连接
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-basic-base-0.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-basic-base-1.jpg)
+![](https://s2.loli.net/2025/09/28/M49Anq8DS7QeWEB.png)
+![](https://s2.loli.net/2025/09/28/qkNyGUm2Pe9HTVc.png)
 
 ### 算法分析和应用
 
@@ -307,7 +307,7 @@ void Merge(int A[], int low, int mid, int high) {
 - 使用归并排序的方法，最少只需在内存或只能分配3块大小的缓冲区即可对任意一个大文件进行排序
 - 归并排序要求各个子序列有序，每次读入两个块的内容，进行内部排序后写回磁盘
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/merge-out.jpg)
+![](https://s2.loli.net/2025/09/28/UjANxLsdzvyElpg.png)
 
 ### 多路归并
 
@@ -329,12 +329,12 @@ void Merge(int A[], int low, int mid, int high) {
 
 ### 败者树在多路平衡归并中的应用
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-fail-tree-0.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-fail-tree-1.jpg)
+![](https://s2.loli.net/2025/09/28/8pWUD5IJBo3MmCt.png)
+![](https://s2.loli.net/2025/09/28/mzGV1Ah3TyOn4oC.png)
 
 ### 败者树存储结构
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-fail-tree-struct.jpg)
+![](https://s2.loli.net/2025/09/28/2aKAqGbheodSIwZ.png)
 
 ## 置换-选择排序
 
