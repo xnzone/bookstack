@@ -112,17 +112,17 @@ tips：
 - `typedef struct LNode LNode;`
 - 之后可以用`LNode`代替`struct LNode`
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-base.jpg)
+![](https://s2.loli.net/2025/09/28/tMzWNrmspafyxj2.png)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-singer-list-create.jpg)
+![](https://s2.loli.net/2025/09/28/l3txvMGLYHOjnIN.png)
 
 不带头节点的单链表
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-nohead.jpg)
+![](https://s2.loli.net/2025/09/28/vbVcsCI5BoOepZw.png)
 
 带头节点的单链表
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-head.jpg)
+![](https://s2.loli.net/2025/09/28/l7MPuWF5nxHr1RL.png)
 
 区别：
 
@@ -148,21 +148,21 @@ tips：
 - 找到第i-1个节点，将新节点插入其后
 - 带有头节点，插入更加方便
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-head-insert.jpg)
+![](https://s2.loli.net/2025/09/28/2cXngDsUPlbSWZm.png)
 
 按位置插入-不带头节点
 
 - 若`i != 1`，处理方法跟带头节点一样
 - `int j = 1`而非带头节点的0
 
-![](images/dsa/linear-list-single-list-nohead-insert.jpg)
+![](https://s2.loli.net/2025/09/28/SxCd6hZiVb8Wzwo.png)
 
 指定节点的后插操作
 
 - 按位置插入的代码一部分，按位置插入可以调用这个代码
 - 封装代码，提高复用性
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-insert-next.jpg)
+![](https://s2.loli.net/2025/09/28/glzd218vybf7N3c.png)
 
 
 指定节点的前操作
@@ -171,10 +171,12 @@ tips：
 - 方法2: 将新节点连接到指定节点p的后继，接着指定节点p连接新节点s，将p中元素复制到s中，将p中元素覆盖为要插入的元素e
 
 方法1
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-insert-prev-1.jpg)
+
+![](https://s2.loli.net/2025/09/28/MnXekBlo8VLO6ZS.png)
 
 方法2
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-insert-prev-2.jpg)
+
+![](https://s2.loli.net/2025/09/28/4L96HXlgqeI5WvO.png)
 
 
 **删除**
@@ -185,7 +187,7 @@ tips：
 - 找到第i-1个节点，将其指针指向第i+1个节点，并释放第i个节点
 
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-delete-locate.jpg)
+![](https://s2.loli.net/2025/09/28/OKAged8lfU9FV52.png)
 
 按指定节点删除
 
@@ -193,7 +195,7 @@ tips：
 - 方法1: 传入头指针，循环着p的前驱节点
 - 方法2: 偷天换日，类似于节点的前插
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-delete-node.jpg)
+![](https://s2.loli.net/2025/09/28/6PzQMS8hEKHcr1g.png)
 
 tips：
 
@@ -204,16 +206,16 @@ tips：
 - 按位置查找操作，获取表L中第i个位置元素的值
 - 实际上是单链表的插入中找到i-1部分就是按位置查找
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-locate.jpg)
+![](https://s2.loli.net/2025/09/28/mJDRupnMGlEWCKZ.png)
 
 - 按元素查找，跟按位置查找类似
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-node.jpg)
+![](https://s2.loli.net/2025/09/28/ErdDn3BMxiXPjlQ.png)
 
 
 **长度**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-length.jpg)
+![](https://s2.loli.net/2025/09/28/WygTGvqiREAPXo5.png)
 
 
 **创建**
@@ -225,10 +227,10 @@ tips：
 - 方法2: 增加一个尾指针r，每次插入都让r指向新的表尾节点，时间复杂度为O(n)
 
 方法1
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-tail-create-1.jpg)
+![](https://s2.loli.net/2025/09/28/4zUkPMbZYimFvr2.png)
 
 方法2
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-tail-create-2.jpg)
+![](https://s2.loli.net/2025/09/28/OTjv2ztNM5EYLHA.png)
 
 
 头插法
@@ -237,7 +239,7 @@ tips：
 - 头插法和单链表后插操作是一样的
 - `L->next = NULL`可以防止野指针
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-single-list-head-create.jpg)
+![](https://s2.loli.net/2025/09/28/TSRuOFvKXaq62iC.png)
 
 tips:
 
@@ -252,27 +254,27 @@ tips:
 
 **定义**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-double-list-def.jpg)
+![](https://s2.loli.net/2025/09/28/vGRqsKr6kCA3f2e.png)
 
 **初始化-带头节点**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-double-list-init.jpg)
+![](https://s2.loli.net/2025/09/28/8wYlHWc1gM2BORQ.png)
 
 **插入**
 
 - 如果p节点为最后一个节点，产生空指针的问题
 - 注意指针的修改顺序
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-double-list-insert.jpg)
+![](https://s2.loli.net/2025/09/28/bBrnh9myAkwFoRx.png)
 
 **删除**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-double-list-delete.jpg)
+![](https://s2.loli.net/2025/09/28/cDzuMQedZI5XJrA.png)
 
 
 **遍历**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-double-list-range.jpg)
+![](https://s2.loli.net/2025/09/28/AuBeCRcxnmy7rP2.png)
 
 
 ## 循环链表
@@ -292,7 +294,7 @@ tips:
 
 
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-cycle-single-list-init.jpg)
+![](https://s2.loli.net/2025/09/28/v9Gg4xJf7S28myq.png)
 
 ### 循环双链表
 
@@ -301,7 +303,7 @@ tips:
 
 **初始化**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-cycle-double-list-init.jpg)
+![](https://s2.loli.net/2025/09/28/v9Gg4xJf7S28myq.png)
 
 
 
@@ -312,7 +314,7 @@ tips:
 - 如果p节点尾最后一个节点，因为next节点尾null，p->next->prior=s 会产生空指针的问题
 - 循环链表规避是因为最后节点的next节点为头节点，因此不会发生此问题
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-cycle-list-insert.jpg)
+![](https://s2.loli.net/2025/09/28/unBQzsg5ZWPFRiG.png)
 
 **删除**
 
@@ -320,7 +322,7 @@ tips:
 - 如何判断节点p是否表尾/表头节点
 - 如何在表头、表中、表尾插入/删除一个节点
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-cycle-list-delete.jpg)
+![](https://s2.loli.net/2025/09/28/gTwe41vXA8OoLlV.png)
 
 
 ## 静态链表
@@ -340,11 +342,11 @@ tips:
 
 方法1
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-static-list-create-1.jpg)
+![](https://s2.loli.net/2025/09/28/R9LXVplPwaJdkoj.png)
 
 方法2
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/linear-list-static-list-create-2.jpg)
+![](https://s2.loli.net/2025/09/28/OPXGgeIb7CzS2Mo.png)
 
 ### 基本操作
 
