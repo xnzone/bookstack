@@ -12,9 +12,11 @@ tags: ["tutorial", "os"]
 
 **目标：学习操作系统内存组成**
 
-请打开[this document](http://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)第14页, 并且查阅内存结构图
+请打开[this document](https://web.archive.org/web/20211008041419/http://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)第14页, 并且查阅内存结构图
 
-![内存结构图](https://gitcode.net/xnzone/solar/-/raw/master/2021/03/05/20210305173850.png)
+文档新地址：[](https://github.com/user-attachments/files/19763309/os-dev.pdf)
+
+![](https://s2.loli.net/2025/09/28/RJTKUNcXFrBML2l.png)
 
 这节课的唯一目的是学习引导扇区保存在哪里
 
