@@ -21,12 +21,12 @@ tags: ["数据结构", "算法", "排序"]
 - 最坏时间复杂度：O(n^2)
 - 算法稳定性：稳定
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-insert.jpg)
+![](https://s2.loli.net/2025/09/28/adm6QgkjbpZKsLR.png)
 
 **优化**
 - 先用折半思想找到插入位置，再移动元素
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-insert-better.jpg)
+![](https://s2.loli.net/2025/09/28/4pHYOm873lntMdJ.png)
 
 ## 希尔排序
 
@@ -34,14 +34,14 @@ tags: ["数据结构", "算法", "排序"]
 
 - 先追求表中元素部分有序，再逼近全局有序
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-shell-base.jpg)
+![](https://s2.loli.net/2025/09/28/za9nYixGVXRrmWK.png)
 
 ### 代码实现
 
 - 最坏时间复杂度：O(n^2),当n在某个范围时，可达O(n^1.3)
 - 算法稳定性：不稳定
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-shell.jpg)
+![](https://s2.loli.net/2025/09/28/IL9V1AhaYrKvRoN.png)
 
 ## 冒泡排序
 
@@ -55,8 +55,8 @@ tags: ["数据结构", "算法", "排序"]
 - 最坏时间复杂度：O(n^2) 逆序的情况
 - 算法稳定性：稳定
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-bubble-swap.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-bubble.jpg)
+![](https://s2.loli.net/2025/09/28/6qE4LH9oSNCzY35.png)
+![](https://s2.loli.net/2025/09/28/qxbsciVjuTYeyHQ.png)
 
 ## 快速排序
 
@@ -77,9 +77,41 @@ tags: ["数据结构", "算法", "排序"]
 - 算法稳定性：不稳定
 - 所有排序算法中平均性能最优的
 
+```c++
+// 用第一个元素将待排序序列划分成左右两个部分
+int Partition(int A[], int low, int high) {
+    // 第一个元素作为枢轴
+    int pivot = A[low];
+    // 用low, high搜索枢轴的最终位置
+    while (low < high) {
+        while (low < high && A[high] >= pivot) --high;
+        // 比枢轴小的元素移动到左端
+        A[low] = A[high];
+        while (low < high && A[low] <= pivot) ++low;
+        // 比枢轴大的元素移动到右端
+        A[high] = A[low];
+    }
+    // 枢轴元素存放到最终位置
+    A[low] = pivot;
+    // 返回存放枢轴的最终位置
+    return low;
+}
+```
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-quick-part.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-quick.jpg)
+```c++
+// 快速排序
+void QuickSort(int A[], int low, int high) {
+    // 递归出口的条件
+    if (low < high) {
+        // 划分
+        int pivotpos = Partition(A, low, high);
+        // 划分左子表
+        QuickSort(A, low, pivotpos - 1);
+        // 划分右子表
+        QuickSort(A, pivotpos + 1, high);
+    }
+}
+```
 
 ## 选择排序
 
@@ -92,7 +124,22 @@ tags: ["数据结构", "算法", "排序"]
 - 时间复杂度：O(n^2)
 - 算法稳定性：不稳定
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-select.jpg)
+```c++
+// 简单选择排序
+void SelectSort(int A[], int n) {
+    // 一共进行n-1趟
+    for (int i = 0; i < n - 1; i++) {
+        // 记录最小元素位置
+        int min = i;
+        // 在A[i...n-1]中选择最小的元素
+        for (int j = i + 1; j < n; j++)
+            // 更新最小元素位置
+            if (A[j] < A[min]) min = j;
+        // 封装的swap()函数交换元素3次
+        if (min != i) swap(A[i], A[min]);
+    }
+}
+```
 
 ## 堆排序
 
@@ -108,8 +155,36 @@ tags: ["数据结构", "算法", "排序"]
 
 ### 最大堆代码
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-max-heap-build.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-max-heap-head.jpg)
+```c++
+// 建立大根堆
+void BuildMaxHeap(int A[], int len) {
+    // 从后往前调整所有非终端结点
+    for (int i = len/2; i > 0; i--)
+        HeadAdjust(A, i, len);
+}
+
+// 将以k为根的子树调整为大根堆
+void HeadAdjust(int A[], int k, int len) {
+    // A[0]暂存子树的根结点
+    A[0] = A[k];
+    // 沿key较大的子结点向下筛选
+    for (int i = 2*k; i <= len; i *= 2) {
+        // 取key较大的子结点的下标
+        if (i < len && A[i] < A[i+1])
+            i++;
+        // 筛选结束
+        if (A[0] >= A[i]) break;
+        else {
+            // 将A[i]调整到双亲结点上
+            A[k] = A[i];
+            // 修改k值，以便继续向下筛选
+            k = i;
+        }
+    }
+    // 被筛选结点的值放入最终位置
+    A[k] = A[0];
+}
+```
 
 ### 最大堆排序
 
@@ -121,7 +196,21 @@ tags: ["数据结构", "算法", "排序"]
 - 排序时间复杂度：O($n\log_2n$)
 - 算法稳定性：不稳定
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-max-heap.jpg)
+
+```c++
+// 堆排序的完整逻辑
+void HeapSort(int A[], int len) {
+    // 初始建堆
+    BuildMaxHeap(A, len);
+    // n-1趟的交换和建堆过程
+    for (int i = len; i > 1; i--) {
+        // 堆顶元素和堆底元素交换
+        swap(A[i], A[1]);
+        // 把剩余的待排序元素整理成堆
+        HeadAdjust(A, 1, i-1);
+    }
+}
+```
 
 ### 插入和删除
 
@@ -153,8 +242,39 @@ tags: ["数据结构", "算法", "排序"]
 - 空间复杂度：O(n)
 - 算法稳定性：稳定
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-merge-sort.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/sort-merge.jpg)
+```c++
+void MergeSort(int A[], int low, int high) {
+    if (low < high) {
+        // 从中间划分
+        int mid = (low + high) / 2;
+        // 对左半部分归并排序
+        MergeSort(A, low, mid);
+        // 对右半部分归并排序
+        MergeSort(A, mid + 1, high);
+        // 归并
+        Merge(A, low, mid, high);
+    } // if
+}
+```
+
+```c++
+// A[low...mid]和A[mid+1...high]各自有序，将两个部分归并
+void Merge(int A[], int low, int mid, int high) {
+    int i, j, k;
+    // 将A中所有元素复制到B中
+    for (k = low; k <= high; k++)
+        B[k] = A[k];
+    for (i = low, j = mid + 1, k = i; i <= mid && j <= high; k++) {
+        if (B[i] <= B[j])
+            // 将较小值复制到A中
+            A[k] = B[i++];
+        else
+            A[k] = B[j++];
+    } // for
+    while (i <= mid)    A[k++] = B[i++];
+    while (j <= high)   A[k++] = B[j++];
+}
+```
 
 ## 基数排序
 
