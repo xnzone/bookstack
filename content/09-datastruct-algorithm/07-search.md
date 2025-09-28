@@ -21,7 +21,7 @@ tags: ["数据结构", "算法", "查找"]
 
 ### 实现
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/search-range.jpg)
+![](https://s2.loli.net/2025/09/28/uB8Q2wntE6DFpo1.png)
 
 ## 二分查找
 
@@ -39,7 +39,7 @@ tags: ["数据结构", "算法", "查找"]
 
 - 时间复杂度：O($\log_2n$)
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/search-binary.jpg)
+![](https://s2.loli.net/2025/09/28/wE5INir6ZqSsgA9.png)
 
 ## 分块查找
 
@@ -52,7 +52,7 @@ tags: ["数据结构", "算法", "查找"]
 - 在索引表中确定待查记录所属的分块
 - 在块内顺序查找
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/search-half.jpg)
+![](https://s2.loli.net/2025/09/28/MjeECrB3NV4RwXT.png)
 
 ## B树
 
@@ -61,7 +61,7 @@ tags: ["数据结构", "算法", "查找"]
 - 二叉查找树的拓展，节点有多少个就有多少个分叉就是多叉查找树
 - 每个节点关键字的查找可以用顺序查找也可以用折半查找
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/search-btree.jpg)
+![](https://s2.loli.net/2025/09/28/iJM7XTzULh1ul3Y.png)
 
 ### 如何保证效率
 
@@ -122,7 +122,7 @@ m阶的B+树，满足下列条件
 - 可以使一个磁盘块可以包含更多关键字，使得B+树的阶更大，树高也更矮，读盘次数更少，查询更快
 - MySQL的索引就是B+树
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/search-bplus-btree.jpg)
+![](https://s2.loli.net/2025/09/28/DKLbatmQxH8GgsP.png)
 
 ## 散列(哈希)查找
 
