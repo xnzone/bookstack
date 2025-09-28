@@ -117,7 +117,7 @@ tags: ["数据结构", "算法", "图"]
 
 ## 邻接矩阵法
 
-![](/images/graph-neibor-matrix.jpg)
+![](https://s2.loli.net/2025/09/28/NbkpTOeVzU8xtg3.png)
 
 ### 定义
 
@@ -138,7 +138,7 @@ tags: ["数据结构", "算法", "图"]
 
 - 邻接矩阵使用数组实现顺序存储，不适合稀疏矩阵
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-neibor-list.jpg)
+![](https://s2.loli.net/2025/09/28/xiNS2VbEYpZCmtr.png)
 
 ### 定义
 
@@ -154,7 +154,7 @@ tags: ["数据结构", "算法", "图"]
 
 ### 十字链表
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-cross-list.jpg)
+![](https://s2.loli.net/2025/09/28/gOv1uKFQ9UNZWls.png)
 
 - 空间复杂度O(|V|+|E|)
 - 顺着绿色线路可以找到顶点的所有出边
@@ -165,7 +165,7 @@ tags: ["数据结构", "算法", "图"]
 - 邻接表每条边对应两份冗余信息，删除顶点，删除边等操作时间复杂度高
 - 邻接矩阵空间复杂度高
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-multi-neibor-list.jpg)
+![](https://s2.loli.net/2025/09/28/5SaTIsWDroCeAmM.png)
 
 - 空间复杂度O(|V|+|E|)
 - 删除边，删除顶点操作方便
@@ -198,7 +198,37 @@ tags: ["数据结构", "算法", "图"]
 - 标记哪些顶点呗访问过
 - 需要一个辅助队列
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-bfs.jpg)
+```c++
+// 广度优先遍历
+// 从顶点v出发，广度优先遍历图G
+void BFS(Graph G, int v) {
+    // 访问初始顶点v
+    visit(v);
+    // 对v做已访问标记
+    visited[v] = TRUE;
+    // 顶点v入队列Q
+    Enqueue(Q, v);
+    
+    while (!isEmpty(Q)) {
+        // 顶点v出队列
+        DeQueue(Q, v);
+        // 检测v所有邻接点
+        for (w = FirstNeighbor(G, v); w >= 0; w = NextNeighbor(G, v, w)) {
+            // w为v的尚未访问的邻接顶点
+            if (!visited[w]) {
+                // 访问顶点w
+                visit(w);
+                // 对w做已访问标记
+                visited[w] = TRUE;
+                // 顶点w入队列
+                EnQueue(Q, w);
+            } // if
+        } // while
+    }
+}
+```
+
+
 
 - 同一个图的邻接矩阵表示方法唯一，因此广度优先搜索序列唯一
 - 同一个图的邻接表表示方法不唯一，因此广度优先搜索序列不唯一
@@ -207,7 +237,7 @@ tags: ["数据结构", "算法", "图"]
 
 - 如果是非连通图，则无法遍历完所有节点
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-bfs-better.jpg)
+![](https://s2.loli.net/2025/09/28/wuEAXp65TacKB4o.png)
 
 - 空间复杂度：最坏情况，O(|V|)
 - 邻接矩阵时间复杂度:O($|V|^2$)
@@ -219,13 +249,13 @@ tags: ["数据结构", "算法", "图"]
 - 尽可能往深处走，遍历完一个分支后，再回到上一个节点遍历其他分支
 - 深度优先用递归实现，广度优先用队列实现
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-dfs.jpg)
+![](https://s2.loli.net/2025/09/28/pwByrbl2FxCJPgh.png)
 
 ### 存在的问题和解决方案
 
 - 如果时非连通图，则无法遍历完所有节点
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-dfs-better.jpg)
+![](https://s2.loli.net/2025/09/28/QXnENdSPkoR5pVC.png)
 
 - 空间复杂度：最坏情况O(|V|),最好情况O(1)
 - 邻接矩阵时间复杂度: O($|V|^2$)
@@ -260,7 +290,7 @@ tags: ["数据结构", "算法", "图"]
 
 **数据结构**
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-tree-prim.jpg)
+![](https://s2.loli.net/2025/09/28/YAZ39dsfC5kxt8L.png)
 
 **实现步骤**
 
@@ -281,7 +311,7 @@ tags: ["数据结构", "算法", "图"]
 
 - 让各条边按照权值顺序排序
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-tree-kruskal.jpg)
+![](https://s2.loli.net/2025/09/28/w7B6faz59XucblK.png)
 
 **实现步骤**
 
@@ -302,7 +332,7 @@ tags: ["数据结构", "算法", "图"]
 - path数组表示该节点回到u节点的最短前驱节点
 - 由此生成的生成树同时也反映了起点到任意节点的距离
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-path-bfs.jpg)
+![](https://s2.loli.net/2025/09/28/Z4DWMHUgYvaGKmj.png)
 
 ## 最短路径-Dijkstra算法
 
@@ -316,7 +346,7 @@ tags: ["数据结构", "算法", "图"]
 - 检查所有邻接自Vi的顶点，如果final的值为false，则更新dist和path值
 - 重复上述步骤，直到所有节点的final都标记为true
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-path-dijkstra.jpg)
+![](https://s2.loli.net/2025/09/28/Kcs2GHRtvXmqrQZ.png)
 
 ### 实现思路
 
@@ -343,14 +373,14 @@ tags: ["数据结构", "算法", "图"]
 
 ### 实现步骤
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-path-floyd-0.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-path-floyd-1.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-path-floyd-2.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-path-floyd-3.jpg)
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-min-path-floyd-4.jpg)
+![](https://s2.loli.net/2025/09/28/beSUhXcnQuMvBl7.png)
+![](https://s2.loli.net/2025/09/28/IsLU5Vb6hywRCWk.png)
+![](https://s2.loli.net/2025/09/28/kI4m59EHFc2lhdR.png)
+![](https://s2.loli.net/2025/09/28/lEi1OcHfq8L43Bd.png)
+![](https://s2.loli.net/2025/09/28/SC6kibDZaRhHUyJ.png)
 
 ### 代码实现
- 
+
  ```c++
 // ... 准备工作，根据图的信息初始化矩阵 A 和 path，入上图
 for(int k = 0; k < n; k++) {
@@ -363,7 +393,7 @@ for(int k = 0; k < n; k++) {
         }
     }
 }
-```
+ ```
 
 tips:
 
@@ -402,7 +432,7 @@ tips:
 
 ### 代码实现
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-top.jpg)
+![](https://s2.loli.net/2025/09/28/Cp8QklFJS19uXhb.png)
 
 ### 逆拓扑排序
 
@@ -410,4 +440,4 @@ tips:
 - 从网中删除该顶点和所有以它为终点的有向边
 - 重复上面的步骤直到AOV网为空
 
-![](https://jihulab.com/xnzone/earth-bear/-/raw/master/graph-revert-top.jpg)
+![](https://s2.loli.net/2025/09/28/ONpJ9QzalZhbvRd.png)
